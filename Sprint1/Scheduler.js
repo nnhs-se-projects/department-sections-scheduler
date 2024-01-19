@@ -8,7 +8,7 @@ let periodsClassArr = [];
 for (let course of courses) {
   for (i = 0; i < course.sections; i++) {
     sectionArr.push({
-      //course: course,
+      course: course,
       section: i + 1,
       periodClass: null,
     });
