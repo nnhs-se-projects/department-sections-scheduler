@@ -1,35 +1,26 @@
 {
-  "CSA_1":
-  {
+  "CSA_1": {
     "course": null,
-    "P_C": null,
+    "P_C": null
   },
-  "CSA_2":
-  {
+  "CSA_2": {
     "course": null,
-    "P_C": null,
-  }
-  "CP1_1":
-  {
+    "P_C": null
+  },
+  "CP1_1": {
     "course": null,
-    "P_C": null,
-  }
-  "CP1_2":
-  {
+    "P_C": null
+  },
+  "CP1_2": {
     "course": null,
-    "P_C": null,
-  }
-  "CP2_1":
-  {
+    "P_C": null
+  },
+  "CP2_1": {
     "course": null,
-    "P_C": null,
-  }
-  "CP2_2":
-  {
+    "P_C": null
+  },
+  "CP2_2": {
     "course": null,
-    "P_C": null,
+    "P_C": null
   }
-
-    
-  
 }
