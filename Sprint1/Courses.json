@@ -46,7 +46,7 @@
 
       "name": "Research & Design",
       "certified teachers": ["Mr. Glemza", "Mrs. DiOrio", "Mr. Ryan"],
-      "sections": 4,
+      "sections": 0,
       "compatibleClassrooms": [114, 115, 116, 117],
       "compatiblePeriods": [2, 3, 4],
       "schedulingPriority": ".75",
