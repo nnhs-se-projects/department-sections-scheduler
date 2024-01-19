@@ -2,15 +2,19 @@
   "classrooms": [
     {
       "periodsAvailable": [1, 2, 3, 4],
-      "roomNum": 121
+      "roomNum": "121"
     },
     {
       "periodsAvailable": [1, 2, 3, 4],
-      "roomNum": 123
+      "roomNum": "123"
     },
     {
       "periodsAvailable": [3, 4, 5, 6],
-      "roomNum": 114
+      "roomNum": "114"
+    }
+    {
+      "periodsAvailable": [3, 4, 5, 6],
+      "roomNum": "114"
     }
   ]
 }

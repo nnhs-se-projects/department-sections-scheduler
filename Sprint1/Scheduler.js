@@ -27,10 +27,15 @@ for (let classroom of classrooms) {
 
 for (let section of sectionArr) {
   if (periodsClassArr.length == 0) {
-    console.log("No more periods to assign");
-    break;
+    console.log(
+      "No more period-classrooms available to assign to " +
+        section.course.name +
+        " section " +
+        section.section
+    );
   }
   section.periodClass = periodsClassArr.pop();
 }
 
+console.log("\nCurrent course list:");
 console.log(sectionArr);
