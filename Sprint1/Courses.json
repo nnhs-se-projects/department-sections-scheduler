@@ -1,0 +1,44 @@
+{
+  "courses": [
+    {
+      "name": "APCSA",
+      "certified teachers": ["Mr. Smith", "Mrs. Smith"],
+      "sections": 4,
+      "compatibleClassrooms": [1, 2, 3, 4],
+      "compatiblePeriods": [2, 3, 4],
+      "schedulingpriority": ".75"
+    },
+    {
+      "name": "CP1",
+      "certified teachers": ["Mr. Smith", "Mrs. Smith"],
+      "sections": 3,
+      "compatibleClassrooms": [1, 2, 3, 4],
+      "compatiblePeriods": [1, 2, 3, 4],
+      "schedulingpriority": "0.5"
+    },
+    {
+      "name": "CP2",
+      "certified teachers": ["Mr. Smith", "Mrs. Smith"],
+      "sections": 4,
+      "compatibleClassrooms": [1, 2, 3, 4],
+      "compatiblePeriods": [1],
+      "schedulingpriority": "0.5"
+    },
+    {
+      "name": "Software Engineering",
+      "certified teachers": ["Mr. Smith", "Mrs. Smith"],
+      "sections": 2,
+      "compatibleClassrooms": [1, 2, 3, 4],
+      "compatiblePeriods": [1, 2, 3, 4],
+      "schedulingpriority": "1"
+    },
+    {
+      "name": "IT Systems",
+      "certified teachers": ["Mr. Smith", "Mrs. Smith"],
+      "sections": 2,
+      "compatibleClassrooms": [3],
+      "compatiblePeriods": [2, 3, 4],
+      "schedulingpriority": ".75"
+    }
+  ]
+}
