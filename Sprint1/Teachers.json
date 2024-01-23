@@ -1,0 +1,70 @@
+[
+  {
+    "name": "Geoff Schmit",
+    "certifiedCourses": [
+      {
+        "course": "AP Computer Science A",
+        "preference": 0.9
+      },
+      {
+        "course": "Software Engineering",
+        "preference": 0.9
+      },
+      {
+        "course": "Computer Programming 2",
+        "preference": 0.2
+      },
+      {
+        "course": "Computer Programming 1",
+        "preference": 0.2
+      }
+    ]
+  },
+  {
+    "name": "Jason Reid",
+    "certifiedCourses": [
+      {
+        "course": "Computer Programming 2",
+        "preference": 0.8
+      },
+      {
+        "course": "Computer Programming 1",
+        "preference": 0.4
+      }
+    ]
+  },
+  {
+    "name": "Jen Betthauser",
+    "certifiedCourses": [
+      {
+        "course": "Software Engineering",
+        "preference": 0.6
+      },
+      {
+        "course": "Computer Programming 1",
+        "preference": 0.7
+      }
+    ]
+  },
+  {
+    "name": "Matt Callaghan",
+    "certifiedCourses": [
+      {
+        "course": "Computer Programming 1",
+        "preference": 0.5
+      },
+      {
+        "course": "Software Engineering",
+        "preference": 0.8
+      },
+      {
+        "course": "AP Computer Science A",
+        "preference": 0.7
+      },
+      {
+        "course": "IT Systems",
+        "preference": 0.7
+      }
+    ]
+  }
+]
