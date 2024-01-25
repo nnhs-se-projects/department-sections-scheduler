@@ -2,14 +2,17 @@ let courses = require("./Courses.json");
 let config = require("./Config.json");
 
 let classroomArr = require("./Classrooms.json");
+let roomArr = map((classroom) => classroom.roomNum);
 let classroomList = classroomArr.map((classroom) => classroom.roomNum);
 let teacherArr = require("./Teachers.json");
 let sectionArr = [];
 let periodsClassArr = [];
 let courseTeacherCount = [];
-let visualSchedule = []; // 2d array of classrooms and periods
 
 let initializeVisualSchedule = function () {
+  let visualSchedule = []; // 2d array of classrooms and periods
+  //initial setup of 2d array
+
   for (i = 0; i < config.numPeriods; i++) {
     let tempArr = [];
     for (j = 0; j < classroomArr.length; j++) {
@@ -18,21 +21,42 @@ let initializeVisualSchedule = function () {
     visualSchedule.push(tempArr);
   }
 
-  for (i = 0; i < config.numPeriods; i++) {
-    for (j = 0; j < classroomArr; j++) {
-      visualSchedule[i][j] = null; //<- NOT DONE; NEEDS FIXING
-    }
+  for (i = 0; i < sectionArr.length; i++) {
+    console.log(
+      sectionArr[i].periodClass.period +
+        " " +
+        sectionArr[i].periodClass.classroom
+    );
+    roomIndex = visualSchedule[sectionArr[i].periodClass.period][
+      visualSchedule[0].indexOf(roomArr[i].periodClass.classroom)
+    ] = sectionArr[i];
+  }
+  //index = visualSchedule[0].indexOf(sectionArr[3].periodClass.classroom);
+  //console.log(visualSchedule[sectionArr[3].periodClass.period][index]);
+  //visualSchedule[sectionArr[3].periodClass.period][index] = sectionArr[3];
+  //console.log(visualSchedule[sectionArr[3].periodClass.period][index]);
+  return visualSchedule;
+};
+
+let updateSchedule = function (visualSchedule) {
+  //update schedule
+  for (let section of sectionArr) {
+    visualSchedule[section.periodClass.period][section.periodClass.classroom] =
+      section;
   }
 };
 
-// i tried, but it may not work and may need debugging, this can at least serve as a skeleton
-let printInCoolWay = function (theArray) {
-  for (i = 0; i < theArray.length; i++) {
-    println("[");
-    for (j = 0; j < theArray[i].length; j++) {
-      print(j + ", ");
+// function main code by beloved ChatGPT
+let printInCoolWay = function (arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let row = "[ ";
+    for (let j = 0; j < arr[i].length; j++) {
+      // Add padding to align columns
+      row += `(item${arr[i][j]}) | `;
     }
-    print("]");
+    // Remove the trailing ' | ' and add the closing bracket
+    row = row.slice(0, -2) + " ]";
+    console.log(row);
   }
 };
 
@@ -142,8 +166,8 @@ for (let course of sortedCourseTeachersCount) {
     }
   }
 }
-//we need to make a 2d array of classrooms and periods, and then print in in a readable and nice way
-//
 
 //print array (in super cool way)
-printInCoolWay(visualSchedule);
+//printInCoolWay(visualSchedule);
+
+console.log(initializeVisualSchedule());
