@@ -7,6 +7,34 @@ let teacherArr = require("./Teachers.json");
 let sectionArr = [];
 let periodsClassArr = [];
 let courseTeacherCount = [];
+let visualSchedule = []; // 2d array of classrooms and periods
+
+let initializeVisualSchedule = function () {
+  for (i = 0; i < config.numPeriods; i++) {
+    let tempArr = [];
+    for (j = 0; j < classroomArr.length; j++) {
+      tempArr.push(null);
+    }
+    visualSchedule.push(tempArr);
+  }
+
+  for (i = 0; i < config.numPeriods; i++) {
+    for (j = 0; j < classroomArr; j++) {
+      visualSchedule[i][j] = null; //<- NOT DONE; NEEDS FIXING
+    }
+  }
+};
+
+// i tried, but it may not work and may need debugging, this can at least serve as a skeleton
+let printInCoolWay = function (theArray) {
+  for (i = 0; i < theArray.length; i++) {
+    println("[");
+    for (j = 0; j < theArray[i].length; j++) {
+      print(j + ", ");
+    }
+    print("]");
+  }
+};
 
 // create sections for each class and then add them to the section array
 for (let course of courses) {
@@ -43,6 +71,7 @@ for (let section of sectionArr) {
 
 console.log("\nCurrent course list:");
 console.log(sectionArr);
+
 //create 2d array
 let schedule = [];
 for (let i = 0; i < config.numPeriods; i++) {
@@ -51,6 +80,7 @@ for (let i = 0; i < config.numPeriods; i++) {
     schedule[i].push(null);
   }
 }
+
 //assign sections to schedule
 for (let section of sectionArr) {
   console.log(
@@ -74,7 +104,7 @@ console.log(schedule);
 //assign teachers
 console.log("\nAssigning teachers:");
 console.log(teacherArr);
-//find the ammount of teachers who can teach each course
+//find the amount of teachers who can teach each course
 //build a dictionary of course names and the number of teachers who can teach them
 for (let course of courses) {
   courseTeacherCount[course.name] = 0;
@@ -112,3 +142,8 @@ for (let course of sortedCourseTeachersCount) {
     }
   }
 }
+//we need to make a 2d array of classrooms and periods, and then print in in a readable and nice way
+//
+
+//print array (in super cool way)
+printInCoolWay(visualSchedule);
