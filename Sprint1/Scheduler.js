@@ -7,19 +7,26 @@ let teacherArr = require("./Teachers.json");
 let sectionArr = [];
 let periodsClassArr = [];
 let courseTeacherCount = [];
-let visualSchedule = [][]; // 2d array of classrooms and periods
+let visualSchedule = []; // 2d array of classrooms and periods
 
-createVisualSchedule(){
+let initializeVisualSchedule = function () {
+  for (i = 0; i < config.numPeriods; i++) {
+    let tempArr = [];
+    for (j = 0; j < classroomArr.length; j++) {
+      tempArr.push(null);
+    }
+    visualSchedule.push(tempArr);
+  }
+
   for (i = 0; i < config.numPeriods; i++) {
     for (j = 0; j < classroomArr; j++) {
-      visualSchedule[i][j] = null;   //<- NOT DONE; NEEDS FIXING
+      visualSchedule[i][j] = null; //<- NOT DONE; NEEDS FIXING
     }
   }
-}
+};
 
 // i tried, but it may not work and may need debugging, this can at least serve as a skeleton
-void printInCoolWay(theArray);
-{
+let printInCoolWay = function (theArray) {
   for (i = 0; i < theArray.length; i++) {
     println("[");
     for (j = 0; j < theArray[i].length; j++) {
@@ -27,7 +34,8 @@ void printInCoolWay(theArray);
     }
     print("]");
   }
-}
+};
+
 // create sections for each class and then add them to the section array
 for (let course of courses) {
   for (i = 0; i < course.sections; i++) {
