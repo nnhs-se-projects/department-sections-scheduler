@@ -116,14 +116,32 @@ for (let teacher of teacherArr) {
 
     console.log("Teacher " + teacher.name + " can teach " + course);
     console.log(course);
+    courseTeacherCount[course.course] += 1;
+
     //find index of courses object that has name that = course
-    let courseIndex = courses.findIndex(
-      (courseObj) => courseObj.name == course
-    );
-    console.log(courseIndex);
   }
 }
 console.log(courseTeacherCount);
+
+//sort the courseTeacherCount array by the number of teachers who can teach each course
+const sortedCourseTeachersCount = Object.keys(courseTeacherCount).sort(
+  (a, b) => courseTeacherCount[a] - courseTeacherCount[b]
+);
+console.log(sortedCourseTeachersCount);
+//assign teachers to sections
+
+for (let course of sortedCourseTeachersCount) {
+  for (let teacher of teacherArr) {
+    if (teacher.certifiedCourses.includes(course)) {
+      for (let section of sectionArr) {
+        if (section.course.name == course) {
+          section.teacher = teacher;
+          break;
+        }
+      }
+    }
+  }
+}
 //we need to make a 2d array of classrooms and periods, and then print in in a readable and nice way
 //
 
