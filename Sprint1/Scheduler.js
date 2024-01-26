@@ -2,40 +2,35 @@ let courses = require("./Courses.json");
 let config = require("./Config.json");
 
 let classroomArr = require("./Classrooms.json");
-let roomArr = map((classroom) => classroom.roomNum);
 let classroomList = classroomArr.map((classroom) => classroom.roomNum);
 let teacherArr = require("./Teachers.json");
 let sectionArr = [];
 let periodsClassArr = [];
 let courseTeacherCount = [];
 
-let initializeVisualSchedule = function () {
-  let visualSchedule = []; // 2d array of classrooms and periods
+let formattedSchedule = function () {
+  let formattedArr = []; // 2d array of classrooms and periods
   //initial setup of 2d array
 
   for (i = 0; i < config.numPeriods; i++) {
     let tempArr = [];
     for (j = 0; j < classroomArr.length; j++) {
       tempArr.push(null);
+      //tempArr.push("Empty " + classroomList[j] + " period");
     }
-    visualSchedule.push(tempArr);
+    formattedArr.push(tempArr);
   }
 
+  //iterate through sectionArr and add each section to the formattedArr
   for (i = 0; i < sectionArr.length; i++) {
-    console.log(
-      sectionArr[i].periodClass.period +
-        " " +
-        sectionArr[i].periodClass.classroom
-    );
-    roomIndex = visualSchedule[sectionArr[i].periodClass.period][
-      visualSchedule[0].indexOf(roomArr[i].periodClass.classroom)
-    ] = sectionArr[i];
+    if (sectionArr[i].periodClass != null) {
+      roomIndex = classroomList.indexOf(sectionArr[i].periodClass.classroom);
+      formattedArr[sectionArr[i].periodClass.period - 1][roomIndex] =
+        sectionArr[i];
+    }
   }
-  //index = visualSchedule[0].indexOf(sectionArr[3].periodClass.classroom);
-  //console.log(visualSchedule[sectionArr[3].periodClass.period][index]);
-  //visualSchedule[sectionArr[3].periodClass.period][index] = sectionArr[3];
-  //console.log(visualSchedule[sectionArr[3].periodClass.period][index]);
-  return visualSchedule;
+
+  return formattedArr;
 };
 
 let updateSchedule = function (visualSchedule) {
@@ -168,6 +163,6 @@ for (let course of sortedCourseTeachersCount) {
 }
 
 //print array (in super cool way)
-//printInCoolWay(visualSchedule);
+//printInCoolWay(formattedSchedule());
 
-console.log(initializeVisualSchedule());
+console.log(formattedSchedule());
