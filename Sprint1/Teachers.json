@@ -18,7 +18,8 @@
         "course": "Computer Programming 1",
         "preference": 0.2
       }
-    ]
+    ],
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
     "name": "Jason Reid",
@@ -31,20 +32,22 @@
         "course": "Computer Programming 1",
         "preference": 0.4
       }
-    ]
+    ],
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
     "name": "Jen Betthauser",
     "certifiedCourses": [
       {
-        "course": "Software Engineering",
-        "preference": 0.6
-      },
-      {
         "course": "Computer Programming 1",
         "preference": 0.7
+      },
+      {
+        "course": "Computer Programming 2"
+        "preference": 0.7
       }
-    ]
+    ],
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
     "name": "Matt Callaghan",
@@ -64,7 +67,12 @@
       {
         "course": "IT Systems",
         "preference": 0.7
+      },
+      {
+        "course": "Computer Programming 2",
+        "preference": 0.7
       }
-    ]
+    ],
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   }
 ]

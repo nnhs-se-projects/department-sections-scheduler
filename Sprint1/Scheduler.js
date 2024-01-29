@@ -130,9 +130,6 @@ let assignPeriodClassrooms = function () {
 };
 assignPeriodClassrooms();
 
-console.log("\nCurrent course list:");
-console.log(sectionArr);
-
 //create 2d array
 let schedule = [];
 for (let i = 0; i < config.numPeriods; i++) {
@@ -160,11 +157,8 @@ for (let section of sectionArr) {
 }
 console.log("\nInitial schedule w/o teachers:");
 //print schedule by rows
-console.log(schedule);
 
 //assign teachers
-console.log("\nAssigning teachers:");
-console.log(teacherArr);
 //find the amount of teachers who can teach each course
 //build a dictionary of course names and the number of teachers who can teach them
 for (let course of courses) {
@@ -188,21 +182,65 @@ console.log(courseTeacherCount);
 const sortedCourseTeachersCount = Object.keys(courseTeacherCount).sort(
   (a, b) => courseTeacherCount[a] - courseTeacherCount[b]
 );
-console.log(sortedCourseTeachersCount);
+sectionArr.sort(
+  (a, b) =>
+    sortedCourseTeachersCount.indexOf(a.course.name) -
+    sortedCourseTeachersCount.indexOf(b.course.name)
+);
+//console.log(sortedCourseTeachersCount);
+
 //assign teachers to sections
 
-for (let course of sortedCourseTeachersCount) {
+for (let section of sectionArr) {
   for (let teacher of teacherArr) {
-    if (teacher.certifiedCourses.includes(course)) {
-      for (let section of sectionArr) {
-        if (section.course.name == course) {
-          section.teacher = teacher;
-          break;
-        }
+    console.log(`${section.course.name}`);
+    console.log(teacher.certifiedCourses);
+    if (
+      teacher.certifiedCourses.find(
+        (element) => element.course == section.course.name
+      )
+    ) {
+      //check if teacher has the open periods
+
+      if (teacher.openPeriods.includes(section.periodClass.period)) {
+        teacher.openPeriods.splice(
+          teacher.openPeriods.indexOf(section.periodClass.period),
+          1
+        );
+        console.log(
+          "Assigning " +
+            teacher.name +
+            " to " +
+            section.course.name +
+            " section " +
+            section.section +
+            " in period " +
+            section.periodClass.period
+        );
+        section.teacher = teacher;
+        break;
       }
     }
   }
 }
+console.log(schedule);
+for (let period of schedule) {
+  for (let classroom of period) {
+    if (classroom) {
+      console.log(
+        ` Course ${classroom.course.name} Period: ${classroom.periodClass.period} Classroom: ${classroom.periodClass.classroom} Teacher ${classroom.teacher.name} Section: ${classroom.section}`
+      );
+    }
+  }
+}
+
+//create
+
+//let temp schedule = the sections arr sorted by period then classroom
+//we need to make a 2d array of classrooms and periods, and then print in in a readable and nice way
+
+//print array (in super cool way)
+//printInCoolWay(visualSchedule);
 
 //print array (in super cool way)
 //printInCoolWay(formattedSchedule());
