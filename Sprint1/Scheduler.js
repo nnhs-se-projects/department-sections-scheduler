@@ -33,11 +33,14 @@ let formattedSchedule = function () {
   return formattedArr;
 };
 
-let updateSchedule = function (visualSchedule) {
+let updateSchedule = function (formattedArr) {
   //update schedule
-  for (let section of sectionArr) {
-    visualSchedule[section.periodClass.period][section.periodClass.classroom] =
-      section;
+  for (i = 0; i < sectionArr.length; i++) {
+    if (sectionArr[i].periodClass != null) {
+      roomIndex = classroomList.indexOf(sectionArr[i].periodClass.classroom);
+      formattedArr[sectionArr[i].periodClass.period - 1][roomIndex] =
+        sectionArr[i];
+    }
   }
 };
 
@@ -53,7 +56,7 @@ let printInCoolWay = function (arr) {
   // Print the header
   let header = "║";
   for (let j = 0; j < arr[0].length; j++) {
-    header += ` Classroom ${j + 1}           ║`;
+    header += ` Classroom ${j + 1}         ║`;
   }
   console.log(header);
 
@@ -70,13 +73,13 @@ let printInCoolWay = function (arr) {
       // Add padding to align columns
       let item = arr[i][j]
         ? ` ${arr[i][j].course.name} - ${arr[i][j].section} ║`
-        : " Empty                ║";
+        : " Empty               ║";
       row += item;
     }
     console.log(row);
 
     // Print the separator after each row
-    console.log(separator);
+    if (i < arr.length - 1) console.log(separator);
   }
 
   // Print the bottom border
@@ -243,6 +246,6 @@ for (let period of schedule) {
 //printInCoolWay(visualSchedule);
 
 //print array (in super cool way)
-//printInCoolWay(formattedSchedule());
+printInCoolWay(formattedSchedule());
 
-console.log(formattedSchedule());
+//console.log(formattedSchedule());
