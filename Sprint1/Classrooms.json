@@ -1,14 +1,14 @@
 [
   {
-    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7],
+    "periodsAvailable": [5, 6, 7],
     "roomNum": "121"
   },
   {
-    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8],
+    "periodsAvailable": [1, 2, 6, 7, 8],
     "roomNum": "123"
   },
   {
-    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8],
+    "periodsAvailable": [7, 8],
     "roomNum": "114"
   },
   {

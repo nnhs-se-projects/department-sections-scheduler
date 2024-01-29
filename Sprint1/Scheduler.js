@@ -1,73 +1,134 @@
-let courses = require("./Courses.json");
-let config = require("./Config.json");
+const courses = require("./Courses.json");
+const config = require("./Config.json");
 
-let classroomArr = require("./Classrooms.json");
-let classroomList = classroomArr.map((classroom) => classroom.roomNum);
-let teacherArr = require("./Teachers.json");
+const classroomArr = require("./Classrooms.json");
+const classroomList = classroomArr.map((classroom) => classroom.roomNum);
+const teacherArr = require("./Teachers.json");
 let sectionArr = [];
 let periodsClassArr = [];
 let courseTeacherCount = [];
-let visualSchedule = []; // 2d array of classrooms and periods
 
-let initializeVisualSchedule = function () {
+let formattedSchedule = function () {
+  let formattedArr = []; // 2d array of classrooms and periods
+  //initial setup of 2d array
+
   for (i = 0; i < config.numPeriods; i++) {
     let tempArr = [];
     for (j = 0; j < classroomArr.length; j++) {
       tempArr.push(null);
+      //tempArr.push("Empty " + classroomList[j] + " period");
     }
-    visualSchedule.push(tempArr);
+    formattedArr.push(tempArr);
   }
 
-  for (i = 0; i < config.numPeriods; i++) {
-    for (j = 0; j < classroomArr; j++) {
-      visualSchedule[i][j] = null; //<- NOT DONE; NEEDS FIXING
+  //iterate through sectionArr and add each section to the formattedArr
+  for (i = 0; i < sectionArr.length; i++) {
+    if (sectionArr[i].periodClass != null) {
+      roomIndex = classroomList.indexOf(sectionArr[i].periodClass.classroom);
+      formattedArr[sectionArr[i].periodClass.period - 1][roomIndex] =
+        sectionArr[i];
     }
+  }
+
+  return formattedArr;
+};
+
+let updateSchedule = function (visualSchedule) {
+  //update schedule
+  for (let section of sectionArr) {
+    visualSchedule[section.periodClass.period][section.periodClass.classroom] =
+      section;
   }
 };
 
-// i tried, but it may not work and may need debugging, this can at least serve as a skeleton
-let printInCoolWay = function (theArray) {
-  for (i = 0; i < theArray.length; i++) {
-    println("[");
-    for (j = 0; j < theArray[i].length; j++) {
-      print(j + ", ");
-    }
-    print("]");
+// function main code by beloved ChatGPT
+let printInCoolWay = function (arr) {
+  // Print the top border
+  let topBorder = "╔";
+  for (let j = 0; j < arr[0].length; j++) {
+    topBorder += "═════════════════════╗";
   }
+  console.log(topBorder);
+
+  // Print the header
+  let header = "║";
+  for (let j = 0; j < arr[0].length; j++) {
+    header += ` Classroom ${j + 1}           ║`;
+  }
+  console.log(header);
+
+  // Print the separator
+  let separator = "╠";
+  for (let j = 0; j < arr[0].length; j++) {
+    separator += "═════════════════════╣";
+  }
+  console.log(separator);
+
+  for (let i = 0; i < arr.length; i++) {
+    let row = "║";
+    for (let j = 0; j < arr[i].length; j++) {
+      // Add padding to align columns
+      let item = arr[i][j]
+        ? ` ${arr[i][j].course.name} - ${arr[i][j].section} ║`
+        : " Empty                ║";
+      row += item;
+    }
+    console.log(row);
+
+    // Print the separator after each row
+    console.log(separator);
+  }
+
+  // Print the bottom border
+  let bottomBorder = "╚";
+  for (let j = 0; j < arr[0].length; j++) {
+    bottomBorder += "═════════════════════╝";
+  }
+  console.log(bottomBorder);
 };
 
 // create sections for each class and then add them to the section array
-for (let course of courses) {
-  for (i = 0; i < course.sections; i++) {
-    sectionArr.push({
-      course: course,
-      section: i + 1,
-      periodClass: null,
-    });
+let createSections = function () {
+  for (let course of courses) {
+    for (i = 0; i < course.sections; i++) {
+      sectionArr.push({
+        course: course,
+        section: i + 1,
+        periodClass: null,
+      });
+    }
   }
-}
+};
+createSections();
 
 // create period classrooms for each classroom and then add them to the period class array
-for (let classroom of classroomArr) {
-  for (let period of classroom.periodsAvailable) {
-    periodsClassArr.push({
-      classroom: classroom.roomNum,
-      period: period,
-    });
+let createPeriodClassrooms = function () {
+  for (let classroom of classroomArr) {
+    for (let period of classroom.periodsAvailable) {
+      periodsClassArr.push({
+        classroom: classroom.roomNum,
+        period: period,
+      });
+    }
   }
-}
+};
+createPeriodClassrooms();
 
-for (let section of sectionArr) {
-  if (periodsClassArr.length == 0) {
-    console.log(
-      "No more period-classrooms available to assign to " +
-        section.course.name +
-        " section " +
-        section.section
-    );
+//assign period-classrooms to sections
+let assignPeriodClassrooms = function () {
+  for (let section of sectionArr) {
+    if (periodsClassArr.length == 0) {
+      console.log(
+        "No more period-classrooms available to assign to " +
+          section.course.name +
+          " section " +
+          section.section
+      );
+    }
+    section.periodClass = periodsClassArr.pop();
   }
-  section.periodClass = periodsClassArr.pop();
-}
+};
+assignPeriodClassrooms();
 
 //create 2d array
 let schedule = [];
@@ -180,3 +241,8 @@ for (let period of schedule) {
 
 //print array (in super cool way)
 //printInCoolWay(visualSchedule);
+
+//print array (in super cool way)
+//printInCoolWay(formattedSchedule());
+
+console.log(formattedSchedule());
