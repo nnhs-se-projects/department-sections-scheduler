@@ -1,7 +1,6 @@
 [
   {
     "name": "AP Computer Science A",
-    "certified teachers": ["Mr. Smith", "Mrs. Smith"],
     "sections": 4,
     "compatibleClassrooms": [1, 2, 3, 4],
     "compatiblePeriods": [2, 3, 4],
@@ -9,7 +8,6 @@
   },
   {
     "name": "Computer Programming 1",
-    "certified teachers": ["Mr. Smith", "Mrs. Smith"],
     "sections": 3,
     "compatibleClassrooms": [1, 2, 3, 4],
     "compatiblePeriods": [1, 2, 3, 4],
@@ -17,7 +15,6 @@
   },
   {
     "name": "Computer Programming 2",
-    "certified teachers": ["Mr. Smith", "Mrs. Smith"],
     "sections": 4,
     "compatibleClassrooms": [1, 2, 3, 4],
     "compatiblePeriods": [1],
@@ -25,7 +22,6 @@
   },
   {
     "name": "Software Engineering",
-    "certified teachers": ["Mr. Smith", "Mrs. Smith"],
     "sections": 2,
     "compatibleClassrooms": [1, 2, 3, 4],
     "compatiblePeriods": [1, 2, 3, 4],
@@ -33,23 +29,10 @@
   },
   {
     "name": "IT Systems",
-    "certified teachers": ["Mr. Smith", "Mrs. Smith"],
+    "certified teachers": [],
     "sections": 2,
     "compatibleClassrooms": [3],
     "compatiblePeriods": [2, 3, 4],
     "schedulingPriority": ".75"
-  },
-
-  {
-    "//comment": "Special case class for scheduling testing",
-
-    "name": "Research & Design",
-    "certified teachers": ["Mr. Glemza", "Mrs. DiOrio", "Mr. Ryan"],
-    "sections": 0,
-    "compatibleClassrooms": [114, 115, 116, 117],
-    "compatiblePeriods": [2, 3, 4],
-    "schedulingPriority": ".75",
-    "requiredClassroomAmount": 2,
-    "requiredClassrooms": [115, 116]
   }
 ]
