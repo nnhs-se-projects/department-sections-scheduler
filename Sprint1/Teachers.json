@@ -44,6 +44,7 @@
       },
       {
         "course": "Computer Programming 2"
+        "preference": 0.7
       }
     ],
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
