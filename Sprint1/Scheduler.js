@@ -33,7 +33,7 @@ let formattedSchedule = function () {
   return formattedArr;
 };
 
-let updateSchedule = function (formattedArr) {
+let updateFormattedSchedule = function (formattedArr) {
   //update schedule
   for (i = 0; i < sectionArr.length; i++) {
     if (sectionArr[i].periodClass != null) {
@@ -90,19 +90,72 @@ let printInCoolWay = function (arr) {
   console.log(bottomBorder);
 };
 
+//update sections by priority
+let updateSections = function (arr) {
+  arr.sort((a, b) => a.course.schedulingPriority - b.course.schedulingPriority);
+  return arr;
+};
+
 // create sections for each class and then add them to the section array
-let createSections = function () {
+let createSections = function (arr) {
+  //clear array
+  while (arr.length > 0) {
+    arr.pop();
+  }
+
   for (let course of courses) {
     for (i = 0; i < course.sections; i++) {
-      sectionArr.push({
+      arr.push({
         course: course,
         section: i + 1,
         periodClass: null,
       });
     }
   }
+  updateSections(arr);
+  return arr;
 };
-createSections();
+
+let addSection = function (arr, course) {
+  let secNum = 1;
+  for (section in arr) {
+    if (section.course == course) {
+      secNum++;
+    }
+  }
+  arr.push({
+    course: course,
+    section: secNum,
+    periodClass: null,
+  });
+  updateSections(arr);
+  return arr;
+};
+
+let removeSection = function (arr, course) {
+  let removedSection = null;
+  let remainingSections = [];
+  for (section in arr) {
+    if (section.course == course && removedSection == null) {
+      removedSection = section;
+      arr.splice(section, 1);
+    } else if (section.course == course && removedSection != null) {
+      remainingSections.push(section);
+    }
+  }
+  if (removedSection == null) {
+    console.log("No sections of " + course + " found");
+  } else {
+    for (i = 0; i < remainingSections.length; i++) {
+      arr[i].section = i + 1;
+    }
+    updateSections(arr);
+  }
+  return arr;
+};
+
+createSections(sectionArr);
+console.log(sectionArr);
 
 // create period classrooms for each classroom and then add them to the period class array
 let createPeriodClassrooms = function () {
