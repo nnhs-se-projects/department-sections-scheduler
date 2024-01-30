@@ -226,16 +226,16 @@ for (let section of sectionArr) {
     }
   }
 }
-console.log(schedule);
-for (let period of schedule) {
-  for (let classroom of period) {
-    if (classroom) {
-      console.log(
-        ` Course ${classroom.course.name} Period: ${classroom.periodClass.period} Classroom: ${classroom.periodClass.classroom} Teacher ${classroom.teacher.name} Section: ${classroom.section}`
-      );
-    }
-  }
-}
+//console.log(schedule);
+//for (let period of schedule) {
+//   for (let classroom of period) {
+//     if (classroom) {
+//       console.log(
+//         ` Course ${classroom.course.name} Period: ${classroom.periodClass.period} Classroom: ${classroom.periodClass.classroom} Teacher ${classroom.teacher.name} Section: ${classroom.section}`
+//       );
+//     }
+//   }
+// }
 
 //create
 
