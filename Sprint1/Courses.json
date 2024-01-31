@@ -2,28 +2,28 @@
   {
     "name": "AP Computer Science A",
     "sections": 4,
-    "compatibleClassrooms": [1, 2, 3, 4],
+    "compatibleClassrooms": [121, 123, 114, 115],
     "compatiblePeriods": [2, 3, 4],
     "schedulingPriority": ".75"
   },
   {
     "name": "Computer Programming 1",
     "sections": 3,
-    "compatibleClassrooms": [1, 2, 3, 4],
+    "compatibleClassrooms": [121, 123, 114, 115],
     "compatiblePeriods": [1, 2, 3, 4],
     "schedulingPriority": "0.5"
   },
   {
     "name": "Computer Programming 2",
     "sections": 4,
-    "compatibleClassrooms": [1, 2, 3, 4],
+    "compatibleClassrooms": [121, 123, 114, 115],
     "compatiblePeriods": [1],
     "schedulingPriority": "0.5"
   },
   {
     "name": "Software Engineering",
     "sections": 2,
-    "compatibleClassrooms": [1, 2, 3, 4],
+    "compatibleClassrooms": [121, 123, 114, 115],
     "compatiblePeriods": [1, 2, 3, 4],
     "schedulingPriority": "1"
   },
@@ -31,7 +31,7 @@
     "name": "IT Systems",
     "certified teachers": [],
     "sections": 2,
-    "compatibleClassrooms": [3],
+    "compatibleClassrooms": [121, 123, 114, 115],
     "compatiblePeriods": [2, 3, 4],
     "schedulingPriority": ".75"
   }

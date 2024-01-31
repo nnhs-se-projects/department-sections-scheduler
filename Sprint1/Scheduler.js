@@ -169,15 +169,24 @@ let createPeriodClassrooms = function () {
 //assign period-classrooms to sections
 let assignPeriodClassrooms = function () {
   for (let section of sectionArr) {
-    if (periodsClassArr.length == 0) {
+    let assignableRooms = periodsClassArr.filter((perClass) =>
+      section.course.compatibleClassrooms.includes(perClass.classroom)
+    ); // FIXME: This is not working
+    if (assignableRooms.length == 0) {
       console.log(
-        "No more period-classrooms available to assign to " +
+        "No more valid period-classrooms available to assign to " +
           section.course.name +
           " section " +
           section.section
       );
+    } else {
+      section.periodClass = periodsClassArr.splice(
+        periodsClassArr.indexOf(
+          assignableRooms[Math.floor(Math.random() * assignableRooms.length)]
+        ),
+        1
+      );
     }
-    section.periodClass = periodsClassArr.pop();
   }
 };
 

@@ -16,6 +16,12 @@
       "url": "http://localhost:8080",
       "webRoot": "${workspaceFolder}/assets",
       "outputCapture": "std"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Schedule Debug",
+      "program": "${workspaceFolder}/Sprint1/Scheduler.js"
     }
   ]
 }
