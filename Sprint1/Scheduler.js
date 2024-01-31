@@ -171,7 +171,7 @@ let assignPeriodClassrooms = function () {
   for (let section of sectionArr) {
     let assignableRooms = periodsClassArr.filter((perClass) =>
       section.course.compatibleClassrooms.includes(perClass.classroom)
-    ); // FIXME: This is not working
+    ); // FIXME: This is not working !!!
     if (assignableRooms.length == 0) {
       console.log(
         "No more valid period-classrooms available to assign to " +
