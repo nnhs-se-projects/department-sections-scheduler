@@ -16,14 +16,14 @@
   {
     "name": "Computer Programming 2",
     "sections": 4,
-    "compatibleClassrooms": ["121", "123", "114", "115"],
+    "compatibleClassrooms": ["121", "123"],
     "compatiblePeriods": [1],
     "schedulingPriority": "0.5"
   },
   {
     "name": "Software Engineering",
     "sections": 2,
-    "compatibleClassrooms": ["121", "123", "114", "115"],
+    "compatibleClassrooms": ["114", "115"],
     "compatiblePeriods": [1, 2, 3, 4],
     "schedulingPriority": "1"
   },

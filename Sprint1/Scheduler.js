@@ -185,7 +185,7 @@ let assignPeriodClassrooms = function () {
           assignableRooms[Math.floor(Math.random() * assignableRooms.length)]
         ),
         1
-      );
+      )[0];
     }
   }
 };
