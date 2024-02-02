@@ -1,76 +1,160 @@
 [
   {
-    "name": "Geoff Schmit",
+    "name": "Betthauser, Jennifer",
     "certifiedCourses": [
       {
-        "course": "AP Computer Science A",
+        "course": "Tech Edge",
         "preference": 0.9
       },
       {
-        "course": "Software Engineering",
+        "course": "Computer Prog 1",
         "preference": 0.9
       },
       {
-        "course": "Computer Programming 2",
-        "preference": 0.2
-      },
-      {
-        "course": "Computer Programming 1",
+        "course": "Business Law",
         "preference": 0.2
       }
     ],
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
-    "name": "Jason Reid",
+    "name": "Callaghan, Matt",
     "certifiedCourses": [
       {
-        "course": "Computer Programming 2",
-        "preference": 0.8
+        "course": "AP Computer Sci",
+        "preference": 0.9
       },
       {
-        "course": "Computer Programming 1",
-        "preference": 0.4
+        "course": "Software Engineer 1",
+        "preference": 0.9
+      },
+      {
+        "course": "Information Tech",
+        "preference": 0.9
       }
     ],
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
-    "name": "Jen Betthauser",
+    "name": "Morenus, Terry",
     "certifiedCourses": [
       {
-        "course": "Computer Programming 1",
-        "preference": 0.7
+        "course": "Marketing",
+        "preference": 0.9
       },
       {
-        "course": "Computer Programming 2",
-        "preference": 0.7
+        "course": "Accounting 1",
+        "preference": 0.9
+      },
+      {
+        "course": "Honors Accounting",
+        "preference": 0.9
       }
     ],
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
-    "name": "Matt Callaghan",
+    "name": "Nolan, Gene",
     "certifiedCourses": [
       {
-        "course": "Computer Programming 1",
-        "preference": 0.5
+        "course": "INCubator",
+        "preference": 0.9
       },
       {
-        "course": "Software Engineering",
+        "course": "Inc Release",
+        "preference": 0.7
+      },
+      {
+        "course": "Assist AD",
+        "preference": 0.9
+      }
+    ],
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Reid, Jason",
+    "certifiedCourses": [
+      {
+        "course": "Intro Business",
+        "preference": 0.9
+      }
+    ],
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Schmit, Geoff",
+    "certifiedCourses": [
+      {
+        "course": "Software Engineer 1",
+        "preference": 1.0
+      }
+    ],
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Thompson, Brett",
+    "certifiedCourses": [
+      {
+        "course": "Internship BL",
+        "preference": 0.9
+      }
+    ],
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Ryan, Jon ",
+    "certifiedCourses": [
+      {
+        "course": "Web Page Design",
         "preference": 0.8
       },
       {
-        "course": "AP Computer Science A",
+        "course": "INCubator",
+        "preference": 0.9
+      },
+      {
+        "course": "ACCELerator BL",
+        "preference": 0.9
+      }
+    ],
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Donovan, Meghan",
+    "certifiedCourses": [
+      {
+        "course": "Consumer Ec BL",
+        "preference": 0.56
+      },
+      {
+        "course": "Intro Health Occ",
+        "preference": 0.8
+      },
+      {
+        "course": "Hall Near 257/258-A",
         "preference": 0.7
       },
       {
-        "course": "IT Systems",
-        "preference": 0.7
+        "course": "Consumer Ec EL CTS",
+        "preference": 0.8
+      }
+    ],
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Hillyer, Allison",
+    "certifiedCourses": [
+      {
+        "course": "Culinary 1",
+        "preference": 0.8
       },
       {
-        "course": "Computer Programming 2",
-        "preference": 0.7
+        "course": "Consumer Ec CT",
+        "preference": 0.9
+      },
+      {
+        "course": " Interior Design",
+        "preference": 0.9
       }
     ],
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
