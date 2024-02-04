@@ -1,160 +1,232 @@
 [
   {
-    "name": "Betthauser, Jennifer",
+    "name": "Alli Hillyer",
     "certifiedCourses": [
       {
-        "course": "Tech Edge",
-        "preference": 0.9
+        "course": "Consumer Econ",
+        "preference": 1
       },
       {
-        "course": "Computer Prog 1",
-        "preference": 0.9
+        "course": "Consumer Econ TT",
+        "preference": 0.5
       },
       {
-        "course": "Business Law",
-        "preference": 0.2
+        "course": "Consumer Econ EL",
+        "preference": 1
+      },
+      {
+        "course": "Online Consumer",
+        "preference": 0.5
+      },
+      {
+        "course": "Cul 1",
+        "preference": 1
+      },
+      {
+        "course": "Cul 2",
+        "preference": 1
+      },
+      {
+        "course": "Senior Foods",
+        "preference": 1
+      },
+      {
+        "course": "Interior Design",
+        "preference": 1
       }
     ],
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
-    "name": "Callaghan, Matt",
+    "name": "Angie Lewandowski",
     "certifiedCourses": [
       {
-        "course": "AP Computer Sci",
-        "preference": 0.9
+        "course": "Consumer Econ",
+        "preference": 1
       },
       {
-        "course": "Software Engineer 1",
-        "preference": 0.9
+        "course": "Online Consumer",
+        "preference": 1
       },
       {
-        "course": "Information Tech",
-        "preference": 0.9
+        "course": "Blended Consumer",
+        "preference": 0.5
+      },
+      {
+        "course": "Fashion Design",
+        "preference": 1
+      },
+      {
+        "course": "Senior Foods",
+        "preference": 1
+      },
+      {
+        "course": "Adult Living",
+        "preference": 1
+      },
+      {
+        "course": "Intro to Health Occ",
+        "preference": 1
+      },
+      {
+        "course": "Health Occ",
+        "preference": 1
       }
     ],
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
-    "name": "Morenus, Terry",
+    "name": "Becky DiOrio",
+    "certifiedCourses": [
+      {
+        "course": "Graphics 1",
+        "preference": 1
+      },
+      {
+        "course": "Graphics 2",
+        "preference": 1
+      },
+      {
+        "course": "Graphics 3",
+        "preference": 1
+      },
+      {
+        "course": "Drafting Studio 1",
+        "preference": 1
+      },
+      {
+        "course": "R&D",
+        "preference": 1
+      }
+    ],
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Dan Kischuk",
+    "certifiedCourses": [
+      {
+        "course": "Electronics",
+        "preference": 1
+      }
+    ],
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Dana Klen",
+    "certifiedCourses": [
+      {
+        "course": "Consumer Econ",
+        "preference": 1
+      },
+      {
+        "course": "Consumer Econ TT",
+        "preference": 0.5
+      },
+      {
+        "course": "Senior Foods",
+        "preference": 1
+      },
+      {
+        "course": "Human Growth and Dev",
+        "preference": 1
+      },
+      {
+        "course": "Intro to Health Occ",
+        "preference": 1
+      },
+      {
+        "course": "Health Occ",
+        "preference": 1
+      }
+    ],
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Dawn Ingram",
+    "certifiedCourses": [
+      {
+        "course": "Plant Science",
+        "preference": 1
+      },
+      {
+        "course": "Food Science",
+        "preference": 1
+      },
+      {
+        "course": "Floral & Landscape Design",
+        "preference": 1
+      },
+      {
+        "course": "Aqua & Urban Food Prod.",
+        "preference": 1
+      },
+      {
+        "course": "Comp Animal 1",
+        "preference": 1
+      },
+      {
+        "course": "Comp Animal 2",
+        "preference": 1
+      },
+      {
+        "course": "Vet Science",
+        "preference": 1
+      }
+    ],
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Gene Nolan",
     "certifiedCourses": [
       {
         "course": "Marketing",
-        "preference": 0.9
+        "preference": 1
       },
       {
-        "course": "Accounting 1",
-        "preference": 0.9
+        "course": "Advertising",
+        "preference": 1
       },
       {
-        "course": "Honors Accounting",
-        "preference": 0.9
+        "course": "Incubator",
+        "preference": 1
+      },
+      {
+        "course": "ACCElerator",
+        "preference": 1
+      },
+      {
+        "course": "Consumer Econ",
+        "preference": 1
       }
     ],
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
-    "name": "Nolan, Gene",
+    "name": "Geoff Schmit",
     "certifiedCourses": [
       {
-        "course": "INCubator",
-        "preference": 0.9
+        "course": "Comp Programming 1",
+        "preference": 0.5
       },
       {
-        "course": "Inc Release",
-        "preference": 0.7
+        "course": "Comp Programming 2",
+        "preference": 0.5
       },
       {
-        "course": "Assist AD",
-        "preference": 0.9
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Reid, Jason",
-    "certifiedCourses": [
-      {
-        "course": "Intro Business",
-        "preference": 0.9
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Schmit, Geoff",
-    "certifiedCourses": [
-      {
-        "course": "Software Engineer 1",
-        "preference": 1.0
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Thompson, Brett",
-    "certifiedCourses": [
-      {
-        "course": "Internship BL",
-        "preference": 0.9
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Ryan, Jon ",
-    "certifiedCourses": [
-      {
-        "course": "Web Page Design",
-        "preference": 0.8
+        "course": "AP Computer Science ",
+        "preference": 1
       },
       {
-        "course": "INCubator",
-        "preference": 0.9
+        "course": "Software Engineering 1",
+        "preference": 1
       },
       {
-        "course": "ACCELerator BL",
-        "preference": 0.9
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Donovan, Meghan",
-    "certifiedCourses": [
-      {
-        "course": "Consumer Ec BL",
-        "preference": 0.56
+        "course": "Software Engineering 2",
+        "preference": 1
       },
       {
-        "course": "Intro Health Occ",
-        "preference": 0.8
-      },
-      {
-        "course": "Hall Near 257/258-A",
-        "preference": 0.7
-      },
-      {
-        "course": "Consumer Ec EL CTS",
-        "preference": 0.8
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Hillyer, Allison",
-    "certifiedCourses": [
-      {
-        "course": "Culinary 1",
-        "preference": 0.8
-      },
-      {
-        "course": "Consumer Ec CT",
-        "preference": 0.9
-      },
-      {
-        "course": " Interior Design",
-        "preference": 0.9
+        "course": "Cybersecurity",
+        "preference": 1
       }
     ],
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
