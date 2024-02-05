@@ -24,7 +24,7 @@
     "name": "Software Engineering",
     "sections": 2,
     "compatibleClassrooms": ["114", "115"],
-    "compatiblePeriods": [1, 2, 3, 4],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
     "schedulingPriority": "1"
   },
   {
