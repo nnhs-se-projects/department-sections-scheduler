@@ -92,7 +92,7 @@ let printInCoolWay = function (arr) {
 
 //update sections by priority
 let updateSections = function (arr) {
-  arr.sort((a, b) => a.course.schedulingPriority - b.course.schedulingPriority);
+  arr.sort((a, b) => b.course.schedulingPriority - a.course.schedulingPriority);
   return arr;
 };
 
@@ -112,7 +112,8 @@ let createSections = function (arr) {
       });
     }
   }
-  updateSections(arr);
+  arr = updateSections(arr);
+  console.log(arr);
   return arr;
 };
 
