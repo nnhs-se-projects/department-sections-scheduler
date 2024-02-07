@@ -2,14 +2,22 @@ const csv = require("csv-parser");
 const fs = require("fs");
 
 const readData = async function () {
-  const results = [];
-  await fs.createReadStream("teachers.csv")
-    .pipe(csv())
-    .on("data", (data) => results.push(data))
-    .on("end", () => {
-      return results;
-    });
-    await fs.pipe.
-    
+  let results = [];
+  const dataPromise = new Promise(function (resolve) {
+    fs.createReadStream("teachers.csv")
+      .pipe(csv())
+      .on("data", (data) => results.push(data))
+      .on("end", async () => {
+        resolve(results);
+      });
+  });
+  results = await dataPromise;
+  return results;
 };
-console.log(readData());
+
+(async () => {
+  const results = await readData();
+  results.map((data) => {
+    return data;
+  });
+})();
