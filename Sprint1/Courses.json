@@ -1,38 +1,341 @@
 [
   {
-    "name": "AP Computer Science A",
+    "name": "Introduction to Business",
     "sections": 4,
-    "compatibleClassrooms": ["121", "123", "114", "115"],
-    "compatiblePeriods": [2, 3, 4],
+    "compatibleClassrooms": ["128", "126", "120"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
     "schedulingPriority": ".75"
   },
   {
-    "name": "Computer Programming 1",
-    "sections": 3,
-    "compatibleClassrooms": ["121", "123", "114", "115"],
-    "compatiblePeriods": [1, 2, 3, 4],
-    "schedulingPriority": "0.5"
-  },
-  {
-    "name": "Computer Programming 2",
-    "sections": 4,
-    "compatibleClassrooms": ["121", "123"],
-    "compatiblePeriods": [1],
-    "schedulingPriority": "0.5"
-  },
-  {
-    "name": "Software Engineering",
+    "name": "Accounting 1",
     "sections": 2,
-    "compatibleClassrooms": ["114", "115"],
+    "compatibleClassrooms": ["121", "123"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Honors Accounting",
+    "sections": 1,
+    "compatibleClassrooms": ["121", "123"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Marketing",
+    "sections": 2,
+    "compatibleClassrooms": ["126", "128", "120"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Incubator",
+    "sections": 6,
+    "compatibleClassrooms": ["120"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
     "schedulingPriority": "1"
   },
   {
-    "name": "IT Systems",
-    "certified teachers": [],
+    "name": "ACCElerator",
+    "sections": 1,
+    "compatibleClassrooms": ["120"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.9"
+  },
+  {
+    "name": "Business Law",
+    "sections": 1,
+    "compatibleClassrooms": ["128", "126", "120"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "International Business",
+    "sections": 1,
+    "compatibleClassrooms": ["128", "126", "120"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Comp Programming 1",
     "sections": 2,
-    "compatibleClassrooms": ["121", "123", "114", "115"],
-    "compatiblePeriods": [2, 3, 4],
-    "schedulingPriority": ".75"
+    "compatibleClassrooms": ["121", "123"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.6"
+  },
+  {
+    "name": "Comp Programming 2",
+    "sections": 3,
+    "compatibleClassrooms": ["121", "123"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.6"
+  },
+  {
+    "name": "Game Design",
+    "sections": 1,
+    "compatibleClassrooms": ["114"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "AP Computer Science ",
+    "sections": 3,
+    "compatibleClassrooms": ["121", "123"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Software Engineering 2",
+    "sections": 2,
+    "compatibleClassrooms": ["121", "123"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Consumer Econ",
+    "sections": 3,
+    "compatibleClassrooms": ["120", "126", "128", "119"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Consumer Econ TT",
+    "sections": 1,
+    "compatibleClassrooms": ["120", "126", "128", "119"],
+    "compatiblePeriods": [5, 7],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Blended Consumer",
+    "sections": 2,
+    "compatibleClassrooms": ["120", "126", "128", "119"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Floral & Landscape Design",
+    "sections": 1,
+    "compatibleClassrooms": ["132"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Aqua & Urban Food Prod.",
+    "sections": 1,
+    "compatibleClassrooms": ["132"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Comp Animal 1",
+    "sections": 1,
+    "compatibleClassrooms": ["132"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Vet Science",
+    "sections": 1,
+    "compatibleClassrooms": ["132"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Graphics 1",
+    "sections": 1,
+    "compatibleClassrooms": ["114"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Graphics 2",
+    "sections": 1,
+    "compatibleClassrooms": ["114"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Graphics 3",
+    "sections": 1,
+    "compatibleClassrooms": ["114"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Electronics",
+    "sections": 1,
+    "compatibleClassrooms": ["138"],
+    "compatiblePeriods": [2],
+    "schedulingPriority": "0.7"
+  },
+  {
+    "name": "Cybersecurity",
+    "sections": 1,
+    "compatibleClassrooms": ["138"],
+    "compatiblePeriods": [1],
+    "schedulingPriority": "0.7"
+  },
+  {
+    "name": "Workshop Elements",
+    "sections": 1,
+    "compatibleClassrooms": ["134"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Workshop Studio",
+    "sections": 1,
+    "compatibleClassrooms": ["134"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Geo in Construction",
+    "sections": 2,
+    "compatibleClassrooms": ["134"],
+    "compatiblePeriods": [4, 5],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "EDS",
+    "sections": 1,
+    "compatibleClassrooms": [
+      "121",
+      "123",
+      "134",
+      "115",
+      "116",
+      "134",
+      "129",
+      "130",
+      "121",
+      "117",
+      "138",
+      "139",
+      "114",
+      "119",
+      "120",
+      "126",
+      "128",
+      "132"
+    ],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "R&D",
+    "sections": 4,
+    "compatibleClassrooms": [
+      "121",
+      "123",
+      "134",
+      "115",
+      "116",
+      "134",
+      "117",
+      "139",
+      "121",
+      "138",
+      "129",
+      "130",
+      "114",
+      "119",
+      "120",
+      "126",
+      "128",
+      "132"
+    ],
+    "compatiblePeriods": [2, 3, 6, 7],
+    "schedulingPriority": "0.7"
+  },
+  {
+    "name": "Auto 1",
+    "sections": 2,
+    "compatibleClassrooms": ["139"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Auto 2",
+    "sections": 2,
+    "compatibleClassrooms": ["139"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Auto 3",
+    "sections": 1,
+    "compatibleClassrooms": ["139"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Blended Career Internship",
+    "sections": 1,
+    "compatibleClassrooms": ["120", "119", "126", "128", "138"],
+    "compatiblePeriods": [7],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Cul 1",
+    "sections": 4,
+    "compatibleClassrooms": ["129", "130"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Cul 2",
+    "sections": 1,
+    "compatibleClassrooms": ["129", "130"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Cul 3",
+    "sections": 1,
+    "compatibleClassrooms": ["129"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Senior Foods",
+    "sections": 6,
+    "compatibleClassrooms": ["129", "130"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Human Growth and Dev",
+    "sections": 1,
+    "compatibleClassrooms": ["119"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "ECE 1",
+    "sections": 2,
+    "compatibleClassrooms": ["117"],
+    "compatiblePeriods": [3, 4, 6, 7],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "ECE 2",
+    "sections": 2,
+    "compatibleClassrooms": ["117"],
+    "compatiblePeriods": [3, 4, 6, 7],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Intro to Teaching 2",
+    "sections": 2,
+    "compatibleClassrooms": ["126"],
+    "compatiblePeriods": [2, 3],
+    "schedulingPriority": "0.5"
+  },
+  {
+    "name": "Health Occ",
+    "sections": 2,
+    "compatibleClassrooms": ["119"],
+    "compatiblePeriods": [2, 3],
+    "schedulingPriority": "0.5"
   }
 ]
