@@ -1,7 +1,8 @@
 const csv = require("csv-parser");
 const fs = require("fs");
 
-const readData = async function () {
+(async () => {
+  // Read CSV
   let results = [];
   const dataPromise = new Promise(function (resolve) {
     fs.createReadStream("courses.csv")
@@ -12,11 +13,8 @@ const readData = async function () {
       });
   });
   results = await dataPromise;
-  return results;
-};
 
-(async () => {
-  let results = await readData();
+  // Rename keys and reformat values
   results = results.map((data) => {
     const newData = {
       name: data["Course Name"],
