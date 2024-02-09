@@ -1,3 +1,4 @@
+const fs = require("fs");
 const courses = require("./Courses.json");
 const config = require("./Config.json");
 
@@ -296,10 +297,9 @@ createInitSchedule();
 console.log("\nInitial schedule w/o teachers:");
 //print schedule by rows
 assignTeachingTeachers();
-console.log(courseTeacherCount);
 sortCourseTeacherCount();
 AssignTeacher2Sections();
-
+printInCoolWay(formattedSchedule());
 //console.log(schedule);
 //for (let period of schedule) {
 //   for (let classroom of period) {
@@ -319,6 +319,8 @@ AssignTeacher2Sections();
 //print array (in super cool way)
 //printInCoolWay(visualSchedule);
 
+//save the schedule to a file
+fs.writeFileSync("schedule.json", JSON.stringify(formattedSchedule()));
 //print array (in super cool way)
 printInCoolWay(formattedSchedule());
 

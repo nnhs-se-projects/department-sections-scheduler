@@ -1,0 +1,337 @@
+[
+  [
+    null,
+    {
+      "course": {
+        "name": "AP Computer Science A",
+        "sections": 4,
+        "compatibleClassrooms": ["121", "123", "114", "115"],
+        "compatiblePeriods": [2, 3, 4],
+        "schedulingPriority": ".75"
+      },
+      "section": 1,
+      "periodClass": { "classroom": "123", "period": 1 },
+      "teacher": {
+        "name": "Geoff Schmit",
+        "certifiedCourses": [
+          { "course": "AP Computer Science A", "preference": 0.9 },
+          { "course": "Software Engineering", "preference": 0.9 },
+          { "course": "Computer Programming 2", "preference": 0.2 },
+          { "course": "Computer Programming 1", "preference": 0.2 }
+        ],
+        "openPeriods": [4]
+      }
+    },
+    null,
+    null
+  ],
+  [
+    null,
+    {
+      "course": {
+        "name": "Computer Programming 1",
+        "sections": 3,
+        "compatibleClassrooms": ["121", "123", "114", "115"],
+        "compatiblePeriods": [1, 2, 3, 4],
+        "schedulingPriority": "0.5"
+      },
+      "section": 1,
+      "periodClass": { "classroom": "123", "period": 2 },
+      "teacher": {
+        "name": "Geoff Schmit",
+        "certifiedCourses": [
+          { "course": "AP Computer Science A", "preference": 0.9 },
+          { "course": "Software Engineering", "preference": 0.9 },
+          { "course": "Computer Programming 2", "preference": 0.2 },
+          { "course": "Computer Programming 1", "preference": 0.2 }
+        ],
+        "openPeriods": [4]
+      }
+    },
+    null,
+    {
+      "course": {
+        "name": "Computer Programming 1",
+        "sections": 3,
+        "compatibleClassrooms": ["121", "123", "114", "115"],
+        "compatiblePeriods": [1, 2, 3, 4],
+        "schedulingPriority": "0.5"
+      },
+      "section": 2,
+      "periodClass": { "classroom": "115", "period": 2 },
+      "teacher": {
+        "name": "Jason Reid",
+        "certifiedCourses": [
+          { "course": "Computer Programming 2", "preference": 0.8 },
+          { "course": "Computer Programming 1", "preference": 0.4 }
+        ],
+        "openPeriods": [1, 3, 4, 6]
+      }
+    }
+  ],
+  [
+    null,
+    null,
+    null,
+    {
+      "course": {
+        "name": "Software Engineering",
+        "sections": 2,
+        "compatibleClassrooms": ["114", "115"],
+        "compatiblePeriods": [1, 2, 3, 4],
+        "schedulingPriority": "1"
+      },
+      "section": 1,
+      "periodClass": { "classroom": "115", "period": 3 },
+      "teacher": {
+        "name": "Geoff Schmit",
+        "certifiedCourses": [
+          { "course": "AP Computer Science A", "preference": 0.9 },
+          { "course": "Software Engineering", "preference": 0.9 },
+          { "course": "Computer Programming 2", "preference": 0.2 },
+          { "course": "Computer Programming 1", "preference": 0.2 }
+        ],
+        "openPeriods": [4]
+      }
+    }
+  ],
+  [
+    null,
+    null,
+    null,
+    {
+      "course": {
+        "name": "IT Systems",
+        "certified teachers": [],
+        "sections": 2,
+        "compatibleClassrooms": ["121", "123", "114", "115"],
+        "compatiblePeriods": [2, 3, 4],
+        "schedulingPriority": ".75"
+      },
+      "section": 1,
+      "periodClass": { "classroom": "115", "period": 4 },
+      "teacher": {
+        "name": "Matt Callaghan",
+        "certifiedCourses": [
+          { "course": "Computer Programming 1", "preference": 0.5 },
+          { "course": "Software Engineering", "preference": 0.8 },
+          { "course": "AP Computer Science A", "preference": 0.7 },
+          { "course": "IT Systems", "preference": 0.7 },
+          { "course": "Computer Programming 2", "preference": 0.7 }
+        ],
+        "openPeriods": [1, 2, 3, 5, 8]
+      }
+    }
+  ],
+  [
+    {
+      "course": {
+        "name": "Computer Programming 2",
+        "sections": 4,
+        "compatibleClassrooms": ["121", "123"],
+        "compatiblePeriods": [1],
+        "schedulingPriority": "0.5"
+      },
+      "section": 2,
+      "periodClass": { "classroom": "121", "period": 5 },
+      "teacher": {
+        "name": "Jason Reid",
+        "certifiedCourses": [
+          { "course": "Computer Programming 2", "preference": 0.8 },
+          { "course": "Computer Programming 1", "preference": 0.4 }
+        ],
+        "openPeriods": [1, 3, 4, 6]
+      }
+    },
+    null,
+    null,
+    {
+      "course": {
+        "name": "Software Engineering",
+        "sections": 2,
+        "compatibleClassrooms": ["114", "115"],
+        "compatiblePeriods": [1, 2, 3, 4],
+        "schedulingPriority": "1"
+      },
+      "section": 2,
+      "periodClass": { "classroom": "115", "period": 5 },
+      "teacher": {
+        "name": "Geoff Schmit",
+        "certifiedCourses": [
+          { "course": "AP Computer Science A", "preference": 0.9 },
+          { "course": "Software Engineering", "preference": 0.9 },
+          { "course": "Computer Programming 2", "preference": 0.2 },
+          { "course": "Computer Programming 1", "preference": 0.2 }
+        ],
+        "openPeriods": [4]
+      }
+    }
+  ],
+  [
+    {
+      "course": {
+        "name": "IT Systems",
+        "certified teachers": [],
+        "sections": 2,
+        "compatibleClassrooms": ["121", "123", "114", "115"],
+        "compatiblePeriods": [2, 3, 4],
+        "schedulingPriority": ".75"
+      },
+      "section": 2,
+      "periodClass": { "classroom": "121", "period": 6 },
+      "teacher": {
+        "name": "Matt Callaghan",
+        "certifiedCourses": [
+          { "course": "Computer Programming 1", "preference": 0.5 },
+          { "course": "Software Engineering", "preference": 0.8 },
+          { "course": "AP Computer Science A", "preference": 0.7 },
+          { "course": "IT Systems", "preference": 0.7 },
+          { "course": "Computer Programming 2", "preference": 0.7 }
+        ],
+        "openPeriods": [1, 2, 3, 5, 8]
+      }
+    },
+    {
+      "course": {
+        "name": "Computer Programming 2",
+        "sections": 4,
+        "compatibleClassrooms": ["121", "123"],
+        "compatiblePeriods": [1],
+        "schedulingPriority": "0.5"
+      },
+      "section": 4,
+      "periodClass": { "classroom": "123", "period": 6 },
+      "teacher": {
+        "name": "Geoff Schmit",
+        "certifiedCourses": [
+          { "course": "AP Computer Science A", "preference": 0.9 },
+          { "course": "Software Engineering", "preference": 0.9 },
+          { "course": "Computer Programming 2", "preference": 0.2 },
+          { "course": "Computer Programming 1", "preference": 0.2 }
+        ],
+        "openPeriods": [4]
+      }
+    },
+    null,
+    null
+  ],
+  [
+    {
+      "course": {
+        "name": "Computer Programming 2",
+        "sections": 4,
+        "compatibleClassrooms": ["121", "123"],
+        "compatiblePeriods": [1],
+        "schedulingPriority": "0.5"
+      },
+      "section": 3,
+      "periodClass": { "classroom": "121", "period": 7 },
+      "teacher": {
+        "name": "Jason Reid",
+        "certifiedCourses": [
+          { "course": "Computer Programming 2", "preference": 0.8 },
+          { "course": "Computer Programming 1", "preference": 0.4 }
+        ],
+        "openPeriods": [1, 3, 4, 6]
+      }
+    },
+    {
+      "course": {
+        "name": "AP Computer Science A",
+        "sections": 4,
+        "compatibleClassrooms": ["121", "123", "114", "115"],
+        "compatiblePeriods": [2, 3, 4],
+        "schedulingPriority": ".75"
+      },
+      "section": 3,
+      "periodClass": { "classroom": "123", "period": 7 },
+      "teacher": {
+        "name": "Matt Callaghan",
+        "certifiedCourses": [
+          { "course": "Computer Programming 1", "preference": 0.5 },
+          { "course": "Software Engineering", "preference": 0.8 },
+          { "course": "AP Computer Science A", "preference": 0.7 },
+          { "course": "IT Systems", "preference": 0.7 },
+          { "course": "Computer Programming 2", "preference": 0.7 }
+        ],
+        "openPeriods": [1, 2, 3, 5, 8]
+      }
+    },
+    {
+      "course": {
+        "name": "AP Computer Science A",
+        "sections": 4,
+        "compatibleClassrooms": ["121", "123", "114", "115"],
+        "compatiblePeriods": [2, 3, 4],
+        "schedulingPriority": ".75"
+      },
+      "section": 4,
+      "periodClass": { "classroom": "114", "period": 7 }
+    },
+    {
+      "course": {
+        "name": "AP Computer Science A",
+        "sections": 4,
+        "compatibleClassrooms": ["121", "123", "114", "115"],
+        "compatiblePeriods": [2, 3, 4],
+        "schedulingPriority": ".75"
+      },
+      "section": 2,
+      "periodClass": { "classroom": "115", "period": 7 },
+      "teacher": {
+        "name": "Geoff Schmit",
+        "certifiedCourses": [
+          { "course": "AP Computer Science A", "preference": 0.9 },
+          { "course": "Software Engineering", "preference": 0.9 },
+          { "course": "Computer Programming 2", "preference": 0.2 },
+          { "course": "Computer Programming 1", "preference": 0.2 }
+        ],
+        "openPeriods": [4]
+      }
+    }
+  ],
+  [
+    null,
+    {
+      "course": {
+        "name": "Computer Programming 2",
+        "sections": 4,
+        "compatibleClassrooms": ["121", "123"],
+        "compatiblePeriods": [1],
+        "schedulingPriority": "0.5"
+      },
+      "section": 1,
+      "periodClass": { "classroom": "123", "period": 8 },
+      "teacher": {
+        "name": "Jason Reid",
+        "certifiedCourses": [
+          { "course": "Computer Programming 2", "preference": 0.8 },
+          { "course": "Computer Programming 1", "preference": 0.4 }
+        ],
+        "openPeriods": [1, 3, 4, 6]
+      }
+    },
+    null,
+    {
+      "course": {
+        "name": "Computer Programming 1",
+        "sections": 3,
+        "compatibleClassrooms": ["121", "123", "114", "115"],
+        "compatiblePeriods": [1, 2, 3, 4],
+        "schedulingPriority": "0.5"
+      },
+      "section": 3,
+      "periodClass": { "classroom": "115", "period": 8 },
+      "teacher": {
+        "name": "Geoff Schmit",
+        "certifiedCourses": [
+          { "course": "AP Computer Science A", "preference": 0.9 },
+          { "course": "Software Engineering", "preference": 0.9 },
+          { "course": "Computer Programming 2", "preference": 0.2 },
+          { "course": "Computer Programming 1", "preference": 0.2 }
+        ],
+        "openPeriods": [4]
+      }
+    }
+  ]
+]
