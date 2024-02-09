@@ -1,9 +1,3 @@
-const courses = require("./Courses.json");
-const config = require("./Config.json");
-
-const classroomArr = require("./Classrooms.json");
-const classroomList = classroomArr.map((classroom) => classroom.roomNum);
-const teacherArr = require("./Teachers.json");
 let sectionArr = [];
 let periodsClassArr = [];
 let courseTeacherCount = [];
