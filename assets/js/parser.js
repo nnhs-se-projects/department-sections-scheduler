@@ -1,10 +1,11 @@
 const csv = require("csv-parser");
 const fs = require("fs");
-
 const FileType = {
   Courses: Symbol("courses"),
   Teachers: Symbol("teachers"),
+  Classrooms: Symbol("classrooms"),
 };
+
 async function parse(filePath, fileType) {
   // Read CSV
   let results = [];
@@ -18,18 +19,24 @@ async function parse(filePath, fileType) {
   });
   results = await dataPromise;
 
-  // Rename keys and reformat values
+  // Rename keys and reformat values depending on the type of file
+  // Write to a json in assets/json
   switch (fileType) {
     case FileType.Courses:
       results = results.map(coursesFormat);
+      fs.writeFileSync("assets/json/courses.json", JSON.stringify(results));
       break;
     case FileType.Teachers:
       results = results.map(teachersFormat);
+      fs.writeFileSync("assets/json/teachers.json", JSON.stringify(results));
+      break;
+    case FileType.Classrooms:
+      results = results.map(classroomsFormat);
+      fs.writeFileSync("assets/json/classrooms.json", JSON.stringify(results));
       break;
   }
 
   console.log(results);
-  fs.writeFileSync("assets/json/courses.json", JSON.stringify(results));
 }
 
 function coursesFormat(data) {
@@ -45,7 +52,24 @@ function coursesFormat(data) {
 }
 
 function teachersFormat(data) {
-  return {};
+  return {
+    name: data["Teacher Name"],
+    certifiedCourses: data["Certified Courses"].split(", "),
+    openPeriods: data["Avaliable Periods"]
+      .split(",")
+      .map((data) => Number(data)),
+  };
+}
+
+function classroomsFormat(data) {
+  return {
+    roomNum: data["Classroom Number"],
+    periodsAvaliable: data["Avaliable Periods"]
+      .split(",")
+      .map((data) => Number(data)),
+  };
 }
 
 parse("courses.csv", FileType.Courses);
+parse("teachers.csv", FileType.Teachers);
+parse("classrooms.csv", FileType.Classrooms);

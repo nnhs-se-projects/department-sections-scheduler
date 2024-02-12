@@ -1,6 +1,6 @@
 [
   {
-    "name": "Eg. Course",
+    "name": "Eg. Course 1",
     "sections": "2",
     "compatibleClassrooms": ["100", "101", "102"],
     "compatiblePeriods": [1, 2, 3, 7, 8]

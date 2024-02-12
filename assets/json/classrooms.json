@@ -1,0 +1,5 @@
+[
+  { "roomNum": "101", "periodsAvaliable": [1, 3, 5, 7] },
+  { "roomNum": "102A", "periodsAvaliable": [2, 4, 6, 8] },
+  { "roomNum": "102B", "periodsAvaliable": [3, 4, 5, 6] }
+]
