@@ -56,7 +56,7 @@ let printInCoolWay = function (arr) {
   // Print the header
   let header = "║";
   for (let j = 0; j < arr[0].length; j++) {
-    header += ` Classroom ${j + 1}         ║`;
+    header += ` Room ${classroomList[j].toString().padEnd(15)}║`;
   }
   console.log(header);
 
@@ -72,9 +72,9 @@ let printInCoolWay = function (arr) {
     for (let j = 0; j < arr[i].length; j++) {
       // Add padding to align columns
       let item = arr[i][j]
-        ? ` ${arr[i][j].course.name} - ${arr[i][j].section} ║`
+        ? ` ${arr[i][j].course.name} - ${arr[i][j].section} ║`.padEnd(16)
         : " Empty               ║";
-      row += item;
+      row += item.padEnd(16);
     }
     console.log(row);
 
