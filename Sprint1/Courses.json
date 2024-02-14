@@ -329,13 +329,13 @@
     "sections": 2,
     "compatibleClassrooms": ["126"],
     "compatiblePeriods": [2, 3],
-    "schedulingPriority": "0.5"
+    "schedulingPriority": "0.9"
   },
   {
     "name": "Health Occ",
     "sections": 2,
     "compatibleClassrooms": ["119"],
     "compatiblePeriods": [2, 3],
-    "schedulingPriority": "0.5"
+    "schedulingPriority": "0.9"
   }
 ]

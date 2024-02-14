@@ -1,6 +1,12 @@
 let sectionArr = [];
 let periodsClassArr = [];
 let courseTeacherCount = [];
+const courses = require("./Courses.json");
+const config = require("./Config.json");
+
+const classroomArr = require("./Classrooms.json");
+const classroomList = classroomArr.map((classroom) => classroom.roomNum);
+const teacherArr = require("./Teachers.json");
 
 let formattedSchedule = function () {
   let formattedArr = []; // 2d array of classrooms and periods
