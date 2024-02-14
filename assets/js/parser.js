@@ -60,6 +60,4 @@ async function parseClassrooms() {
   fs.writeFileSync("assets/json/classrooms.json", JSON.stringify(classrooms));
 }
 
-parseCourses();
-parseTeachers();
-parseClassrooms();
+export { parseCourses, parseTeachers, parseClassrooms };
