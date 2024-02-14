@@ -1,15 +1,10 @@
 const csv = require("csv-parser");
 const fs = require("fs");
-const FileType = {
-  Courses: Symbol("courses"),
-  Teachers: Symbol("teachers"),
-  Classrooms: Symbol("classrooms"),
-};
 
-async function parse(filePath, fileType) {
+async function parse(filePath) {
   // Read CSV
-  let results = [];
-  const dataPromise = new Promise(function (resolve) {
+  const results = [];
+  return new Promise(function (resolve) {
     fs.createReadStream(filePath)
       .pipe(csv())
       .on("data", (data) => results.push(data))
@@ -17,59 +12,54 @@ async function parse(filePath, fileType) {
         resolve(results);
       });
   });
-  results = await dataPromise;
-
-  // Rename keys and reformat values depending on the type of file
-  // Write to a json in assets/json
-  switch (fileType) {
-    case FileType.Courses:
-      results = results.map(coursesFormat);
-      fs.writeFileSync("assets/json/courses.json", JSON.stringify(results));
-      break;
-    case FileType.Teachers:
-      results = results.map(teachersFormat);
-      fs.writeFileSync("assets/json/teachers.json", JSON.stringify(results));
-      break;
-    case FileType.Classrooms:
-      results = results.map(classroomsFormat);
-      fs.writeFileSync("assets/json/classrooms.json", JSON.stringify(results));
-      break;
-  }
-
-  console.log(results);
 }
 
-function coursesFormat(data) {
-  return {
-    name: data["Course Name"],
-    sections: data["# of Sections"],
-    compatibleClassrooms: data["Compatible Rooms"].split(", "),
-    compatiblePeriods: data["Compatible Periods"]
-      .split(",")
-      .map((data) => Number(data)),
-    userPriority: Number(data.Priority) || undefined,
-  };
+async function parseCourses() {
+  const courses = await parse("courses.csv");
+  courses.map((data) => {
+    return {
+      name: data["Course Name"],
+      sections: data["# of Sections"],
+      compatibleClassrooms: data["Compatible Rooms"].split(", "),
+      compatiblePeriods: data["Compatible Periods"]
+        .split(",")
+        .map((data) => Number(data)),
+      userPriority: Number(data.Priority) || undefined,
+    };
+  });
+  console.log(courses);
+  fs.writeFileSync("assets/json/courses.json", JSON.stringify(courses));
 }
 
-function teachersFormat(data) {
-  return {
-    name: data["Teacher Name"],
-    certifiedCourses: data["Certified Courses"].split(", "),
-    openPeriods: data["Avaliable Periods"]
-      .split(",")
-      .map((data) => Number(data)),
-  };
+async function parseTeachers() {
+  const teachers = await parse("teachers.csv");
+  teachers.map((data) => {
+    return {
+      name: data["Teacher Name"],
+      certifiedCourses: data["Certified Courses"].split(", "),
+      openPeriods: data["Avaliable Periods"]
+        .split(",")
+        .map((data) => Number(data)),
+    };
+  });
+  console.log(teachers);
+  fs.writeFileSync("assets/json/teachers.json", JSON.stringify(teachers));
 }
 
-function classroomsFormat(data) {
-  return {
-    roomNum: data["Classroom Number"],
-    periodsAvaliable: data["Avaliable Periods"]
-      .split(",")
-      .map((data) => Number(data)),
-  };
+async function parseClassrooms() {
+  const classrooms = await parse("classrooms.csv");
+  classrooms.map((data) => {
+    return {
+      roomNum: data["Classroom Number"],
+      periodsAvaliable: data["Avaliable Periods"]
+        .split(",")
+        .map((data) => Number(data)),
+    };
+  });
+  console.log(classrooms);
+  fs.writeFileSync("assets/json/classrooms.json", JSON.stringify(classrooms));
 }
 
-parse("courses.csv", FileType.Courses);
-parse("teachers.csv", FileType.Teachers);
-parse("classrooms.csv", FileType.Classrooms);
+parseCourses();
+parseTeachers();
+parseClassrooms();
