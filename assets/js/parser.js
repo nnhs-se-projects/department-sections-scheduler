@@ -15,7 +15,10 @@ async function parse(filePath) {
 }
 
 async function parseCourses() {
+  // Call CSV parser
   const courses = await parse("courses.csv");
+
+  // Reformat objects
   courses.map((data) => {
     return {
       name: data["Course Name"],
@@ -27,12 +30,19 @@ async function parseCourses() {
       userPriority: Number(data.Priority) || undefined,
     };
   });
-  console.log(courses);
+
+  // Write to a .json file
   fs.writeFileSync("assets/json/courses.json", JSON.stringify(courses));
+
+  // Returns the array of objects
+  return courses;
 }
 
 async function parseTeachers() {
+  // Call CSV parser
   const teachers = await parse("teachers.csv");
+
+  // Reformat objects
   teachers.map((data) => {
     return {
       name: data["Teacher Name"],
@@ -42,12 +52,19 @@ async function parseTeachers() {
         .map((data) => Number(data)),
     };
   });
-  console.log(teachers);
+
+  // Write to a .json file
   fs.writeFileSync("assets/json/teachers.json", JSON.stringify(teachers));
+
+  // Returns the array of objects
+  return teachers;
 }
 
 async function parseClassrooms() {
+  // Call CSV parser
   const classrooms = await parse("classrooms.csv");
+
+  // Reformat objects
   classrooms.map((data) => {
     return {
       roomNum: data["Classroom Number"],
@@ -56,8 +73,12 @@ async function parseClassrooms() {
         .map((data) => Number(data)),
     };
   });
-  console.log(classrooms);
+
+  // Write to a .json file
   fs.writeFileSync("assets/json/classrooms.json", JSON.stringify(classrooms));
+
+  // Returns the array of objects
+  return classrooms;
 }
 
 export { parseCourses, parseTeachers, parseClassrooms };
