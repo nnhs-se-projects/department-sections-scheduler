@@ -27,7 +27,7 @@ async function parseCourses() {
       compatiblePeriods: data["Compatible Periods"]
         .split(",")
         .map((data) => Number(data)),
-      userPriority: data.Priority,
+      userPriority: Number(data.Priority) || undefined,
     };
   });
 
@@ -44,9 +44,13 @@ async function parseTeachers() {
 
   // Reformat objects
   teachers = teachers.map((data) => {
+    const courses = data["Certified Courses"].split(", ");
+    const coursePreferences = data["Course Preferences"].split(", ");
     return {
       name: data["Teacher Name"],
-      certifiedCourses: data["Certified Courses"].split(", "),
+      certifiedCourses: data["Certified Courses"].split(", ").map((data) => {
+        return { course: data, preference: 1.0 };
+      }),
       openPeriods: data["Avaliable Periods"]
         .split(",")
         .map((data) => Number(data)),
@@ -80,5 +84,6 @@ async function parseClassrooms() {
   // Returns the array of objects
   return classrooms;
 }
-
-export { parseCourses, parseTeachers, parseClassrooms };
+parseCourses();
+parseTeachers();
+// export { parseCourses, parseTeachers, parseClassrooms };
