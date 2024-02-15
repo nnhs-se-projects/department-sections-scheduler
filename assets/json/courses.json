@@ -3,19 +3,21 @@
     "name": "Eg. Course 1",
     "sections": "2",
     "compatibleClassrooms": ["100", "101", "102"],
-    "compatiblePeriods": [1, 2, 3, 7, 8]
+    "compatiblePeriods": [1, 2, 3, 7, 8],
+    "userPriority": ""
   },
   {
     "name": "Eg. Course 2",
     "sections": "1",
     "compatibleClassrooms": ["200", "201", "202"],
     "compatiblePeriods": [4, 5, 6],
-    "userPriority": 1
+    "userPriority": "1"
   },
   {
     "name": "Eg. Course 3",
     "sections": "4",
     "compatibleClassrooms": ["100", "101", "201", "202"],
-    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "userPriority": ""
   }
 ]

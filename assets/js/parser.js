@@ -27,7 +27,7 @@ async function parseCourses() {
       compatiblePeriods: data["Compatible Periods"]
         .split(",")
         .map((data) => Number(data)),
-      userPriority: Number(data.Priority) || undefined,
+      userPriority: data.Priority,
     };
   });
 
