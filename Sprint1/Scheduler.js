@@ -219,87 +219,48 @@ let createInitSchedule = function () {
   }
 };
 
-let assignTeachingTeachers = function () {
-  //assign teachers
-  //find the amount of teachers who can teach each course
-  //build a dictionary of course names and the number of teachers who can teach them
-  for (let course of courses) {
-    courseTeacherCount[course.name] = 0;
-  }
-  console.log(courseTeacherCount);
-  for (let teacher of teacherArr) {
-    for (let course of teacher.certifiedCourses) {
-      //
-
-      console.log("Teacher " + teacher.name + " can teach " + course);
-      console.log(course);
-      courseTeacherCount[course.course] += 1;
-
-      //find index of courses object that has name that = course
-    }
-  }
-};
-
-let sortCourseTeacherCount = function () {
-  //sort the courseTeacherCount array by the number of teachers who can teach each course
-  const sortedCourseTeachersCount = Object.keys(courseTeacherCount).sort(
-    (a, b) => courseTeacherCount[a] - courseTeacherCount[b]
-  );
-  sectionArr.sort(
-    (a, b) =>
-      sortedCourseTeachersCount.indexOf(a.course.name) -
-      sortedCourseTeachersCount.indexOf(b.course.name)
-  );
-  //console.log(sortedCourseTeachersCount);
-};
-
-let AssignTeacher2Sections = function () {
-  //assign teachers to sections
-
+let assignTeachersToSections = function () {
   for (let section of sectionArr) {
-    for (let teacher of teacherArr) {
-      console.log(`${section.course.name}`);
-      console.log(teacher.certifiedCourses);
-      if (
-        teacher.certifiedCourses.find(
-          (element) => element.course == section.course.name
-        )
-      ) {
-        //check if teacher has the open periods
-
-        if (teacher.openPeriods.includes(section.periodClass.period)) {
-          teacher.openPeriods.splice(
-            teacher.openPeriods.indexOf(section.periodClass.period),
-            1
-          );
-          console.log(
-            "Assigning " +
-              teacher.name +
-              " to " +
-              section.course.name +
-              " section " +
-              section.section +
-              " in period " +
-              section.periodClass.period
-          );
-          section.teacher = teacher;
-          break;
-        }
-      }
+    let assignableTeachers = teacherArr.filter(
+      (teacher) =>
+        teacher.certifiedCourses.find((course) => {
+          course.course == section.course.name;
+        }) > 0 && teacher.openPeriods.includes(section.periodClass.period)
+    );
+    if (assignableTeachers.length == 0) {
+      console.log(
+        "No more valid teachers available to assign to " +
+          section.course.name +
+          " section " +
+          section.section
+      );
+    } else {
+      teacherIndex = Math.floor(Math.random() * assignableTeachers.length);
+      assignableTeachers[teacherIndex].openPeriods.splice(
+        assignableTeachers[teacherIndex].openPeriods.indexOf(
+          section.periodClass.period
+        ),
+        1
+      );
+      section.teacher = assignableTeachers[teacherIndex];
+      console.log(
+        "Assigned " +
+          assignableTeachers[teacherIndex].name +
+          " to " +
+          section.course.name +
+          " section " +
+          section.section
+      );
     }
   }
 };
-
 createSections(sectionArr);
 createPeriodClassrooms();
 assignPeriodClassrooms();
 createInitSchedule();
 console.log("\nInitial schedule w/o teachers:");
 //print schedule by rows
-assignTeachingTeachers();
-console.log(courseTeacherCount);
-sortCourseTeacherCount();
-AssignTeacher2Sections();
+assignTeachersToSections();
 
 //console.log(schedule);
 //for (let period of schedule) {
