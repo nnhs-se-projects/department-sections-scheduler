@@ -255,42 +255,53 @@ let sortCourseTeacherCount = function () {
 };
 
 let AssignTeacher2Sections = function () {
-  //assign teachers to sections
+  let assignedPeriods = new Map(); // Map to keep track of assigned periods for each teacher
 
-  for (let section of sectionArr) {
+  // Recursive backtracking function to assign teachers to sections
+  let backtrackAssignTeachers = function (sectionIndex) {
+    // Base case: All sections have been assigned teachers
+    if (sectionIndex === sectionArr.length) {
+      return true;
+    }
+
+    let section = sectionArr[sectionIndex];
+    let course = section.course;
+
+    // Iterate through the teachers who can teach the course
     for (let teacher of teacherArr) {
-      console.log(`${section.course.name}`);
-      console.log(teacher.certifiedCourses);
-      if (
-        teacher.certifiedCourses.find(
-          (element) => element.course == section.course.name
-        )
-      ) {
-        //check if teacher has the open periods
+      let teacherAssignedPeriods = assignedPeriods.get(teacher) || new Set();
 
-        if (teacher.openPeriods.includes(section.periodClass.period)) {
-          teacher.openPeriods.splice(
-            teacher.openPeriods.indexOf(section.periodClass.period),
-            1
-          );
-          console.log(
-            "Assigning " +
-              teacher.name +
-              " to " +
-              section.course.name +
-              " section " +
-              section.section +
-              " in period " +
-              section.periodClass.period
-          );
-          section.teacher = teacher;
-          break;
+      if (
+        teacher.certifiedCourses.includes(course.name) &&
+        !teacherAssignedPeriods.has(section.period)
+      ) {
+        // Assign the teacher to the section
+        section.teacher = teacher;
+        teacherAssignedPeriods.add(section.period);
+        assignedPeriods.set(teacher, teacherAssignedPeriods);
+
+        // Recursively assign teachers to the next section
+        if (backtrackAssignTeachers(sectionIndex + 1)) {
+          return true;
         }
+
+        // Backtrack: Remove the assigned period from the teacher
+        teacherAssignedPeriods.delete(section.period);
+        if (teacherAssignedPeriods.size === 0) {
+          assignedPeriods.delete(teacher);
+        } else {
+          assignedPeriods.set(teacher, teacherAssignedPeriods);
+        }
+        section.teacher = null;
       }
     }
-  }
-};
 
+    return false; // No teacher found for the section
+  };
+
+  // Start the backtracking algorithm
+  backtrackAssignTeachers(0);
+};
 createSections(sectionArr);
 createPeriodClassrooms();
 assignPeriodClassrooms();
@@ -299,7 +310,8 @@ console.log("\nInitial schedule w/o teachers:");
 //print schedule by rows
 assignTeachingTeachers();
 sortCourseTeacherCount();
-AssignTeacher2Sections();
+console.log("hi");
+console.log(AssignTeacher2Sections());
 printInCoolWay(formattedSchedule());
 //console.log(schedule);
 //for (let period of schedule) {
