@@ -1,17 +1,17 @@
 [
   {
-    "Teacher Name": "Eg. Teacher 1",
-    "Certified Courses": "Eg. Course 1",
-    "Avaliable Periods": "1,3,5,7"
+    "name": "Eg. Teacher 1",
+    "certifiedCourses": ["Eg. Course 1"],
+    "openPeriods": [1, 3, 5, 7]
   },
   {
-    "Teacher Name": "Eg. Teacher 2",
-    "Certified Courses": "Eg. Course 2",
-    "Avaliable Periods": "2,4,6,8"
+    "name": "Eg. Teacher 2",
+    "certifiedCourses": ["Eg. Course 2"],
+    "openPeriods": [2, 4, 6, 8]
   },
   {
-    "Teacher Name": "Eg. Teacher 3",
-    "Certified Courses": "Eg. Course 1, Eg. Course 3",
-    "Avaliable Periods": "3,4,5,6"
+    "name": "Eg. Teacher 3",
+    "certifiedCourses": ["Eg. Course 1", "Eg. Course 3"],
+    "openPeriods": [3, 4, 5, 6]
   }
 ]

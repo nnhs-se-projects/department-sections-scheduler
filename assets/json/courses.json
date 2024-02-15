@@ -1,23 +1,21 @@
 [
   {
-    "Course Name": "Eg. Course 1",
-    "# of Sections": "2",
-    "Compatible Rooms": "100, 101, 102",
-    "Compatible Periods": "1,2,3,7,8",
-    "Priority": ""
+    "name": "Eg. Course 1",
+    "sections": "2",
+    "compatibleClassrooms": ["100", "101", "102"],
+    "compatiblePeriods": [1, 2, 3, 7, 8]
   },
   {
-    "Course Name": "Eg. Course 2",
-    "# of Sections": "1",
-    "Compatible Rooms": "200, 201, 202",
-    "Compatible Periods": "4,5,6",
-    "Priority": "1"
+    "name": "Eg. Course 2",
+    "sections": "1",
+    "compatibleClassrooms": ["200", "201", "202"],
+    "compatiblePeriods": [4, 5, 6],
+    "userPriority": 1
   },
   {
-    "Course Name": "Eg. Course 3",
-    "# of Sections": "4",
-    "Compatible Rooms": "100, 101, 201, 202",
-    "Compatible Periods": "1,2,3,4,5,6,7,8",
-    "Priority": ""
+    "name": "Eg. Course 3",
+    "sections": "4",
+    "compatibleClassrooms": ["100", "101", "201", "202"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   }
 ]

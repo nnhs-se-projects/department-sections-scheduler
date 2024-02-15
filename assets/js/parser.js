@@ -16,10 +16,10 @@ async function parse(filePath) {
 
 async function parseCourses() {
   // Call CSV parser
-  const courses = await parse("courses.csv");
+  let courses = await parse("courses.csv");
 
   // Reformat objects
-  courses.map((data) => {
+  courses = courses.map((data) => {
     return {
       name: data["Course Name"],
       sections: data["# of Sections"],
@@ -40,10 +40,10 @@ async function parseCourses() {
 
 async function parseTeachers() {
   // Call CSV parser
-  const teachers = await parse("teachers.csv");
+  let teachers = await parse("teachers.csv");
 
   // Reformat objects
-  teachers.map((data) => {
+  teachers = teachers.map((data) => {
     return {
       name: data["Teacher Name"],
       certifiedCourses: data["Certified Courses"].split(", "),
@@ -62,10 +62,10 @@ async function parseTeachers() {
 
 async function parseClassrooms() {
   // Call CSV parser
-  const classrooms = await parse("classrooms.csv");
+  let classrooms = await parse("classrooms.csv");
 
   // Reformat objects
-  classrooms.map((data) => {
+  classrooms = classrooms.map((data) => {
     return {
       roomNum: data["Classroom Number"],
       periodsAvaliable: data["Avaliable Periods"]
