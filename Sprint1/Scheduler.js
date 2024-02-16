@@ -223,8 +223,8 @@ let assignTeachersToSections = function () {
   for (let section of sectionArr) {
     let assignableTeachers = teacherArr.filter(
       (teacher) =>
-        teacher.certifiedCourses.find((course) => {
-          course.course == section.course.name;
+        teacher.certifiedCourses.find((teachableCourse) => {
+          teachableCourse.course == section.course.name;
         }) > 0 && teacher.openPeriods.includes(section.periodClass.period)
     );
     if (assignableTeachers.length == 0) {
