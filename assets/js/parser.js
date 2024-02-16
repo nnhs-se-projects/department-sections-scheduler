@@ -48,9 +48,11 @@ async function parseTeachers() {
     const coursePreferences = data["Course Preferences"].split(", ");
     return {
       name: data["Teacher Name"],
-      certifiedCourses: data["Certified Courses"].split(", ").map((data) => {
-        return { course: data, preference: 1.0 };
-      }),
+      certifiedCourses: Array.from({ length: courses.length }, (x, i) => i).map(
+        (data) => {
+          return { course: courses[data], preference: coursePreferences[data] };
+        }
+      ),
       openPeriods: data["Avaliable Periods"]
         .split(",")
         .map((data) => Number(data)),
@@ -84,6 +86,5 @@ async function parseClassrooms() {
   // Returns the array of objects
   return classrooms;
 }
-parseCourses();
-parseTeachers();
-// export { parseCourses, parseTeachers, parseClassrooms };
+
+export { parseCourses, parseTeachers, parseClassrooms };

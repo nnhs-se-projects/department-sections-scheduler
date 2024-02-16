@@ -1,19 +1,19 @@
 [
   {
     "name": "Eg. Teacher 1",
-    "certifiedCourses": [{ "course": "Eg. Course 1", "preference": 1 }],
+    "certifiedCourses": [{ "course": "Eg. Course 1", "preference": "0.5" }],
     "openPeriods": [1, 3, 5, 7]
   },
   {
     "name": "Eg. Teacher 2",
-    "certifiedCourses": [{ "course": "Eg. Course 2", "preference": 1 }],
+    "certifiedCourses": [{ "course": "Eg. Course 2", "preference": "0.5" }],
     "openPeriods": [2, 4, 6, 8]
   },
   {
     "name": "Eg. Teacher 3",
     "certifiedCourses": [
-      { "course": "Eg. Course 1", "preference": 1 },
-      { "course": "Eg. Course 3", "preference": 1 }
+      { "course": "Eg. Course 1", "preference": ".5" },
+      { "course": "Eg. Course 3", "preference": "1" }
     ],
     "openPeriods": [3, 4, 5, 6]
   }
