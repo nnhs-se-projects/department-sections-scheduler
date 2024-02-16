@@ -193,7 +193,7 @@
     "sections": 2,
     "compatibleClassrooms": ["134"],
     "compatiblePeriods": [4, 5],
-    "schedulingPriority": "0.5"
+    "schedulingPriority": "0.9134"
   },
   {
     "name": "EDS",

@@ -170,8 +170,10 @@ let createPeriodClassrooms = function () {
 //assign period-classrooms to sections
 let assignPeriodClassrooms = function () {
   for (let section of sectionArr) {
-    let assignableRooms = periodsClassArr.filter((perClass) =>
-      section.course.compatibleClassrooms.includes(perClass.classroom)
+    let assignableRooms = periodsClassArr.filter(
+      (perClass) =>
+        section.course.compatibleClassrooms.includes(perClass.classroom) &&
+        section.course.compatiblePeriods.includes(perClass.period)
     ); // FIXME: This is not working !!! Filter query not correct
     if (assignableRooms.length == 0) {
       console.log(
@@ -223,9 +225,10 @@ let assignTeachersToSections = function () {
   for (let section of sectionArr) {
     let assignableTeachers = teacherArr.filter(
       (teacher) =>
-        teacher.certifiedCourses.find((teachableCourse) => {
-          teachableCourse.course == section.course.name;
-        }) > 0 && teacher.openPeriods.includes(section.periodClass.period)
+        teacher.certifiedCourses
+          .map((item) => item.course)
+          .includes(section.course.name) &&
+        teacher.openPeriods.includes(section.periodClass.period)
     );
     if (assignableTeachers.length == 0) {
       console.log(
@@ -285,3 +288,5 @@ assignTeachersToSections();
 printInCoolWay(formattedSchedule());
 
 //console.log(formattedSchedule());
+
+console.log("%c GeeksforGeeks", "color:green;");
