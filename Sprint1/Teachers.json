@@ -514,5 +514,29 @@
       }
     ],
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Melissa Oskroba",
+    "certifiedCourses": [
+      {
+        "course": "Intro to Teaching 1",
+        "preference": 1
+      },
+      {
+        "course": "Intro to Teaching 2",
+        "preference": 1
+      }
+    ],
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "BCI Teacher 1",
+    "certifiedCourses": [
+      {
+        "course": "Blended Career Internship",
+        "preference": 1
+      }
+    ],
+    "openPeriods": [7]
   }
 ]

@@ -44,6 +44,38 @@ let updateFormattedSchedule = function (formattedArr) {
   }
 };
 
+let prioritizeCourses = function () {
+  const classroomPriority = 0.6;
+  const periodPriority = 0.1;
+  const sectionPriority = 0.3;
+  const sectionCap = 4;
+  for (let course of courses) {
+    if (course.schedulingPriority == undefined) {
+      course.schedulingPriority = 0;
+      course.schedulingPriority +=
+        classroomPriority * (1 / course.compatibleClassrooms.length);
+      course.schedulingPriority +=
+        periodPriority * (1 / course.compatiblePeriods.length);
+      course.schedulingPriority +=
+        sectionPriority *
+        ((course.sections > sectionCap ? sectionCap : course.sections) /
+          sectionCap);
+      console.log(
+        "Course " +
+          course.name +
+          " has a calculated scheduling priority of " +
+          course.schedulingPriority
+      );
+    } else {
+      console.log(
+        "Course " +
+          course.name +
+          " has a defined scheduling priority of " +
+          course.schedulingPriority
+      );
+    }
+  }
+};
 // function main code by beloved ChatGPT
 let printInCoolWay = function (arr) {
   // Print the top border
@@ -113,7 +145,6 @@ let createSections = function (arr) {
     }
   }
   arr = updateSections(arr);
-  console.log(arr);
   return arr;
 };
 
@@ -257,12 +288,11 @@ let assignTeachersToSections = function () {
     }
   }
 };
+prioritizeCourses();
 createSections(sectionArr);
 createPeriodClassrooms();
 assignPeriodClassrooms();
 createInitSchedule();
-console.log("\nInitial schedule w/o teachers:");
-//print schedule by rows
 assignTeachersToSections();
 
 //console.log(schedule);
@@ -288,5 +318,3 @@ assignTeachersToSections();
 printInCoolWay(formattedSchedule());
 
 //console.log(formattedSchedule());
-
-console.log("%c GeeksforGeeks", "color:green;");
