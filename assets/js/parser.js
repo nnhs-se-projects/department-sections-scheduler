@@ -23,8 +23,11 @@ async function parseCourses() {
     return {
       name: data["Course Name"],
       sections: data["# of Sections"],
-      compatibleClassrooms: data["Compatible Rooms"].split(", "),
+      compatibleClassrooms: data["Compatible Rooms"]
+        .replace(/\s/g, "")
+        .split(","),
       compatiblePeriods: data["Compatible Periods"]
+        .replace(/\s/g, "")
         .split(",")
         .map((data) => Number(data)),
       userPriority: Number(data.Priority) || undefined,
@@ -44,8 +47,10 @@ async function parseTeachers() {
 
   // Reformat objects
   teachers = teachers.map((data) => {
-    const courses = data["Certified Courses"].split(", ");
-    const coursePreferences = data["Course Preferences"].split(", ");
+    const courses = data["Certified Courses"].replace(/, /g, ",").split(",");
+    const coursePreferences = data["Course Preferences"]
+      .replace(/\s/g, "")
+      .split(",");
     return {
       name: data["Teacher Name"],
       certifiedCourses: Array.from({ length: courses.length }, (x, i) => i).map(
@@ -54,6 +59,7 @@ async function parseTeachers() {
         }
       ),
       openPeriods: data["Avaliable Periods"]
+        .replace(/\s/g, "")
         .split(",")
         .map((data) => Number(data)),
     };
@@ -75,6 +81,7 @@ async function parseClassrooms() {
     return {
       roomNum: data["Classroom Number"],
       periodsAvaliable: data["Avaliable Periods"]
+        .replace(/\s/g, "")
         .split(",")
         .map((data) => Number(data)),
     };
@@ -86,5 +93,5 @@ async function parseClassrooms() {
   // Returns the array of objects
   return classrooms;
 }
-
-export { parseCourses, parseTeachers, parseClassrooms };
+parseTeachers();
+// export { parseCourses, parseTeachers, parseClassrooms };
