@@ -45,10 +45,14 @@ let updateFormattedSchedule = function (formattedArr) {
 };
 
 let prioritizeCourses = function () {
+  //all priorities should total 1
   const classroomPriority = 0.6;
   const periodPriority = 0.1;
   const sectionPriority = 0.3;
   const sectionCap = 4;
+  //sectionCap is the maximum number of sections that designates a course as a high priority course
+  //any amount of sections over sectionCap will not increase the priority of the course
+
   for (let course of courses) {
     if (course.schedulingPriority == undefined) {
       course.schedulingPriority = 0;
@@ -76,6 +80,7 @@ let prioritizeCourses = function () {
     }
   }
 };
+
 // function main code by beloved ChatGPT
 let printInCoolWay = function (arr) {
   // Print the top border
@@ -253,6 +258,7 @@ let createInitSchedule = function () {
 };
 
 let assignTeachersToSections = function () {
+  let totalErrors = 0;
   for (let section of sectionArr) {
     let assignableTeachers = teacherArr.filter(
       (teacher) =>
@@ -268,6 +274,7 @@ let assignTeachersToSections = function () {
           " section " +
           section.section
       );
+      totalErrors++;
     } else {
       teacherIndex = Math.floor(Math.random() * assignableTeachers.length);
       assignableTeachers[teacherIndex].openPeriods.splice(
@@ -287,6 +294,7 @@ let assignTeachersToSections = function () {
       );
     }
   }
+  console.log("Total errors: " + totalErrors);
 };
 prioritizeCourses();
 createSections(sectionArr);

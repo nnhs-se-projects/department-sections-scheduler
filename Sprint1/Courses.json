@@ -48,7 +48,8 @@
     "name": "International Business",
     "sections": 1,
     "compatibleClassrooms": ["128", "126", "120"],
-    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+    "schedulingPriority": "0.8"
   },
   {
     "name": "Comp Programming 1",
@@ -226,7 +227,7 @@
       "132"
     ],
     "compatiblePeriods": [2, 3, 6, 7],
-    "schedulingPriority": "0.7"
+    "schedulingPriority": "0.3"
   },
   {
     "name": "Auto 1",
