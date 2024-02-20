@@ -9,6 +9,14 @@ route.get("/", async (req, res) => {
   res.render("index");
 });
 
+route.get("/dataView", (req, res) => {
+  res.render("dataView", {});
+});
+
+route.get("/dataEdit", (req, res) => {
+  res.render("dataEdit", {});
+});
+
 // delegate all authentication to the auth.js router
 route.use("/auth", require("./auth"));
 
