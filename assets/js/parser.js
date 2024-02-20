@@ -93,5 +93,5 @@ async function parseClassrooms() {
   // Returns the array of objects
   return classrooms;
 }
-parseTeachers();
-// export { parseCourses, parseTeachers, parseClassrooms };
+
+export { parseCourses, parseTeachers, parseClassrooms };
