@@ -10,6 +10,24 @@ const config = require("./Config.json");
 //actual genetic algorithm
 //scoring
 const testschedule = require("../schedule.json");
+
+const setOfsectionsWOclassrooms = (schedule) => {
+  let sectionsset = new Set();
+  for (let i = 0; i < schedule.length; i++) {
+    let period = schedule[i];
+    for (let j = 0; j < period.length; j++) {
+      let section = period[j];
+      if (section != null) {
+        sectionsset.add({
+          course: section.course,
+          sectionnumber: section.sectionnumber,
+          teacher: section.teacher,
+        });
+      }
+    }
+  }
+};
+
 const fitness = (schedule) => {
   //average teacher preference of class
   let teacherPreference = 0;
@@ -70,11 +88,41 @@ const fitness = (schedule) => {
     //ideal longest concurence is 0 any more or any less is bad
     averageConcurenceDiff += Math.abs(longestConcurence - 3);
   }
+  //make a value for how often a teacher stays at the same classeoom
+  let classroomStay = 0;
+  for (let teacher of teacherSpecific) {
+    let classrooms = new Map();
+    for (let i = 0; i < schedule.length; i++) {
+      let period = schedule[i];
+      for (let j = 0; j < period.length; j++) {
+        let section = period[j];
+        if (section != null) {
+          if (section.teacher.name === teacher.name) {
+            if (classrooms.has(section.periodClass.classroom)) {
+              classrooms.set(
+                section.periodClass.classroom,
+                classrooms.get(section.periodClass.classroom) + 1
+              );
+            } else {
+              classrooms.set(section.periodClass.classroom, 1);
+            }
+          }
+        }
+      }
+    }
+    for (let [key, value] of classrooms) {
+      if (value > 1) {
+        classroomStay += value * value;
+      }
+    }
+  }
+
   lunchCount = lunchCount / teacherSpecific.length;
   let fit =
-    config.teacherPreferenceWeight * (teacherPreference / sectioncount) +
-    config.lunchPeriodWeight * lunchCount +
-    config.longestConcurenceWeight * averageConcurenceDiff;
+    config.weights.teacherPreference * (teacherPreference / sectioncount) +
+    config.weights.lunchCount * lunchCount +
+    config.weights.longestConcurence * averageConcurenceDiff;
+  config.weights.classroomStay * sigmoid(classroomStay);
 
   return fit;
 };
@@ -102,19 +150,73 @@ const getTeacherSpecific = (schedule) => {
 //https://www.figma.com/file/nVrAkw9OzLQihgoBWDx0Ho/Untitled?type=whiteboard&node-id=2%3A322&t=GBDQItPHfuVcZY2m-1
 
 crossover1 = (parent1, parent2) => {
+  //clone all the sections and strip them of their classrooms
+  let parent1withoutclassrooms = [];
+  let parent2withoutclassrooms = [];
+  for (let i = 0; i < parent1.length; i++) {
+    let period = parent1[i];
+    let newperiod = [];
+    for (let j = 0; j < period.length; j++) {
+      let section = period[j];
+      if (section != null) {
+        //should clone the atributtes of the section
+        newperiod.push({
+          course: section.course,
+          sectionnumber: section.sectionnumber,
+          teacher: section.teacher,
+        });
+      }
+    }
+    parent1withoutclassrooms.push(newperiod);
+  }
+  for (let i = 0; i < parent2.length; i++) {
+    let period = parent2[i];
+    let newperiod = [];
+    for (let j = 0; j < period.length; j++) {
+      let section = period[j];
+      if (section != null) {
+        //should clone the atributtes of the section
+        newperiod.push({
+          course: section.course,
+          teacher: section.teacher,
+        });
+      }
+    }
+    parent2withoutclassrooms.push(newperiod);
+  }
+
   //seperate each classroom into seperate arrays
+
   let child1 = [];
   let child2 = [];
-  let divider1 = Math.floor((Math.random() * parent1.length) / 2);
+  let divider1 = Math.floor(
+    (Math.random() * parent1withoutclassrooms.length) / 2
+  );
   let divider2 = Math.floor(
-    (Math.random() * parent1.length) / 2 + parent1.length / 2
+    (Math.random() * parent1.length) / 2 + parent1withoutclassrooms.length / 2
   );
 
   for (let i = 0; i < parent1.length; i++) {
     //enact worker function on each period
-    parent1classrooms.push(crossover1worker(parent1[i], parent2[i]));
-    parent2classrooms.push(crossover1worker(parent2[i], parent1[i]));
+    child1.push(
+      crossover1worker(
+        parent1withoutclassrooms[i],
+        parent2withoutclassrooms[i]
+      ),
+      divider1,
+      divider2
+    );
+    child2.push(
+      crossover1worker(
+        parent2withoutclassrooms[i],
+        parent1withoutclassrooms[i]
+      ),
+      divider1,
+      divider2
+    );
   }
+  randomcleanup(child1);
+  randomcleanup(child2);
 };
 
 const crossover1worker = (parent1, parent2, d1, d2) => {
@@ -177,4 +279,5 @@ let testarr = "abcdefghij".split("");
 let testarr2 = "acdfghijeb".split("");
 console.log(crossover1worker(testarr, testarr2, 2, 6));
 
-//config.log(fitness(testschedule));
+//duplicates in child1 are
+const randomcleanup = (child1, child2) => {};
