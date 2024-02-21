@@ -44,7 +44,7 @@ let updateFormattedSchedule = function (formattedArr) {
   }
 };
 
-let prioritizeCourses = function () {
+let findCoursePriority = function () {
   //all priorities should total 1
   const classroomPriority = 0.6;
   const periodPriority = 0.1;
@@ -128,29 +128,29 @@ let printInCoolWay = function (arr) {
 };
 
 //update sections by priority
-let updateSections = function (arr) {
-  arr.sort((a, b) => b.course.schedulingPriority - a.course.schedulingPriority);
-  return arr;
+let sortSections = function () {
+  sectionArr.sort(
+    (a, b) => b.course.schedulingPriority - a.course.schedulingPriority
+  );
 };
 
 // create sections for each class and then add them to the section array
-let createSections = function (arr) {
+let createSections = function () {
   //clear array
-  while (arr.length > 0) {
-    arr.pop();
+  while (sectionArr.length > 0) {
+    sectionArr.pop();
   }
 
   for (let course of courses) {
     for (i = 0; i < course.sections; i++) {
-      arr.push({
+      sectionArr.push({
         course: course,
         sectionNumber: i + 1,
         periodClass: null,
       });
     }
   }
-  arr = updateSections(arr);
-  return arr;
+  //sectionArr = sortSections();
 };
 
 let addSection = function (arr, course) {
@@ -165,7 +165,7 @@ let addSection = function (arr, course) {
     section: secNum,
     periodClass: null,
   });
-  updateSections(arr);
+  sortSections();
   return arr;
 };
 
@@ -186,7 +186,7 @@ let removeSection = function (arr, course) {
     for (i = 0; i < remainingSections.length; i++) {
       arr[i].section = i + 1;
     }
-    updateSections(arr);
+    sortSections();
   }
   return arr;
 };
@@ -205,6 +205,7 @@ let createPeriodClassrooms = function () {
 
 //assign period-classrooms to sections
 let assignPeriodClassrooms = function () {
+  sortSections();
   for (let section of sectionArr) {
     let assignableRooms = periodsClassArr.filter(
       (perClass) =>
@@ -299,9 +300,9 @@ let assignTeachersToSections = function () {
 
 createPeriodClassrooms();
 
-createSections(sectionArr);
+createSections();
 
-prioritizeCourses();
+findCoursePriority();
 
 assignPeriodClassrooms();
 

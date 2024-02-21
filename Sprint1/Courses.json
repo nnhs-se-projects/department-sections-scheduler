@@ -4,7 +4,7 @@
     "sections": 4,
     "compatibleClassrooms": ["128", "126", "120"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "schedulingPriority": ".75"
+    "schedulingPriority": 0.75
   },
   {
     "name": "Accounting 1",
@@ -29,14 +29,14 @@
     "sections": 6,
     "compatibleClassrooms": ["120"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "schedulingPriority": "1"
+    "schedulingPriority": 1
   },
   {
     "name": "ACCElerator",
     "sections": 1,
     "compatibleClassrooms": ["120"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "schedulingPriority": "0.9"
+    "schedulingPriority": 0.9
   },
   {
     "name": "Business Law",
@@ -49,21 +49,21 @@
     "sections": 1,
     "compatibleClassrooms": ["128", "126", "120"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "schedulingPriority": "0.8"
+    "schedulingPriority": 0.8
   },
   {
     "name": "Comp Programming 1",
     "sections": 2,
     "compatibleClassrooms": ["121", "123"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "schedulingPriority": "0.6"
+    "schedulingPriority": 0.6
   },
   {
     "name": "Comp Programming 2",
     "sections": 3,
     "compatibleClassrooms": ["121", "123"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "schedulingPriority": "0.6"
+    "schedulingPriority": 0.6
   },
   {
     "name": "Game Design",
@@ -124,7 +124,7 @@
     "sections": 1,
     "compatibleClassrooms": ["132"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "schedulingPriority": "0.5"
+    "schedulingPriority": 0.5
   },
   {
     "name": "Graphics 1",
@@ -149,21 +149,21 @@
     "sections": 1,
     "compatibleClassrooms": ["138"],
     "compatiblePeriods": [2],
-    "schedulingPriority": "0.7"
+    "schedulingPriority": 0.7
   },
   {
     "name": "Cybersecurity",
     "sections": 1,
     "compatibleClassrooms": ["138"],
     "compatiblePeriods": [1],
-    "schedulingPriority": "0.7"
+    "schedulingPriority": 0.7
   },
   {
     "name": "Workshop Elements",
     "sections": 1,
     "compatibleClassrooms": ["134"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "schedulingPriority": "0.8"
+    "schedulingPriority": 0.8
   },
   {
     "name": "Workshop Studio",
@@ -176,7 +176,7 @@
     "sections": 2,
     "compatibleClassrooms": ["134"],
     "compatiblePeriods": [4, 5],
-    "schedulingPriority": "0.9134"
+    "schedulingPriority": 0.9134
   },
   {
     "name": "EDS",
@@ -202,7 +202,7 @@
       "132"
     ],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "schedulingPriority": "0.8"
+    "schedulingPriority": 0.8
   },
   {
     "name": "R&D",
@@ -228,7 +228,7 @@
       "132"
     ],
     "compatiblePeriods": [2, 3, 6, 7],
-    "schedulingPriority": "0.3"
+    "schedulingPriority": 0.3
   },
   {
     "name": "Auto 1",
