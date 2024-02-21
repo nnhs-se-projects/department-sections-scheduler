@@ -144,7 +144,7 @@ let createSections = function (arr) {
     for (i = 0; i < course.sections; i++) {
       arr.push({
         course: course,
-        section: i + 1,
+        sectionNumber: i + 1,
         periodClass: null,
       });
     }
@@ -216,7 +216,7 @@ let assignPeriodClassrooms = function () {
         "No more valid period-classrooms available to assign to " +
           section.course.name +
           " section " +
-          section.section
+          section.sectionNumber
       );
     } else {
       section.periodClass = periodsClassArr.splice(
@@ -245,7 +245,7 @@ let createInitSchedule = function () {
       "Assigning " +
         section.course.name +
         " section " +
-        section.section +
+        section.sectionNumber +
         " to period " +
         section.periodClass.period +
         " classroom " +
@@ -272,7 +272,7 @@ let assignTeachersToSections = function () {
         "No more valid teachers available to assign to " +
           section.course.name +
           " section " +
-          section.section
+          section.sectionNumber
       );
       totalErrors++;
     } else {
@@ -290,17 +290,23 @@ let assignTeachersToSections = function () {
           " to " +
           section.course.name +
           " section " +
-          section.section
+          section.sectionNumber
       );
     }
   }
   console.log("Total errors: " + totalErrors);
 };
-prioritizeCourses();
-createSections(sectionArr);
+
 createPeriodClassrooms();
+
+createSections(sectionArr);
+
+prioritizeCourses();
+
 assignPeriodClassrooms();
+
 createInitSchedule();
+
 assignTeachersToSections();
 
 //console.log(schedule);
