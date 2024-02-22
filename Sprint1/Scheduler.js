@@ -6,7 +6,7 @@ const config = require("./Config.json");
 
 const classroomArr = require("./Classrooms.json");
 const classroomList = classroomArr.map((classroom) => classroom.roomNum);
-const teacherArr = require("./Teachers.json");
+let teacherArr = require("./Teachers.json");
 
 let formattedSchedule = function () {
   let formattedArr = []; // 2d array of classrooms and periods
@@ -265,6 +265,7 @@ let assignTeachersToSections = function () {
   for (let section of sectionArr) {
     section.teacher = undefined;
   }
+  teacherArr = require("./Teachers.json");
   for (let section of sectionArr) {
     let assignableTeachers = teacherArr.filter(
       (teacher) =>
@@ -283,7 +284,9 @@ let assignTeachersToSections = function () {
       totalErrors++;
     } else {
       teacherIndex = Math.floor(Math.random() * assignableTeachers.length);
-      assignableTeachers[teacherIndex].openPeriods.splice(
+      teacherArr[
+        teacherArr.indexOf(assignableTeachers[teacherIndex])
+      ].openPeriods.splice(
         assignableTeachers[teacherIndex].openPeriods.indexOf(
           section.periodClass.period
         ),
@@ -301,7 +304,7 @@ let assignTeachersToSections = function () {
     }
   }
   console.log("Total errors: " + totalErrors);
-  return totalErrors > 0;
+  return totalErrors;
 };
 
 let teacherFailed = true;
@@ -320,18 +323,25 @@ while (teacherFailed) {
   }
   while (!teachersAssigned) {
     createInitSchedule();
-    if (assignTeachersToSections()) {
+    if (assignTeachersToSections() == 0) {
       teachersAssigned = true;
     } else {
       failCount++;
+      console.log("failure encountered");
     }
     if (failCount >= failCap) {
       teacherFailed = true;
-      break;
+      teachersAssigned = true;
     }
   }
 }
-
+let mistakes = 0;
+for (let section of sectionArr) {
+  if (section.teacher == undefined) {
+    mistakes++;
+  }
+}
+console.log("Total mistakes: " + mistakes);
 //console.log(schedule);
 //for (let period of schedule) {
 //   for (let classroom of period) {
