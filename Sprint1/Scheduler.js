@@ -7,6 +7,7 @@ const config = require("./Config.json");
 const classroomArr = require("./Classrooms.json");
 const classroomList = classroomArr.map((classroom) => classroom.roomNum);
 let teacherArr = require("./Teachers.json");
+const teacherString = JSON.stringify(teacherArr);
 
 let formattedSchedule = function () {
   let formattedArr = []; // 2d array of classrooms and periods
@@ -265,7 +266,7 @@ let assignTeachersToSections = function () {
   for (let section of sectionArr) {
     section.teacher = undefined;
   }
-  teacherArr = require("./Teachers.json");
+  teacherArr = JSON.parse(teacherString);
   for (let section of sectionArr) {
     let assignableTeachers = teacherArr.filter(
       (teacher) =>
@@ -309,6 +310,8 @@ let assignTeachersToSections = function () {
 
 let teacherFailed = true;
 
+findCoursePriority();
+createSections();
 while (teacherFailed) {
   teacherFailed = false;
   let coursesAssigned = false;
@@ -317,8 +320,6 @@ while (teacherFailed) {
   const failCap = 5;
   while (!coursesAssigned) {
     createPeriodClassrooms();
-    createSections();
-    findCoursePriority();
     coursesAssigned = assignPeriodClassrooms();
   }
   while (!teachersAssigned) {
