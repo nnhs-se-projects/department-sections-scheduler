@@ -93,7 +93,7 @@ let printInCoolWay = function (arr) {
   // Print the header
   let header = "║";
   for (let j = 0; j < arr[0].length; j++) {
-    header += ` Classroom ${j + 1}         ║`;
+    header += ` Room ${classroomList[j].toString().padEnd(15)}║`;
   }
   console.log(header);
 
