@@ -46,9 +46,9 @@ let updateFormattedSchedule = function (formattedArr) {
 
 let findCoursePriority = function () {
   //all priorities should total 1
-  const classroomPriority = 0.6;
-  const periodPriority = 0.1;
-  const sectionPriority = 0.3;
+  const classroomPriority = 0.4;
+  const periodPriority = 0.4;
+  const sectionPriority = 0.2;
   const sectionCap = 4;
   //sectionCap is the maximum number of sections that designates a course as a high priority course
   //any amount of sections over sectionCap will not increase the priority of the course
@@ -211,7 +211,7 @@ let assignPeriodClassrooms = function () {
       (perClass) =>
         section.course.compatibleClassrooms.includes(perClass.classroom) &&
         section.course.compatiblePeriods.includes(perClass.period)
-    ); // FIXME: This is not working !!! Filter query not correct
+    );
     if (assignableRooms.length == 0) {
       console.log(
         "No more valid period-classrooms available to assign to " +
@@ -219,6 +219,7 @@ let assignPeriodClassrooms = function () {
           " section " +
           section.sectionNumber
       );
+      return false;
     } else {
       section.periodClass = periodsClassArr.splice(
         periodsClassArr.indexOf(
@@ -228,6 +229,7 @@ let assignPeriodClassrooms = function () {
       )[0];
     }
   }
+  return true;
 };
 
 let createInitSchedule = function () {
@@ -260,6 +262,9 @@ let createInitSchedule = function () {
 
 let assignTeachersToSections = function () {
   let totalErrors = 0;
+  for (let section of sectionArr) {
+    section.teacher = undefined;
+  }
   for (let section of sectionArr) {
     let assignableTeachers = teacherArr.filter(
       (teacher) =>
@@ -296,19 +301,36 @@ let assignTeachersToSections = function () {
     }
   }
   console.log("Total errors: " + totalErrors);
+  return totalErrors > 0;
 };
 
-createPeriodClassrooms();
+let teacherFailed = true;
 
-createSections();
-
-findCoursePriority();
-
-assignPeriodClassrooms();
-
-createInitSchedule();
-
-assignTeachersToSections();
+while (teacherFailed) {
+  teacherFailed = false;
+  let coursesAssigned = false;
+  let teachersAssigned = false;
+  let failCount = 0;
+  const failCap = 5;
+  while (!coursesAssigned) {
+    createPeriodClassrooms();
+    createSections();
+    findCoursePriority();
+    coursesAssigned = assignPeriodClassrooms();
+  }
+  while (!teachersAssigned) {
+    createInitSchedule();
+    if (assignTeachersToSections()) {
+      teachersAssigned = true;
+    } else {
+      failCount++;
+    }
+    if (failCount >= failCap) {
+      teacherFailed = true;
+      break;
+    }
+  }
+}
 
 //console.log(schedule);
 //for (let period of schedule) {
