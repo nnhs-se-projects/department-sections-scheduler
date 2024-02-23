@@ -31,6 +31,17 @@ let formattedSchedule = function () {
       formattedArr[sectionArr[i].periodClass.period - 1][roomIndex] =
         sectionArr[i];
     }
+
+    if (sectionArr[i].otherPeriodClasses != undefined) {
+      for (j = 0; j < sectionArr[i].otherPeriodClasses.length; j++) {
+        roomIndex = classroomList.indexOf(
+          sectionArr[i].otherPeriodClasses[j].classroom
+        );
+        formattedArr[sectionArr[i].otherPeriodClasses[j].period - 1][
+          roomIndex
+        ] = sectionArr[i];
+      }
+    }
   }
 
   return formattedArr;
@@ -217,32 +228,102 @@ let assignPeriodClassrooms = function () {
         section.course.compatiblePeriods.includes(perClass.period)
     );
 
-    if (assignableRooms.length == 0) {
-      // console.log(
-      //   "No more valid period-classrooms available to assign to " +
-      //     section.course.name +
-      //     " section " +
-      //     section.sectionNumber
-      // );
-      return false;
+    if (section.course.requiredClassrooms == undefined) {
+      if (assignableRooms.length == 0) {
+        // console.log(
+        //   "No more valid period-classrooms available to assign to " +
+        //     section.course.name +
+        //     " section " +
+        //     section.sectionNumber
+        // );
+        return false;
+      } else {
+        section.periodClass = periodsClassArr.splice(
+          periodsClassArr.indexOf(
+            assignableRooms[Math.floor(Math.random() * assignableRooms.length)]
+          ),
+          1
+        )[0];
+        // console.log(
+        //   "Assigning " +
+        //     section.course.name +
+        //     " section " +
+        //     section.sectionNumber +
+        //     " to period " +
+        //     section.periodClass.period +
+        //     " classroom " +
+        //     section.periodClass.classroom
+        // );
+        // console.log("Remaining period-classrooms: " + periodsClassArr.length);
+      }
     } else {
-      section.periodClass = periodsClassArr.splice(
-        periodsClassArr.indexOf(
-          assignableRooms[Math.floor(Math.random() * assignableRooms.length)]
-        ),
-        1
-      )[0];
-      // console.log(
-      //   "Assigning " +
-      //     section.course.name +
-      //     " section " +
-      //     section.sectionNumber +
-      //     " to period " +
-      //     section.periodClass.period +
-      //     " classroom " +
-      //     section.periodClass.classroom
-      // );
-      // console.log("Remaining period-classrooms: " + periodsClassArr.length);
+      console.log("big dog");
+      if (assignableRooms.length == 0) {
+        // console.log(
+        //   "No more valid period-classrooms available to assign to " +
+        //     section.course.name +
+        //     " section " +
+        //     section.sectionNumber
+        // );
+        return false;
+      } else {
+        section.periodClass = periodsClassArr.splice(
+          periodsClassArr.indexOf(
+            assignableRooms[Math.floor(Math.random() * assignableRooms.length)]
+          ),
+          1
+        )[0];
+        // console.log(
+        //   "Assigning " +
+        //     section.course.name +
+        //     " section " +
+        //     section.sectionNumber +
+        //     " to period " +
+        //     section.periodClass.period +
+        //     " classroom " +
+        //     section.periodClass.classroom
+        // );
+        // console.log("Remaining period-classrooms: " + periodsClassArr.length);
+      }
+      section.otherPeriodClasses = [];
+      for (i = 0; i < section.course.requiredClassrooms.length - 1; i++) {
+        assignableRooms = periodsClassArr.filter(
+          (perClass) =>
+            section.course.requiredClassrooms[i].includes(perClass.classroom) &&
+            perClass.period == section.periodClass.period
+        );
+        if (assignableRooms.length == 0) {
+          // console.log(
+          //   "No more valid period-classrooms available to assign to " +
+          //     section.course.name +
+          //     " section " +
+          //     section.sectionNumber
+          // );
+          return false;
+        } else {
+          section.otherPeriodClasses.push(
+            periodsClassArr.splice(
+              periodsClassArr.indexOf(
+                assignableRooms[
+                  Math.floor(Math.random() * assignableRooms.length)
+                ]
+              ),
+              1
+            )[0]
+          );
+          // console.log(
+          //   "Assigning " +
+          //     section.course.name +
+          //     " section " +
+          //     section.sectionNumber +
+          //     " to period " +
+          //     section.periodClass.period +
+          //     " classroom " +
+          //     section.periodClass.classroom
+          // );
+          // console.log("Remaining period-classrooms: " + periodsClassArr.length);
+        }
+      }
     }
   }
   return true;
@@ -384,3 +465,4 @@ console.log("Total times teachers attempted: " + teacherSchedulingAttempts);
 
 //print schedule
 printInCoolWay(formattedSchedule());
+console.log(sectionArr);

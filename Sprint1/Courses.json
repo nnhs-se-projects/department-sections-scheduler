@@ -181,13 +181,16 @@
   {
     "name": "EDS",
     "sections": 1,
-    "compatibleClassrooms": ["115"],
+    "compatibleClassrooms": ["115", "116"],
+    "requiredClassrooms": 2,
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
     "name": "R&D",
     "sections": 4,
-    "compatibleClassrooms": ["115"],
+    "compatibleClassrooms": ["115", "116", "134"],
+    "requiredClassrooms": 3,
+    "requiredTeachers": 2,
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
