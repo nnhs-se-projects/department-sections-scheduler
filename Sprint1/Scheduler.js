@@ -357,7 +357,17 @@ while (teacherFailed) {
     }
   }
 }
-
+let errors = 0;
+for (let section of sectionArr) {
+  if (section.teacher == undefined || section.teacher == null) {
+    console.log("Teacher not assigned to " + section.course.name);
+    errors++;
+  }
+  if (section.periodClass == undefined || section.periodClass == null) {
+    console.log("Period-classroom not assigned to " + section.course.name);
+    errors++;
+  }
+}
 //console.log(schedule);
 //for (let period of schedule) {
 //   for (let classroom of period) {
