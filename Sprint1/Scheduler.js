@@ -3,6 +3,8 @@ let periodsClassArr = [];
 let courseTeacherCount = [];
 const courses = require("./Courses.json");
 const config = require("./Config.json");
+//for failures
+let failures = [];
 
 const classroomArr = require("./Classrooms.json");
 const classroomList = classroomArr.map((classroom) => classroom.roomNum);
@@ -200,6 +202,7 @@ let createPeriodClassrooms = function () {
         classroom: classroom.roomNum,
         period: period,
       });
+      console.log("classroom: " + classroom.roomNum + " PERIOD: " + period);
     }
   }
 };
@@ -213,6 +216,7 @@ let assignPeriodClassrooms = function () {
         section.course.compatibleClassrooms.includes(perClass.classroom) &&
         section.course.compatiblePeriods.includes(perClass.period)
     );
+
     if (assignableRooms.length == 0) {
       console.log(
         "No more valid period-classrooms available to assign to " +
@@ -228,6 +232,16 @@ let assignPeriodClassrooms = function () {
         ),
         1
       )[0];
+      console.log(
+        "Assigning " +
+          section.course.name +
+          " section " +
+          section.sectionNumber +
+          " to period " +
+          section.periodClass.period +
+          " classroom " +
+          section.periodClass.classroom
+      );
     }
   }
   return true;
@@ -245,16 +259,6 @@ let createInitSchedule = function () {
 
   //assign sections to schedule
   for (let section of sectionArr) {
-    console.log(
-      "Assigning " +
-        section.course.name +
-        " section " +
-        section.sectionNumber +
-        " to period " +
-        section.periodClass.period +
-        " classroom " +
-        section.periodClass.classroom
-    );
     schedule[section.periodClass.period - 1][
       classroomList.indexOf(section.periodClass.classroom)
     ] = section;
@@ -266,9 +270,10 @@ let assignTeachersToSections = function () {
   for (let section of sectionArr) {
     section.teacher = undefined;
   }
-  teacherArr = JSON.parse(teacherString);
+  let teachers = JSON.parse(teacherString);
+
   for (let section of sectionArr) {
-    let assignableTeachers = teacherArr.filter(
+    let assignableTeachers = teachers.filter(
       (teacher) =>
         teacher.certifiedCourses
           .map((item) => item.course)
@@ -280,13 +285,22 @@ let assignTeachersToSections = function () {
         "No more valid teachers available to assign to " +
           section.course.name +
           " section " +
-          section.sectionNumber
+          section.sectionNumber +
+          " in period: " +
+          section.periodClass.period
+      );
+      console.log(
+        teachers[
+          teachers.indexOf(
+            teachers.filter((teacher) => teacher.name == "Gene Nolan")[0]
+          )
+        ]
       );
       totalErrors++;
     } else {
       teacherIndex = Math.floor(Math.random() * assignableTeachers.length);
-      teacherArr[
-        teacherArr.indexOf(assignableTeachers[teacherIndex])
+      teachers[
+        teachers.indexOf(assignableTeachers[teacherIndex])
       ].openPeriods.splice(
         assignableTeachers[teacherIndex].openPeriods.indexOf(
           section.periodClass.period
@@ -300,11 +314,14 @@ let assignTeachersToSections = function () {
           " to " +
           section.course.name +
           " section " +
-          section.sectionNumber
+          section.sectionNumber +
+          " in period: " +
+          section.periodClass.period
       );
     }
   }
   console.log("Total errors: " + totalErrors);
+  failures.push(totalErrors);
   return totalErrors;
 };
 
@@ -312,6 +329,15 @@ let teacherFailed = true;
 
 findCoursePriority();
 createSections();
+
+while (true) {
+  createPeriodClassrooms();
+  assignPeriodClassrooms();
+  createInitSchedule();
+  assignTeachersToSections();
+  printInCoolWay(formattedSchedule());
+}
+
 while (teacherFailed) {
   teacherFailed = false;
   let coursesAssigned = false;
@@ -329,6 +355,7 @@ while (teacherFailed) {
     } else {
       failCount++;
       console.log("failure encountered");
+      console.log(failures);
     }
     if (failCount >= failCap) {
       teacherFailed = true;
@@ -336,13 +363,7 @@ while (teacherFailed) {
     }
   }
 }
-let mistakes = 0;
-for (let section of sectionArr) {
-  if (section.teacher == undefined) {
-    mistakes++;
-  }
-}
-console.log("Total mistakes: " + mistakes);
+
 //console.log(schedule);
 //for (let period of schedule) {
 //   for (let classroom of period) {
