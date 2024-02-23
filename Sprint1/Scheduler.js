@@ -196,6 +196,7 @@ let removeSection = function (arr, course) {
 
 // create period classrooms for each classroom and then add them to the period class array
 let createPeriodClassrooms = function () {
+  periodsClassArr = [];
   for (let classroom of classroomArr) {
     for (let period of classroom.periodsAvailable) {
       periodsClassArr.push({
@@ -242,6 +243,7 @@ let assignPeriodClassrooms = function () {
           " classroom " +
           section.periodClass.classroom
       );
+      console.log("Remaining period-classrooms: " + periodsClassArr.length);
     }
   }
   return true;
@@ -329,14 +331,6 @@ let teacherFailed = true;
 
 findCoursePriority();
 createSections();
-
-while (true) {
-  createPeriodClassrooms();
-  assignPeriodClassrooms();
-  createInitSchedule();
-  assignTeachersToSections();
-  printInCoolWay(formattedSchedule());
-}
 
 while (teacherFailed) {
   teacherFailed = false;
