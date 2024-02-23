@@ -67,19 +67,19 @@ let findCoursePriority = function () {
         sectionPriority *
         ((course.sections > sectionCap ? sectionCap : course.sections) /
           sectionCap);
-      console.log(
-        "Course " +
-          course.name +
-          " has a calculated scheduling priority of " +
-          course.schedulingPriority
-      );
+      // console.log(
+      //   "Course " +
+      //     course.name +
+      //     " has a calculated scheduling priority of " +
+      //     course.schedulingPriority
+      // );
     } else {
-      console.log(
-        "Course " +
-          course.name +
-          " has a defined scheduling priority of " +
-          course.schedulingPriority
-      );
+      // console.log(
+      //   "Course " +
+      //     course.name +
+      //     " has a defined scheduling priority of " +
+      //     course.schedulingPriority
+      // );
     }
   }
 };
@@ -112,7 +112,7 @@ let printInCoolWay = function (arr) {
     for (let j = 0; j < arr[i].length; j++) {
       // Add padding to align columns
       let item = arr[i][j]
-        ? ` ${arr[i][j].course.name} - ${arr[i][j].section} ║`
+        ? ` ${arr[i][j].course.name} - ${arr[i][j].sectionNumber} ║`
         : " Empty               ║";
       row += item;
     }
@@ -203,7 +203,6 @@ let createPeriodClassrooms = function () {
         classroom: classroom.roomNum,
         period: period,
       });
-      console.log("classroom: " + classroom.roomNum + " PERIOD: " + period);
     }
   }
 };
@@ -219,12 +218,12 @@ let assignPeriodClassrooms = function () {
     );
 
     if (assignableRooms.length == 0) {
-      console.log(
-        "No more valid period-classrooms available to assign to " +
-          section.course.name +
-          " section " +
-          section.sectionNumber
-      );
+      // console.log(
+      //   "No more valid period-classrooms available to assign to " +
+      //     section.course.name +
+      //     " section " +
+      //     section.sectionNumber
+      // );
       return false;
     } else {
       section.periodClass = periodsClassArr.splice(
@@ -233,17 +232,17 @@ let assignPeriodClassrooms = function () {
         ),
         1
       )[0];
-      console.log(
-        "Assigning " +
-          section.course.name +
-          " section " +
-          section.sectionNumber +
-          " to period " +
-          section.periodClass.period +
-          " classroom " +
-          section.periodClass.classroom
-      );
-      console.log("Remaining period-classrooms: " + periodsClassArr.length);
+      // console.log(
+      //   "Assigning " +
+      //     section.course.name +
+      //     " section " +
+      //     section.sectionNumber +
+      //     " to period " +
+      //     section.periodClass.period +
+      //     " classroom " +
+      //     section.periodClass.classroom
+      // );
+      // console.log("Remaining period-classrooms: " + periodsClassArr.length);
     }
   }
   return true;
@@ -283,21 +282,14 @@ let assignTeachersToSections = function () {
         teacher.openPeriods.includes(section.periodClass.period)
     );
     if (assignableTeachers.length == 0) {
-      console.log(
-        "No more valid teachers available to assign to " +
-          section.course.name +
-          " section " +
-          section.sectionNumber +
-          " in period: " +
-          section.periodClass.period
-      );
-      console.log(
-        teachers[
-          teachers.indexOf(
-            teachers.filter((teacher) => teacher.name == "Gene Nolan")[0]
-          )
-        ]
-      );
+      // console.log(
+      //   "No more valid teachers available to assign to " +
+      //     section.course.name +
+      //     " section " +
+      //     section.sectionNumber +
+      //     " in period: " +
+      //     section.periodClass.period
+      // );
       totalErrors++;
     } else {
       teacherIndex = Math.floor(Math.random() * assignableTeachers.length);
@@ -310,19 +302,19 @@ let assignTeachersToSections = function () {
         1
       );
       section.teacher = assignableTeachers[teacherIndex];
-      console.log(
-        "Assigned " +
-          assignableTeachers[teacherIndex].name +
-          " to " +
-          section.course.name +
-          " section " +
-          section.sectionNumber +
-          " in period: " +
-          section.periodClass.period
-      );
+      // console.log(
+      //   "Assigned " +
+      //     assignableTeachers[teacherIndex].name +
+      //     " to " +
+      //     section.course.name +
+      //     " section " +
+      //     section.sectionNumber +
+      //     " in period: " +
+      //     section.periodClass.period
+      // );
     }
   }
-  console.log("Total errors: " + totalErrors);
+  //console.log("Total errors: " + totalErrors);
   failures.push(totalErrors);
   return totalErrors;
 };
@@ -331,8 +323,10 @@ let teacherFailed = true;
 
 findCoursePriority();
 createSections();
-
+let schedulingAttempts = 0;
+let teacherSchedulingAttempts = 0;
 while (teacherFailed) {
+  schedulingAttempts++;
   teacherFailed = false;
   let coursesAssigned = false;
   let teachersAssigned = false;
@@ -343,13 +337,14 @@ while (teacherFailed) {
     coursesAssigned = assignPeriodClassrooms();
   }
   while (!teachersAssigned) {
+    teacherSchedulingAttempts++;
     createInitSchedule();
     if (assignTeachersToSections() == 0) {
       teachersAssigned = true;
     } else {
       failCount++;
-      console.log("failure encountered");
-      console.log(failures);
+      //console.log("failure encountered");
+      //console.log(failures);
     }
     if (failCount >= failCap) {
       teacherFailed = true;
@@ -368,6 +363,9 @@ for (let section of sectionArr) {
     errors++;
   }
 }
+console.log("Total trial schedules made: " + schedulingAttempts);
+console.log("Total times teachers attempted: " + teacherSchedulingAttempts);
+
 //console.log(schedule);
 //for (let period of schedule) {
 //   for (let classroom of period) {
