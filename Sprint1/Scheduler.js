@@ -271,6 +271,8 @@ let assignTeachersToSections = function () {
   for (let section of sectionArr) {
     section.teacher = undefined;
   }
+
+  //parse is used to create a deep copy of the teacherArr
   let teachers = JSON.parse(teacherString);
 
   for (let section of sectionArr) {
@@ -319,19 +321,27 @@ let assignTeachersToSections = function () {
   return totalErrors;
 };
 
+//main code
 let teacherFailed = true;
-
 findCoursePriority();
 createSections();
-let schedulingAttempts = 0;
+let classroomSchedulingAttempts = 0;
 let teacherSchedulingAttempts = 0;
+//throw out every schedule that doesn't work;
+//give teachers a failCap number of attempts to schedule before giving up
 while (teacherFailed) {
-  schedulingAttempts++;
+  //number of times period-classrooms have been assigned
+  classroomSchedulingAttempts++;
+  //if the teacher scheduling algorithm has failed, we need to reset the period-classrooms and reassign them
   teacherFailed = false;
+  //whether or not the period-classrooms have been assigned validly
   let coursesAssigned = false;
+  //whether or not the teacher scheduling algorithm has failed or if it has exceeded the failCap
   let teachersAssigned = false;
-  let failCount = 0;
+  //amount of times the teacher scheduling algorithm can failed before restarting
   const failCap = 5;
+  //amount of time the teacher scheduling algorithm has failed
+  let failCount = 0;
   while (!coursesAssigned) {
     createPeriodClassrooms();
     coursesAssigned = assignPeriodClassrooms();
@@ -348,10 +358,13 @@ while (teacherFailed) {
     }
     if (failCount >= failCap) {
       teacherFailed = true;
+      //they havent been assigned but we need to break out of the loop
       teachersAssigned = true;
     }
   }
 }
+
+//error check
 let errors = 0;
 for (let section of sectionArr) {
   if (section.teacher == undefined || section.teacher == null) {
@@ -363,29 +376,10 @@ for (let section of sectionArr) {
     errors++;
   }
 }
-console.log("Total trial schedules made: " + schedulingAttempts);
+
+//info logging
+console.log("Total trial schedules made: " + classroomSchedulingAttempts);
 console.log("Total times teachers attempted: " + teacherSchedulingAttempts);
 
-//console.log(schedule);
-//for (let period of schedule) {
-//   for (let classroom of period) {
-//     if (classroom) {
-//       console.log(
-//         ` Course ${classroom.course.name} Period: ${classroom.periodClass.period} Classroom: ${classroom.periodClass.classroom} Teacher ${classroom.teacher.name} Section: ${classroom.section}`
-//       );
-//     }
-//   }
-// }
-
-//create
-
-//let temp schedule = the sections arr sorted by period then classroom
-//we need to make a 2d array of classrooms and periods, and then print in in a readable and nice way
-
-//print array (in super cool way)
-//printInCoolWay(visualSchedule);
-
-//print array (in super cool way)
+//print schedule
 printInCoolWay(formattedSchedule());
-
-//console.log(formattedSchedule());
