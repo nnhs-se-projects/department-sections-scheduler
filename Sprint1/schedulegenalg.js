@@ -280,4 +280,121 @@ let testarr2 = "acdfghijeb".split("");
 console.log(crossover1worker(testarr, testarr2, 2, 6));
 
 //duplicates in child1 are
-const randomcleanup = (child1, child2) => {};
+const randomcleanup = (child1, child2) => {
+  //find duplicates throw into other array
+  c1set = new Set();
+  c2set = new Set();
+  let c1duplicates = [];
+  let c2duplicates = [];
+  for (let i = 0; i < child1.length; i++) {
+    if (c1set.has(child1[i])) {
+      c1duplicates.push(child1[i]);
+      child1[i] = null;
+    } else {
+      c1set.add(child1[i]);
+    }
+  }
+  for (let i = 0; i < child2.length; i++) {
+    if (c2set.has(child2[i])) {
+      c2duplicates.push(child2[i]);
+      child2[i] = null;
+    } else {
+      c2set.add(child2[i]);
+    }
+  }
+  //add duplicates to other array
+  for (i = 0; i < c2duplicates.length; i++) {
+    //iterate through period classrooms till you find a null
+    for (j = 0; j < child1.length; j++) {
+      for (k = 0; k < child1[j].length; k++) {
+        if (child1[j][k] == null) {
+          //check if section is compatable with classroom and the teacher who is assigned to a section is not already assigned to a section in that period
+          if (
+            child1[j][k].course.compatableClassrooms.includes(
+              c2duplicates[i]
+            ) &&
+            !child1[j].includes(c2duplicates[i])
+          ) {
+            //teachers
+            //iteate through periods and check if teacher is already assigned to a section in that period
+            let teacher = c2duplicates[i].teacher;
+            let teacherassigned = false;
+            for (l = 0; l < child1.length; l++) {
+              if (child1[l].includes(teacher)) {
+                teacherassigned = true;
+              }
+            }
+            if (!teacherassigned) {
+              child1[j][k] = c2duplicates[i];
+            }
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  //}
+};
+
+const isValidschedule = (schedule) => {
+  //check if all sections are scheduled
+  let sections = setOfsectionsWOclassrooms(schedule);
+  for (let section of sections) {
+    let scheduled = false;
+    for (let i = 0; i < schedule.length; i++) {
+      let period = schedule[i];
+      for (let j = 0; j < period.length; j++) {
+        let scheduledsection = period[j];
+        if (
+          scheduledsection != null &&
+          scheduledsection.course === section.course &&
+          scheduledsection.sectionnumber === section.sectionnumber
+        ) {
+          scheduled = true;
+        }
+      }
+    }
+    if (!scheduled) {
+      return false;
+    }
+  }
+  //check if all sections are scheduled in a compatable classroom
+  for (let i = 0; i < schedule.length; i++) {
+    let period = schedule[i];
+    for (let j = 0; j < period.length; j++) {
+      let section = period[j];
+      if (section != null) {
+        if (
+          !section.course.compatableClassrooms.includes(section.periodClass)
+        ) {
+          return false;
+        }
+      }
+    }
+  }
+  //check if no teacher is double booked
+  let teacherSpecific = getTeacherSpecific(schedule);
+  for (let teacher of teacherSpecific) {
+    let scheduledperiods = [];
+    for (let i = 0; i < schedule.length; i++) {
+      let period = schedule[i];
+      for (let j = 0; j < period.length; j++) {
+        let section = period[j];
+        if (section != null) {
+          if (section.teacher.name === teacher.name) {
+            if (scheduledperiods.includes(section.periodClass.period)) {
+              return false;
+            }
+            scheduledperiods.push(section.periodClass.period);
+          }
+        }
+      }
+    }
+  }
+  return true;
+};
+
+const isValidClassroom = (period, classroom, section) => {
+  section.course.compatableClassrooms.includes(classroom);
+};
