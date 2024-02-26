@@ -96,7 +96,7 @@ let printInCoolWay = function (arr) {
   // Print the header
   let header = "║";
   for (let j = 0; j < arr[0].length; j++) {
-    header += ` Room ${classroomList[j].toString().padEnd(15)}║`;
+    header += ` Room ${classroomList[j].toString().padEnd(120)}║`;
   }
   console.log(header);
 
@@ -126,6 +126,108 @@ let printInCoolWay = function (arr) {
   let bottomBorder = "╚";
   for (let j = 0; j < arr[0].length; j++) {
     bottomBorder += "═════════════════════╝";
+  }
+  console.log(bottomBorder);
+};
+
+printInCoolWay = function (arr) {
+  // Transpose the array to switch rows and columns
+  const transposedArr = arr[0].map((_, colIndex) =>
+    arr.map((row) => row[colIndex])
+  );
+
+  // Print the top border
+  let topBorder = "╔";
+  for (let j = 0; j < transposedArr[0].length; j++) {
+    topBorder += "══════════════════════╗";
+  }
+  console.log(topBorder);
+
+  // Print the header
+  let header = "║";
+  for (let j = 0; j < transposedArr[0].length; j++) {
+    header += ` Period ${j + 1}              ║`;
+  }
+  console.log(header);
+
+  // Print the separator
+  let separator = "╠";
+  for (let j = 0; j < transposedArr[0].length; j++) {
+    separator += "══════════════════════╣";
+  }
+  console.log(separator);
+
+  for (let i = 0; i < transposedArr.length; i++) {
+    let row = "║";
+    for (let j = 0; j < transposedArr[i].length; j++) {
+      // Add padding to align columns
+      let item = transposedArr[i][j]
+        ? ` ${transposedArr[i][j].course.name} - ${transposedArr[i][j].sectionNumber} ║`
+        : " Empty                 ║";
+      row += item;
+    }
+    console.log(row);
+
+    // Print the separator after each row
+    if (i < transposedArr.length - 1) console.log(separator);
+  }
+
+  // Print the bottom border
+  let bottomBorder = "╚";
+  for (let j = 0; j < transposedArr[0].length; j++) {
+    bottomBorder += "═══════════════════════╝";
+  }
+  console.log(bottomBorder);
+};
+
+printInCoolWay = function (arr) {
+  // Transpose the array to switch rows and columns
+  const transposedArr = arr[0].map((_, colIndex) =>
+    arr.map((row) => row[colIndex])
+  );
+
+  // Print the top border
+  let topBorder = "╔";
+  for (let j = 0; j < transposedArr[0].length + 1; j++) {
+    topBorder += "════════════════════════════╗";
+  }
+  console.log(topBorder);
+
+  // Print the header
+  let header = "║ Room".padEnd(29) + "║";
+  for (let j = 0; j < transposedArr[0].length; j++) {
+    header += ` Period ${j + 1}`.padEnd(28) + `║`;
+  }
+  console.log(header);
+
+  // Print the separator
+  let separator = "╠";
+  for (let j = 0; j < transposedArr[0].length + 1; j++) {
+    separator += "════════════════════════════╣";
+  }
+  console.log(separator);
+
+  for (let i = 0; i < transposedArr.length; i++) {
+    let row = `║ Room ${i + 1}`.padEnd(29) + `║`;
+    for (let j = 0; j < transposedArr[i].length; j++) {
+      // Add padding to align columns
+      let item = transposedArr[i][j]
+        ? ` ${transposedArr[i][j].course.name} - ${transposedArr[i][j].sectionNumber}`.padEnd(
+            28
+          ) + `║`
+        : " Empty                      ║";
+      row += item;
+    }
+    console.log(row);
+
+    // Print the separator after each row
+    if (i < transposedArr.length - 1) console.log(separator);
+  }
+
+  // Print the bottom border
+  let bottomBorder = "╚";
+  for (let j = 0; j < transposedArr[0].length + 1; j++) {
+    bottomBorder += "══════════════════════════╝";
   }
   console.log(bottomBorder);
 };
@@ -340,7 +442,7 @@ while (teacherFailed) {
   let teachersAssigned = false;
   //amount of times the teacher scheduling algorithm can failed before restarting
   //The higher this value, the longer the algorithm will run and the smaller the variation of schedules
-  const failCap = 5;
+  const failCap = 1;
   //amount of time the teacher scheduling algorithm has failed
   let failCount = 0;
   while (!coursesAssigned) {
