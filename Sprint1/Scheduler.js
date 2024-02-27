@@ -85,52 +85,53 @@ let findCoursePriority = function () {
 };
 
 // function main code by beloved ChatGPT
+// let printInCoolWay = function (arr) {
+//   // Print the top border
+//   let topBorder = "╔";
+//   for (let j = 0; j < arr[0].length; j++) {
+//     topBorder += "═════════════════════╗";
+//   }
+//   console.log(topBorder);
+
+//   // Print the header
+//   let header = "║";
+//   for (let j = 0; j < arr[0].length; j++) {
+//     header += ` Room #
+//     ${classroomList[j].toString().padEnd(120)}║`;
+//   }
+//   console.log(header);
+
+//   // Print the separator
+//   let separator = "╠";
+//   for (let j = 0; j < arr[0].length; j++) {
+//     separator += "═════════════════════╣";
+//   }
+//   console.log(separator);
+
+//   for (let i = 0; i < arr.length; i++) {
+//     let row = "║";
+//     for (let j = 0; j < arr[i].length; j++) {
+//       // Add padding to align columns
+//       let item = arr[i][j]
+//         ? ` ${arr[i][j].course.name} - ${arr[i][j].sectionNumber} ║`
+//         : " Empty               ║";
+//       row += item;
+//     }
+//     console.log(row);
+
+//     // Print the separator after each row
+//     if (i < arr.length - 1) console.log(separator);
+//   }
+
+//   // Print the bottom border
+//   let bottomBorder = "╚";
+//   for (let j = 0; j < arr[0].length; j++) {
+//     bottomBorder += "═════════════════════╝";
+//   }
+//   console.log(bottomBorder);
+// };
+
 let printInCoolWay = function (arr) {
-  // Print the top border
-  let topBorder = "╔";
-  for (let j = 0; j < arr[0].length; j++) {
-    topBorder += "═════════════════════╗";
-  }
-  console.log(topBorder);
-
-  // Print the header
-  let header = "║";
-  for (let j = 0; j < arr[0].length; j++) {
-    header += ` Room ${classroomList[j].toString().padEnd(120)}║`;
-  }
-  console.log(header);
-
-  // Print the separator
-  let separator = "╠";
-  for (let j = 0; j < arr[0].length; j++) {
-    separator += "═════════════════════╣";
-  }
-  console.log(separator);
-
-  for (let i = 0; i < arr.length; i++) {
-    let row = "║";
-    for (let j = 0; j < arr[i].length; j++) {
-      // Add padding to align columns
-      let item = arr[i][j]
-        ? ` ${arr[i][j].course.name} - ${arr[i][j].sectionNumber} ║`
-        : " Empty               ║";
-      row += item;
-    }
-    console.log(row);
-
-    // Print the separator after each row
-    if (i < arr.length - 1) console.log(separator);
-  }
-
-  // Print the bottom border
-  let bottomBorder = "╚";
-  for (let j = 0; j < arr[0].length; j++) {
-    bottomBorder += "═════════════════════╝";
-  }
-  console.log(bottomBorder);
-};
-
-printInCoolWay = function (arr) {
   // Transpose the array to switch rows and columns
   const transposedArr = arr[0].map((_, colIndex) =>
     arr.map((row) => row[colIndex])
@@ -189,33 +190,33 @@ printInCoolWay = function (arr) {
   // Print the top border
   let topBorder = "╔";
   for (let j = 0; j < transposedArr[0].length + 1; j++) {
-    topBorder += "════════════════════════════╗";
+    topBorder += "═══════════════════════════════╗";
   }
   console.log(topBorder);
 
   // Print the header
-  let header = "║ Room".padEnd(29) + "║";
+  let header = "║ CTE Schedule by George".padEnd(32) + "║";
   for (let j = 0; j < transposedArr[0].length; j++) {
-    header += ` Period ${j + 1}`.padEnd(28) + `║`;
+    header += ` Period ${j + 1}`.padEnd(31) + `║`;
   }
   console.log(header);
 
   // Print the separator
   let separator = "╠";
   for (let j = 0; j < transposedArr[0].length + 1; j++) {
-    separator += "════════════════════════════╣";
+    separator += "═══════════════════════════════╣";
   }
   console.log(separator);
 
   for (let i = 0; i < transposedArr.length; i++) {
-    let row = `║ Room ${i + 1}`.padEnd(29) + `║`;
+    let row = `║ Room ${classroomList[i].toString().padEnd(25)}` + `║`;
     for (let j = 0; j < transposedArr[i].length; j++) {
       // Add padding to align columns
       let item = transposedArr[i][j]
         ? ` ${transposedArr[i][j].course.name} - ${transposedArr[i][j].sectionNumber}`.padEnd(
-            28
+            31
           ) + `║`
-        : " Empty                      ║";
+        : " Empty                         ║";
       row += item;
     }
     console.log(row);
@@ -227,7 +228,7 @@ printInCoolWay = function (arr) {
   // Print the bottom border
   let bottomBorder = "╚";
   for (let j = 0; j < transposedArr[0].length + 1; j++) {
-    bottomBorder += "══════════════════════════╝";
+    bottomBorder += "═══════════════════════════════╝";
   }
   console.log(bottomBorder);
 };
