@@ -1,0 +1,48 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+
+<!-- Main Site -->
+<main>
+  <div class="indexTopBar">
+    <img src="img/SE-GitHub-image.png" alt="Huskie code logo" />
+    <h1>Edit Data</h1>
+  </div>
+  <div class="box">
+    <div class="coursePicker">
+      <label>
+        Select Course:
+        <select id="coursePicker">
+          <% for(let course of courses) { %>
+          <option value="<%= course.name %>"><%= course.name %></option>
+          <% } %>
+          <option value="addCourse">Add Course</option>
+        </select>
+      </label>
+
+      <label>
+        Course Name: <textarea id="courseName">Course Name</textarea>
+      </label>
+
+      <label>
+        Number of Sections: <input id="courseSections" type="number" min="1" />
+      </label>
+
+      <label>
+        Avaliable Periods:
+        <select id="coursePeriods" multiple>
+          <% for(let i=1; i <= 8; i++) { %>
+          <option value="<%= i %>">Period <%= i %></option>
+          <% } %>
+        </select>
+      </label>
+    </div>
+  </div>
+</main>
+<!-- /Main Site -->
+
+<script src="/js/courseEdit.js"></script>
+
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->
