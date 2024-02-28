@@ -443,7 +443,7 @@ while (teacherFailed) {
   let teachersAssigned = false;
   //amount of times the teacher scheduling algorithm can failed before restarting
   //The higher this value, the longer the algorithm will run and the smaller the variation of schedules
-  const failCap = 1;
+  const failCap = 10;
   //amount of time the teacher scheduling algorithm has failed
   let failCount = 0;
   while (!coursesAssigned) {
