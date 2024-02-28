@@ -35,7 +35,7 @@ async function parseCourses() {
   });
 
   // Write to a .json file
-  fs.writeFileSync("assets/json/courses.json", JSON.stringify(courses));
+  fs.writeFileSync("./server/model/courses.json", JSON.stringify(courses));
 
   // Returns the array of objects
   return courses;
@@ -66,7 +66,7 @@ async function parseTeachers() {
   });
 
   // Write to a .json file
-  fs.writeFileSync("assets/json/teachers.json", JSON.stringify(teachers));
+  fs.writeFileSync("./server/model/teachers.json", JSON.stringify(teachers));
 
   // Returns the array of objects
   return teachers;
@@ -88,7 +88,10 @@ async function parseClassrooms() {
   });
 
   // Write to a .json file
-  fs.writeFileSync("assets/json/classrooms.json", JSON.stringify(classrooms));
+  fs.writeFileSync(
+    "./server/model/classrooms.json",
+    JSON.stringify(classrooms)
+  );
 
   // Returns the array of objects
   return classrooms;
