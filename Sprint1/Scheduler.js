@@ -6,6 +6,7 @@ const classroomArr = require("./Classrooms.json");
 const classroomList = classroomArr.map((classroom) => classroom.roomNum);
 const teacherArr = require("./Teachers.json");
 const teacherString = JSON.stringify(teacherArr);
+const fs = require("fs");
 
 let formattedSchedule = function (arr) {
   let formattedArr = []; // 2d array of classrooms and periods
@@ -398,10 +399,25 @@ let generateSchedules = function (numSchedules) {
 };
 
 //print schedule
-printInCoolWay(generateSchedule());
+
+//printInCoolWay(generateSchedule());
+
 // let thing = generateSchedules(5);
 // console.log(thing.length);
 // for (i = 0; i < thing.length; i++) {
 //   console.log("Schedule " + (i + 1));
 //   printInCoolWay(thing[i]);
 // }
+
+let writeSchedules = function (num) {
+  let schedulesArr = generateSchedules(num);
+
+  for (let a = 0; a < num; a++) {
+    fs.writeFileSync(
+      "./Sprint1/GeneratedSchedules/Schedule" + (a + 1) + ".json",
+      JSON.stringify(schedulesArr[a])
+    );
+  }
+};
+
+writeSchedules(100);
