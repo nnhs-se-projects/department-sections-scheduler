@@ -9,34 +9,31 @@
     <h1>Edit Data</h1>
   </div>
   <div class="box">
-    <div class="coursePicker">
-      <label>
-        Select Course:
-        <select id="coursePicker">
-          <% for(let course of courses) { %>
-          <option value="<%= course.name %>"><%= course.name %></option>
-          <% } %>
-          <option value="addCourse">Add Course</option>
-        </select>
-      </label>
+    <label class="selector">
+      Select Course:
+      <select id="coursePicker">
+        <% for(let course of courses) { %>
+        <option value="<%= course.name %>"><%= course.name %></option>
+        <% } %>
+        <option value="addCourse">Add Course</option>
+      </select>
+    </label>
 
-      <label>
-        Course Name: <textarea id="courseName">Course Name</textarea>
-      </label>
+    <label class="selector">
+      Course Name: <textarea id="courseName">Course Name</textarea>
+    </label>
 
-      <label>
-        Number of Sections: <input id="courseSections" type="number" min="1" />
-      </label>
+    <label class="selector">
+      Number of Sections: <input id="courseSections" type="number" min="1" />
+    </label>
 
-      <label>
-        Avaliable Periods:
-        <select id="coursePeriods" multiple>
-          <% for(let i=1; i <= 8; i++) { %>
-          <option value="<%= i %>">Period <%= i %></option>
-          <% } %>
-        </select>
-      </label>
-    </div>
+    <form class="selector" id="coursePeriods">
+      <label>Avaliable Periods:</label>
+      <% for(let i=1; i <= 8; i++) { %>
+        <input name="periodSelector" type="checkbox" id="<%= i %>" />
+        <label for="<%= i %>">Period <%= i %></label>
+      <% } %>
+    </form>
   </div>
 </main>
 <!-- /Main Site -->
