@@ -46,46 +46,53 @@ let updateFormattedSchedule = function (formattedArr) {
 
 // function main code by beloved ChatGPT
 let printInCoolWay = function (arr) {
+  // Transpose the array to switch rows and columns
+  const transposedArr = arr[0].map((_, colIndex) =>
+    arr.map((row) => row[colIndex])
+  );
+
   // Print the top border
   let topBorder = "╔";
-  for (let j = 0; j < arr[0].length; j++) {
-    topBorder += "═════════════════════╗";
+  for (let j = 0; j < transposedArr[0].length + 1; j++) {
+    topBorder += "═══════════════════════════════╗";
   }
   console.log(topBorder);
 
   // Print the header
-  let header = "║";
-  for (let j = 0; j < arr[0].length; j++) {
-    header += ` Room ${classroomList[j].toString().padEnd(15)}║`;
+  let header = "║ CTE Schedule by George".padEnd(32) + "║";
+  for (let j = 0; j < transposedArr[0].length; j++) {
+    header += ` Period ${j + 1}`.padEnd(31) + `║`;
   }
   console.log(header);
 
   // Print the separator
   let separator = "╠";
-  for (let j = 0; j < arr[0].length; j++) {
-    separator += "═════════════════════╣";
+  for (let j = 0; j < transposedArr[0].length + 1; j++) {
+    separator += "═══════════════════════════════╣";
   }
   console.log(separator);
 
-  for (let i = 0; i < arr.length; i++) {
-    let row = "║";
-    for (let j = 0; j < arr[i].length; j++) {
+  for (let i = 0; i < transposedArr.length; i++) {
+    let row = `║ Room ${classroomList[i].toString().padEnd(25)}` + `║`;
+    for (let j = 0; j < transposedArr[i].length; j++) {
       // Add padding to align columns
-      let item = arr[i][j]
-        ? ` ${arr[i][j].course.name} - ${arr[i][j].section} ║`
-        : " Empty               ║";
+      let item = transposedArr[i][j]
+        ? ` ${transposedArr[i][j].course.name} - ${transposedArr[i][j].sectionNumber}`.padEnd(
+            31
+          ) + `║`
+        : " Empty                         ║";
       row += item;
     }
     console.log(row);
 
     // Print the separator after each row
-    if (i < arr.length - 1) console.log(separator);
+    if (i < transposedArr.length - 1) console.log(separator);
   }
 
   // Print the bottom border
   let bottomBorder = "╚";
-  for (let j = 0; j < arr[0].length; j++) {
-    bottomBorder += "═════════════════════╝";
+  for (let j = 0; j < transposedArr[0].length + 1; j++) {
+    bottomBorder += "═══════════════════════════════╝";
   }
   console.log(bottomBorder);
 };
