@@ -8,6 +8,7 @@
     <img src="img/SE-GitHub-image.png" alt="Huskie code logo" />
     <h1>Edit Data</h1>
   </div>
+  <input type="hidden" id="courseArr" value="<%= courses %>">
   <div class="box">
     <label class="selector">
       Select Course:
@@ -18,13 +19,14 @@
         <option value="addCourse">Add Course</option>
       </select>
     </label>
-
+  </div>
+  <div class="box">
     <label class="selector">
-      Course Name: <textarea id="courseName">Course Name</textarea>
+      Course Name: <textarea id="namer">Course Name</textarea>
     </label>
 
     <label class="selector">
-      Number of Sections: <input id="courseSections" type="number" min="1" />
+      Number of Sections: <input id="sectionSelector" type="number" min="1" />
     </label>
 
     <form class="selector" id="coursePeriods">
@@ -34,11 +36,13 @@
         <label for="<%= i %>">Period <%= i %></label>
       <% } %>
     </form>
+
+    <a role="button">Save</a>
   </div>
 </main>
 <!-- /Main Site -->
 
-<script src="/js/courseEdit.js"></script>
+<script src="/js/coursesEdit.js"></script>
 
 <!-- include footer -->
 <%- include('include/_footer') %>
