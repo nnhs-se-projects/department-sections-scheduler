@@ -1,15 +1,14 @@
-const fs = require("fs");
+let sectionArr = [];
+let periodsClassArr = [];
 const courses = require("./Courses.json");
 const config = require("./Config.json");
-
 const classroomArr = require("./Classrooms.json");
 const classroomList = classroomArr.map((classroom) => classroom.roomNum);
 const teacherArr = require("./Teachers.json");
-let sectionArr = [];
-let periodsClassArr = [];
-let courseTeacherCount = [];
+const teacherString = JSON.stringify(teacherArr);
+const fs = require("fs");
 
-let formattedSchedule = function () {
+let formattedSchedule = function (arr) {
   let formattedArr = []; // 2d array of classrooms and periods
   //initial setup of 2d array
 
@@ -22,12 +21,11 @@ let formattedSchedule = function () {
     formattedArr.push(tempArr);
   }
 
-  //iterate through sectionArr and add each section to the formattedArr
-  for (i = 0; i < sectionArr.length; i++) {
-    if (sectionArr[i].periodClass != null) {
-      roomIndex = classroomList.indexOf(sectionArr[i].periodClass.classroom);
-      formattedArr[sectionArr[i].periodClass.period - 1][roomIndex] =
-        sectionArr[i];
+  //iterate through arr and add each section to the formattedArr
+  for (i = 0; i < arr.length; i++) {
+    if (arr[i].periodClass != null) {
+      roomIndex = classroomList.indexOf(arr[i].periodClass.classroom);
+      formattedArr[arr[i].periodClass.period - 1][roomIndex] = arr[i];
     }
   }
 
@@ -45,77 +43,120 @@ let updateFormattedSchedule = function (formattedArr) {
   }
 };
 
+let findCoursePriority = function () {
+  //all priorities should total 1
+  const classroomPriority = 0.4;
+  const periodPriority = 0.4;
+  const sectionPriority = 0.2;
+  const sectionCap = 4;
+  //sectionCap is the maximum number of sections that designates a course as a high priority course
+  //any amount of sections over sectionCap will not increase the priority of the course
+
+  for (let course of courses) {
+    if (course.schedulingPriority == undefined) {
+      course.schedulingPriority = 0;
+      course.schedulingPriority +=
+        classroomPriority * (1 / course.compatibleClassrooms.length);
+      course.schedulingPriority +=
+        periodPriority * (1 / course.compatiblePeriods.length);
+      course.schedulingPriority +=
+        sectionPriority *
+        ((course.sections > sectionCap ? sectionCap : course.sections) /
+          sectionCap);
+      // console.log(
+      //   "Course " +
+      //     course.name +
+      //     " has a calculated scheduling priority of " +
+      //     course.schedulingPriority
+      // );
+    } else {
+      // console.log(
+      //   "Course " +
+      //     course.name +
+      //     " has a defined scheduling priority of " +
+      //     course.schedulingPriority
+      // );
+    }
+  }
+};
+
 // function main code by beloved ChatGPT
 let printInCoolWay = function (arr) {
+  // Transpose the array to switch rows and columns
+  const transposedArr = arr[0].map((_, colIndex) =>
+    arr.map((row) => row[colIndex])
+  );
+
   // Print the top border
   let topBorder = "╔";
-  for (let j = 0; j < arr[0].length; j++) {
-    topBorder += "═════════════════════╗";
+  for (let j = 0; j < transposedArr[0].length + 1; j++) {
+    topBorder += "═══════════════════════════════╗";
   }
   console.log(topBorder);
 
   // Print the header
-  let header = "║";
-  for (let j = 0; j < arr[0].length; j++) {
-    header += ` Classroom ${j + 1}         ║`;
+  let header = "║ CTE Schedule by George".padEnd(32) + "║";
+  for (let j = 0; j < transposedArr[0].length; j++) {
+    header += ` Period ${j + 1}`.padEnd(31) + `║`;
   }
   console.log(header);
 
   // Print the separator
   let separator = "╠";
-  for (let j = 0; j < arr[0].length; j++) {
-    separator += "═════════════════════╣";
+  for (let j = 0; j < transposedArr[0].length + 1; j++) {
+    separator += "═══════════════════════════════╣";
   }
   console.log(separator);
 
-  for (let i = 0; i < arr.length; i++) {
-    let row = "║";
-    for (let j = 0; j < arr[i].length; j++) {
+  for (let i = 0; i < transposedArr.length; i++) {
+    let row = `║ Room ${classroomList[i].toString().padEnd(25)}` + `║`;
+    for (let j = 0; j < transposedArr[i].length; j++) {
       // Add padding to align columns
-      let item = arr[i][j]
-        ? ` ${arr[i][j].course.name} - ${arr[i][j].section} ║`
-        : " Empty               ║";
+      let item = transposedArr[i][j]
+        ? ` ${transposedArr[i][j].course.name} - ${transposedArr[i][j].sectionNumber}`.padEnd(
+            31
+          ) + `║`
+        : " Empty                         ║";
       row += item;
     }
     console.log(row);
 
     // Print the separator after each row
-    if (i < arr.length - 1) console.log(separator);
+    if (i < transposedArr.length - 1) console.log(separator);
   }
 
   // Print the bottom border
   let bottomBorder = "╚";
-  for (let j = 0; j < arr[0].length; j++) {
-    bottomBorder += "═════════════════════╝";
+  for (let j = 0; j < transposedArr[0].length + 1; j++) {
+    bottomBorder += "═══════════════════════════════╝";
   }
   console.log(bottomBorder);
 };
 
 //update sections by priority
-let updateSections = function (arr) {
-  arr.sort((a, b) => b.course.schedulingPriority - a.course.schedulingPriority);
-  return arr;
+let sortSections = function () {
+  sectionArr.sort(
+    (a, b) => b.course.schedulingPriority - a.course.schedulingPriority
+  );
 };
 
 // create sections for each class and then add them to the section array
-let createSections = function (arr) {
+let createSections = function () {
   //clear array
-  while (arr.length > 0) {
-    arr.pop();
+  while (sectionArr.length > 0) {
+    sectionArr.pop();
   }
 
   for (let course of courses) {
     for (i = 0; i < course.sections; i++) {
-      arr.push({
+      sectionArr.push({
         course: course,
-        section: i + 1,
+        sectionNumber: i + 1,
         periodClass: null,
       });
     }
   }
-  arr = updateSections(arr);
-  console.log(arr);
-  return arr;
+  //sectionArr = sortSections();
 };
 
 let addSection = function (arr, course) {
@@ -130,7 +171,7 @@ let addSection = function (arr, course) {
     section: secNum,
     periodClass: null,
   });
-  updateSections(arr);
+  sortSections();
   return arr;
 };
 
@@ -151,13 +192,14 @@ let removeSection = function (arr, course) {
     for (i = 0; i < remainingSections.length; i++) {
       arr[i].section = i + 1;
     }
-    updateSections(arr);
+    sortSections();
   }
   return arr;
 };
 
 // create period classrooms for each classroom and then add them to the period class array
 let createPeriodClassrooms = function () {
+  periodsClassArr = [];
   for (let classroom of classroomArr) {
     for (let period of classroom.periodsAvailable) {
       periodsClassArr.push({
@@ -170,17 +212,22 @@ let createPeriodClassrooms = function () {
 
 //assign period-classrooms to sections
 let assignPeriodClassrooms = function () {
+  sortSections();
   for (let section of sectionArr) {
-    let assignableRooms = periodsClassArr.filter((perClass) =>
-      section.course.compatibleClassrooms.includes(perClass.classroom)
-    ); // FIXME: This is not working !!! Filter query not correct
+    let assignableRooms = periodsClassArr.filter(
+      (perClass) =>
+        section.course.compatibleClassrooms.includes(perClass.classroom) &&
+        section.course.compatiblePeriods.includes(perClass.period)
+    );
+
     if (assignableRooms.length == 0) {
-      console.log(
-        "No more valid period-classrooms available to assign to " +
-          section.course.name +
-          " section " +
-          section.section
-      );
+      // console.log(
+      //   "No more valid period-classrooms available to assign to " +
+      //     section.course.name +
+      //     " section " +
+      //     section.sectionNumber
+      // );
+      return false;
     } else {
       section.periodClass = periodsClassArr.splice(
         periodsClassArr.indexOf(
@@ -188,8 +235,20 @@ let assignPeriodClassrooms = function () {
         ),
         1
       )[0];
+      // console.log(
+      //   "Assigning " +
+      //     section.course.name +
+      //     " section " +
+      //     section.sectionNumber +
+      //     " to period " +
+      //     section.periodClass.period +
+      //     " classroom " +
+      //     section.periodClass.classroom
+      // );
+      // console.log("Remaining period-classrooms: " + periodsClassArr.length);
     }
   }
+  return true;
 };
 
 let createInitSchedule = function () {
@@ -204,137 +263,161 @@ let createInitSchedule = function () {
 
   //assign sections to schedule
   for (let section of sectionArr) {
-    console.log(
-      "Assigning " +
-        section.course.name +
-        " section " +
-        section.section +
-        " to period " +
-        section.periodClass.period +
-        " classroom " +
-        section.periodClass.classroom
-    );
     schedule[section.periodClass.period - 1][
       classroomList.indexOf(section.periodClass.classroom)
     ] = section;
   }
 };
 
-let assignTeachingTeachers = function () {
-  //assign teachers
-  //find the amount of teachers who can teach each course
-  //build a dictionary of course names and the number of teachers who can teach them
-  for (let course of courses) {
-    courseTeacherCount[course.name] = 0;
+let assignTeachersToSections = function () {
+  let totalErrors = 0;
+  for (let section of sectionArr) {
+    section.teacher = undefined;
   }
-  console.log(courseTeacherCount);
-  for (let teacher of teacherArr) {
-    for (let course of teacher.certifiedCourses) {
-      //
 
-      console.log("Teacher " + teacher.name + " can teach " + course);
-      console.log(course);
-      courseTeacherCount[course.course] += 1;
+  //parse is used to create a deep copy of the teacherArr
+  let teachers = JSON.parse(teacherString);
 
-      //find index of courses object that has name that = course
+  for (let section of sectionArr) {
+    let assignableTeachers = teachers.filter(
+      (teacher) =>
+        teacher.certifiedCourses
+          .map((item) => item.course)
+          .includes(section.course.name) &&
+        teacher.openPeriods.includes(section.periodClass.period)
+    );
+    if (assignableTeachers.length == 0) {
+      // console.log(
+      //   "No more valid teachers available to assign to " +
+      //     section.course.name +
+      //     " section " +
+      //     section.sectionNumber +
+      //     " in period: " +
+      //     section.periodClass.period
+      // );
+      totalErrors++;
+    } else {
+      teacherIndex = Math.floor(Math.random() * assignableTeachers.length);
+      teachers[
+        teachers.indexOf(assignableTeachers[teacherIndex])
+      ].openPeriods.splice(
+        assignableTeachers[teacherIndex].openPeriods.indexOf(
+          section.periodClass.period
+        ),
+        1
+      );
+      section.teacher = assignableTeachers[teacherIndex];
+      // console.log(
+      //   "Assigned " +
+      //     assignableTeachers[teacherIndex].name +
+      //     " to " +
+      //     section.course.name +
+      //     " section " +
+      //     section.sectionNumber +
+      //     " in period: " +
+      //     section.periodClass.period
+      // );
     }
   }
+  //console.log("Total errors: " + totalErrors);
+  return totalErrors;
 };
 
-let sortCourseTeacherCount = function () {
-  //sort the courseTeacherCount array by the number of teachers who can teach each course
-  const sortedCourseTeachersCount = Object.keys(courseTeacherCount).sort(
-    (a, b) => courseTeacherCount[a] - courseTeacherCount[b]
-  );
-  sectionArr.sort(
-    (a, b) =>
-      sortedCourseTeachersCount.indexOf(a.course.name) -
-      sortedCourseTeachersCount.indexOf(b.course.name)
-  );
-  //console.log(sortedCourseTeachersCount);
-};
-
-let AssignTeacher2Sections = function () {
-  let assignedPeriods = new Map(); // Map to keep track of assigned periods for each teacher
-
-  // Recursive backtracking function to assign teachers to sections
-  let backtrackAssignTeachers = function (sectionIndex) {
-    // Base case: All sections have been assigned teachers
-    if (sectionIndex === sectionArr.length) {
-      return true;
+let generateSchedule = function () {
+  //main code
+  let teacherFailed = true;
+  findCoursePriority();
+  createSections();
+  let classroomSchedulingAttempts = 0;
+  let teacherSchedulingAttempts = 0;
+  //throw out every schedule that doesn't work;
+  //give teachers a failCap number of attempts to schedule before giving up
+  while (teacherFailed) {
+    //number of times period-classrooms have been assigned
+    classroomSchedulingAttempts++;
+    //if the teacher scheduling algorithm has failed, we need to reset the period-classrooms and reassign them
+    teacherFailed = false;
+    //whether or not the period-classrooms have been assigned validly
+    let coursesAssigned = false;
+    //whether or not the teacher scheduling algorithm has failed or if it has exceeded the failCap
+    let teachersAssigned = false;
+    //amount of times the teacher scheduling algorithm can failed before restarting
+    //The higher this value, the longer the algorithm will run and the smaller the variation of schedules
+    const failCap = 5;
+    //amount of time the teacher scheduling algorithm has failed
+    let failCount = 0;
+    while (!coursesAssigned) {
+      createPeriodClassrooms();
+      coursesAssigned = assignPeriodClassrooms();
     }
-
-    let section = sectionArr[sectionIndex];
-    let course = section.course;
-
-    // Iterate through the teachers who can teach the course
-    for (let teacher of teacherArr) {
-      let teacherAssignedPeriods = assignedPeriods.get(teacher) || new Set();
-
-      if (
-        teacher.certifiedCourses.includes(course.name) &&
-        !teacherAssignedPeriods.has(section.period)
-      ) {
-        // Assign the teacher to the section
-        section.teacher = teacher;
-        teacherAssignedPeriods.add(section.period);
-        assignedPeriods.set(teacher, teacherAssignedPeriods);
-
-        // Recursively assign teachers to the next section
-        if (backtrackAssignTeachers(sectionIndex + 1)) {
-          return true;
-        }
-
-        // Backtrack: Remove the assigned period from the teacher
-        teacherAssignedPeriods.delete(section.period);
-        if (teacherAssignedPeriods.size === 0) {
-          assignedPeriods.delete(teacher);
-        } else {
-          assignedPeriods.set(teacher, teacherAssignedPeriods);
-        }
-        section.teacher = null;
+    while (!teachersAssigned) {
+      teacherSchedulingAttempts++;
+      createInitSchedule();
+      if (assignTeachersToSections() == 0) {
+        teachersAssigned = true;
+      } else {
+        failCount++;
+        //console.log("failure encountered");
+        //console.log(failures);
+      }
+      if (failCount >= failCap) {
+        teacherFailed = true;
+        //they havent been assigned but we need to break out of the loop
+        teachersAssigned = true;
       }
     }
+  }
 
-    return false; // No teacher found for the section
-  };
+  //error check
+  let errors = 0;
+  for (let section of sectionArr) {
+    if (section.teacher == undefined || section.teacher == null) {
+      console.log("Teacher not assigned to " + section.course.name);
+      errors++;
+    }
+    if (section.periodClass == undefined || section.periodClass == null) {
+      console.log("Period-classroom not assigned to " + section.course.name);
+      errors++;
+    }
+  }
 
-  // Start the backtracking algorithm
-  backtrackAssignTeachers(0);
+  //info logging
+  console.log("Total errors: " + errors);
+  console.log("Total trial schedules made: " + classroomSchedulingAttempts);
+  console.log("Total times teachers attempted: " + teacherSchedulingAttempts);
+  return formattedSchedule(sectionArr);
 };
-createSections(sectionArr);
-createPeriodClassrooms();
-assignPeriodClassrooms();
-createInitSchedule();
-console.log("\nInitial schedule w/o teachers:");
-//print schedule by rows
-assignTeachingTeachers();
-sortCourseTeacherCount();
-console.log("hi");
-console.log(AssignTeacher2Sections());
-printInCoolWay(formattedSchedule());
-//console.log(schedule);
-//for (let period of schedule) {
-//   for (let classroom of period) {
-//     if (classroom) {
-//       console.log(
-//         ` Course ${classroom.course.name} Period: ${classroom.periodClass.period} Classroom: ${classroom.periodClass.classroom} Teacher ${classroom.teacher.name} Section: ${classroom.section}`
-//       );
-//     }
-//   }
+
+let generateSchedules = function (numSchedules) {
+  let schedules = [];
+  for (let k = 0; k < numSchedules; k++) {
+    //console.log("Generating schedule " + k);
+    schedules.push(generateSchedule());
+    //console.log("Schedule " + k + " generated");
+  }
+  return schedules;
+};
+
+//print schedule
+
+//printInCoolWay(generateSchedule());
+
+// let thing = generateSchedules(5);
+// console.log(thing.length);
+// for (i = 0; i < thing.length; i++) {
+//   console.log("Schedule " + (i + 1));
+//   printInCoolWay(thing[i]);
 // }
 
-//create
+let writeSchedules = function (num) {
+  let schedulesArr = generateSchedules(num);
 
-//let temp schedule = the sections arr sorted by period then classroom
-//we need to make a 2d array of classrooms and periods, and then print in in a readable and nice way
+  for (let a = 0; a < num; a++) {
+    fs.writeFileSync(
+      "./Sprint1/GeneratedSchedules/Schedule" + (a + 1) + ".json",
+      JSON.stringify(schedulesArr[a])
+    );
+  }
+};
 
-//print array (in super cool way)
-//printInCoolWay(visualSchedule);
-
-//save the schedule to a file
-fs.writeFileSync("schedule.json", JSON.stringify(formattedSchedule()));
-//print array (in super cool way)
-printInCoolWay(formattedSchedule());
-
-//console.log(formattedSchedule());
+writeSchedules(100);
