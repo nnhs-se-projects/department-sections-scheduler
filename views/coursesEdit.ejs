@@ -29,13 +29,13 @@
       Number of Sections: <input id="sectionSelector" type="number" min="1" />
     </label>
 
-    <form class="selector" id="coursePeriods">
+    <div class="selector" id="coursePeriods">
       <label>Avaliable Periods:</label>
       <% for(let i=1; i <= 8; i++) { %>
-        <input name="periodSelector" type="checkbox" id="<%= i %>" />
+        <input type="checkbox" id="<%= i %>" />
         <label for="<%= i %>">Period <%= i %></label>
       <% } %>
-    </form>
+    </div>
 
     <a role="button">Save</a>
   </div>

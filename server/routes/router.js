@@ -19,6 +19,10 @@ route.get("/coursesEdit", (req, res) => {
   res.render("coursesEdit", { courses });
 });
 
+route.get("/endpoint", (req, res) => {
+  res.json(courses);
+});
+
 // delegate all authentication to the auth.js router
 route.use("/auth", require("./auth"));
 
