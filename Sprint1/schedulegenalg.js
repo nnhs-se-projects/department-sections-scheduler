@@ -149,7 +149,7 @@ const getTeacherSpecific = (schedule) => {
 //crossover1
 //https://www.figma.com/file/nVrAkw9OzLQihgoBWDx0Ho/Untitled?type=whiteboard&node-id=2%3A322&t=GBDQItPHfuVcZY2m-1
 
-crossover1 = (parent1, parent2) => {
+const crossover1 = (parent1, parent2) => {
   //clone all the sections and strip them of their classrooms
   let parent1withoutclassrooms = [];
   let parent2withoutclassrooms = [];
@@ -279,7 +279,8 @@ let testarr = "abcdefghij".split("");
 let testarr2 = "acdfghijeb".split("");
 console.log(crossover1worker(testarr, testarr2, 2, 6));
 
-//duplicates in child1 are
+//duplicates in child1 are the missing sections in child2
+//duplicates in child2 are the missing sections in child1
 const randomcleanup = (child1, child2) => {
   //find duplicates throw into other array
   c1set = new Set();
@@ -395,6 +396,18 @@ const isValidschedule = (schedule) => {
   return true;
 };
 
-const isValidClassroom = (period, classroom, section) => {
+//determines if a section can be scheduled in a particu,ar classroom
+const isValidClassroom = (classroom, section) => {
   section.course.compatableClassrooms.includes(classroom);
+};
+
+export default {
+  crossover1,
+  fitness,
+  isValidschedule,
+  setOfsectionsWOclassrooms,
+  getTeacherSpecific,
+  isValidClassroom,
+  randomcleanup,
+  crossover1worker,
 };
