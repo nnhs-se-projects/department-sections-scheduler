@@ -1,3 +1,9 @@
 {
-  "numPeriods": 8
+  "numPeriods": 8,
+  "weights": {
+    "lunchCount": ".2",
+    "classroomStay": ".2",
+    "longestConcurence": ".2",
+    "teacherPreference": ".2"
+  }
 }
