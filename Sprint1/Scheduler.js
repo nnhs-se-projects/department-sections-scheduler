@@ -405,3 +405,5 @@ printInCoolWay(generateSchedule());
 //   console.log("Schedule " + (i + 1));
 //   printInCoolWay(thing[i]);
 // }
+
+///cupcakes are good
