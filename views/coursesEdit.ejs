@@ -8,7 +8,6 @@
     <img src="img/SE-GitHub-image.png" alt="Huskie code logo" />
     <h1>Edit Data</h1>
   </div>
-  <input type="hidden" id="courseArr" value="<%= courses %>">
   <div class="box">
     <label class="selector">
       Select Course:
@@ -37,6 +36,15 @@
       <% } %>
     </div>
 
+    <div class = "selector">
+      <input type="checkbox" id="priorityOverrideEnabler" /><label>Hard Coded Priority</label>
+
+      <div id="sectionSelectorDiv" class="">
+        <label class="selector">
+        Overridden Priority: <input id="prioritySelector" type="number" min="0" max="1"/>
+        </label>    
+      </div>
+    </div>
     <a role="button">Save</a>
   </div>
 </main>
