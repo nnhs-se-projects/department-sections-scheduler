@@ -39,10 +39,16 @@ const onStart = async function () {
 };
 
 const updateCoursePeriodsSelector = function () {
-  for (let i = 0; i < 8; i++) {
-    coursePeriodsSelectors[i].checked =
-      currentCourse.compatiblePeriods.includes(i + 1);
-  }
+  coursePeriodsSelectors = coursePeriodsSelectors.map((data) => {
+    data.checked = currentCourse.compatiblePeriods.includes(
+      Number(data.id.slice(7, 8))
+    );
+  });
+
+  // for (let i = 0; i < 8; i++) {
+  //   coursePeriodsSelectors[i].checked =
+  //     currentCourse.compatiblePeriods.includes(i + 1);
+  // }
 };
 
 const updateCourseSectionSelector = function () {
