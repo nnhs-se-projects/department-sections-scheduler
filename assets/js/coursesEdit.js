@@ -1,6 +1,9 @@
 const courseSelector = document.getElementById("coursePicker");
 const courseNameSelector = document.getElementById("namer");
 const courseSectionSelector = document.getElementById("sectionSelector");
+const coursePrioritySelector = document.getElementById("prioritySelector");
+const coursePriorityToggle = document.getElementById("priorityOverrideEnabler");
+
 const coursePeriodsSelectors = [];
 
 for (let i = 1; i <= 8; i++) {
@@ -27,13 +30,8 @@ const onStart = async function () {
         (course) => course.name === currentCourseName
       )[0];
 
-      if (currentCourseName === "addCourse") {
-        return;
-      }
-
       courseNameSelector.value = currentCourseName;
-      updateCoursePeriodsSelector();
-      updateCourseSectionSelector();
+      updateFields();
     })
   );
 };
@@ -55,22 +53,53 @@ const updateCourseSectionSelector = function () {
   courseSectionSelector.value = currentCourse.sections;
 };
 
-courseSelector.addEventListener("change", () => {
+const updateCoursePrioritySelector = function () {
+  if (currentCourse.userPriority === undefined) {
+    coursePriorityToggle.checked = false;
+    document
+      .getElementById("sectionSelectorDiv")
+      .setAttribute("class", "hidden");
+  } else {
+    coursePriorityToggle.checked = true;
+    document.getElementById("sectionSelectorDiv").setAttribute("class", "");
+    coursePrioritySelector.value = currentCourse.userPriority;
+  }
+};
+
+coursePriorityToggle.addEventListener("change", () => {
+  if (coursePriorityToggle.checked) {
+    document.getElementById("sectionSelectorDiv").setAttribute("class", "");
+  } else {
+    document
+      .getElementById("sectionSelectorDiv")
+      .setAttribute("class", "hidden");
+  }
+});
+
+const updateFields = function () {
   currentCourseName = courseSelector.value;
-  currentCourse = courseArr.filter(
-    (course) => course.name === currentCourseName
-  )[0];
   if (courseSelector.value === "addCourse") {
+    currentCourse = null;
     courseNameSelector.value = "New Course";
     for (let i = 0; i < 8; i++) {
       coursePeriodsSelectors[i].checked = true;
     }
     courseSectionSelector.value = 0;
   } else {
+    currentCourse = courseArr.filter(
+      (course) => course.name === currentCourseName
+    )[0];
     courseNameSelector.value = currentCourseName;
     updateCoursePeriodsSelector();
     updateCourseSectionSelector();
+    updateCoursePrioritySelector();
   }
-});
+};
+
+courseSelector.addEventListener("change", () => updateFields());
+
+//FIXME: we need to add a check to see if the course name is already in the database
+//FIXME: add a save button
+//FIXME: require all classrooms
 
 onStart();
