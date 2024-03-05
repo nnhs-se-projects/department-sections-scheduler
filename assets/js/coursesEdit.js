@@ -30,10 +30,6 @@ const onStart = async function () {
         (course) => course.name === currentCourseName
       )[0];
 
-      if (currentCourseName === "addCourse") {
-        return;
-      }
-
       courseNameSelector.value = currentCourseName;
       updateFields();
     })
@@ -74,8 +70,6 @@ coursePriorityToggle.addEventListener("change", () => {
   }
 });
 
-courseSelector.addEventListener("change", () => updateFields());
-
 const updateFields = function () {
   currentCourseName = courseSelector.value;
   if (courseSelector.value === "addCourse") {
@@ -96,7 +90,10 @@ const updateFields = function () {
   }
 };
 
+courseSelector.addEventListener("change", () => updateFields());
+
 //FIXME: we need to add a check to see if the course name is already in the database
 //FIXME: add a save button
 //FIXME: require all classrooms
+
 onStart();
