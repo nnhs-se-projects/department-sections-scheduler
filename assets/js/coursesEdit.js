@@ -4,9 +4,10 @@ const courseSectionSelector = document.getElementById("sectionSelector");
 const coursePeriodsSelectors = [];
 
 for (let i = 1; i <= 8; i++) {
-  coursePeriodsSelectors.push(document.getElementById(i));
+  coursePeriodsSelectors.push(document.getElementById("Period " + i));
 }
 
+let currentCourseName;
 let currentCourse;
 let courseArr;
 
@@ -21,26 +22,44 @@ const onStart = async function () {
     response.json().then((data) => {
       console.log(data);
       courseArr = data;
-      currentCourse = courseSelector.value;
-      if (currentCourse === "addCourse") {
+      currentCourseName = courseSelector.value;
+      currentCourse = courseArr.filter(
+        (course) => course.name === currentCourseName
+      )[0];
+
+      if (currentCourseName === "addCourse") {
         return;
       }
-      courseNameSelector.value = currentCourse;
-      for (let i = 0; i < 8; i++) {
-        coursePeriodsSelectors[i] = data
-          .filter((course) => course.name === currentCourse)[0]
-          .compatiblePeriods.includes(i.toString());
-      }
+
+      courseNameSelector.value = currentCourseName;
+      updateCoursePeriodsSelector();
+      updateCourseSectionSelector();
     })
   );
 };
 
+const updateCoursePeriodsSelector = function () {
+  for (let i = 0; i < 8; i++) {
+    coursePeriodsSelectors[i].checked =
+      currentCourse.compatiblePeriods.includes(i + 1);
+  }
+};
+
+const updateCourseSectionSelector = function () {
+  courseSectionSelector.value = currentCourse.sections;
+};
+
 courseSelector.addEventListener("change", () => {
-  currentCourse = courseSelector.value;
+  currentCourseName = courseSelector.value;
+  currentCourse = courseArr.filter(
+    (course) => course.name === currentCourseName
+  )[0];
   if (courseSelector.value === "addCourse") {
     // pass
   } else {
-    courseNameSelector.value = currentCourse;
+    courseNameSelector.value = currentCourseName;
+    updateCoursePeriodsSelector();
+    updateCourseSectionSelector();
   }
 });
 
