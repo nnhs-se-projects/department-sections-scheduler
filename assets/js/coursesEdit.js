@@ -55,7 +55,11 @@ courseSelector.addEventListener("change", () => {
     (course) => course.name === currentCourseName
   )[0];
   if (courseSelector.value === "addCourse") {
-    // pass
+    courseNameSelector.value = "New Course";
+    for (let i = 0; i < 8; i++) {
+      coursePeriodsSelectors[i].checked = true;
+    }
+    courseSectionSelector.value = 0;
   } else {
     courseNameSelector.value = currentCourseName;
     updateCoursePeriodsSelector();
