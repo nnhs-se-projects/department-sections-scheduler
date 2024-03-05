@@ -32,8 +32,8 @@
     <div class="selector" id="coursePeriods">
       <label>Avaliable Periods:</label>
       <% for(let i=1; i <= 8; i++) { %>
-        <input type="checkbox" id="<%= i %>" />
-        <label for="<%= i %>">Period <%= i %></label>
+        <input type="checkbox" id="<%= 'Period ' + i %>" />
+        <label for="<%= 'Period ' + i %>">Period <%= i %></label>
       <% } %>
     </div>
 

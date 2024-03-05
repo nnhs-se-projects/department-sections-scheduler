@@ -8,22 +8,31 @@ for (let i = 1; i <= 8; i++) {
 }
 
 let currentCourse;
-let courseArr = fetch('/endpoint', {
-  method: "GET",''
-})
+let courseArr;
 
-const onStart = function () {
-  currentCourse = courseSelector.value;
-  if (currentCourse === "addCourse") {
-    return;
-  }
-  courseNameSelector.value = currentCourse;
-  console.log(typeof courseArr[0]);
-  for (let i = 0; 1 < 8; i++) {
-    coursePeriodsSelectors[i] = courseArr.filter(
-      (course) => course.name === currentCourse
-    )[0].compatiblePeriods;
-  }
+const onStart = async function () {
+  // Get courses.json from server
+  await fetch("/fetchCourses", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) =>
+    response.json().then((data) => {
+      console.log(data);
+      courseArr = data;
+      currentCourse = courseSelector.value;
+      if (currentCourse === "addCourse") {
+        return;
+      }
+      courseNameSelector.value = currentCourse;
+      for (let i = 0; i < 8; i++) {
+        coursePeriodsSelectors[i] = data
+          .filter((course) => course.name === currentCourse)[0]
+          .compatiblePeriods.includes(i.toString());
+      }
+    })
+  );
 };
 
 courseSelector.addEventListener("change", () => {

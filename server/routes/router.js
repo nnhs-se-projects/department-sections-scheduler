@@ -1,5 +1,6 @@
 const express = require("express");
 const route = express.Router();
+const path = require("path");
 
 const courses = require("../model/courses.json");
 
@@ -19,7 +20,7 @@ route.get("/coursesEdit", (req, res) => {
   res.render("coursesEdit", { courses });
 });
 
-route.get("/endpoint", (req, res) => {
+route.get("/fetchCourses", (req, res) => {
   res.json(courses);
 });
 
