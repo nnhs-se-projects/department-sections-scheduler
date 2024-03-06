@@ -36,6 +36,17 @@
       <% } %>
     </div>
 
+    <div class="selector">
+      <label>Compatible Classrooms:</label>
+      <div class="scrollSelector">
+        <% for(let classroom of classrooms) { %>
+          <input type="checkbox" id="<%= 'C ' + classroom.roomNum %>" />
+          <label for="<%= 'C ' + classroom.roomNum %>">Room <%= classroom.roomNum %></label>
+          <br/>
+        <% } %>
+      </div>
+    </div>
+
     <div class = "selector">
       <input type="checkbox" id="priorityOverrideEnabler" /><label>Hard Coded Priority</label>
 

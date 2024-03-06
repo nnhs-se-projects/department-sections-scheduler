@@ -13,10 +13,11 @@ for (let i = 1; i <= 8; i++) {
 let currentCourseName;
 let currentCourse;
 let courseArr;
+let classroomsArr;
 
 const onStart = async function () {
   // Get courses.json from server
-  await fetch("/fetchCourses", {
+  await fetch("/fetchEditCourses", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -24,7 +25,8 @@ const onStart = async function () {
   }).then((response) =>
     response.json().then((data) => {
       console.log(data);
-      courseArr = data;
+      courseArr = data[0];
+      classroomsArr = data[1];
       currentCourseName = courseSelector.value;
       currentCourse = courseArr.filter(
         (course) => course.name === currentCourseName

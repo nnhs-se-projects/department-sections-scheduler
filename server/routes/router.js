@@ -3,6 +3,7 @@ const route = express.Router();
 const path = require("path");
 
 const courses = require("../model/courses.json");
+const classrooms = require("../model/classrooms.json");
 
 // pass a path (e.g., "/") and callback function to the get method
 //  when the client makes an HTTP GET request to the specified path,
@@ -17,11 +18,15 @@ route.get("/dataView", (req, res) => {
 });
 
 route.get("/coursesEdit", (req, res) => {
-  res.render("coursesEdit", { courses });
+  res.render("coursesEdit", { courses, classrooms });
 });
 
-route.get("/fetchCourses", (req, res) => {
-  res.json(courses);
+route.get("/fetchEditCourses", (req, res) => {
+  res.json([courses, classrooms]);
+});
+
+route.get("/fetchEditClassrooms", (req, res) => {
+  res.json(classrooms);
 });
 
 // delegate all authentication to the auth.js router
