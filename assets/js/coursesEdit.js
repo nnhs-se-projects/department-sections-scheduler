@@ -4,16 +4,18 @@ const courseSectionSelector = document.getElementById("sectionSelector");
 const coursePrioritySelector = document.getElementById("prioritySelector");
 const coursePriorityToggle = document.getElementById("priorityOverrideEnabler");
 
+let currentCourseName;
+let currentCourse;
+let courseArr;
+let classroomsArr;
+
 let coursePeriodsSelectors = [];
 
 for (let i = 1; i <= 8; i++) {
   coursePeriodsSelectors.push(document.getElementById("Period " + i));
 }
 
-let currentCourseName;
-let currentCourse;
-let courseArr;
-let classroomsArr;
+let classroomSelectors = [];
 
 const onStart = async function () {
   // Get courses.json from server
@@ -27,6 +29,11 @@ const onStart = async function () {
       console.log(data);
       courseArr = data[0];
       classroomsArr = data[1];
+      for (const classroom of classroomsArr) {
+        classroomSelectors.push(
+          document.getElementById("C " + classroom.roomNum)
+        );
+      }
       currentCourseName = courseSelector.value;
       currentCourse = courseArr.filter(
         (course) => course.name === currentCourseName
@@ -45,11 +52,15 @@ const updateCoursePeriodsSelector = function () {
     );
     return data;
   });
+};
 
-  // for (let i = 0; i < 8; i++) {
-  //   coursePeriodsSelectors[i].checked =
-  //     currentCourse.compatiblePeriods.includes(i + 1);
-  // }
+const updateClassroomsSelectors = function () {
+  classroomSelectors = classroomSelectors.map((data) => {
+    data.checked = currentCourse.compatibleClassrooms.includes(
+      String(data.id.slice(2))
+    );
+    return data;
+  });
 };
 
 const updateCourseSectionSelector = function () {
@@ -87,6 +98,9 @@ const updateFields = function () {
     for (let i = 0; i < 8; i++) {
       coursePeriodsSelectors[i].checked = true;
     }
+    for (let i = 0; i < classroomSelectors.length; i++) {
+      classroomSelectors[i].checked = false;
+    }
     courseSectionSelector.value = 0;
   } else {
     currentCourse = courseArr.filter(
@@ -96,6 +110,7 @@ const updateFields = function () {
     updateCoursePeriodsSelector();
     updateCourseSectionSelector();
     updateCoursePrioritySelector();
+    updateClassroomsSelectors();
   }
 };
 
