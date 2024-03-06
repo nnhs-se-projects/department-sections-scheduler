@@ -3,11 +3,11 @@
 <!-- /include header -->
 
 <!-- Main Site -->
-<main>
+<main  style="background-color: #ffffff">
   <div class="indexTopBar">
-    <img src="img/SE-GitHub-image.png" alt="Huskie code logo" />
-    <h1>Edit Data</h1>
+    <img src="img/ctelogo.png" alt="CTElogo" />
   </div>
+  <h1 style="text-align: center">Edit Data</h1>
   <div class="box">
     <label class="selector">
       Select Course:
@@ -29,28 +29,28 @@
     </label>
 
     <div class="selector" id="coursePeriods">
-      <label>Avaliable Periods:</label>
+      <label  style="color: #FFFFFF">Avaliable Periods:</label>
       <div class = "periodSelector">
       <% for(let i=1; i <= 8; i++) { %>
         <input type="checkbox" id="<%= 'Period ' + i %>" />
-        <label for="<%= 'Period ' + i %>">Period <%= i %></label>
+        <label  style="color: #FFFFFF" for="<%= 'Period ' + i %>">Period <%= i %></label>
       <% } %>
       </div>
     </div>
 
     <div class="selector">
-      <label>Compatible Classrooms:</label>
+      <label style="color: #FFFFFF">Compatible Classrooms:</label>
       <div class="scrollSelector">
         <% for(let classroom of classrooms) { %>
           <input type="checkbox" id="<%= 'C ' + classroom.roomNum %>" />
-          <label for="<%= 'C ' + classroom.roomNum %>">Room <%= classroom.roomNum %></label>
+          <label style="color: #FFFFFF" for="<%= 'C ' + classroom.roomNum %>">Room <%= classroom.roomNum %></label>
           <br/>
         <% } %>
       </div>
     </div>
 
     <div class = "selector">
-      <input type="checkbox" id="priorityOverrideEnabler" /><label>Hard Coded Priority</label>
+      <input type="checkbox" id="priorityOverrideEnabler" /><label style="color: #FFFFFF">Hard Coded Priority</label>
 
       <div id="sectionSelectorDiv" class="">
         <label class="selector">
