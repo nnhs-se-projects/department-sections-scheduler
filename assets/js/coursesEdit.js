@@ -4,7 +4,7 @@ const courseSectionSelector = document.getElementById("sectionSelector");
 const coursePrioritySelector = document.getElementById("prioritySelector");
 const coursePriorityToggle = document.getElementById("priorityOverrideEnabler");
 
-const coursePeriodsSelectors = [];
+let coursePeriodsSelectors = [];
 
 for (let i = 1; i <= 8; i++) {
   coursePeriodsSelectors.push(document.getElementById("Period " + i));
@@ -41,6 +41,7 @@ const updateCoursePeriodsSelector = function () {
     data.checked = currentCourse.compatiblePeriods.includes(
       Number(data.id.slice(7, 8))
     );
+    return data;
   });
 
   // for (let i = 0; i < 8; i++) {
