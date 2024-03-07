@@ -4,10 +4,10 @@
 
 <!-- Main Site -->
 <main  style="background-color: #ffffff">
-  <div class="indexTopBar">
+  <div class="courseEditTopBar">
+    <div class = "topBarText">Edit Courses</div>
     <img src="img/ctelogo.png" alt="CTElogo" />
   </div>
-  <h1 style="text-align: center">Edit Data</h1>
   <div class="box">
     <label class="selector">
       Select Course:
@@ -32,8 +32,10 @@
       <label  style="color: #FFFFFF">Avaliable Periods:</label>
       <div class = "periodSelector">
       <% for(let i=1; i <= 8; i++) { %>
+        <div style="display: inline-block; margin-inline: 13px">
         <input type="checkbox" id="<%= 'Period ' + i %>" />
         <label  style="color: #FFFFFF" for="<%= 'Period ' + i %>">Period <%= i %></label>
+        </div>
       <% } %>
       </div>
     </div>
@@ -58,7 +60,10 @@
         </label>    
       </div>
     </div>
-    <a role="button">Save</a>
+    <div class="selector">
+      <a role="button">Save Course</a>
+      <a role="button">Delete Course</a>
+    </div>
   </div>
 </main>
 <!-- /Main Site -->

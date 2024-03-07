@@ -1,7 +1,11 @@
 /* styling for the authentication page */
+:root {
+  --bc: #c10f0f;
+  --nestedbc: rgba(255, 178, 178, 0.25);
+}
 
 .box {
-  background-color: #c10f0f;
+  background-color: var(--bc);
   color: white;
   border-radius: 10px;
   padding: 20px;
@@ -12,7 +16,7 @@
 }
 
 .scrollSelector {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: var(--nestedbc);
   color: white;
   border-radius: 10px;
   padding: 20px;
@@ -21,7 +25,7 @@
   margin-right: 10px;
   margin-bottom: 10px;
 
-  max-height: 240px;
+  max-height: 360px;
   overflow: auto;
 }
 
@@ -36,7 +40,7 @@ textarea {
 }
 
 .selector {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: var(--nestedbc);
   color: white;
   border-radius: 10px;
   padding: 20px;
@@ -76,12 +80,39 @@ textarea {
 .indexTopBar img {
   flex-shrink: 0;
   width: 150px;
-  height: 100px;
+  height: 150px;
   margin-left: 30px;
 }
 
 .indexTopBar h1 {
   margin-right: auto;
+}
+
+.courseEditTopBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.courseEditTopBar img {
+  flex-shrink: 0;
+  width: 15%;
+  height: 15%;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.courseEditTopBar .topBarText {
+  font-weight: bold;
+  font-family: system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    Helvetica, Arial, "Helvetica Neue", sans-serif;
+  align-self: center;
+  font-size: 32px;
+  font-size: max(5vw, 38px);
+  margin-left: 60px;
+  margin-right: 60px;
 }
 
 .entry {
