@@ -124,7 +124,7 @@ const verifyFields = function () {
   if (courseNameSelector.value in ["", undefined, null]) {
     alert("The course must be given a name!");
     return false;
-  } else if (courseNameSelector.value in courseArr.map((data) => data.name)) {
+  } else if (currentCourse == null && courseNameSelector.value in courseArr.map((data) => data.name)) {
     alert("A course already exists with this name!");
     return false;
   } else if (courseNameSelector.value === "Add Course") {
@@ -157,7 +157,7 @@ const verifyFields = function () {
 
 const createJSON = function () {
   const modifiedCourseArr = courseArr.map((data) => data);
-  if (courseNameSelector.value === "Add Course") {
+  if (currentCourse == null) {
     modifiedCourseArr.push({
       name: courseNameSelector.value,
       sections: courseSectionSelector.value,
@@ -168,13 +168,13 @@ const createJSON = function () {
   }
 };
 
-const saveToServer = function (arr) {};
-
-saveButton.addEventListener("click", () => {
-  if (verifyFields()) {
-    saveToServer(createJSON);
+const saveToServer = function (arr) {
+  saveButton.addEventListener("click", () => {
+    if (verifyFields()) {
+      saveToServer(createJSON);
+    }
   }
-});
+);
 
 deleteButton.addEventListener("click", () => {});
 
