@@ -194,6 +194,5 @@ deleteButton.addEventListener("click", () => {});
 
 //FIXME: we need to add a check to see if the course name is already in the database
 //FIXME: add a save button
-//FIXME: require all classrooms
 
 onStart();
