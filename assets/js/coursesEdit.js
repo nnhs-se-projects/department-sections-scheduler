@@ -95,7 +95,7 @@ coursePriorityToggle.addEventListener("change", () => {
 
 const updateFields = function () {
   currentCourseName = courseSelector.value;
-  if (courseSelector.value === "addCourse") {
+  if (currentCourseName === "addCourse") {
     currentCourse = null;
     courseNameSelector.value = "New Course";
     for (let i = 0; i < 8; i++) {
@@ -124,10 +124,11 @@ const verifyFields = function () {
   if (courseNameSelector.value in ["", undefined, null]) {
     alert("The course must be given a name!");
     return false;
-  } else if (currentCourse == null && courseNameSelector.value in courseArr.map((data) => data.name)) {
+  } else if (courseNameSelector.value in courseArr.map((data) => data.name)) {
+    //FIXME: Query doesnt work right 
     alert("A course already exists with this name!");
     return false;
-  } else if (courseNameSelector.value === "Add Course") {
+  } else if (courseNameSelector.value === "Add Course" || courseNameSelector.value === "addCourse") {
     alert(
       "Why would you name a course 'Add Course' that's stupid and I know you're just trying to break our code have some respect for your developers please"
     );
