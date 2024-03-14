@@ -138,12 +138,16 @@ const verifyFields = function () {
     alert("A course already exists with this name!");
     return false;
   } else if (
-    courseNameSelector.value === "New Course" ||
     courseNameSelector.value === "addCourse" ||
-    courseNameSelector.value === "Add Course"
+    courseNameSelector.value === "Add Course" ||
+    courseNameSelector.value === "add course" ||
+    courseNameSelector.value === "add Course" ||
+    courseNameSelector.value === "Add course"
   ) {
     alert(
-      "Why would you name a course 'Add Course' that's stupid and I know you're just trying to break our code have some respect for your developers please"
+      "Why would you name a course '" +
+        courseNameSelector.value +
+        "' that's stupid and I know you're just trying to break our code have some respect for your developers please"
     );
     return false;
   }
