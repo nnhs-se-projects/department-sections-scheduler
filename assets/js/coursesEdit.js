@@ -208,7 +208,15 @@ const createJSON = function () {
   return modifiedCourseArr;
 };
 
-const saveToServer = function (arr) {};
+const saveToServer = async function (arr) {
+  await fetch("/postEditedCourses", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(arr),
+  });
+};
 
 saveButton.addEventListener("click", () => {
   if (verifyFields()) {
