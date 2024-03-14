@@ -124,11 +124,24 @@ const verifyFields = function () {
   if (courseNameSelector.value in ["", undefined, null]) {
     alert("The course must be given a name!");
     return false;
-  } else if (courseNameSelector.value in courseArr.map((data) => data.name)) {
-    //FIXME: Query doesnt work right 
+  } else if (
+    currentCourse == null &&
+    courseNameSelector.value in courseArr.map((data) => data.name)
+  ) {
     alert("A course already exists with this name!");
     return false;
-  } else if (courseNameSelector.value === "Add Course" || courseNameSelector.value === "addCourse") {
+  } else if (
+    currentCourse != null &&
+    courseNameSelector !== currentCourseName &&
+    courseNameSelector.value in courseArr.map((data) => data.name)
+  ) {
+    alert("A course already exists with this name!");
+    return false;
+  } else if (
+    courseNameSelector.value === "New Course" ||
+    courseNameSelector.value === "addCourse" ||
+    courseNameSelector.value === "Add Course"
+  ) {
     alert(
       "Why would you name a course 'Add Course' that's stupid and I know you're just trying to break our code have some respect for your developers please"
     );
@@ -162,7 +175,7 @@ const createJSON = function () {
     modifiedCourseArr.push({
       name: courseNameSelector.value,
       sections: courseSectionSelector.value,
-      compatibleClassrooms: classroomSelectors.map()),
+      compatibleClassrooms: classroomSelectors.map(),
       compatiblePeriods: [1, 2, 3, 4, 5, 6, 7, 8],
       userPriority: 0.75,
     });
