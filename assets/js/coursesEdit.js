@@ -4,6 +4,9 @@ const courseSectionSelector = document.getElementById("sectionSelector");
 const coursePrioritySelector = document.getElementById("prioritySelector");
 const coursePriorityToggle = document.getElementById("priorityOverrideEnabler");
 
+const saveButton = document.getElementById("saveButton");
+const deleteButton = document.getElementById("saveButton");
+
 let currentCourseName;
 let currentCourse;
 let courseArr;
@@ -115,6 +118,65 @@ const updateFields = function () {
 };
 
 courseSelector.addEventListener("change", () => updateFields());
+
+const verifyFields = function () {
+  // Verify Course Name
+  if (courseNameSelector.value in ["", undefined, null]) {
+    alert("The course must be given a name!");
+    return false;
+  } else if (courseNameSelector.value in courseArr.map((data) => data.name)) {
+    alert("A course already exists with this name!");
+    return false;
+  } else if (courseNameSelector.value === "Add Course") {
+    alert(
+      "Why would you name a course 'Add Course' that's stupid and I know you're just trying to break our code have some respect for your developers please"
+    );
+    return false;
+  }
+
+  // Verify Sections
+  if (courseSectionSelector.value < 0.0) {
+    alert("Number of sections cannot be negative!");
+    return false;
+  } else if (courseSectionSelector.value % 1.0 !== 0.0) {
+    alert("Number of sections must be an integer!");
+    return false;
+  }
+
+  // Verify Priority Override
+  if (
+    coursePriorityToggle.checked &&
+    (coursePrioritySelector.value < 0.0 || coursePrioritySelector.value > 1.0)
+  ) {
+    alert("Course priority must be within 0.0 - 1.0");
+    return false;
+  }
+
+  return true;
+};
+
+const createJSON = function () {
+  const modifiedCourseArr = courseArr.map((data) => data);
+  if (courseNameSelector.value === "Add Course") {
+    modifiedCourseArr.push({
+      name: courseNameSelector.value,
+      sections: courseSectionSelector.value,
+      compatibleClassrooms: classroomSelectors.map()),
+      compatiblePeriods: [1, 2, 3, 4, 5, 6, 7, 8],
+      userPriority: 0.75,
+    });
+  }
+};
+
+const saveToServer = function (arr) {};
+
+saveButton.addEventListener("click", () => {
+  if (verifyFields()) {
+    saveToServer(createJSON);
+  }
+});
+
+deleteButton.addEventListener("click", () => {});
 
 //FIXME: we need to add a check to see if the course name is already in the database
 //FIXME: add a save button
