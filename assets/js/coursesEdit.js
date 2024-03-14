@@ -117,7 +117,7 @@ const updateFields = function () {
   }
 };
 
-courseSelector.addEventListener("change", updateFields());
+courseSelector.addEventListener("change", () => updateFields());
 
 const verifyFields = function () {
   // Verify Course Name
@@ -200,6 +200,7 @@ const createJSON = function () {
         : undefined,
     };
   }
+  console.log(modifiedCourseArr);
   return modifiedCourseArr;
 };
 
@@ -207,7 +208,7 @@ const saveToServer = function (arr) {};
 
 saveButton.addEventListener("click", () => {
   if (verifyFields()) {
-    saveToServer(createJSON);
+    saveToServer(createJSON());
   }
 });
 
