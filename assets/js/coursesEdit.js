@@ -169,13 +169,13 @@ const createJSON = function () {
   }
 };
 
-const saveToServer = function (arr) {
-  saveButton.addEventListener("click", () => {
-    if (verifyFields()) {
-      saveToServer(createJSON);
-    }
+const saveToServer = function (arr) {};
+
+saveButton.addEventListener("click", () => {
+  if (verifyFields()) {
+    saveToServer(createJSON);
   }
-);
+});
 
 deleteButton.addEventListener("click", () => {});
 
