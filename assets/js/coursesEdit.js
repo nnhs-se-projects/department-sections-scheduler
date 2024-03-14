@@ -51,7 +51,7 @@ const onStart = async function () {
 const updateCoursePeriodsSelector = function () {
   coursePeriodsSelectors = coursePeriodsSelectors.map((data) => {
     data.checked = currentCourse.compatiblePeriods.includes(
-      Number(data.id.slice(7, 8))
+      Number(data.id.slice(7))
     );
     return data;
   });
@@ -180,7 +180,7 @@ const createJSON = function () {
         .map((data) => data.id.slice(2)),
       compatiblePeriods: coursePeriodsSelectors
         .filter((data) => data.checked)
-        .map((data) => Number(data.id.slice(7, 8))),
+        .map((data) => Number(data.id.slice(7))),
       userPriority: coursePriorityToggle.checked
         ? coursePrioritySelector.value
         : undefined,
@@ -194,7 +194,7 @@ const createJSON = function () {
         .map((data) => data.id.slice(2)),
       compatiblePeriods: coursePeriodsSelectors
         .filter((data) => data.checked)
-        .map((data) => Number(data.id.slice(7, 8))),
+        .map((data) => Number(data.id.slice(7))),
       userPriority: coursePriorityToggle.checked
         ? coursePrioritySelector.value
         : undefined,
@@ -214,7 +214,7 @@ saveButton.addEventListener("click", () => {
 
 deleteButton.addEventListener("click", () => {});
 
-//FIXME: we need to add a check to see if the course name is already in the database
+//FIXME: we need to add a check to see if the course name is already in the database // I Think this is done
 //FIXME: add a save button
 
 onStart();
