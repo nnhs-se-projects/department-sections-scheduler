@@ -117,7 +117,7 @@ const updateFields = function () {
   }
 };
 
-courseSelector.addEventListener("change", () => updateFields());
+courseSelector.addEventListener("change", updateFields());
 
 const verifyFields = function () {
   // Verify Course Name
@@ -175,11 +175,32 @@ const createJSON = function () {
     modifiedCourseArr.push({
       name: courseNameSelector.value,
       sections: courseSectionSelector.value,
-      compatibleClassrooms: classroomSelectors.map(),
-      compatiblePeriods: [1, 2, 3, 4, 5, 6, 7, 8],
-      userPriority: 0.75,
+      compatibleClassrooms: classroomSelectors
+        .filter((data) => data.checked)
+        .map((data) => data.id.slice(2)),
+      compatiblePeriods: coursePeriodsSelectors
+        .filter((data) => data.checked)
+        .map((data) => Number(data.id.slice(7, 8))),
+      userPriority: coursePriorityToggle.checked
+        ? coursePrioritySelector.value
+        : undefined,
     });
+  } else {
+    modifiedCourseArr[modifiedCourseArr.indexOf(currentCourse)] = {
+      name: courseNameSelector.value,
+      sections: courseSectionSelector.value,
+      compatibleClassrooms: classroomSelectors
+        .filter((data) => data.checked)
+        .map((data) => data.id.slice(2)),
+      compatiblePeriods: coursePeriodsSelectors
+        .filter((data) => data.checked)
+        .map((data) => Number(data.id.slice(7, 8))),
+      userPriority: coursePriorityToggle.checked
+        ? coursePrioritySelector.value
+        : undefined,
+    };
   }
+  return modifiedCourseArr;
 };
 
 const saveToServer = function (arr) {};
