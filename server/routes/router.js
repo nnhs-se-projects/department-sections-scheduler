@@ -1,8 +1,8 @@
 const express = require("express");
 const route = express.Router();
-const path = require("path");
+const fs = require("fs");
 
-const courses = require("../model/courses.json");
+let courses = require("../model/courses.json");
 const classrooms = require("../model/classrooms.json");
 
 // pass a path (e.g., "/") and callback function to the get method
@@ -18,6 +18,7 @@ route.get("/dataView", (req, res) => {
 });
 
 route.get("/coursesEdit", (req, res) => {
+  updateValues();
   res.render("coursesEdit", { courses, classrooms });
 });
 
@@ -29,7 +30,24 @@ route.get("/fetchEditClassrooms", (req, res) => {
   res.json(classrooms);
 });
 
+route.post("/updateCourses", async (req, res) => {
+  // const entry = new Entry({
+  //   date: req.body.date,
+  //   email: req.session.email,
+  //   habit: req.body.habit,
+  //   content: req.body.content,
+  // });
+  // await entry.save();
+  fs.writeFileSync("server/model/courses.json", JSON.stringify(req.body));
+  courses = require("../model/courses.json");
+  res.status(201).end();
+});
+
 // delegate all authentication to the auth.js router
 route.use("/auth", require("./auth"));
+
+const updateValues = function () {
+  courses = require("../model/courses.json");
+};
 
 module.exports = route;

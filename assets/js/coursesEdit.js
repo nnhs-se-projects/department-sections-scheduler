@@ -178,7 +178,7 @@ const createJSON = function () {
   if (currentCourse == null) {
     modifiedCourseArr.push({
       name: courseNameSelector.value,
-      sections: courseSectionSelector.value,
+      sections: Number(courseSectionSelector.value),
       compatibleClassrooms: classroomSelectors
         .filter((data) => data.checked)
         .map((data) => data.id.slice(2)),
@@ -186,7 +186,7 @@ const createJSON = function () {
         .filter((data) => data.checked)
         .map((data) => Number(data.id.slice(7))),
       userPriority: coursePriorityToggle.checked
-        ? coursePrioritySelector.value
+        ? Number(coursePrioritySelector.value)
         : undefined,
     });
   } else {
@@ -209,13 +209,19 @@ const createJSON = function () {
 };
 
 const saveToServer = async function (arr) {
-  await fetch("/postEditedCourses", {
+  const response = await fetch("/updateCourses", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(arr),
   });
+
+  if (response.ok) {
+    window.location = "/coursesEdit";
+  } else {
+    console.log("error creating entry");
+  }
 };
 
 saveButton.addEventListener("click", () => {
