@@ -3,7 +3,8 @@ const route = express.Router();
 const fs = require("fs");
 
 let courses = require("../model/courses.json");
-const classrooms = require("../model/classrooms.json");
+let classrooms = require("../model/classrooms.json");
+let teachers = require("../model/teachers.json");
 
 // pass a path (e.g., "/") and callback function to the get method
 //  when the client makes an HTTP GET request to the specified path,
@@ -23,10 +24,12 @@ route.get("/coursesEdit", (req, res) => {
 });
 
 route.get("/fetchEditCourses", (req, res) => {
+  updateValues();
   res.json([courses, classrooms]);
 });
 
 route.get("/fetchEditClassrooms", (req, res) => {
+  updateValues();
   res.json(classrooms);
 });
 
@@ -48,6 +51,8 @@ route.use("/auth", require("./auth"));
 
 const updateValues = function () {
   courses = JSON.parse(fs.readFileSync("server/model/courses.json"));
+  classrooms = JSON.parse(fs.readFileSync("server/model/classrooms.json"));
+  teachers = JSON.parse(fs.readFileSync("server/model/teachers.json"));
 };
 
 module.exports = route;

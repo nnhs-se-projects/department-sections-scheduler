@@ -269,10 +269,10 @@
     "compatiblePeriods": [2, 3]
   },
   {
-    "name": "New Course A",
-    "sections": "5",
+    "name": "Test Course",
+    "sections": 5,
     "compatibleClassrooms": ["115"],
     "compatiblePeriods": [1, 2, 3, 4, 6, 7, 8],
-    "userPriority": "0.75"
+    "userPriority": 0.75
   }
 ]
