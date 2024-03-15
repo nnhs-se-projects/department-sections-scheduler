@@ -307,6 +307,18 @@ let assignTeachersToSections = function () {
         1
       );
       section.teacher = assignableTeachers[teacherIndex];
+
+      for (let teacher of teachers) {
+        if (
+          !(
+            4 in teacher.openPeriods ||
+            5 in teacher.openPeriods ||
+            6 in teacher.openPeriods
+          )
+        ) {
+          totalErrors++;
+        }
+      }
       // console.log(
       //   "Assigned " +
       //     assignableTeachers[teacherIndex].name +
@@ -319,7 +331,7 @@ let assignTeachersToSections = function () {
       // );
     }
   }
-  //console.log("Total errors: " + totalErrors);
+  console.log("Total errors: " + totalErrors);
   return totalErrors;
 };
 
