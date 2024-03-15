@@ -39,7 +39,7 @@ route.post("/updateCourses", async (req, res) => {
   // });
   // await entry.save();
   fs.writeFileSync("server/model/courses.json", JSON.stringify(req.body));
-  courses = require("../model/courses.json");
+  updateValues();
   res.status(201).end();
 });
 
@@ -47,7 +47,7 @@ route.post("/updateCourses", async (req, res) => {
 route.use("/auth", require("./auth"));
 
 const updateValues = function () {
-  courses = require("../model/courses.json");
+  courses = JSON.parse(fs.readFileSync("server/model/courses.json"));
 };
 
 module.exports = route;
