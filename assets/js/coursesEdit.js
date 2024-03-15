@@ -192,7 +192,7 @@ const createJSON = function () {
   } else {
     modifiedCourseArr[modifiedCourseArr.indexOf(currentCourse)] = {
       name: courseNameSelector.value,
-      sections: courseSectionSelector.value,
+      sections: Number(courseSectionSelector.value),
       compatibleClassrooms: classroomSelectors
         .filter((data) => data.checked)
         .map((data) => data.id.slice(2)),
@@ -200,7 +200,7 @@ const createJSON = function () {
         .filter((data) => data.checked)
         .map((data) => Number(data.id.slice(7))),
       userPriority: coursePriorityToggle.checked
-        ? coursePrioritySelector.value
+        ? Number(coursePrioritySelector.value)
         : undefined,
     };
   }
