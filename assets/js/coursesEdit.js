@@ -38,9 +38,13 @@ const onStart = async function () {
         );
       }
       currentCourseName = courseSelector.value;
-      currentCourse = courseArr.filter(
-        (course) => course.name === currentCourseName
-      )[0];
+      if (currentCourseName === "addCourse") {
+        currentCourse = null;
+      } else {
+        currentCourse = courseArr.filter(
+          (course) => course.name === currentCourseName
+        )[0];
+      }
 
       courseNameSelector.value = currentCourseName;
       updateFields();
@@ -74,21 +78,22 @@ const updateCoursePrioritySelector = function () {
   if (currentCourse.userPriority === undefined) {
     coursePriorityToggle.checked = false;
     document
-      .getElementById("sectionSelectorDiv")
+      .getElementById("prioritySelectorDiv")
       .setAttribute("class", "hidden");
+    coursePrioritySelector.value = 0.5;
   } else {
     coursePriorityToggle.checked = true;
-    document.getElementById("sectionSelectorDiv").setAttribute("class", "");
+    document.getElementById("prioritySelectorDiv").setAttribute("class", "");
     coursePrioritySelector.value = currentCourse.userPriority;
   }
 };
 
 coursePriorityToggle.addEventListener("change", () => {
   if (coursePriorityToggle.checked) {
-    document.getElementById("sectionSelectorDiv").setAttribute("class", "");
+    document.getElementById("prioritySelectorDiv").setAttribute("class", "");
   } else {
     document
-      .getElementById("sectionSelectorDiv")
+      .getElementById("prioritySelectorDiv")
       .setAttribute("class", "hidden");
   }
 });
@@ -108,6 +113,11 @@ const updateFields = function () {
       classroomSelectors[i].checked = false;
     }
     courseSectionSelector.value = 0;
+    coursePrioritySelector.value = 0.5;
+    coursePriorityToggle.checked = false;
+    document
+      .getElementById("prioritySelectorDiv")
+      .setAttribute("class", "hidden");
   } else {
     deleteButton.setAttribute("class", ""); // Show Delete Button
 
@@ -272,6 +282,5 @@ const SaveCase = {
 
 //FIXME: Need to ensure that courses with dependencies of rooms that no longer exist have those rooms removed
 //FIXME: Make sure that the course is removed from the teacher's courses if it is deleted
-//FIXME: Make sure an empty courseArr does not break the program
 
 onStart();
