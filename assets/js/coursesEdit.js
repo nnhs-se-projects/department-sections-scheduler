@@ -233,7 +233,7 @@ const saveToServer = async function (arr) {
   });
 
   if (response.ok) {
-    window.location = "/coursesEdit";
+    window.location = "/dataView";
   } else {
     console.log("error creating entry");
   }
