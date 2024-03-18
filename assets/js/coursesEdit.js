@@ -270,7 +270,6 @@ const SaveCase = {
   Delete: Symbol("delete"),
 };
 
-// FIXME: we need to add a check to see if the course name is already in the database // I Think this is done
-// FIXME: add a save button
+//FIXME: Need to ensure that courses with dependencies of rooms that no longer exist have those rooms removed
 
 onStart();
