@@ -1,10 +1,10 @@
 [
   {
     "name": "Introduction to Business",
-    "sections": 4,
-    "compatibleClassrooms": ["128", "126", "120"],
+    "sections": "4",
+    "compatibleClassrooms": ["120", "126", "128"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "userPriority": 0.75
+    "userPriority": "0.75"
   },
   {
     "name": "Accounting 1",
@@ -14,7 +14,7 @@
   },
   {
     "name": "Honors Accounting",
-    "sections": 1,
+    "sections": "1",
     "compatibleClassrooms": ["121", "123"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
@@ -267,5 +267,12 @@
     "sections": 2,
     "compatibleClassrooms": ["119"],
     "compatiblePeriods": [2, 3]
+  },
+  {
+    "name": "Test Course",
+    "sections": 5,
+    "compatibleClassrooms": ["115"],
+    "compatiblePeriods": [1, 2, 3, 4, 6, 7, 8],
+    "userPriority": 0.75
   }
 ]
