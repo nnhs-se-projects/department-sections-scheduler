@@ -39,6 +39,10 @@ textarea {
   width: 0px;
 }
 
+.hiddenButton {
+  visibility: hidden;
+}
+
 .selector {
   background-color: var(--nestedbc);
   color: white;

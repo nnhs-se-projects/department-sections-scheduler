@@ -5,7 +5,7 @@ const coursePrioritySelector = document.getElementById("prioritySelector");
 const coursePriorityToggle = document.getElementById("priorityOverrideEnabler");
 
 const saveButton = document.getElementById("saveButton");
-const deleteButton = document.getElementById("saveButton");
+const deleteButton = document.getElementById("deleteButton");
 
 let currentCourseName;
 let currentCourse;
@@ -96,8 +96,11 @@ coursePriorityToggle.addEventListener("change", () => {
 const updateFields = function () {
   currentCourseName = courseSelector.value;
   if (currentCourseName === "addCourse") {
+    deleteButton.setAttribute("class", "hiddenButton"); // Hide delete button
     currentCourse = null;
     courseNameSelector.value = "New Course";
+
+    // Resets values for Add Course
     for (let i = 0; i < 8; i++) {
       coursePeriodsSelectors[i].checked = true;
     }
@@ -106,6 +109,9 @@ const updateFields = function () {
     }
     courseSectionSelector.value = 0;
   } else {
+    deleteButton.setAttribute("class", ""); // Show Delete Button
+
+    // Update for everything other than Add Course
     currentCourse = courseArr.filter(
       (course) => course.name === currentCourseName
     )[0];
@@ -173,7 +179,7 @@ const verifyFields = function () {
   return true;
 };
 
-const createJSON = function () {
+const createSaveJSON = function () {
   const modifiedCourseArr = courseArr.map((data) => data);
   if (currentCourse == null) {
     modifiedCourseArr.push({
@@ -204,6 +210,15 @@ const createJSON = function () {
         : undefined,
     };
   }
+
+  console.log(modifiedCourseArr);
+  return modifiedCourseArr;
+};
+
+const createDeleteJSON = function () {
+  const modifiedCourseArr = courseArr.map((data) => data);
+  delete modifiedCourseArr[modifiedCourseArr.indexOf(currentCourse)];
+
   console.log(modifiedCourseArr);
   return modifiedCourseArr;
 };
@@ -219,14 +234,29 @@ const saveToServer = async function (arr) {
 };
 
 saveButton.addEventListener("click", () => {
-  if (verifyFields()) {
-    saveToServer(createJSON());
+  if (
+    verifyFields() &&
+    confirm(
+      "Are you sure you would like to save these changes? This cannot be undone."
+    )
+  ) {
+    saveToServer(createSaveJSON());
   }
 });
 
-deleteButton.addEventListener("click", () => {});
+deleteButton.addEventListener("click", () => {
+  if (currentCourse == null) {
+    alert("how");
+  } else if (
+    confirm(
+      "Are you sure you would like to delete this course? This cannot be undone."
+    )
+  ) {
+    saveToServer(createDeleteJSON());
+  }
+});
 
-//FIXME: we need to add a check to see if the course name is already in the database // I Think this is done
-//FIXME: add a save button
+// FIXME: we need to add a check to see if the course name is already in the database // I Think this is done
+// FIXME: add a save button
 
 onStart();
