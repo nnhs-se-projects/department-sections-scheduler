@@ -179,48 +179,51 @@ const verifyFields = function () {
   return true;
 };
 
-const createSaveJSON = function () {
+const createJSON = function (saveCase) {
   const modifiedCourseArr = courseArr.map((data) => data);
-  if (currentCourse == null) {
-    modifiedCourseArr.push({
-      name: courseNameSelector.value,
-      sections: Number(courseSectionSelector.value),
-      compatibleClassrooms: classroomSelectors
-        .filter((data) => data.checked)
-        .map((data) => data.id.slice(2)),
-      compatiblePeriods: coursePeriodsSelectors
-        .filter((data) => data.checked)
-        .map((data) => Number(data.id.slice(7))),
-      userPriority: coursePriorityToggle.checked
-        ? Number(coursePrioritySelector.value)
-        : undefined,
-    });
-  } else {
-    modifiedCourseArr[modifiedCourseArr.indexOf(currentCourse)] = {
-      name: courseNameSelector.value,
-      sections: Number(courseSectionSelector.value),
-      compatibleClassrooms: classroomSelectors
-        .filter((data) => data.checked)
-        .map((data) => data.id.slice(2)),
-      compatiblePeriods: coursePeriodsSelectors
-        .filter((data) => data.checked)
-        .map((data) => Number(data.id.slice(7))),
-      userPriority: coursePriorityToggle.checked
-        ? Number(coursePrioritySelector.value)
-        : undefined,
-    };
+
+  switch (saveCase) {
+    // Add the current course to the array
+    case SaveCase.Save:
+      if (currentCourse == null) {
+        modifiedCourseArr.push({
+          name: courseNameSelector.value,
+          sections: Number(courseSectionSelector.value),
+          compatibleClassrooms: classroomSelectors
+            .filter((data) => data.checked)
+            .map((data) => data.id.slice(2)),
+          compatiblePeriods: coursePeriodsSelectors
+            .filter((data) => data.checked)
+            .map((data) => Number(data.id.slice(7))),
+          userPriority: coursePriorityToggle.checked
+            ? Number(coursePrioritySelector.value)
+            : undefined,
+        });
+      } else {
+        modifiedCourseArr[modifiedCourseArr.indexOf(currentCourse)] = {
+          name: courseNameSelector.value,
+          sections: Number(courseSectionSelector.value),
+          compatibleClassrooms: classroomSelectors
+            .filter((data) => data.checked)
+            .map((data) => data.id.slice(2)),
+          compatiblePeriods: coursePeriodsSelectors
+            .filter((data) => data.checked)
+            .map((data) => Number(data.id.slice(7))),
+          userPriority: coursePriorityToggle.checked
+            ? Number(coursePrioritySelector.value)
+            : undefined,
+        };
+      }
+
+      console.log(modifiedCourseArr);
+      return modifiedCourseArr;
+
+    // Remove the current course from the array
+    case SaveCase.Delete:
+      modifiedCourseArr.splice(modifiedCourseArr.indexOf(currentCourse), 1);
+      console.log(modifiedCourseArr);
+      return modifiedCourseArr;
   }
-
-  console.log(modifiedCourseArr);
-  return modifiedCourseArr;
-};
-
-const createDeleteJSON = function () {
-  const modifiedCourseArr = courseArr.map((data) => data);
-  modifiedCourseArr.splice(modifiedCourseArr.indexOf(currentCourse), 1);
-
-  console.log(modifiedCourseArr);
-  return modifiedCourseArr;
 };
 
 const saveToServer = async function (arr) {
@@ -246,7 +249,7 @@ saveButton.addEventListener("click", () => {
       "Are you sure you would like to save these changes? This cannot be undone."
     )
   ) {
-    saveToServer(createSaveJSON());
+    saveToServer(createJSON(SaveCase.Save));
   }
 });
 
@@ -258,9 +261,14 @@ deleteButton.addEventListener("click", () => {
       "Are you sure you would like to delete this course? This cannot be undone."
     )
   ) {
-    saveToServer(createDeleteJSON());
+    saveToServer(createJSON(SaveCase.Delete));
   }
 });
+
+const SaveCase = {
+  Save: Symbol("save"),
+  Delete: Symbol("delete"),
+};
 
 // FIXME: we need to add a check to see if the course name is already in the database // I Think this is done
 // FIXME: add a save button
