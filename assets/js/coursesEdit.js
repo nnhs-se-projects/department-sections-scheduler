@@ -271,5 +271,7 @@ const SaveCase = {
 };
 
 //FIXME: Need to ensure that courses with dependencies of rooms that no longer exist have those rooms removed
+//FIXME: Make sure that the course is removed from the teacher's courses if it is deleted
+//FIXME: Make sure an empty courseArr does not break the program
 
 onStart();
