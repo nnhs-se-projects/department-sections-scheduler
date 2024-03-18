@@ -217,7 +217,7 @@ const createSaveJSON = function () {
 
 const createDeleteJSON = function () {
   const modifiedCourseArr = courseArr.map((data) => data);
-  delete modifiedCourseArr[modifiedCourseArr.indexOf(currentCourse)];
+  modifiedCourseArr.splice(modifiedCourseArr.indexOf(currentCourse), 1);
 
   console.log(modifiedCourseArr);
   return modifiedCourseArr;
@@ -233,7 +233,7 @@ const saveToServer = async function (arr) {
   });
 
   if (response.ok) {
-    window.location = "/dataView";
+    window.location = "/coursesEdit";
   } else {
     console.log("error creating entry");
   }
