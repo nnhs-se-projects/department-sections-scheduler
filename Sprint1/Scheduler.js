@@ -308,17 +308,6 @@ let assignTeachersToSections = function () {
       );
       section.teacher = assignableTeachers[teacherIndex];
 
-      for (let teacher of teachers) {
-        if (
-          !(
-            4 in teacher.openPeriods ||
-            5 in teacher.openPeriods ||
-            6 in teacher.openPeriods
-          )
-        ) {
-          totalErrors++;
-        }
-      }
       // console.log(
       //   "Assigned " +
       //     assignableTeachers[teacherIndex].name +
@@ -329,6 +318,18 @@ let assignTeachersToSections = function () {
       //     " in period: " +
       //     section.periodClass.period
       // );
+    }
+  }
+  for (let i = 0; i < teachers.length; i++) {
+    teacher = teachers[i];
+    if (
+      !(
+        teacher.openPeriods.includes(4) ||
+        teacher.openPeriods.includes(5) ||
+        teacher.openPeriods.includes(6)
+      )
+    ) {
+      totalErrors++;
     }
   }
   console.log("Total errors: " + totalErrors);
@@ -353,9 +354,11 @@ let generateSchedule = function () {
     let coursesAssigned = false;
     //whether or not the teacher scheduling algorithm has failed or if it has exceeded the failCap
     let teachersAssigned = false;
+
     //amount of times the teacher scheduling algorithm can failed before restarting
     //The higher this value, the longer the algorithm will run and the smaller the variation of schedules
     const failCap = 5;
+
     //amount of time the teacher scheduling algorithm has failed
     let failCount = 0;
     while (!coursesAssigned) {
