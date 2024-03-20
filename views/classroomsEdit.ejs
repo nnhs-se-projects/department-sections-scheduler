@@ -1,0 +1,53 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+
+<!-- Main Site -->
+<main style="background-color: #ffffff">
+  <div class="classroomsEditTopBar">
+    <div class="topBarText">Edit Classrooms</div>
+    <img src="img/ctelogo.png" alt="CTElogo" />
+  </div>
+  <div class="box">
+    <label class="selector">
+      Select Room:
+      <select id="classroomPicker">
+        <% for(let room of classrooms) { %>
+        <option value="<%= room.roomNum %>"><%= room.roomNum %></option>
+        <% } %>
+        <option value="addRoom">Add Room</option>
+      </select>
+    </label>
+  </div>
+  <div class="box">
+    <label class="selector">
+      Room Name/Number: <textarea id="namer" rows="1">Room Name</textarea>
+    </label>
+
+    <div class="selector" id="coursePeriods">
+      <label style="color: #ffffff">Available Periods:</label>
+      <div class="periodSelector">
+        <% for(let i=1; i <= 8; i++) { %>
+        <div style="display: inline-block; margin-inline: 13px">
+          <input type="checkbox" id="<%= 'Period ' + i %>" />
+          <label style="color: #ffffff" for="<%= 'Period ' + i %>"
+            >Period <%= i %></label
+          >
+        </div>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="selector">
+      <a role="button" id="saveButton">Save Room</a>
+      <a role="button" id="deleteButton">Delete Room</a>
+    </div>
+  </div>
+</main>
+<!-- /Main Site -->
+
+<script src="/js/roomsEdit.js"></script>
+
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->

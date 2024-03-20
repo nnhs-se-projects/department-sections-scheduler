@@ -280,7 +280,7 @@ const SaveCase = {
   Delete: Symbol("delete"),
 };
 
-//FIXME: Need to ensure that courses with dependencies of rooms that no longer exist have those rooms removed
-//FIXME: Make sure that the course is removed from the teacher's courses if it is deleted
-
 onStart();
+
+//FIXME: Make sure that the course is removed from the teacher's courses if it is deleted
+//FIXME: Need to ensure that courses with dependencies of rooms that no longer exist have those rooms removed

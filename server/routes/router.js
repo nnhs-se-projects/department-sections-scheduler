@@ -23,6 +23,11 @@ route.get("/coursesEdit", (req, res) => {
   res.render("coursesEdit", { courses, classrooms });
 });
 
+route.get("/classroomsEdit", (req, res) => {
+  updateValues();
+  res.render("classroomsEdit", { courses, classrooms });
+});
+
 route.get("/fetchEditCourses", (req, res) => {
   updateValues();
   res.json([courses, classrooms]);
@@ -34,14 +39,13 @@ route.get("/fetchEditClassrooms", (req, res) => {
 });
 
 route.post("/updateCourses", async (req, res) => {
-  // const entry = new Entry({
-  //   date: req.body.date,
-  //   email: req.session.email,
-  //   habit: req.body.habit,
-  //   content: req.body.content,
-  // });
-  // await entry.save();
   fs.writeFileSync("server/model/courses.json", JSON.stringify(req.body));
+  updateValues();
+  res.status(201).end();
+});
+
+route.post("/updateClassrooms", async (req, res) => {
+  fs.writeFileSync("server/model/classrooms.json", JSON.stringify(req.body));
   updateValues();
   res.status(201).end();
 });

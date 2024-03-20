@@ -119,6 +119,33 @@ textarea {
   margin-right: 60px;
 }
 
+.classroomsEditTopBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.classroomsEditTopBar img {
+  flex-shrink: 0;
+  width: 15%;
+  height: 15%;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.classroomsEditTopBar .topBarText {
+  font-weight: bold;
+  font-family: system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    Helvetica, Arial, "Helvetica Neue", sans-serif;
+  align-self: center;
+  font-size: 32px;
+  font-size: max(5vw, 38px);
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
 .entry {
   display: flex;
   flex-direction: row;
