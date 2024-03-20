@@ -537,6 +537,6 @@
         "preference": 1
       }
     ],
-    "openPeriods": [7]
+    "openPeriods": [4, 7]
   }
 ]
