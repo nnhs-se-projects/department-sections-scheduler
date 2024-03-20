@@ -21,7 +21,7 @@
       "type": "node",
       "request": "launch",
       "name": "Schedule Debug",
-      "program": "${workspaceFolder}/Sprint1/Scheduler.js"
+      "program": "${workspaceFolder}/Sprint2/Scheduler.js"
     }
   ]
 }

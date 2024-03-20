@@ -8,6 +8,8 @@ const teacherArr = require("./Teachers.json");
 const teacherString = JSON.stringify(teacherArr);
 const fs = require("fs");
 
+let lunchError = false;
+
 let formattedSchedule = function (arr) {
   let formattedArr = []; // 2d array of classrooms and periods
   //initial setup of 2d array
@@ -270,6 +272,7 @@ let createInitSchedule = function () {
 };
 
 let assignTeachersToSections = function () {
+  let lunchError = false;
   let totalErrors = 0;
   for (let section of sectionArr) {
     section.teacher = undefined;
@@ -284,7 +287,8 @@ let assignTeachersToSections = function () {
         teacher.certifiedCourses
           .map((item) => item.course)
           .includes(section.course.name) &&
-        teacher.openPeriods.includes(section.periodClass.period)
+        teacher.openPeriods.includes(section.periodClass.period) &&
+        teacher.openPeriods.length > 3
     );
     if (assignableTeachers.length == 0) {
       // console.log(
@@ -330,9 +334,12 @@ let assignTeachersToSections = function () {
       )
     ) {
       totalErrors++;
+      lunchError = true;
     }
   }
-  console.log("Total errors: " + totalErrors);
+  console.log(
+    "Total errors: " + totalErrors + "  Starving Teacher? " + lunchError
+  );
   return totalErrors;
 };
 
@@ -397,7 +404,7 @@ let generateSchedule = function () {
   }
 
   //info logging
-  console.log("Total errors: " + errors);
+  console.log("Total errors: " + errors + "  Starving Teacher? " + lunchError);
   console.log("Total trial schedules made: " + classroomSchedulingAttempts);
   console.log("Total times teachers attempted: " + teacherSchedulingAttempts);
   return formattedSchedule(sectionArr);
