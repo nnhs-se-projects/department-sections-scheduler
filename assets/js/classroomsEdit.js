@@ -274,6 +274,4 @@ const SaveData = {
 
 onStart();
 
-//FIXME: Need to ensure that courses with dependencies of rooms that are RENAMED have those rooms RENAMED
-//FIXME: Re-read the code and ensure no errors
 //FIXME: Sort the rooms by room number/name
