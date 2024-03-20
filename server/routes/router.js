@@ -35,7 +35,7 @@ route.get("/fetchEditCourses", (req, res) => {
 
 route.get("/fetchEditClassrooms", (req, res) => {
   updateValues();
-  res.json(classrooms);
+  res.json([classrooms, courses]);
 });
 
 route.post("/updateCourses", async (req, res) => {

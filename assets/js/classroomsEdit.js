@@ -7,6 +7,7 @@ const deleteButton = document.getElementById("deleteButton");
 let currentRoomName;
 let currentRoom;
 let classroomsArr;
+let courseArr;
 
 let periodsSelectors = [];
 
@@ -24,7 +25,8 @@ const onStart = async function () {
   }).then((response) =>
     response.json().then((data) => {
       console.log(data);
-      classroomsArr = data;
+      classroomsArr = data[0];
+      courseArr = data[1];
       currentRoomName = roomSelector.value;
       if (currentRoomName === "addRoom") {
         currentRoom = null;
@@ -142,19 +144,33 @@ const createJSON = function (saveCase) {
   }
 };
 
-const saveToServer = async function (arr) {
-  const response = await fetch("/updateClassrooms", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(arr),
-  });
+const saveToServer = async function (arr, saveData) {
+  let response;
+  switch (saveData) {
+    case SaveData.Courses:
+      response = await fetch("/updateCourses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(arr),
+      });
+      break;
+    case SaveData.Classrooms:
+      response = await fetch("/updateClassrooms", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(arr),
+      });
 
-  if (response.ok) {
-    window.location = "/classroomsEdit";
-  } else {
-    console.log("error creating entry");
+      if (response.ok) {
+        window.location = "/classroomsEdit";
+      } else {
+        console.log("error creating entry");
+      }
+      break;
   }
 };
 
@@ -163,9 +179,10 @@ saveButton.addEventListener("click", () => {
     verifyFields() &&
     confirm(
       "Are you sure you would like to save these changes? This cannot be undone."
-    )
+    ) &&
+    ensureSaveDependencies()
   ) {
-    saveToServer(createJSON(SaveCase.Save));
+    saveToServer(createJSON(SaveCase.Save), SaveData.Classrooms);
   }
 });
 
@@ -175,18 +192,87 @@ deleteButton.addEventListener("click", () => {
   } else if (
     confirm(
       "Are you sure you would like to delete this room? This cannot be undone."
-    )
+    ) &&
+    ensureDeleteDependencies()
   ) {
-    saveToServer(createJSON(SaveCase.Delete));
+    saveToServer(createJSON(SaveCase.Delete), SaveData.Classrooms);
   }
 });
+
+const ensureSaveDependencies = function () {
+  if (currentRoom != null && currentRoomName !== roomNameSelector.value) {
+    const dependentCourses = courseArr.filter((course) =>
+      course.compatibleClassrooms.includes(currentRoomName)
+    );
+    let dependentCoursesNameString = "";
+    for (let i = 0; i < dependentCourses.length; i++) {
+      dependentCoursesNameString += dependentCourses[i].name + ", ";
+    }
+    dependentCoursesNameString = dependentCoursesNameString.slice(0, -2);
+    if (dependentCourses.length > 0) {
+      const confirmation = confirm(
+        "This room is currently in use by " +
+          dependentCoursesNameString +
+          ". Are you sure you would like to rename this room?."
+      );
+      if (confirmation) {
+        dependentCourses.forEach((course) => {
+          course.compatibleClassrooms.splice(
+            course.compatibleClassrooms.indexOf(currentRoomName),
+            1,
+            roomNameSelector.value
+          );
+        });
+        saveToServer(courseArr, SaveData.Courses);
+        return true;
+      }
+      return false;
+    }
+  }
+  return true;
+};
+
+const ensureDeleteDependencies = function () {
+  const dependentCourses = courseArr.filter((course) =>
+    course.compatibleClassrooms.includes(currentRoomName)
+  );
+  let dependentCoursesNameString = "";
+  for (let i = 0; i < dependentCourses.length; i++) {
+    dependentCoursesNameString += dependentCourses[i].name + ", ";
+  }
+  dependentCoursesNameString = dependentCoursesNameString.slice(0, -2);
+  if (dependentCourses.length > 0) {
+    const confirmation = confirm(
+      "This room is currently in use by " +
+        dependentCoursesNameString +
+        ". Would you like to remove this course?."
+    );
+    if (confirmation) {
+      dependentCourses.forEach((course) => {
+        course.compatibleClassrooms.splice(
+          course.compatibleClassrooms.indexOf(currentRoomName),
+          1
+        );
+      });
+      saveToServer(courseArr, SaveData.Courses);
+      return true;
+    }
+    return false;
+  }
+  return true;
+};
 
 const SaveCase = {
   Save: Symbol("save"),
   Delete: Symbol("delete"),
 };
 
+const SaveData = {
+  Courses: Symbol("courses"),
+  Classrooms: Symbol("classrooms"),
+};
+
 onStart();
 
-//FIXME: Need to ensure that courses with dependencies of rooms that no longer exist have those rooms removed
+//FIXME: Need to ensure that courses with dependencies of rooms that are RENAMED have those rooms RENAMED
 //FIXME: Re-read the code and ensure no errors
