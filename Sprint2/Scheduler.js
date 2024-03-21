@@ -272,7 +272,7 @@ let createInitSchedule = function () {
 };
 
 let assignTeachersToSections = function () {
-  let lunchError = false;
+  let lunchError = 0;
   let totalErrors = 0;
   for (let section of sectionArr) {
     section.teacher = undefined;
@@ -334,12 +334,24 @@ let assignTeachersToSections = function () {
       )
     ) {
       totalErrors++;
-      lunchError = true;
+      lunchError++;
     }
   }
-  console.log(
-    "Total errors: " + totalErrors + "  Starving Teacher? " + lunchError
-  );
+  errString = "Total errors: ";
+  let str = "";
+
+  for (let i = 0; i < lunchError; i++) {
+    str += "🍔";
+  }
+  for (let i = 0; i < totalErrors; i++) {
+    errString += "❌";
+  }
+  for (let i = 0; i < 40 - totalErrors; i++) {
+    errString += " ";
+  }
+
+  console.log(errString + "Starving Teachers: " + str);
+  //console.log("🍔🔥💀👌");
   return totalErrors;
 };
 
@@ -404,7 +416,9 @@ let generateSchedule = function () {
   }
 
   //info logging
-  console.log("Total errors: " + errors + "  Starving Teacher? " + lunchError);
+  errString = "Total errors: " + errors;
+  errString.padEnd(20, " ");
+  console.log(errString + "  Starving Teacher? " + lunchError);
   console.log("Total trial schedules made: " + classroomSchedulingAttempts);
   console.log("Total times teachers attempted: " + teacherSchedulingAttempts);
   return formattedSchedule(sectionArr);
@@ -431,7 +445,7 @@ let generateSchedules = function (numSchedules) {
 //   printInCoolWay(thing[i]);
 // }
 
-let writeSchedules = function (num) {
+let writeSchedules = function (num, print) {
   let schedulesArr = generateSchedules(num);
 
   for (let a = 0; a < num; a++) {
@@ -440,8 +454,18 @@ let writeSchedules = function (num) {
       JSON.stringify(schedulesArr[a])
     );
   }
+
+  if (print) {
+    for (let i; i < schedulesArr.length; i++) {
+      console.log("");
+      console.log("");
+      console.log("");
+      console.log("Schedule " + i + ":");
+      printInCoolWay(schedulesArr[i]);
+    }
+  }
 };
 
-writeSchedules(100);
+writeSchedules(100, true);
 
 ///cupcakes are good
