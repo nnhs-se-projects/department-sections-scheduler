@@ -275,3 +275,4 @@ const SaveData = {
 onStart();
 
 //FIXME: Sort the rooms by room number/name
+//FIXME: name check code not working

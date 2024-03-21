@@ -284,3 +284,4 @@ onStart();
 
 //FIXME: Need to ensure that courses with dependencies of rooms that no longer exist have those rooms removed
 //FIXME: Sort the rooms by room number/name
+//FIXME: name check code not working
