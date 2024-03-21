@@ -28,14 +28,24 @@ route.get("/classroomsEdit", (req, res) => {
   res.render("classroomsEdit", { courses, classrooms });
 });
 
+route.get("/teachersEdit", (req, res) => {
+  updateValues();
+  res.render("teachersEdit", { teachers, courses });
+});
+
 route.get("/fetchEditCourses", (req, res) => {
   updateValues();
-  res.json([courses, classrooms]);
+  res.json([courses, classrooms, teachers]);
 });
 
 route.get("/fetchEditClassrooms", (req, res) => {
   updateValues();
   res.json([classrooms, courses]);
+});
+
+route.get("/fetchEditTeachers", (req, res) => {
+  updateValues();
+  res.json([teachers, courses]);
 });
 
 route.post("/updateCourses", async (req, res) => {
@@ -46,6 +56,12 @@ route.post("/updateCourses", async (req, res) => {
 
 route.post("/updateClassrooms", async (req, res) => {
   fs.writeFileSync("server/model/classrooms.json", JSON.stringify(req.body));
+  updateValues();
+  res.status(201).end();
+});
+
+route.post("/updateTeachers", async (req, res) => {
+  fs.writeFileSync("server/model/teachers.json", JSON.stringify(req.body));
   updateValues();
   res.status(201).end();
 });

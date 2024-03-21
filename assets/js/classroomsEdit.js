@@ -274,4 +274,7 @@ const SaveData = {
 
 onStart();
 
-// FIXME: Sort the rooms by room number/name
+//FIXME: Sort the rooms by room number/name
+//FIXME: Back button
+//ADDME: Some type of indication that there are saved/unsaved changes?
+//FIXME: Alert the user when they attempt to leave the page with unsaved changes
