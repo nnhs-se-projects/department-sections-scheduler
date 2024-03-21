@@ -137,19 +137,19 @@ courseSelector.addEventListener("change", () => updateFields());
 
 const verifyFields = function () {
   // Verify Course Name
-  if (courseNameSelector.value in ["", undefined, null]) {
+  if (["", undefined, null].includes(courseNameSelector.value)) {
     alert("The course must be given a name!");
     return false;
   } else if (
     currentCourse == null &&
-    courseNameSelector.value in courseArr.map((data) => data.name)
+    courseArr.map((data) => data.name).includes(courseNameSelector.value)
   ) {
     alert("A course already exists with this name!");
     return false;
   } else if (
     currentCourse != null &&
-    courseNameSelector !== currentCourseName &&
-    courseNameSelector.value in courseArr.map((data) => data.name)
+    courseNameSelector.value !== currentCourseName &&
+    courseArr.map((data) => data.name).includes(courseNameSelector.value)
   ) {
     alert("A course already exists with this name!");
     return false;
@@ -284,4 +284,3 @@ onStart();
 
 //FIXME: Need to ensure that courses with dependencies of rooms that no longer exist have those rooms removed
 //FIXME: Sort the rooms by room number/name
-//FIXME: name check code not working

@@ -78,19 +78,19 @@ roomSelector.addEventListener("change", () => updateFields());
 
 const verifyFields = function () {
   // Verify Room Name
-  if (roomNameSelector.value in ["", undefined, null]) {
+  if (["", undefined, null].includes(roomNameSelector.value)) {
     alert("The room must be given a number/name!");
     return false;
   } else if (
     currentRoom == null &&
-    roomNameSelector.value in classroomsArr.map((data) => data.roomNum)
+    classroomsArr.map((data) => data.roomNum).includes(roomNameSelector.value)
   ) {
     alert("A course already exists with this name!");
     return false;
   } else if (
     currentRoom != null &&
-    roomNameSelector !== currentRoomName &&
-    roomNameSelector.value in classroomsArr.map((data) => data.roomNum)
+    roomNameSelector.value !== currentRoomName &&
+    classroomsArr.map((data) => data.roomNum).includes(roomNameSelector.value)
   ) {
     alert("A course already exists with this name!");
     return false;
@@ -275,4 +275,3 @@ const SaveData = {
 onStart();
 
 //FIXME: Sort the rooms by room number/name
-//FIXME: name check code not working
