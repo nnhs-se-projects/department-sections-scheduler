@@ -271,87 +271,121 @@ let createInitSchedule = function () {
   }
 };
 
-let assignTeachersToSections = function () {
-  let lunchError = 0;
+// let assignTeachersToSections = function () {
+//   let lunchError = 0;
+//   let totalErrors = 0;
+//   for (let section of sectionArr) {
+//     section.teacher = undefined;
+//   }
+
+//   //parse is used to create a deep copy of the teacherArr
+//   let teachers = JSON.parse(teacherString);
+
+//   for (let section of sectionArr) {
+//     let assignableTeachers = teachers.filter(
+//       (teacher) =>
+//         teacher.certifiedCourses
+//           .map((item) => item.course)
+//           .includes(section.course.name) &&
+//         teacher.openPeriods.includes(section.periodClass.period) &&
+//         teacher.openPeriods.length > 3
+//     );
+//     if (assignableTeachers.length == 0) {
+//       // console.log(
+//       //   "No more valid teachers available to assign to " +
+//       //     section.course.name +
+//       //     " section " +
+//       //     section.sectionNumber +
+//       //     " in period: " +
+//       //     section.periodClass.period
+//       // );
+//       totalErrors++;
+//     } else {
+//       teacherIndex = Math.floor(Math.random() * assignableTeachers.length);
+//       teachers[
+//         teachers.indexOf(assignableTeachers[teacherIndex])
+//       ].openPeriods.splice(
+//         assignableTeachers[teacherIndex].openPeriods.indexOf(
+//           section.periodClass.period
+//         ),
+//         1
+//       );
+//       section.teacher = assignableTeachers[teacherIndex];
+
+//       // console.log(
+//       //   "Assigned " +
+//       //     assignableTeachers[teacherIndex].name +
+//       //     " to " +
+//       //     section.course.name +
+//       //     " section " +
+//       //     section.sectionNumber +
+//       //     " in period: " +
+//       //     section.periodClass.period
+//       // );
+//     }
+//   }
+//   for (let i = 0; i < teachers.length; i++) {
+//     teacher = teachers[i];
+//     if (
+//       !(
+//         teacher.openPeriods.includes(4) ||
+//         teacher.openPeriods.includes(5) ||
+//         teacher.openPeriods.includes(6)
+//       )
+//     ) {
+//       totalErrors++;
+//       lunchError++;
+//     }
+//   }
+//   errString = "Total errors: ";
+//   let str = "";
+
+//   for (let i = 0; i < lunchError; i++) {
+//     str += "🍔";
+//   }
+//   for (let i = 0; i < totalErrors; i++) {
+//     errString += "❌";
+//   }
+//   for (let i = 0; i < 40 - totalErrors; i++) {
+//     errString += " ";
+//   }
+
+//   console.log(errString + "Starving Teachers: " + str);
+//   //console.log("🍔🔥💀👌");
+//   return totalErrors;
+// };
+
+const assignTeachersToSections = function () {
   let totalErrors = 0;
-  for (let section of sectionArr) {
+  for (const section of sectionArr) {
     section.teacher = undefined;
   }
 
-  //parse is used to create a deep copy of the teacherArr
-  let teachers = JSON.parse(teacherString);
+  // Parse is used to create a deep copy of the teacherArr
+  const teachers = JSON.parse(teacherString);
 
-  for (let section of sectionArr) {
-    let assignableTeachers = teachers.filter(
-      (teacher) =>
-        teacher.certifiedCourses
-          .map((item) => item.course)
-          .includes(section.course.name) &&
-        teacher.openPeriods.includes(section.periodClass.period) &&
-        teacher.openPeriods.length > 3
-    );
-    if (assignableTeachers.length == 0) {
-      // console.log(
-      //   "No more valid teachers available to assign to " +
-      //     section.course.name +
-      //     " section " +
-      //     section.sectionNumber +
-      //     " in period: " +
-      //     section.periodClass.period
-      // );
-      totalErrors++;
-    } else {
-      teacherIndex = Math.floor(Math.random() * assignableTeachers.length);
-      teachers[
-        teachers.indexOf(assignableTeachers[teacherIndex])
-      ].openPeriods.splice(
-        assignableTeachers[teacherIndex].openPeriods.indexOf(
-          section.periodClass.period
-        ),
-        1
-      );
-      section.teacher = assignableTeachers[teacherIndex];
-
-      // console.log(
-      //   "Assigned " +
-      //     assignableTeachers[teacherIndex].name +
-      //     " to " +
-      //     section.course.name +
-      //     " section " +
-      //     section.sectionNumber +
-      //     " in period: " +
-      //     section.periodClass.period
-      // );
+  for (const curTeacher of teachers) {
+    for (const curCourse of curTeacher.coursesAssigned) {
+      for (let i = 0; i <= curCourse.sections; i++) {
+        const assignableSections = sectionArr.filter(
+          (section) =>
+            section.course.name === curCourse.name &&
+            section.teacher === undefined
+        );
+        if (assignableSections.length === 0) {
+          totalErrors++;
+        } else {
+          const sectionIndex = Math.floor(
+            Math.random() * assignableSections.length
+          );
+          sectionArr[
+            sectionArr.indexOf(assignableSections[sectionIndex])
+          ].teacher = curTeacher;
+        }
+      }
     }
   }
-  for (let i = 0; i < teachers.length; i++) {
-    teacher = teachers[i];
-    if (
-      !(
-        teacher.openPeriods.includes(4) ||
-        teacher.openPeriods.includes(5) ||
-        teacher.openPeriods.includes(6)
-      )
-    ) {
-      totalErrors++;
-      lunchError++;
-    }
-  }
-  errString = "Total errors: ";
-  let str = "";
 
-  for (let i = 0; i < lunchError; i++) {
-    str += "🍔";
-  }
-  for (let i = 0; i < totalErrors; i++) {
-    errString += "❌";
-  }
-  for (let i = 0; i < 40 - totalErrors; i++) {
-    errString += " ";
-  }
-
-  console.log(errString + "Starving Teachers: " + str);
-  //console.log("🍔🔥💀👌");
   return totalErrors;
 };
 
