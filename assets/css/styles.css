@@ -15,6 +15,18 @@
   margin-bottom: 30px;
 }
 
+.backButton {
+  background-color: var(--bc);
+  color: white;
+  border-radius: 10px;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
 .scrollSelector {
   background-color: var(--nestedbc);
   color: white;
@@ -112,11 +124,12 @@ textarea {
   font-weight: bold;
   font-family: system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
     Helvetica, Arial, "Helvetica Neue", sans-serif;
-  align-self: center;
+  align-items: center;
   font-size: 32px;
   font-size: max(5vw, 38px);
   margin-left: 60px;
   margin-right: 60px;
+  display: flex;
 }
 
 .classroomsEditTopBar {

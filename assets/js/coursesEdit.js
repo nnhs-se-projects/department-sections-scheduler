@@ -6,6 +6,7 @@ const coursePriorityToggle = document.getElementById("priorityOverrideEnabler");
 
 const saveButton = document.getElementById("saveButton");
 const deleteButton = document.getElementById("deleteButton");
+let unsaved = true;
 
 let currentCourseName;
 let currentCourse;
@@ -259,6 +260,7 @@ saveButton.addEventListener("click", () => {
       "Are you sure you would like to save these changes? This cannot be undone."
     )
   ) {
+    unsaved = false;
     saveToServer(createJSON(SaveCase.Save));
   }
 });
@@ -280,7 +282,14 @@ const SaveCase = {
   Delete: Symbol("delete"),
 };
 
+window.addEventListener("beforeunload", (event) => {
+  if (unsaved) {
+    event.returnValue = `Are you sure you want to leave?`;
+  }
+});
+
 onStart();
 
 //FIXME: Need to ensure that courses with dependencies of rooms that no longer exist have those rooms removed
 //FIXME: Sort the rooms by room number/name
+//ADDME: Some type of indication that there are saved/unsaved changes?

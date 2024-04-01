@@ -3,6 +3,7 @@ const roomNameSelector = document.getElementById("namer");
 
 const saveButton = document.getElementById("saveButton");
 const deleteButton = document.getElementById("deleteButton");
+let unsaved = true;
 
 let currentRoomName;
 let currentRoom;
@@ -182,6 +183,7 @@ saveButton.addEventListener("click", () => {
     ) &&
     ensureSaveDependencies()
   ) {
+    unsaved = false;
     saveToServer(createJSON(SaveCase.Save), SaveData.Classrooms);
   }
 });
@@ -272,9 +274,13 @@ const SaveData = {
   Classrooms: Symbol("classrooms"),
 };
 
+window.addEventListener("beforeunload", (event) => {
+  if (unsaved) {
+    event.returnValue = `Are you sure you want to leave?`;
+  }
+});
+
 onStart();
 
 //FIXME: Sort the rooms by room number/name
-//FIXME: Back button
 //ADDME: Some type of indication that there are saved/unsaved changes?
-//FIXME: Alert the user when they attempt to leave the page with unsaved changes
