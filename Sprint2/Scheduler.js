@@ -389,30 +389,30 @@ const assignTeachersToSections = function () {
   return totalErrors;
 };
 
-let generateSchedule = function () {
-  //main code
+const generateSchedule = function () {
+  // Main code
   let teacherFailed = true;
   findCoursePriority();
   createSections();
   let classroomSchedulingAttempts = 0;
   let teacherSchedulingAttempts = 0;
-  //throw out every schedule that doesn't work;
-  //give teachers a failCap number of attempts to schedule before giving up
+  // Throw out every schedule that doesn't work;
+  // Give teachers a failCap number of attempts to schedule before giving up
   while (teacherFailed) {
-    //number of times period-classrooms have been assigned
+    // Number of times period-classrooms have been assigned
     classroomSchedulingAttempts++;
-    //if the teacher scheduling algorithm has failed, we need to reset the period-classrooms and reassign them
+    // If the teacher scheduling algorithm has failed, we need to reset the period-classrooms and reassign them
     teacherFailed = false;
-    //whether or not the period-classrooms have been assigned validly
+    // Whether or not the period-classrooms have been assigned validly
     let coursesAssigned = false;
-    //whether or not the teacher scheduling algorithm has failed or if it has exceeded the failCap
+    // Whether or not the teacher scheduling algorithm has failed or if it has exceeded the failCap
     let teachersAssigned = false;
 
-    //amount of times the teacher scheduling algorithm can failed before restarting
-    //The higher this value, the longer the algorithm will run and the smaller the variation of schedules
+    // Amount of times the teacher scheduling algorithm can failed before restarting
+    // The higher this value, the longer the algorithm will run and the smaller the variation of schedules
     const failCap = 5;
 
-    //amount of time the teacher scheduling algorithm has failed
+    // Amount of time the teacher scheduling algorithm has failed
     let failCount = 0;
     while (!coursesAssigned) {
       createPeriodClassrooms();
@@ -421,66 +421,55 @@ let generateSchedule = function () {
     while (!teachersAssigned) {
       teacherSchedulingAttempts++;
       createInitSchedule();
-      if (assignTeachersToSections() == 0) {
+      if (assignTeachersToSections() === 0) {
         teachersAssigned = true;
       } else {
         failCount++;
-        //console.log("failure encountered");
-        //console.log(failures);
+        // console.log("failure encountered");
+        // console.log(failures);
       }
       if (failCount >= failCap) {
         teacherFailed = true;
-        //they havent been assigned but we need to break out of the loop
+        // Teachers haven't been assigned and we need to break out of the loop
         teachersAssigned = true;
       }
     }
   }
 
-  //error check
+  // Error check
   let errors = 0;
-  for (let section of sectionArr) {
-    if (section.teacher == undefined || section.teacher == null) {
+  for (const section of sectionArr) {
+    if (section.teacher === undefined || section.teacher == null) {
       console.log("Teacher not assigned to " + section.course.name);
       errors++;
     }
-    if (section.periodClass == undefined || section.periodClass == null) {
+    if (section.periodClass === undefined || section.periodClass == null) {
       console.log("Period-classroom not assigned to " + section.course.name);
       errors++;
     }
   }
 
-  //info logging
-  errString = "Total errors: " + errors;
+  // Info logging
+  const errString = "Total errors: " + errors;
   errString.padEnd(20, " ");
-  console.log(errString + "  Starving Teacher? " + lunchError);
+  // console.log(errString + "  Starving Teacher? " + lunchError);
   console.log("Total trial schedules made: " + classroomSchedulingAttempts);
   console.log("Total times teachers attempted: " + teacherSchedulingAttempts);
   return formattedSchedule(sectionArr);
 };
 
-let generateSchedules = function (numSchedules) {
-  let schedules = [];
+const generateSchedules = function (numSchedules) {
+  const schedules = [];
   for (let k = 0; k < numSchedules; k++) {
-    //console.log("Generating schedule " + k);
+    // console.log("Generating schedule " + k);
     schedules.push(generateSchedule());
-    //console.log("Schedule " + k + " generated");
+    // console.log("Schedule " + k + " generated");
   }
   return schedules;
 };
 
-//print schedule
-
-//printInCoolWay(generateSchedule());
-
-// let thing = generateSchedules(5);
-// console.log(thing.length);
-// for (i = 0; i < thing.length; i++) {
-//   console.log("Schedule " + (i + 1));
-//   printInCoolWay(thing[i]);
-// }
-
-let writeSchedules = function (num, print) {
-  let schedulesArr = generateSchedules(num);
+const writeSchedules = function (num, print) {
+  const schedulesArr = generateSchedules(num);
 
   for (let a = 0; a < num; a++) {
     fs.writeFileSync(
@@ -502,4 +491,20 @@ let writeSchedules = function (num, print) {
 
 writeSchedules(100, true);
 
-///cupcakes are good
+// "Cupcakes are good
+// I like cupcakes
+// From the store
+// They are good
+// I like cupcakes
+// Yes I do
+// good cupcakes
+// Please give me some cupcakes
+// So I can eat them
+// Good cupcakes
+// How I love them
+// Let me count the ways
+// One, two, three
+// Red velvet, chocolate, vanilla
+// So many flavors
+// I like cupcakes"
+// - Written by Copilot
