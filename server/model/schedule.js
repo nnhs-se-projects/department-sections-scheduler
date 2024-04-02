@@ -1,5 +1,5 @@
 /**
- * schema for a journal entry
+ * schema for a data entry
  */
 
 const mongoose = require("mongoose");
