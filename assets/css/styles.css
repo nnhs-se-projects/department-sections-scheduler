@@ -37,6 +37,19 @@
   text-align: left;
   outline: none;
   font-size: 20px;
+  margin-top: 10px;
+}
+
+.collapsible:after {
+  content: "\2B9E ";
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2B9F";
 }
 
 .active,
@@ -49,8 +62,17 @@
   padding: 0 18px;
   max-height: 0;
   overflow: hidden;
+  border-radius: 5px;
   transition: max-height 0.2s ease-out;
   background-color: var(--nestedbc);
+}
+
+.buttonHolder {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 0px;
 }
 
 .backButton {

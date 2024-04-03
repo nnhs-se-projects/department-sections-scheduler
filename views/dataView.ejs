@@ -7,28 +7,49 @@
   <div class="indexTopBar">
     <img src="img/SE-GitHub-image.png" alt="Huskie code logo" />
     <h1>Data</h1>
-    <a href="/coursesEdit" role="button">Edit Courses</a>
-    <a href="/classroomsEdit" role="button">Edit Classrooms</a>
   </div>
   <div class="box flexBox">
     <div class="box2 flexItem">
       <h1>Classrooms</h1>
-      <div class="scrollSelector">
+      <div class="scrollSelector" style="max-height: 500px; min-height: 500px">
       <% for(let i=0; i < classrooms.length; i++) { %>
         <button class="collapsible"><%= classrooms[i].roomNum %></button>
         <div class="contentCollapsible">
           Hey Guys, classroom here
         </div>
-        <% } %>
+      <% } %>
+      </div>
+      <div class="buttonHolder">
+        <a href="/coursesEdit" role="button" class="box" style="margin: 5px">Edit Courses</a>
       </div>
     </div>
     <div class="box2 flexItem">
       <h1>Courses</h1>
-      stuff
+      <div class="scrollSelector" style="max-height: 500px; min-height: 500px">
+      <% for(let i=0; i < courses.length; i++) { %>
+        <button class="collapsible"><%= courses[i].name %></button>
+        <div class="contentCollapsible">
+          Hey Guys, course here
+        </div>
+      <% } %>
+      </div>
+      <div class="buttonHolder">
+        <a href="/coursesEdit" role="button" class="box" style="margin: 5px">Edit Courses</a>
+      </div>
     </div>
     <div class="box2 flexItem">
       <h1>Teachers</h1>
-      stuff
+      <div class="scrollSelector" style="max-height: 500px; min-height: 500px">
+      <% for(let i=0; i < teachers.length; i++) { %>
+        <button class="collapsible"><%= teachers[i].name %></button>
+        <div class="contentCollapsible">
+          Hey Guys, teacher here
+        </div>
+      <% } %>
+      </div>
+      <div class="buttonHolder">
+        <a href="/coursesEdit" role="button" class="box" style="margin: 5px">Edit Teachers</a>
+      </div>
     </div>
   </div>
 </main>
