@@ -1,5 +1,6 @@
 /* styling for the authentication page */
 :root {
+  /*bc = box color*/
   --bc: rgb(193, 15, 15);
   --bcDark: rgb(128, 0, 0);
   --nestedbc: rgba(255, 178, 178, 0.25);
