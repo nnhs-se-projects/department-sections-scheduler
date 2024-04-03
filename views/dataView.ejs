@@ -15,7 +15,7 @@
       <% for(let i=0; i < classrooms.length; i++) { %>
         <button class="collapsible"><%= classrooms[i].roomNum %></button>
         <div class="contentCollapsible">
-          Hey Guys, classroom here
+          Periods Available: <%= classrooms[i].periodsAvailable %>
         </div>
       <% } %>
       </div>
@@ -29,7 +29,12 @@
       <% for(let i=0; i < courses.length; i++) { %>
         <button class="collapsible"><%= courses[i].name %></button>
         <div class="contentCollapsible">
-          Hey Guys, course here
+          Sections: <%= courses[i].sections %>
+          <br/> <b>Compatible Classrooms:</b><%= courses[i].compatibleClassrooms.map((item) => (item = " "+item)) %>
+          <br/> Periods: <%= courses[i].compatiblePeriods %>
+          <% if(courses[i].userPriority !== undefined) { %>
+            <br/> Priority: <%= courses[i].userPriority %>
+          <% } %>
         </div>
       <% } %>
       </div>
