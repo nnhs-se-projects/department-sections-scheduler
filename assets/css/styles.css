@@ -1,6 +1,7 @@
 /* styling for the authentication page */
 :root {
   --bc: rgb(193, 15, 15);
+  --bcDark: rgb(128, 0, 0);
   --nestedbc: rgba(255, 178, 178, 0.25);
 }
 
@@ -24,6 +25,32 @@
 .flexItem {
   flex-grow: 0;
   flex-basis: 30%;
+}
+
+.collapsible {
+  background-color: var(--bc);
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 20px;
+}
+
+.active,
+.collapsible:hover {
+  background-color: var(--bcDark);
+}
+
+.contentCollapsible {
+  color: white;
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: var(--nestedbc);
 }
 
 .backButton {

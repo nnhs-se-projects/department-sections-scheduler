@@ -12,15 +12,18 @@
   </div>
   <div class="box flexBox">
     <div class="box2 flexItem">
-      <h1>Courses</h1>
+      <h1>Classrooms</h1>
       <div class="scrollSelector">
-        <% for(let i=0; i < courses.length; i++) { %>
-          <div class="selector"><%= courses[i].name %></div>
+      <% for(let i=0; i < classrooms.length; i++) { %>
+        <button class="collapsible"><%= classrooms[i].roomNum %></button>
+        <div class="contentCollapsible">
+          Hey Guys, classroom here
+        </div>
         <% } %>
       </div>
     </div>
     <div class="box2 flexItem">
-      <h1>Classrooms</h1>
+      <h1>Courses</h1>
       stuff
     </div>
     <div class="box2 flexItem">
