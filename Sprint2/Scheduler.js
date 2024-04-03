@@ -1,4 +1,4 @@
-let sectionArr = [];
+const sectionArr = [];
 let periodsClassArr = [];
 const courses = require("./Courses.json");
 const config = require("./Config.json");
@@ -14,9 +14,9 @@ let formattedSchedule = function (arr) {
   let formattedArr = []; // 2d array of classrooms and periods
   //initial setup of 2d array
 
-  for (i = 0; i < config.numPeriods; i++) {
+  for (let i = 0; i < config.numPeriods; i++) {
     let tempArr = [];
-    for (j = 0; j < classroomArr.length; j++) {
+    for (let j = 0; j < classroomArr.length; j++) {
       tempArr.push(null);
       //tempArr.push("Empty " + classroomList[j] + " period");
     }
@@ -24,7 +24,7 @@ let formattedSchedule = function (arr) {
   }
 
   //iterate through arr and add each section to the formattedArr
-  for (i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     if (arr[i].periodClass != null) {
       roomIndex = classroomList.indexOf(arr[i].periodClass.classroom);
       formattedArr[arr[i].periodClass.period - 1][roomIndex] = arr[i];
@@ -36,7 +36,7 @@ let formattedSchedule = function (arr) {
 
 let updateFormattedSchedule = function (formattedArr) {
   //update schedule
-  for (i = 0; i < sectionArr.length; i++) {
+  for (let i = 0; i < sectionArr.length; i++) {
     if (sectionArr[i].periodClass != null) {
       roomIndex = classroomList.indexOf(sectionArr[i].periodClass.classroom);
       formattedArr[sectionArr[i].periodClass.period - 1][roomIndex] =
@@ -150,7 +150,7 @@ let createSections = function () {
   }
 
   for (let course of courses) {
-    for (i = 0; i < course.sections; i++) {
+    for (let i = 0; i < course.sections; i++) {
       sectionArr.push({
         course: course,
         sectionNumber: i + 1,
@@ -191,7 +191,7 @@ let removeSection = function (arr, course) {
   if (removedSection == null) {
     console.log("No sections of " + course + " found");
   } else {
-    for (i = 0; i < remainingSections.length; i++) {
+    for (let i = 0; i < remainingSections.length; i++) {
       arr[i].section = i + 1;
     }
     sortSections();
@@ -255,7 +255,7 @@ let assignPeriodClassrooms = function () {
 
 let createInitSchedule = function () {
   //create 2d array
-  let schedule = [];
+  const schedule = [];
   for (let i = 0; i < config.numPeriods; i++) {
     schedule.push([]);
     for (let j = 0; j < classroomArr.length; j++) {
@@ -264,7 +264,7 @@ let createInitSchedule = function () {
   }
 
   //assign sections to schedule
-  for (let section of sectionArr) {
+  for (const section of sectionArr) {
     schedule[section.periodClass.period - 1][
       classroomList.indexOf(section.periodClass.classroom)
     ] = section;
@@ -365,6 +365,7 @@ const assignTeachersToSections = function () {
   const teachers = JSON.parse(teacherString);
 
   for (const curTeacher of teachers) {
+    let teacherCourseID = 1;
     for (const curCourse of curTeacher.coursesAssigned) {
       for (let i = 0; i <= curCourse.sections; i++) {
         const assignableSections = sectionArr.filter(
@@ -381,8 +382,29 @@ const assignTeachersToSections = function () {
           sectionArr[
             sectionArr.indexOf(assignableSections[sectionIndex])
           ].teacher = curTeacher;
+          sectionArr[
+            sectionArr.indexOf(assignableSections[sectionIndex])
+          ].courseID = `${
+            sectionArr[sectionArr.indexOf(assignableSections[sectionIndex])]
+              .course.name
+          }-${
+            sectionArr[sectionArr.indexOf(assignableSections[sectionIndex])]
+              .teacher.name
+          }-${teacherCourseID}`;
         }
       }
+    }
+  }
+  for (let i = 0; i < teachers.length; i++) {
+    const teacher = teachers[i];
+    if (
+      !(
+        teacher.openPeriods.includes(4) ||
+        teacher.openPeriods.includes(5) ||
+        teacher.openPeriods.includes(6)
+      )
+    ) {
+      totalErrors++;
     }
   }
 
