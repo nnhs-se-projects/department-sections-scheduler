@@ -10,10 +10,23 @@
     <a href="/coursesEdit" role="button">Edit Courses</a>
     <a href="/classroomsEdit" role="button">Edit Classrooms</a>
   </div>
-  <div class="box flex">
-    <div class="column">stufffffffffffffffffffffffffffffffffffff</div>
-    <div class="column">stuffffffffffffffff</div>
-    <div class="column">stuff stuffffffffffffffffffffffffffffffffffff</div>
+  <div class="box flexBox">
+    <div class="box2 flexItem">
+      <h1>Courses</h1>
+      <div class="scrollSelector">
+        <% for(let i=0; i < courses.length; i++) { %>
+          <div class="selector"><%= courses[i].name %></div>
+        <% } %>
+      </div>
+    </div>
+    <div class="box2 flexItem">
+      <h1>Classrooms</h1>
+      stuff
+    </div>
+    <div class="box2 flexItem">
+      <h1>Teachers</h1>
+      stuff
+    </div>
   </div>
 </main>
 <!-- /Main Site -->

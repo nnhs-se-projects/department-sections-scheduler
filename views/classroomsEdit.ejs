@@ -10,7 +10,7 @@
   </div>
   <a href="/dataView" class="backButton" role="button">Back</a>
   <div class="box">
-    <label class="selector">
+    <label class="box2">
       Select Room:
       <select id="classroomPicker">
         <% for(let room of classrooms) { %>
@@ -21,11 +21,11 @@
     </label>
   </div>
   <div class="box">
-    <label class="selector">
+    <label class="box2">
       Room Name/Number: <textarea id="namer" rows="1">Room Name</textarea>
     </label>
 
-    <div class="selector" id="coursePeriods">
+    <div class="box2" id="coursePeriods">
       <label style="color: #ffffff">Available Periods:</label>
       <div class="periodSelector">
         <% for(let i=1; i <= 8; i++) { %>
@@ -39,7 +39,7 @@
       </div>
     </div>
 
-    <div class="selector">
+    <div class="box2">
       <a role="button" id="saveButton">Save Room</a>
       <a role="button" id="deleteButton">Delete Room</a>
     </div>

@@ -9,7 +9,7 @@
     <img src="img/ctelogo.png" alt="CTElogo" />
   </div>
   <div class="box">
-    <label class="selector">
+    <label class="box2">
       Select Course:
       <select id="coursePicker">
         <% for(let course of courses) { %>
@@ -20,15 +20,15 @@
     </label>
   </div>
   <div class="box">
-    <label class="selector">
+    <label class="box2">
       Course Name: <textarea id="namer" rows="1">Course Name</textarea>
     </label>
 
-    <label class="selector">
+    <label class="box2">
       Number of Sections: <input id="sectionSelector" type="number" min="1" />
     </label>
 
-    <div class="selector" id="coursePeriods">
+    <div class="box2" id="coursePeriods">
       <label  style="color: #FFFFFF">Available Periods:</label>
       <div class = "periodSelector">
       <% for(let i=1; i <= 8; i++) { %>
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <div class="selector">
+    <div class="box2">
       <label style="color: #FFFFFF">Compatible Classrooms:</label>
       <div class="scrollSelector">
         <% for(let classroom of classrooms) { %>
@@ -51,16 +51,16 @@
       </div>
     </div>
 
-    <div class = "selector">
+    <div class = "box2">
       <input type="checkbox" id="priorityOverrideEnabler" /><label style="color: #FFFFFF">Hard Coded Priority</label>
 
       <div id="prioritySelectorDiv" class="">
-        <label class="selector">
+        <label class="box2">
         Overridden Priority: <input id="prioritySelector" type="number" min="0" max="1"/>
         </label>    
       </div>
     </div>
-    <div class="selector">
+    <div class="box2">
       <a role="button" id="saveButton">Save Course</a>
       <a role="button" id="deleteButton">Delete Course</a>
     </div>

@@ -15,7 +15,7 @@ route.get("/", async (req, res) => {
 });
 
 route.get("/dataView", (req, res) => {
-  res.render("dataView", {});
+  res.render("dataView", { courses, classrooms, teachers });
 });
 
 route.get("/coursesEdit", (req, res) => {

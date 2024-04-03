@@ -1,6 +1,6 @@
 /* styling for the authentication page */
 :root {
-  --bc: #c10f0f;
+  --bc: rgb(193, 15, 15);
   --nestedbc: rgba(255, 178, 178, 0.25);
 }
 
@@ -12,23 +12,18 @@
   margin: 30px;
 }
 
-.flex {
+.flexBox {
   display: flex;
+  flex-wrap: nowrap;
+  display: flex;
+  justify-content: space-evenly;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
 }
 
-.column {
-  float: inline-start;
-  width: 30%;
-
-  background-color: var(--bc);
-  color: white;
-  border-radius: 10px;
-  padding: 20px;
-  margin-left: 30px;
-  margin-top: 30px;
-  margin-right: 30px;
+.flexItem {
+  flex-grow: 0;
+  flex-basis: 30%;
 }
 
 .backButton {
@@ -71,15 +66,12 @@ textarea {
   visibility: hidden;
 }
 
-.selector {
+.box2 {
   background-color: var(--nestedbc);
   color: white;
   border-radius: 10px;
   padding: 20px;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  margin: 10px;
 }
 
 .authForm {
