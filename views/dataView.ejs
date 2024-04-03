@@ -29,11 +29,11 @@
       <% for(let i=0; i < courses.length; i++) { %>
         <button class="collapsible"><%= courses[i].name %></button>
         <div class="contentCollapsible">
-          Sections: <%= courses[i].sections %>
+          <b>Sections:</b> <%= courses[i].sections %>
           <br/> <b>Compatible Classrooms:</b><%= courses[i].compatibleClassrooms.map((item) => (item = " "+item)) %>
-          <br/> Periods: <%= courses[i].compatiblePeriods %>
+          <br/> <b>Periods:</b><%= courses[i].compatiblePeriods.map((item) => (item = " "+item)) %>
           <% if(courses[i].userPriority !== undefined) { %>
-            <br/> Priority: <%= courses[i].userPriority %>
+            <br/> <b>Priority:</b> <%= courses[i].userPriority %>
           <% } %>
         </div>
       <% } %>
