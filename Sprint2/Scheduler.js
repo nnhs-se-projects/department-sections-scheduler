@@ -271,6 +271,24 @@ let createInitSchedule = function () {
   }
 };
 
+const checkForValidSections = function () {
+  for (const course of courses) {
+    const teachers = JSON.parse(teacherString);
+    const assignableTeachers = teachers.filter((teacher) =>
+      teacher.coursesAssigned.map((item) => item.course).includes(course.name)
+    );
+    let totalTeachableSections = 0;
+    for (const teacher of assignableTeachers) {
+      totalTeachableSections += teacher.coursesAssigned.find(
+        (item) => item.course === course.name
+      ).sections;
+    }
+    if (!totalTeachableSections === course.sections) {
+      return false;
+    }
+  }
+  return true;
+};
 // let assignTeachersToSections = function () {
 //   let lunchError = 0;
 //   let totalErrors = 0;
