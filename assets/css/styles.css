@@ -48,6 +48,8 @@
   outline: none;
   font-size: 20px;
   margin-top: 10px;
+  border-radius: 10px 10px 10px 10px;
+  transition: border-radius 0.2s ease-out;
 }
 
 .collapsible:after {
@@ -62,7 +64,11 @@
   content: "\2B9F";
 }
 
-.active,
+.active {
+  background-color: var(--bcDark);
+  border-radius: 10px 10px 0px 0px;
+}
+
 .collapsible:hover {
   background-color: var(--bcDark);
 }
