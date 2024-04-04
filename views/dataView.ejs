@@ -9,9 +9,10 @@
     <h1>Data</h1>
   </div>
   <div class="box flexBox">
+
     <div class="box2 flexItem">
       <h1>Classrooms</h1>
-      <div class="scrollSelector" style="max-height: 500px; min-height: 500px">
+      <div class="scrollSelector" style="max-height: 500px; min-height: 500px; border-radius: 10px 10px 0px 0px;">
       <% for(let i=0; i < classrooms.length; i++) { %>
         <button class="collapsible"><%= classrooms[i].roomNum %></button>
         <div class="contentCollapsible">
@@ -19,13 +20,15 @@
         </div>
       <% } %>
       </div>
+      <textarea class="filter" id="classFilter" rows="1" placeholder="🔎︎ Search"></textarea>
       <div class="buttonHolder">
         <a href="/classroomsEdit" role="button" class="box" style="margin: 5px">Edit Classrooms</a>
       </div>
     </div>
+
     <div class="box2 flexItem">
       <h1>Courses</h1>
-      <div class="scrollSelector" style="max-height: 500px; min-height: 500px">
+      <div class="scrollSelector" style="max-height: 500px; min-height: 500px; border-radius: 10px 10px 0px 0px;">
       <% for(let i=0; i < courses.length; i++) { %>
         <button class="collapsible"><%= courses[i].name %></button>
         <div class="contentCollapsible">
@@ -38,13 +41,15 @@
         </div>
       <% } %>
       </div>
+      <textarea class="filter" id="classFilter" rows="1" placeholder="🔎︎ Search"></textarea>
       <div class="buttonHolder">
         <a href="/coursesEdit" role="button" class="box" style="margin: 5px">Edit Courses</a>
       </div>
     </div>
+
     <div class="box2 flexItem">
       <h1>Teachers</h1>
-      <div class="scrollSelector" style="max-height: 500px; min-height: 500px">
+      <div class="scrollSelector" style="max-height: 500px; min-height: 500px; border-radius: 10px 10px 0px 0px;">
       <% for(let i=0; i < teachers.length; i++) { %>
         <button class="collapsible"><%= teachers[i].name %></button>
         <div class="contentCollapsible">
@@ -52,10 +57,12 @@
         </div>
       <% } %>
       </div>
+      <textarea class="filter" id="classFilter" rows="1" placeholder="🔎︎ Search"></textarea>
       <div class="buttonHolder">
         <a href="/coursesEdit" role="button" class="box" style="margin: 5px">Edit Teachers</a>
       </div>
     </div>
+
   </div>
 </main>
 <!-- /Main Site -->
