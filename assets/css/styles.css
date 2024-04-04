@@ -14,6 +14,14 @@
   margin: 30px;
 }
 
+.buttonBox {
+  background-color: var(--bc);
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 30px;
+}
+
 .flexBox {
   display: flex;
   flex-wrap: nowrap;
@@ -72,6 +80,10 @@
 }
 
 .collapsible:hover {
+  background-color: var(--bcDark);
+}
+
+.buttonBox:hover {
   background-color: var(--bcDark);
 }
 
