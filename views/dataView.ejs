@@ -12,11 +12,12 @@
 
     <div class="box2 flexItem">
       <h1>Classrooms</h1>
+      <% classrooms.sort((a, b) => (a.roomNum > b.roomNum) ? 1 : -1) %>
       <div class="scrollSelector" style="max-height: 500px; min-height: 500px; border-radius: 10px 10px 0px 0px;">
       <% for(let i=0; i < classrooms.length; i++) { %>
         <button class="collapsible"><%= classrooms[i].roomNum %></button>
         <div class="contentCollapsible">
-          Periods Available: <%= classrooms[i].periodsAvailable %>
+          <b>Periods Available:</b><%= classrooms[i].periodsAvailable.map((item) => (item = " "+item))%>
         </div>
       <% } %>
       </div>

@@ -27,6 +27,7 @@ const onStart = async function () {
     response.json().then((data) => {
       console.log(data);
       classroomsArr = data[0];
+      classroomsArr.sort((a, b) => (a.roomNum > b.roomNum ? 1 : -1));
       courseArr = data[1];
       currentRoomName = roomSelector.value;
       if (currentRoomName === "addRoom") {

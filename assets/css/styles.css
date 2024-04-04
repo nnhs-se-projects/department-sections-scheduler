@@ -49,7 +49,7 @@
   font-size: 20px;
   margin-top: 10px;
   border-radius: 10px 10px 10px 10px;
-  transition: border-radius 0.2s ease-out;
+  transition: background-color 0.5s ease-out, border-radius 0.2s ease-out;
 }
 
 .collapsible:after {
@@ -58,10 +58,12 @@
   font-weight: bold;
   float: right;
   margin-left: 5px;
+  transition: transform 0.2s ease-out;
 }
 
 .active:after {
-  content: "\2B9F";
+  transform: rotate(90deg);
+  transition: transform 0.2s ease-out;
 }
 
 .active {

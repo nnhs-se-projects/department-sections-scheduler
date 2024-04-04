@@ -10,7 +10,6 @@ for (i = 0; i < coll.length; i++) {
     } else {
       content.style.maxHeight = content.scrollHeight + "px";
       content.style.borderRadius = "0px 0px 10px 10px";
-      coll[i].style.borderRadius = "10px 10px 0px 0px";
     }
   });
 }
