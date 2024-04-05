@@ -1,4 +1,4 @@
-let sectionArr = [];
+const sectionArr = [];
 let periodsClassArr = [];
 const courses = require("./Courses.json");
 const config = require("./Config.json");
@@ -14,9 +14,9 @@ let formattedSchedule = function (arr) {
   let formattedArr = []; // 2d array of classrooms and periods
   //initial setup of 2d array
 
-  for (i = 0; i < config.numPeriods; i++) {
+  for (let i = 0; i < config.numPeriods; i++) {
     let tempArr = [];
-    for (j = 0; j < classroomArr.length; j++) {
+    for (let j = 0; j < classroomArr.length; j++) {
       tempArr.push(null);
       //tempArr.push("Empty " + classroomList[j] + " period");
     }
@@ -24,7 +24,7 @@ let formattedSchedule = function (arr) {
   }
 
   //iterate through arr and add each section to the formattedArr
-  for (i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     if (arr[i].periodClass != null) {
       roomIndex = classroomList.indexOf(arr[i].periodClass.classroom);
       formattedArr[arr[i].periodClass.period - 1][roomIndex] = arr[i];
@@ -36,7 +36,7 @@ let formattedSchedule = function (arr) {
 
 let updateFormattedSchedule = function (formattedArr) {
   //update schedule
-  for (i = 0; i < sectionArr.length; i++) {
+  for (let i = 0; i < sectionArr.length; i++) {
     if (sectionArr[i].periodClass != null) {
       roomIndex = classroomList.indexOf(sectionArr[i].periodClass.classroom);
       formattedArr[sectionArr[i].periodClass.period - 1][roomIndex] =
@@ -150,7 +150,7 @@ let createSections = function () {
   }
 
   for (let course of courses) {
-    for (i = 0; i < course.sections; i++) {
+    for (let i = 0; i < course.sections; i++) {
       sectionArr.push({
         course: course,
         sectionNumber: i + 1,
@@ -191,7 +191,7 @@ let removeSection = function (arr, course) {
   if (removedSection == null) {
     console.log("No sections of " + course + " found");
   } else {
-    for (i = 0; i < remainingSections.length; i++) {
+    for (let i = 0; i < remainingSections.length; i++) {
       arr[i].section = i + 1;
     }
     sortSections();
@@ -255,7 +255,7 @@ let assignPeriodClassrooms = function () {
 
 let createInitSchedule = function () {
   //create 2d array
-  let schedule = [];
+  const schedule = [];
   for (let i = 0; i < config.numPeriods; i++) {
     schedule.push([]);
     for (let j = 0; j < classroomArr.length; j++) {
@@ -264,13 +264,31 @@ let createInitSchedule = function () {
   }
 
   //assign sections to schedule
-  for (let section of sectionArr) {
+  for (const section of sectionArr) {
     schedule[section.periodClass.period - 1][
       classroomList.indexOf(section.periodClass.classroom)
     ] = section;
   }
 };
 
+const checkForValidSections = function () {
+  for (const course of courses) {
+    const teachers = JSON.parse(teacherString);
+    const assignableTeachers = teachers.filter((teacher) =>
+      teacher.coursesAssigned.map((item) => item.course).includes(course.name)
+    );
+    let totalTeachableSections = 0;
+    for (const teacher of assignableTeachers) {
+      totalTeachableSections += teacher.coursesAssigned.find(
+        (item) => item.course === course.name
+      ).sections;
+    }
+    if (!totalTeachableSections === course.sections) {
+      return false;
+    }
+  }
+  return true;
+};
 // let assignTeachersToSections = function () {
 //   let lunchError = 0;
 //   let totalErrors = 0;
@@ -365,6 +383,7 @@ const assignTeachersToSections = function () {
   const teachers = JSON.parse(teacherString);
 
   for (const curTeacher of teachers) {
+    let teacherCourseID = 1;
     for (const curCourse of curTeacher.coursesAssigned) {
       for (let i = 0; i <= curCourse.sections; i++) {
         const assignableSections = sectionArr.filter(
@@ -381,38 +400,59 @@ const assignTeachersToSections = function () {
           sectionArr[
             sectionArr.indexOf(assignableSections[sectionIndex])
           ].teacher = curTeacher;
+          sectionArr[
+            sectionArr.indexOf(assignableSections[sectionIndex])
+          ].courseID = `${
+            sectionArr[sectionArr.indexOf(assignableSections[sectionIndex])]
+              .course.name
+          }-${
+            sectionArr[sectionArr.indexOf(assignableSections[sectionIndex])]
+              .teacher.name
+          }-${teacherCourseID}`;
         }
       }
+    }
+  }
+  for (let i = 0; i < teachers.length; i++) {
+    const teacher = teachers[i];
+    if (
+      !(
+        teacher.openPeriods.includes(4) ||
+        teacher.openPeriods.includes(5) ||
+        teacher.openPeriods.includes(6)
+      )
+    ) {
+      totalErrors++;
     }
   }
 
   return totalErrors;
 };
 
-let generateSchedule = function () {
-  //main code
+const generateSchedule = function () {
+  // Main code
   let teacherFailed = true;
   findCoursePriority();
   createSections();
   let classroomSchedulingAttempts = 0;
   let teacherSchedulingAttempts = 0;
-  //throw out every schedule that doesn't work;
-  //give teachers a failCap number of attempts to schedule before giving up
+  // Throw out every schedule that doesn't work;
+  // Give teachers a failCap number of attempts to schedule before giving up
   while (teacherFailed) {
-    //number of times period-classrooms have been assigned
+    // Number of times period-classrooms have been assigned
     classroomSchedulingAttempts++;
-    //if the teacher scheduling algorithm has failed, we need to reset the period-classrooms and reassign them
+    // If the teacher scheduling algorithm has failed, we need to reset the period-classrooms and reassign them
     teacherFailed = false;
-    //whether or not the period-classrooms have been assigned validly
+    // Whether or not the period-classrooms have been assigned validly
     let coursesAssigned = false;
-    //whether or not the teacher scheduling algorithm has failed or if it has exceeded the failCap
+    // Whether or not the teacher scheduling algorithm has failed or if it has exceeded the failCap
     let teachersAssigned = false;
 
-    //amount of times the teacher scheduling algorithm can failed before restarting
-    //The higher this value, the longer the algorithm will run and the smaller the variation of schedules
+    // Amount of times the teacher scheduling algorithm can failed before restarting
+    // The higher this value, the longer the algorithm will run and the smaller the variation of schedules
     const failCap = 5;
 
-    //amount of time the teacher scheduling algorithm has failed
+    // Amount of time the teacher scheduling algorithm has failed
     let failCount = 0;
     while (!coursesAssigned) {
       createPeriodClassrooms();
@@ -421,66 +461,55 @@ let generateSchedule = function () {
     while (!teachersAssigned) {
       teacherSchedulingAttempts++;
       createInitSchedule();
-      if (assignTeachersToSections() == 0) {
+      if (assignTeachersToSections() === 0) {
         teachersAssigned = true;
       } else {
         failCount++;
-        //console.log("failure encountered");
-        //console.log(failures);
+        // console.log("failure encountered");
+        // console.log(failures);
       }
       if (failCount >= failCap) {
         teacherFailed = true;
-        //they havent been assigned but we need to break out of the loop
+        // Teachers haven't been assigned and we need to break out of the loop
         teachersAssigned = true;
       }
     }
   }
 
-  //error check
+  // Error check
   let errors = 0;
-  for (let section of sectionArr) {
-    if (section.teacher == undefined || section.teacher == null) {
+  for (const section of sectionArr) {
+    if (section.teacher === undefined || section.teacher == null) {
       console.log("Teacher not assigned to " + section.course.name);
       errors++;
     }
-    if (section.periodClass == undefined || section.periodClass == null) {
+    if (section.periodClass === undefined || section.periodClass == null) {
       console.log("Period-classroom not assigned to " + section.course.name);
       errors++;
     }
   }
 
-  //info logging
-  errString = "Total errors: " + errors;
+  // Info logging
+  const errString = "Total errors: " + errors;
   errString.padEnd(20, " ");
-  console.log(errString + "  Starving Teacher? " + lunchError);
+  // console.log(errString + "  Starving Teacher? " + lunchError);
   console.log("Total trial schedules made: " + classroomSchedulingAttempts);
   console.log("Total times teachers attempted: " + teacherSchedulingAttempts);
   return formattedSchedule(sectionArr);
 };
 
-let generateSchedules = function (numSchedules) {
-  let schedules = [];
+const generateSchedules = function (numSchedules) {
+  const schedules = [];
   for (let k = 0; k < numSchedules; k++) {
-    //console.log("Generating schedule " + k);
+    // console.log("Generating schedule " + k);
     schedules.push(generateSchedule());
-    //console.log("Schedule " + k + " generated");
+    // console.log("Schedule " + k + " generated");
   }
   return schedules;
 };
 
-//print schedule
-
-//printInCoolWay(generateSchedule());
-
-// let thing = generateSchedules(5);
-// console.log(thing.length);
-// for (i = 0; i < thing.length; i++) {
-//   console.log("Schedule " + (i + 1));
-//   printInCoolWay(thing[i]);
-// }
-
-let writeSchedules = function (num, print) {
-  let schedulesArr = generateSchedules(num);
+const writeSchedules = function (num, print) {
+  const schedulesArr = generateSchedules(num);
 
   for (let a = 0; a < num; a++) {
     fs.writeFileSync(
@@ -502,4 +531,20 @@ let writeSchedules = function (num, print) {
 
 writeSchedules(100, true);
 
-///cupcakes are good
+// "Cupcakes are good
+// I like cupcakes
+// From the store
+// They are good
+// I like cupcakes
+// Yes I do
+// good cupcakes
+// Please give me some cupcakes
+// So I can eat them
+// Good cupcakes
+// How I love them
+// Let me count the ways
+// One, two, three
+// Red velvet, chocolate, vanilla
+// So many flavors
+// I like cupcakes"
+// - Written by Copilot
