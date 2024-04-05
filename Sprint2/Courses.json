@@ -25,6 +25,12 @@
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
+    "name": "Advertising",
+    "sections": 2,
+    "compatibleClassrooms": ["126", "128", "120"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
     "name": "Incubator",
     "sections": 6,
     "compatibleClassrooms": ["120"],
@@ -69,6 +75,12 @@
     "name": "Game Design",
     "sections": 1,
     "compatibleClassrooms": ["114"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Fashion Design",
+    "sections": 1,
+    "compatibleClassrooms": ["119"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
@@ -212,7 +224,7 @@
     "name": "Blended Career Internship",
     "sections": 1,
     "compatibleClassrooms": ["120", "119", "126", "128", "138"],
-    "compatiblePeriods": [7]
+    "compatiblePeriods": [5]
   },
   {
     "name": "Cul 1",
