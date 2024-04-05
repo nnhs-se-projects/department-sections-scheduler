@@ -1,14 +1,10 @@
 [
   {
-    "name": "Betthauser, Jennifer",
-    "courses": [
-      {
-        "course": "AP Computer Science",
-        "sections": 1
-      },
+    "name": "Alli Hillyer",
+    "coursesAssigned": [
       {
         "course": "Marketing",
-        "sections": 2
+        "sections": 1
       },
       {
         "course": "Business Law",
@@ -16,7 +12,7 @@
       },
       {
         "course": "Comp Programming 1",
-        "sections": 1
+        "sections": 2
       }
     ],
     "sectionsTaught": 4,
@@ -34,15 +30,11 @@
         "sections": 1
       },
       {
-        "course": "Business Law",
-        "sections": 1
-      },
-      {
         "course": "Comp Programming 2",
         "sections": 1
       }
     ],
-    "sectionsTaught": 6,
+    "sectionsTaught": 5,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
@@ -59,9 +51,13 @@
       {
         "course": "Honors Accounting",
         "sections": 1
+      },
+      {
+        "course": "International Business",
+        "sections": 1
       }
     ],
-    "sectionsTaught": 4,
+    "sectionsTaught": 5,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
@@ -73,6 +69,310 @@
       }
     ],
     "sectionsTaught": 3,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Reid, Jason",
+    "courses": [
+      {
+        "course": "Introduction to Business",
+        "sections": 4
+      },
+      {
+        "course": "Comp Programming 2",
+        "sections": 2
+      }
+    ],
+    "sectionsTaught": 6,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Schmit, Geoff",
+    "courses": [
+      {
+        "course": "Software Engineering 2",
+        "sections": 1
+      }
+    ],
+    "sectionsTaught": 1,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Thompson, Brett",
+    "courses": [
+      {
+        "course": "Blended Career Internship",
+        "sections": 1
+      }
+    ],
+    "sectionsTaught": 1,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Ryan, Jon",
+    "courses": [
+      {
+        "course": "Incubator",
+        "sections": 2
+      },
+      {
+        "course": "Game Design",
+        "sections": 1
+      },
+      {
+        "course": "ACCElerator",
+        "sections": 1
+      },
+      {
+        "course": "Advertising",
+        "sections": 2
+      }
+    ],
+    "sectionsTaught": 6,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Donovan, Meghan",
+    "courses": [
+      {
+        "course": "Blended Consumer",
+        "sections": 2
+      },
+      {
+        "course": "ECE 1",
+        "sections": 2
+      },
+      {
+        "course": "Human Growth and Dev",
+        "sections": 1
+      }
+    ],
+    "sectionsTaught": 5,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Hillyer, Allison",
+    "courses": [
+      {
+        "course": "Senior Foods",
+        "sections": 3
+      },
+      {
+        "course": "Cul 1",
+        "sections": 2
+      }
+    ],
+    "sectionsTaught": 5,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Klen, Dana",
+    "courses": [
+      {
+        "course": "Consumer Econ",
+        "sections": 1
+      },
+      {
+        "course": "Health Occ",
+        "sections": 2
+      },
+      {
+        "course": "ECE 2",
+        "sections": 2
+      }
+    ],
+    "sectionsTaught": 5,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Lewandowski, Angela",
+    "courses": [
+      {
+        "course": "Consumer Econ",
+        "sections": 1
+      },
+      {
+        "course": "Senior Foods",
+        "sections": 2
+      },
+      {
+        "course": "Fashion Design",
+        "sections": 1
+      }
+    ],
+    "sectionsTaught": 4,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Oskroba, Melissa",
+    "courses": [
+      {
+        "course": "Intro to Teaching 2",
+        "sections": 2
+      }
+    ],
+    "sectionsTaught": 2,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Tuazon, Jasmin",
+    "courses": [
+      {
+        "course": "Cul 1",
+        "sections": 2
+      },
+      {
+        "course": "Cul 2",
+        "sections": 1
+      },
+      {
+        "course": "Cul 3",
+        "sections": 1
+      },
+      {
+        "course": "Senior Foods",
+        "sections": 1
+      }
+    ],
+    "sectionsTaught": 5,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "DiOrio, Becky",
+    "courses": [
+      {
+        "course": "Graphics 1",
+        "sections": 1
+      },
+      {
+        "course": "Graphics 2",
+        "sections": 1
+      },
+      {
+        "course": "Graphics 3",
+        "sections": 1
+      },
+      {
+        "course": "R&D",
+        "sections": 3
+      }
+    ],
+    "sectionsTaught": 6,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Gleamza, Henry",
+    "courses": [
+      {
+        "course": "Incubator",
+        "sections": 2
+      },
+      {
+        "course": "Game Design",
+        "sections": 1
+      },
+      {
+        "course": "ACCElerator",
+        "sections": 1
+      },
+      {
+        "course": "Advertising",
+        "sections": 2
+      }
+    ],
+    "sectionsTaught": 6,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Ingram, Dawn",
+    "courses": [
+      {
+        "course": "Incubator",
+        "sections": 2
+      },
+      {
+        "course": "Game Design",
+        "sections": 1
+      },
+      {
+        "course": "ACCElerator",
+        "sections": 1
+      },
+      {
+        "course": "Advertising",
+        "sections": 2
+      }
+    ],
+    "sectionsTaught": 6,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Kischuk, Dan",
+    "courses": [
+      {
+        "course": "Incubator",
+        "sections": 2
+      },
+      {
+        "course": "Game Design",
+        "sections": 1
+      },
+      {
+        "course": "ACCElerator",
+        "sections": 1
+      },
+      {
+        "course": "Advertising",
+        "sections": 2
+      }
+    ],
+    "sectionsTaught": 6,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Lentino, Dan",
+    "courses": [
+      {
+        "course": "Incubator",
+        "sections": 2
+      },
+      {
+        "course": "Game Design",
+        "sections": 1
+      },
+      {
+        "course": "ACCElerator",
+        "sections": 1
+      },
+      {
+        "course": "Advertising",
+        "sections": 2
+      }
+    ],
+    "sectionsTaught": 6,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Ryan, Jason",
+    "courses": [
+      {
+        "course": "Incubator",
+        "sections": 2
+      },
+      {
+        "course": "Game Design",
+        "sections": 1
+      },
+      {
+        "course": "ACCElerator",
+        "sections": 1
+      },
+      {
+        "course": "Advertising",
+        "sections": 2
+      }
+    ],
+    "sectionsTaught": 6,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   }
 ]
