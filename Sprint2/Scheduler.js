@@ -548,3 +548,13 @@ writeSchedules(100, true);
 // So many flavors
 // I like cupcakes"
 // - Written by Copilot
+
+// The German Junkers Ju 87 Stuka dive bomber was a key element of the German Blitzkrieg tactics and was very successful in the early stages of the war. The Stuka was a
+// very effective weapon, but it was vulnerable to enemy fighters. The Stuka was eventually replaced by more modern aircraft, but it remained in service until the end of the war.
+// It was used in all major German offensives, including the invasion of Poland, the Battle of France, and the invasion of the Soviet Union. The Stuka was also used in the
+// Mediterranean and North Africa, where it was used to support German and Italian ground forces. The Stuka was a feared weapon, and its distinctive siren became a symbol of
+// German air power. The Stuka was eventually replaced by more modern aircraft, but it remained in service until the end of the war.
+// It dive bombed by diving at a steep angle, releasing its bombs at the last moment before pulling out of the dive. This made it a very accurate weapon, and it was used to
+// great effect against enemy tanks, artillery, and infantry. The Stuka was retrofitted with a cannon that fired through the propeller, making it a very effective ground attack
+// and dive breaks so it could pull out of the dive even if the pilot was unconscious.
+// - Mostly written by Copilot
