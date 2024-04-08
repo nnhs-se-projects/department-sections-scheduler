@@ -275,16 +275,18 @@ const checkForValidSections = function () {
   for (const course of courses) {
     const teachers = JSON.parse(teacherString);
     const assignableTeachers = teachers.filter((teacher) =>
-      teacher.courses.map((item) => item.course).includes(course.name)
+      teacher.coursesAssigned.map((item) => item.course).includes(course.name)
     );
     let totalTeachableSections = 0;
     for (const teacher of assignableTeachers) {
-      totalTeachableSections += teacher.courses.find(
+      totalTeachableSections += teacher.coursesAssigned.find(
         (item) => item.course === course.name
       ).sections;
     }
     console.log(totalTeachableSections === course.sections);
     if (!(totalTeachableSections === course.sections)) {
+      console.log(course);
+      console.log("TeachSect:" + totalTeachableSections);
       return false;
     }
   }
@@ -385,7 +387,7 @@ const assignTeachersToSections = function () {
 
   for (const curTeacher of teachers) {
     let teacherCourseID = 1;
-    for (const curCourse of curTeacher.courses) {
+    for (const curCourse of curTeacher.coursesAssigned) {
       for (let i = 0; i <= curCourse.sections; i++) {
         const assignableSections = sectionArr.filter(
           (section) =>
