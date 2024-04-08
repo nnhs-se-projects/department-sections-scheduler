@@ -1,13 +1,10 @@
-import { fitness } from "./schedulegenalg.js";
-
+fitness = require("./schedulegenalg.js");
 population = [];
+population.push(require("./GeneratedSchedules/Schedule1.json"));
 
-function testFitness() {
-  for (schedule in population) {
-    console.log(schedule);
-    console.log(fitness(schedule));
-  }
-}
+console.log(population);
+console.log(population[0]);
+console.log(fitness(population[0]));
 
 function main() {
   testFitness();

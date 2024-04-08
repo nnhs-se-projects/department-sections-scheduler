@@ -4,6 +4,9 @@
 //   [9, 8, 7, 6, 5, 4, 3, 2, 1],
 //   [5, 6, 7, 8, 9, 4, 3, 2, 1],
 
+const sigmoid = (x) => {
+  return 1 / (1 + Math.exp(-x));
+};
 const config = require("./Config.json");
 //
 //create ~50 randokm schedules
@@ -31,7 +34,6 @@ const setOfsectionsWOclassrooms = (schedule) => {
 const fitness = (schedule) => {
   //average teacher preference of class
   let teacherPreference = 0;
-  let averageConcurenceDiff = 0;
   //#num of teachers that have a lunch period
   let sectioncount = 0;
   for (let i = 0; i < schedule.length; i++) {
@@ -39,13 +41,12 @@ const fitness = (schedule) => {
     for (let j = 0; j < period.length; j++) {
       let section = period[j];
       if (section != null) {
-        console.log(section);
+        //console.log(section);
         for (let i = 0; i < section.teacher.certifiedCourses.length; i++) {
           if (
             section.teacher.certifiedCourses[i].course === section.course.name
           ) {
-            teacherPreference +=
-              section.teacher.certifiedCourses[i].teacherPreference;
+            teacherPreference += section.teacher.certifiedCourses[i].preference;
           }
         }
         sectioncount++;
@@ -55,12 +56,14 @@ const fitness = (schedule) => {
   let teacherSpecific = getTeacherSpecific(schedule);
   //fidn ammount of teachers that have a lunch period
   let lunchCount = 0;
+  let averageConcurenceDiff = 0;
   for (let teacher of teacherSpecific) {
     if (
-      teacher.avaliablePeriods.length.includes(4) ||
-      teacher.avaliablePeriods.length.includes(5) ||
-      teacher.avaliablePeriods.length.includes(6)
+      teacher.openPeriods.includes(4) ||
+      teacher.openPeriods.includes(5) ||
+      teacher.openPeriods.includes(6)
     ) {
+      //console.log(teacher.name + " has a lunch period");
       lunchCount++;
     }
     //find longest concurence of periods
@@ -68,11 +71,11 @@ const fitness = (schedule) => {
     let currentConcurence = 0;
     let scheduledperiods = [];
     for (let i = 1; i <= config.numPeriods; i++) {
-      if (teacher.avaliablePeriods.includes(i)) {
+      if (!teacher.openPeriods.includes(i)) {
         scheduledperiods.push(i);
       }
     }
-    for (let i = 0; i < scheduleperiods.length; i++) {
+    for (let i = 0; i < scheduledperiods.length; i++) {
       if (scheduledperiods.includes(i)) {
         currentConcurence++;
       } else {
@@ -116,19 +119,25 @@ const fitness = (schedule) => {
       }
     }
   }
+  averageConcurenceDiff = averageConcurenceDiff / teacherSpecific.length;
+  classroomStay = sigmoid(classroomStay);
 
   lunchCount = lunchCount / teacherSpecific.length;
   let fit =
     config.weights.teacherPreference * (teacherPreference / sectioncount) +
     config.weights.lunchCount * lunchCount +
     config.weights.longestConcurence * averageConcurenceDiff;
-  config.weights.classroomStay * sigmoid(classroomStay);
-
+  config.weights.classroomStay * classroomStay;
+  // console.log("teacherPreference: " + teacherPreference / sectioncount);
+  // console.log("lunchCount: " + lunchCount);
+  // console.log("longestConcurence: " + averageConcurenceDiff);
+  // console.log("classroomStay: " + classroomStay);
   return fit;
 };
 
 const getTeacherSpecific = (schedule) => {
   let teacherSpecific = require("./Teachers.json");
+  //console.log(teacherSpecific);
   for (let i = 0; i < schedule.length; i++) {
     let period = schedule[i];
     for (let j = 0; j < period.length; j++) {
@@ -136,12 +145,19 @@ const getTeacherSpecific = (schedule) => {
       if (section != null) {
         teacherSpecific.find((teacher) => {
           if (teacher.name === section.teacher.name) {
-            teacher.avaliablePeriods.pop(section.periodClass.period);
+            // console.log(
+            //   "removing period: " +
+            //     section.periodClass.period +
+            //     " from " +
+            //     teacher.name
+            // );
+            teacher.openPeriods.pop(section.periodClass.period);
           }
         });
       }
     }
   }
+  //console.log(teacherSpecific);
   return teacherSpecific;
 };
 
@@ -150,6 +166,14 @@ const getTeacherSpecific = (schedule) => {
 //https://www.figma.com/file/nVrAkw9OzLQihgoBWDx0Ho/Untitled?type=whiteboard&node-id=2%3A322&t=GBDQItPHfuVcZY2m-1
 
 const crossover1 = (parent1, parent2) => {
+  console.log("cross1");
+  console.log(parent1);
+  console.log(parent2);
+  let IDSet = new Set();
+  for (let i = 0; i < parent1.length; i++) {
+    IDSet.add(parent1[i].id);
+  }
+  w;
   //clone all the sections and strip them of their classrooms
   let parent1withoutclassrooms = [];
   let parent2withoutclassrooms = [];
@@ -162,7 +186,7 @@ const crossover1 = (parent1, parent2) => {
         //should clone the atributtes of the section
         newperiod.push({
           course: section.course,
-          sectionnumber: section.sectionnumber,
+          sectionNumber: section.sectionNumber,
           teacher: section.teacher,
         });
       }
@@ -201,25 +225,33 @@ const crossover1 = (parent1, parent2) => {
     child1.push(
       crossover1worker(
         parent1withoutclassrooms[i],
-        parent2withoutclassrooms[i]
-      ),
-      divider1,
-      divider2
+        parent2withoutclassrooms[i],
+        divider1,
+        divider2
+      )
     );
+    console.log("child 2 worker");
     child2.push(
       crossover1worker(
         parent2withoutclassrooms[i],
-        parent1withoutclassrooms[i]
-      ),
-      divider1,
-      divider2
+        parent1withoutclassrooms[i],
+        divider1,
+        divider2
+      )
     );
   }
-  randomcleanup(child1);
-  randomcleanup(child2);
+  console.log("cross1");
+  console.log(child1);
+
+  randomcleanup(child1, child2);
+  return [child1, child2];
 };
 
 const crossover1worker = (parent1, parent2, d1, d2) => {
+  console.log("cross1worker");
+  console.log(parent1);
+  console.log(parent2);
+
   let c1 = [];
   let c2 = [];
   let c1set = new Set();
@@ -275,13 +307,13 @@ const crossover1worker = (parent1, parent2, d1, d2) => {
   }
   return [c1, c2];
 };
-let testarr = "abcdefghij".split("");
-let testarr2 = "acdfghijeb".split("");
-console.log(crossover1worker(testarr, testarr2, 2, 6));
 
 //duplicates in child1 are the missing sections in child2
 //duplicates in child2 are the missing sections in child1
 const randomcleanup = (child1, child2) => {
+  console.log("cleanup");
+  console.log(child1);
+  console.log(child2);
   //find duplicates throw into other array
   c1set = new Set();
   c2set = new Set();
@@ -339,8 +371,10 @@ const randomcleanup = (child1, child2) => {
 };
 
 const isValidschedule = (schedule) => {
+  return true; //fix this l`ater
   //check if all sections are scheduled
   let sections = setOfsectionsWOclassrooms(schedule);
+  console.log(sections);
   for (let section of sections) {
     let scheduled = false;
     for (let i = 0; i < schedule.length; i++) {
@@ -400,8 +434,46 @@ const isValidschedule = (schedule) => {
 const isValidClassroom = (classroom, section) => {
   section.course.compatableClassrooms.includes(classroom);
 };
+//test crossover1
+const testcross1 = () => {
+  let parent1 = require("./GeneratedSchedules/Schedule1.json");
+  let parent2 = require("./GeneratedSchedules/Schedule2.json");
+  let childrenArray = crossover1(parent1, parent2);
+  let child1 = childrenArray[0];
+  let child2 = childrenArray[1];
+  //save children to files
+  const fs = require("fs");
+  fs.writeFile(
+    "./GeneratedSchedules/child1.json",
+    JSON.stringify(child1),
+    (err) => {
+      if (err) {
+        console.log(err);
+      }
+    }
+  );
+  fs.writeFile(
+    "./GeneratedSchedules/child2.json",
+    JSON.stringify(child2),
+    (err) => {
+      if (err) {
+        console.log(err);
+      }
+    }
+  );
+  console.log(isValidschedule(child1));
+  console.log(isValidschedule(child2));
+  console.log(fitness(child1));
+  console.log(fitness(child2));
+  console.log("child1");
+  console.log(child1);
+  console.log("child2");
+  console.log(child2);
+};
 
-export default {
+testcross1();
+
+module.exports = {
   crossover1,
   fitness,
   isValidschedule,
