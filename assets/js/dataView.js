@@ -2,12 +2,11 @@ const express = require("express");
 const app = express();
 
 const coll = document.getElementsByClassName("collapsible");
-let classFilter = document.getElementById("classFilter");
+const classFilter = document.getElementById("classFilter");
 const courseFilter = document.getElementById("courseFilter");
 const teacherFilter = document.getElementById("teacherFilter");
 
 const numOfClassrooms = document.getElementById("classroomsCount").textContent;
-app.locals.myVar = 1;
 
 let i;
 for (i = 0; i < coll.length; i++) {
