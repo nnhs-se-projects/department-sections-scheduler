@@ -275,15 +275,16 @@ const checkForValidSections = function () {
   for (const course of courses) {
     const teachers = JSON.parse(teacherString);
     const assignableTeachers = teachers.filter((teacher) =>
-      teacher.coursesAssigned.map((item) => item.course).includes(course.name)
+      teacher.courses.map((item) => item.course).includes(course.name)
     );
     let totalTeachableSections = 0;
     for (const teacher of assignableTeachers) {
-      totalTeachableSections += teacher.coursesAssigned.find(
+      totalTeachableSections += teacher.courses.find(
         (item) => item.course === course.name
       ).sections;
     }
-    if (!totalTeachableSections === course.sections) {
+    console.log(totalTeachableSections === course.sections);
+    if (!(totalTeachableSections === course.sections)) {
       return false;
     }
   }
@@ -384,7 +385,7 @@ const assignTeachersToSections = function () {
 
   for (const curTeacher of teachers) {
     let teacherCourseID = 1;
-    for (const curCourse of curTeacher.coursesAssigned) {
+    for (const curCourse of curTeacher.courses) {
       for (let i = 0; i <= curCourse.sections; i++) {
         const assignableSections = sectionArr.filter(
           (section) =>
@@ -412,6 +413,7 @@ const assignTeachersToSections = function () {
         }
       }
     }
+    teacherCourseID++;
   }
   for (let i = 0; i < teachers.length; i++) {
     const teacher = teachers[i];
@@ -422,10 +424,11 @@ const assignTeachersToSections = function () {
         teacher.openPeriods.includes(6)
       )
     ) {
+      console.log(teacher.name + " is missing a lunch period");
       totalErrors++;
     }
   }
-
+  console.log("Total errors: " + totalErrors);
   return totalErrors;
 };
 
@@ -529,7 +532,11 @@ const writeSchedules = function (num, print) {
   }
 };
 
-writeSchedules(100, true);
+if (checkForValidSections()) {
+  writeSchedules(100, true);
+} else {
+  console.log("Invalid number of sections to teachers");
+}
 
 // "Cupcakes are good
 // I like cupcakes
