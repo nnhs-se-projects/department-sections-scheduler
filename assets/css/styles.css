@@ -117,6 +117,11 @@
   margin-bottom: 0px;
 }
 
+count {
+  color: white;
+  font-size: 20px;
+}
+
 .scrollSelector {
   background-color: var(--nestedbc);
   color: white;
