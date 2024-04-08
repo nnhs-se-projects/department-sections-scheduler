@@ -1,1 +1,4 @@
 views/include/_header.ejs
+views/coursesEdit.ejs
+views/classroomsEdit.ejs
+views/dataView.ejs

@@ -1,57 +1,78 @@
 const express = require("express");
 const route = express.Router();
-const Entry = require("../model/entry");
+const fs = require("fs");
 
-// easy way to assign static data (e.g., array of strings) to a variable
-const habitsOfMind = require("../model/habitsOfMind.json");
+let courses = require("../model/courses.json");
+let classrooms = require("../model/classrooms.json");
+let teachers = require("../model/teachers.json");
 
 // pass a path (e.g., "/") and callback function to the get method
 //  when the client makes an HTTP GET request to the specified path,
 //  the callback function is executed
 route.get("/", async (req, res) => {
-  // the req parameter references the HTTP request object, which has a number
-  //  of properties
-  console.log("path requested: " + req.path);
-
-  const entries = await Entry.find();
-
-  // convert MongoDB objects to objects formatted for the EJS template
-  const formattedEntries = entries.map((entry) => {
-    return {
-      id: entry._id,
-      date: entry.date.toLocaleDateString(),
-      habit: entry.habit,
-      content: entry.content.slice(0, 20) + "...",
-    };
-  });
-
   // the res parameter references the HTTP response object
-  res.render("index", { entries: formattedEntries });
+  res.render("index");
 });
 
-route.get("/createEntry", (req, res) => {
-  res.render("createEntry", { habits: habitsOfMind });
+route.get("/dataView", (req, res) => {
+  res.render("dataView", { courses, classrooms, teachers });
 });
 
-route.post("/createEntry", async (req, res) => {
-  const entry = new Entry({
-    date: req.body.date,
-    email: req.session.email,
-    habit: req.body.habit,
-    content: req.body.content,
-  });
-  await entry.save();
+route.get("/coursesEdit", (req, res) => {
+  updateValues();
+  res.render("coursesEdit", { courses, classrooms });
+});
 
+route.get("/classroomsEdit", (req, res) => {
+  updateValues();
+  res.render("classroomsEdit", { courses, classrooms });
+});
+
+route.get("/teachersEdit", (req, res) => {
+  updateValues();
+  res.render("teachersEdit", { teachers, courses });
+});
+
+route.get("/fetchEditCourses", (req, res) => {
+  updateValues();
+  res.json([courses, classrooms, teachers]);
+});
+
+route.get("/fetchEditClassrooms", (req, res) => {
+  updateValues();
+  res.json([classrooms, courses]);
+});
+
+route.get("/fetchEditTeachers", (req, res) => {
+  updateValues();
+  res.json([teachers, courses]);
+});
+
+route.post("/updateCourses", async (req, res) => {
+  fs.writeFileSync("server/model/courses.json", JSON.stringify(req.body));
+  updateValues();
   res.status(201).end();
 });
 
-route.get("/editEntry/:id", async (req, res) => {
-  const entry = await Entry.findById(req.params.id);
-  console.log(entry);
-  res.send(entry);
+route.post("/updateClassrooms", async (req, res) => {
+  fs.writeFileSync("server/model/classrooms.json", JSON.stringify(req.body));
+  updateValues();
+  res.status(201).end();
+});
+
+route.post("/updateTeachers", async (req, res) => {
+  fs.writeFileSync("server/model/teachers.json", JSON.stringify(req.body));
+  updateValues();
+  res.status(201).end();
 });
 
 // delegate all authentication to the auth.js router
 route.use("/auth", require("./auth"));
+
+const updateValues = function () {
+  courses = JSON.parse(fs.readFileSync("server/model/courses.json"));
+  classrooms = JSON.parse(fs.readFileSync("server/model/classrooms.json"));
+  teachers = JSON.parse(fs.readFileSync("server/model/teachers.json"));
+};
 
 module.exports = route;

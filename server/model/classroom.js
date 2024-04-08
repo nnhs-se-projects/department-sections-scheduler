@@ -5,24 +5,16 @@
 const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
-  date: {
-    type: Date,
-    required: true,
-  },
-  email: {
+  roomNum: {
     type: String,
     required: true,
   },
-  habit: {
-    type: String,
-    required: true,
-  },
-  content: {
-    type: String,
+  periodsAvaliable: {
+    type: Array,
     required: true,
   },
 });
 
-const Entry = mongoose.model("Entry", schema);
+const Entry = mongoose.model("Classroom", schema);
 
 module.exports = Entry;

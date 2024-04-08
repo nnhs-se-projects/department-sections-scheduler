@@ -1,3 +1,8 @@
+# JSON files
+server\model\courses.json
+server\model\classrooms.json
+server\model\teachers.json
+
 # Logs
 logs
 *.log
