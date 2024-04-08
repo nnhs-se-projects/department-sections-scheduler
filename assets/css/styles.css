@@ -241,6 +241,7 @@ textarea {
   font-size: max(5vw, 38px);
   margin-left: 60px;
   margin-right: 60px;
+  display: flex;
 }
 
 .entry {

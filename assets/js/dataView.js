@@ -1,8 +1,8 @@
-const coll = document.getElementsByClassName("collapsible");
+const cont = document.getElementsByClassName("collapsible");
 let i;
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function () {
+for (i = 0; i < cont.length; i++) {
+  cont[i].addEventListener("click", function () {
     this.classList.toggle("active");
     const content = this.nextElementSibling;
     if (content.style.maxHeight) {
