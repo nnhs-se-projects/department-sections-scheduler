@@ -268,84 +268,73 @@
         "sections": 1
       },
       {
-        "course": "Game Design",
-        "sections": 1
-      },
-      {
-        "course": "ACCElerator",
-        "sections": 1
-      },
-      {
-        "course": "Advertising",
+        "course": "Geo in Construction",
         "sections": 2
+      },
+      {
+        "course": "Workshop Studio",
+        "sections": 1
+      },
+      {
+        "course": "Workshop Elements",
+        "sections": 1
       }
     ],
-    "sectionsTaught": 6,
+    "sectionsTaught": 5,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
     "name": "Ingram, Dawn",
     "courses": [
       {
-        "course": "Incubator",
-        "sections": 2
-      },
-      {
-        "course": "Game Design",
+        "course": "Floral & Landscape Design",
         "sections": 1
       },
       {
-        "course": "ACCElerator",
+        "course": "Aqua & Urban Food Prod.",
         "sections": 1
       },
       {
-        "course": "Advertising",
+        "course": "Comp Animal 1",
+        "sections": 1
+      },
+      {
+        "course": "Comp Animal 2",
         "sections": 2
       }
     ],
-    "sectionsTaught": 6,
+    "sectionsTaught": 5,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
+
   {
     "name": "Kischuk, Dan",
     "courses": [
       {
-        "course": "Incubator",
-        "sections": 2
-      },
-      {
-        "course": "Game Design",
+        "course": "Cybersecurity",
         "sections": 1
       },
       {
-        "course": "ACCElerator",
+        "course": "Electronics",
         "sections": 1
-      },
-      {
-        "course": "Advertising",
-        "sections": 2
       }
     ],
-    "sectionsTaught": 6,
+    "sectionsTaught": 2,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
     "name": "Lentino, Dan",
     "courses": [
       {
-        "course": "Incubator",
+        "course": "Auto 1",
         "sections": 2
       },
       {
-        "course": "Game Design",
-        "sections": 1
+        "course": "Auto 2",
+        "sections": 2
       },
       {
-        "course": "ACCElerator",
-        "sections": 1
-      },
-      {
-        "course": "Advertising",
+        "course": "Auto 3",
         "sections": 2
       }
     ],
@@ -356,23 +345,15 @@
     "name": "Ryan, Jason",
     "courses": [
       {
-        "course": "Incubator",
-        "sections": 2
+        "course": "R&D",
+        "sections": 4
       },
       {
-        "course": "Game Design",
+        "course": "EDS",
         "sections": 1
-      },
-      {
-        "course": "ACCElerator",
-        "sections": 1
-      },
-      {
-        "course": "Advertising",
-        "sections": 2
       }
     ],
-    "sectionsTaught": 6,
+    "sectionsTaught": 5,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   }
 ]
