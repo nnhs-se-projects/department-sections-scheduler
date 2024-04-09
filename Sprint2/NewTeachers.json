@@ -20,7 +20,7 @@
   },
   {
     "name": "Callaghan, Matt",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "AP Computer Science",
         "sections": 3
@@ -39,7 +39,7 @@
   },
   {
     "name": "Morenus, Terry",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "Consumer Econ",
         "sections": 1
@@ -62,7 +62,7 @@
   },
   {
     "name": "Nolan, Gene",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "Incubator",
         "sections": 3
@@ -73,7 +73,7 @@
   },
   {
     "name": "Reid, Jason",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "Introduction to Business",
         "sections": 4
@@ -88,7 +88,7 @@
   },
   {
     "name": "Schmit, Geoff",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "Software Engineering 2",
         "sections": 1
@@ -99,7 +99,7 @@
   },
   {
     "name": "Thompson, Brett",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "Blended Career Internship",
         "sections": 1
@@ -110,7 +110,7 @@
   },
   {
     "name": "Ryan, Jon",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "Incubator",
         "sections": 2
@@ -133,7 +133,7 @@
   },
   {
     "name": "Donovan, Meghan",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "Blended Consumer",
         "sections": 2
@@ -152,7 +152,7 @@
   },
   {
     "name": "Hillyer, Allison",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "Senior Foods",
         "sections": 3
@@ -167,7 +167,7 @@
   },
   {
     "name": "Klen, Dana",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "Consumer Econ",
         "sections": 1
@@ -186,7 +186,7 @@
   },
   {
     "name": "Lewandowski, Angela",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "Consumer Econ",
         "sections": 1
@@ -205,7 +205,7 @@
   },
   {
     "name": "Oskroba, Melissa",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "Intro to Teaching 2",
         "sections": 2
@@ -216,7 +216,7 @@
   },
   {
     "name": "Tuazon, Jasmin",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "Cul 1",
         "sections": 2
@@ -239,7 +239,7 @@
   },
   {
     "name": "DiOrio, Becky",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "Graphics 1",
         "sections": 1
@@ -262,7 +262,7 @@
   },
   {
     "name": "Gleamza, Henry",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "R&D",
         "sections": 1
@@ -285,7 +285,7 @@
   },
   {
     "name": "Ingram, Dawn",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "Floral & Landscape Design",
         "sections": 1
@@ -309,7 +309,7 @@
 
   {
     "name": "Kischuk, Dan",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "Cybersecurity",
         "sections": 1
@@ -324,7 +324,7 @@
   },
   {
     "name": "Lentino, Dan",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "Auto 1",
         "sections": 2
@@ -343,7 +343,7 @@
   },
   {
     "name": "Ryan, Jason",
-    "courses": [
+    "coursesAssigned": [
       {
         "course": "R&D",
         "sections": 4

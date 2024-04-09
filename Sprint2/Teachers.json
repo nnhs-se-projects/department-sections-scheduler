@@ -1,528 +1,355 @@
 [
   {
     "name": "Alli Hillyer",
-    "courses": [
-      {
-        "course": "Consumer Econ",
-        "preference": 1
-      },
-      {
-        "course": "Consumer Econ TT",
-        "preference": 0.5
-      },
-      {
-        "course": "Consumer Econ EL",
-        "preference": 1
-      },
-      {
-        "course": "Online Consumer",
-        "preference": 0.5
-      },
-      {
-        "course": "Cul 1",
-        "preference": 1
-      },
-      {
-        "course": "Cul 2",
-        "preference": 1
-      },
-      {
-        "course": "Senior Foods",
-        "preference": 1
-      },
-      {
-        "course": "Interior Design",
-        "preference": 1
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Angie Lewandowski",
-    "certifiedCourses": [
-      {
-        "course": "Consumer Econ",
-        "preference": 1
-      },
-      {
-        "course": "Online Consumer",
-        "preference": 1
-      },
-      {
-        "course": "Blended Consumer",
-        "preference": 0.5
-      },
-      {
-        "course": "Fashion Design",
-        "preference": 1
-      },
-      {
-        "course": "Senior Foods",
-        "preference": 1
-      },
-      {
-        "course": "Adult Living",
-        "preference": 1
-      },
-      {
-        "course": "Intro to Health Occ",
-        "preference": 1
-      },
-      {
-        "course": "Health Occ",
-        "preference": 1
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Becky DiOrio",
-    "certifiedCourses": [
-      {
-        "course": "Graphics 1",
-        "preference": 1
-      },
-      {
-        "course": "Graphics 2",
-        "preference": 1
-      },
-      {
-        "course": "Graphics 3",
-        "preference": 1
-      },
-      {
-        "course": "Drafting Studio 1",
-        "preference": 1
-      },
-      {
-        "course": "R&D",
-        "preference": 1
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Dan Kischuk",
-    "certifiedCourses": [
-      {
-        "course": "Electronics",
-        "preference": 1
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Dana Klen",
-    "certifiedCourses": [
-      {
-        "course": "Consumer Econ",
-        "preference": 1
-      },
-      {
-        "course": "Consumer Econ TT",
-        "preference": 0.5
-      },
-      {
-        "course": "Senior Foods",
-        "preference": 1
-      },
-      {
-        "course": "Human Growth and Dev",
-        "preference": 1
-      },
-      {
-        "course": "Intro to Health Occ",
-        "preference": 1
-      },
-      {
-        "course": "Health Occ",
-        "preference": 1
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Dawn Ingram",
-    "certifiedCourses": [
-      {
-        "course": "Plant Science",
-        "preference": 1
-      },
-      {
-        "course": "Food Science",
-        "preference": 1
-      },
-      {
-        "course": "Floral & Landscape Design",
-        "preference": 1
-      },
-      {
-        "course": "Aqua & Urban Food Prod.",
-        "preference": 1
-      },
-      {
-        "course": "Comp Animal 1",
-        "preference": 1
-      },
-      {
-        "course": "Comp Animal 2",
-        "preference": 1
-      },
-      {
-        "course": "Vet Science",
-        "preference": 1
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Gene Nolan",
-    "certifiedCourses": [
+    "coursesAssigned": [
       {
         "course": "Marketing",
-        "preference": 1
-      },
-      {
-        "course": "Advertising",
-        "preference": 1
-      },
-      {
-        "course": "Incubator",
-        "preference": 1
-      },
-      {
-        "course": "ACCElerator",
-        "preference": 1
-      },
-      {
-        "course": "Consumer Econ",
-        "preference": 1
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Geoff Schmit",
-    "certifiedCourses": [
-      {
-        "course": "Comp Programming 1",
-        "preference": 0.5
-      },
-      {
-        "course": "Comp Programming 2",
-        "preference": 0.5
-      },
-      {
-        "course": "AP Computer Science ",
-        "preference": 1
-      },
-      {
-        "course": "Software Engineering 1",
-        "preference": 1
-      },
-      {
-        "course": "Software Engineering 2",
-        "preference": 1
-      },
-      {
-        "course": "Cybersecurity",
-        "preference": 1
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Greg Ditch",
-    "certifiedCourses": [
-      {
-        "course": "Auto 1",
-        "preference": 1
-      },
-      {
-        "course": "Auto 2",
-        "preference": 1
-      },
-      {
-        "course": "Auto 3",
-        "preference": 1
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Henry Gleamza",
-    "certifiedCourses": [
-      {
-        "course": "Workshop Elements",
-        "preference": 1
-      },
-      {
-        "course": "Workshop Studio",
-        "preference": 1
-      },
-      {
-        "course": "Geo in Construction",
-        "preference": 1
-      },
-      {
-        "course": "R&D",
-        "preference": 0.5
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Jasmin Tuazon",
-    "certifiedCourses": [
-      {
-        "course": "Consumer Econ",
-        "preference": 1
-      },
-      {
-        "course": "Consumer Econ TT",
-        "preference": 0.5
-      },
-      {
-        "course": "Cul 1",
-        "preference": 1
-      },
-      {
-        "course": "Cul 2",
-        "preference": 1
-      },
-      {
-        "course": "Cul 3",
-        "preference": 1
-      },
-      {
-        "course": "Senior Foods",
-        "preference": 1
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Jason Reid",
-    "certifiedCourses": [
-      {
-        "course": "Introduction to Business",
-        "preference": 1
+        "sections": 2
       },
       {
         "course": "Business Law",
-        "preference": 1
+        "sections": 1
       },
       {
         "course": "Comp Programming 1",
-        "preference": 0.8
-      },
-      {
-        "course": "Comp Programming 2",
-        "preference": 0.8
-      },
-      {
-        "course": "Consumer Econ",
-        "preference": 1
+        "sections": 2
       }
     ],
+    "sectionsTaught": 5,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
-    "name": "Jason Ryan",
-    "certifiedCourses": [
+    "name": "Callaghan, Matt",
+    "coursesAssigned": [
       {
-        "course": "EDS",
-        "preference": 1
-      },
-      {
-        "course": "R&D",
-        "preference": 0.5
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Jen Betthauser",
-    "certifiedCourses": [
-      {
-        "course": "Tech Edge",
-        "preference": 1
-      },
-      {
-        "course": "Marketing",
-        "preference": 1
-      },
-      {
-        "course": "Advertising",
-        "preference": 1
-      },
-      {
-        "course": "Business Law",
-        "preference": 1
-      },
-      {
-        "course": "Comp Programming 1",
-        "preference": 0.5
-      },
-      {
-        "course": "Comp Programming 2",
-        "preference": 0.5
-      },
-      {
-        "course": "Web Page Design",
-        "preference": 0.5
-      },
-      {
-        "course": "Consumer Econ",
-        "preference": 1
-      },
-      {
-        "course": "Consumer Econ TT",
-        "preference": 0.5
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Matt Callaghan",
-    "certifiedCourses": [
-      {
-        "course": "Tech Edge",
-        "preference": 0.5
-      },
-      {
-        "course": "Comp Programming 1",
-        "preference": 1
-      },
-      {
-        "course": "Comp Programming 2",
-        "preference": 1
-      },
-      {
-        "course": "Game Design",
-        "preference": 1
-      },
-      {
-        "course": "Web Page Design",
-        "preference": 1
-      },
-      {
-        "course": "AP Computer Science ",
-        "preference": 0.5
-      },
-      {
-        "course": "Software Engineering 1",
-        "preference": 0.5
+        "course": "AP Computer Science",
+        "sections": 3
       },
       {
         "course": "Software Engineering 2",
-        "preference": 0.5
+        "sections": 1
       },
       {
-        "course": "ITS1",
-        "preference": 1
+        "course": "Comp Programming 2",
+        "sections": 1
       }
     ],
+    "sectionsTaught": 5,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
-    "name": "Melissa Oskroba",
-    "certifiedCourses": [
-      {
-        "course": "Intro to Teaching 1",
-        "preference": 1
-      },
-      {
-        "course": "Intro to Teaching 2",
-        "preference": 1
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Sara Willard",
-    "certifiedCourses": [
+    "name": "Morenus, Terry",
+    "coursesAssigned": [
       {
         "course": "Consumer Econ",
-        "preference": 1
+        "sections": 1
       },
       {
         "course": "Consumer Econ TT",
-        "preference": 0.5
+        "sections": 1
       },
-      {
-        "course": "Blended Consumer",
-        "preference": 1
-      },
-      {
-        "course": "Senior Foods",
-        "preference": 1
-      },
-      {
-        "course": "Human Growth and Dev",
-        "preference": 1
-      },
-      {
-        "course": "ECE 1",
-        "preference": 1
-      },
-      {
-        "course": "ECE 2",
-        "preference": 0.5
-      }
-    ],
-    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "Terry Morenus",
-    "certifiedCourses": [
       {
         "course": "Accounting 1",
-        "preference": 1
+        "sections": 2
       },
       {
         "course": "Honors Accounting",
-        "preference": 1
+        "sections": 1
       },
       {
         "course": "International Business",
-        "preference": 1
-      },
-      {
-        "course": "Consumer Econ",
-        "preference": 1
-      },
-      {
-        "course": "Consumer Econ TT",
-        "preference": 1
-      },
-      {
-        "course": "Consumer Econ EL",
-        "preference": 1
-      },
-      {
-        "course": "Online Consumer",
-        "preference": 0.5
-      },
-      {
-        "course": "Software Engineering 2",
-        "preference": 0.5
-      },
-      {
-        "course": "ITS1",
-        "preference": 1
+        "sections": 1
       }
     ],
+    "sectionsTaught": 6,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
-    "name": "BCI Teacher 1",
-    "certifiedCourses": [
+    "name": "Nolan, Gene",
+    "coursesAssigned": [
       {
-        "course": "Blended Career Internship",
-        "preference": 1
+        "course": "Incubator",
+        "sections": 4
       }
     ],
-    "openPeriods": [4, 7]
+    "sectionsTaught": 4,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Reid, Jason",
+    "coursesAssigned": [
+      {
+        "course": "Introduction to Business",
+        "sections": 4
+      },
+      {
+        "course": "Comp Programming 2",
+        "sections": 2
+      }
+    ],
+    "sectionsTaught": 6,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Schmit, Geoff",
+    "coursesAssigned": [
+      {
+        "course": "Software Engineering 2",
+        "sections": 1
+      }
+    ],
+    "sectionsTaught": 1,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Thompson, Brett",
+    "coursesAssigned": [
+      {
+        "course": "Blended Career Internship",
+        "sections": 1
+      }
+    ],
+    "sectionsTaught": 1,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Ryan, Jon",
+    "coursesAssigned": [
+      {
+        "course": "Incubator",
+        "sections": 2
+      },
+      {
+        "course": "Game Design",
+        "sections": 1
+      },
+      {
+        "course": "ACCElerator",
+        "sections": 1
+      },
+      {
+        "course": "Advertising",
+        "sections": 2
+      }
+    ],
+    "sectionsTaught": 6,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Donovan, Meghan",
+    "coursesAssigned": [
+      {
+        "course": "Blended Consumer",
+        "sections": 2
+      },
+      {
+        "course": "ECE 1",
+        "sections": 2
+      },
+      {
+        "course": "Human Growth and Dev",
+        "sections": 1
+      }
+    ],
+    "sectionsTaught": 5,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Hillyer, Allison",
+    "coursesAssigned": [
+      {
+        "course": "Senior Foods",
+        "sections": 3
+      },
+      {
+        "course": "Cul 1",
+        "sections": 2
+      }
+    ],
+    "sectionsTaught": 5,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Klen, Dana",
+    "coursesAssigned": [
+      {
+        "course": "Consumer Econ",
+        "sections": 1
+      },
+      {
+        "course": "Health Occ",
+        "sections": 2
+      },
+      {
+        "course": "ECE 2",
+        "sections": 2
+      }
+    ],
+    "sectionsTaught": 5,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Lewandowski, Angela",
+    "coursesAssigned": [
+      {
+        "course": "Consumer Econ",
+        "sections": 1
+      },
+      {
+        "course": "Senior Foods",
+        "sections": 2
+      },
+      {
+        "course": "Fashion Design",
+        "sections": 1
+      }
+    ],
+    "sectionsTaught": 4,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Oskroba, Melissa",
+    "coursesAssigned": [
+      {
+        "course": "Intro to Teaching 2",
+        "sections": 2
+      }
+    ],
+    "sectionsTaught": 2,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Tuazon, Jasmin",
+    "coursesAssigned": [
+      {
+        "course": "Cul 1",
+        "sections": 2
+      },
+      {
+        "course": "Cul 2",
+        "sections": 1
+      },
+      {
+        "course": "Cul 3",
+        "sections": 1
+      },
+      {
+        "course": "Senior Foods",
+        "sections": 1
+      }
+    ],
+    "sectionsTaught": 5,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "DiOrio, Becky",
+    "coursesAssigned": [
+      {
+        "course": "Graphics 1",
+        "sections": 1
+      },
+      {
+        "course": "Graphics 2",
+        "sections": 1
+      },
+      {
+        "course": "Graphics 3",
+        "sections": 1
+      }
+    ],
+    "sectionsTaught": 6,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Gleamza, Henry",
+    "coursesAssigned": [
+      {
+        "course": "Geo in Construction",
+        "sections": 2
+      },
+      {
+        "course": "Workshop Studio",
+        "sections": 1
+      },
+      {
+        "course": "Workshop Elements",
+        "sections": 1
+      }
+    ],
+    "sectionsTaught": 5,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Ingram, Dawn",
+    "coursesAssigned": [
+      {
+        "course": "Floral & Landscape Design",
+        "sections": 1
+      },
+      {
+        "course": "Aqua & Urban Food Prod.",
+        "sections": 1
+      },
+      {
+        "course": "Comp Animal 1",
+        "sections": 1
+      },
+      {
+        "course": "Comp Animal 2",
+        "sections": 1
+      },
+      {
+        "course": "Vet Science",
+        "sections": 1
+      }
+    ],
+    "sectionsTaught": 5,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+
+  {
+    "name": "Kischuk, Dan",
+    "coursesAssigned": [
+      {
+        "course": "Cybersecurity",
+        "sections": 1
+      },
+      {
+        "course": "Electronics",
+        "sections": 1
+      }
+    ],
+    "sectionsTaught": 2,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Lentino, Dan",
+    "coursesAssigned": [
+      {
+        "course": "Auto 1",
+        "sections": 2
+      },
+      {
+        "course": "Auto 2",
+        "sections": 2
+      },
+      {
+        "course": "Auto 3",
+        "sections": 2
+      }
+    ],
+    "sectionsTaught": 6,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "Ryan, Jason",
+    "coursesAssigned": [
+      {
+        "course": "EDS",
+        "sections": 1
+      }
+    ],
+    "sectionsTaught": 1,
+    "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   }
 ]

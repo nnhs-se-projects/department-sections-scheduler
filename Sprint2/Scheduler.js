@@ -137,9 +137,9 @@ let printInCoolWay = function (arr) {
 
 //update sections by priority
 let sortSections = function () {
-  sectionArr.sort(
-    (a, b) => b.course.schedulingPriority - a.course.schedulingPriority
-  );
+  // sectionArr.sort(
+  //   (a, b) => b.course.schedulingPriority - a.course.schedulingPriority
+  // );
 };
 
 // create sections for each class and then add them to the section array
@@ -283,7 +283,6 @@ const checkForValidSections = function () {
         (item) => item.course === course.name
       ).sections;
     }
-    console.log(totalTeachableSections === course.sections);
     if (!(totalTeachableSections === course.sections)) {
       console.log(course);
       console.log("TeachSect:" + totalTeachableSections);
@@ -388,13 +387,21 @@ const assignTeachersToSections = function () {
   for (const curTeacher of teachers) {
     let teacherCourseID = 1;
     for (const curCourse of curTeacher.coursesAssigned) {
-      for (let i = 0; i <= curCourse.sections; i++) {
+      for (let i = 0; i < curCourse.sections; i++) {
         const assignableSections = sectionArr.filter(
           (section) =>
-            section.course.name === curCourse.name &&
+            section.course.name === curCourse.course &&
             section.teacher === undefined
         );
         if (assignableSections.length === 0) {
+          console.log(
+            curCourse.course +
+              " has no more sections to assign to " +
+              curTeacher.name +
+              " on the " +
+              (i + 1) +
+              "th section"
+          );
           totalErrors++;
         } else {
           const sectionIndex = Math.floor(
@@ -518,7 +525,7 @@ const writeSchedules = function (num, print) {
 
   for (let a = 0; a < num; a++) {
     fs.writeFileSync(
-      "./Sprint1/GeneratedSchedules/Schedule" + (a + 1) + ".json",
+      "./Sprint2/GeneratedSchedules/Schedule" + (a + 1) + ".json",
       JSON.stringify(schedulesArr[a])
     );
   }
