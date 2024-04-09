@@ -437,7 +437,7 @@ const assignTeachersToSections = function () {
       totalErrors++;
     }
   }
-  console.log("Total errors: " + totalErrors);
+  // console.log("Total errors: " + totalErrors);
   return totalErrors;
 };
 
@@ -531,7 +531,7 @@ const writeSchedules = function (num, print) {
   }
 
   if (print) {
-    for (let i; i < schedulesArr.length; i++) {
+    for (let i = 0; i < schedulesArr.length; i++) {
       console.log("");
       console.log("");
       console.log("");
@@ -546,7 +546,6 @@ if (checkForValidSections()) {
 } else {
   console.log("Invalid number of sections to teachers");
 }
-
 // "Cupcakes are good
 // I like cupcakes
 // From the store
@@ -574,3 +573,5 @@ if (checkForValidSections()) {
 // great effect against enemy tanks, artillery, and infantry. The Stuka was retrofitted with a cannon that fired through the propeller, making it a very effective ground attack
 // and dive breaks so it could pull out of the dive even if the pilot was unconscious.
 // - Mostly written by Copilot
+
+//FIXME: Ensure the valid sections check works backwards and forwards. Currently iterates through sections, should also iterate through teachers.
