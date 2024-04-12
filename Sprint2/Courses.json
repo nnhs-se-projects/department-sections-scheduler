@@ -59,7 +59,7 @@
   },
   {
     "name": "Comp Programming 1",
-    "sections": 2,
+    "sections": 1,
     "compatibleClassrooms": ["121", "123"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
     "schedulingPriority": 0.6
@@ -210,13 +210,13 @@
   },
   {
     "name": "Auto 2",
-    "sections": 2,
+    "sections": 1,
     "compatibleClassrooms": ["139"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
     "name": "Auto 3",
-    "sections": 2,
+    "sections": 1,
     "compatibleClassrooms": ["139"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },

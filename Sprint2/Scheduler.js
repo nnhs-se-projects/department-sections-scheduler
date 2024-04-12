@@ -407,6 +407,12 @@ const assignTeachersToSections = function () {
           const sectionIndex = Math.floor(
             Math.random() * assignableSections.length
           );
+          curTeacher.openPeriods.splice(
+            curTeacher.openPeriods.indexOf(
+              assignableSections[sectionIndex].periodClass.period
+            ),
+            1
+          );
           sectionArr[
             sectionArr.indexOf(assignableSections[sectionIndex])
           ].teacher = curTeacher;
@@ -433,7 +439,15 @@ const assignTeachersToSections = function () {
         teacher.openPeriods.includes(6)
       )
     ) {
+      let periodMissing = 4;
+      if (teacher.openPeriods.includes(4)) {
+        periodMissing = 5;
+      }
+      if (teacher.openPeriods.includes(5)) {
+        periodMissing = 6;
+      }
       console.log(teacher.name + " is missing a lunch period");
+      console.log(teacher.openPeriods);
       totalErrors++;
     }
   }
@@ -477,6 +491,7 @@ const generateSchedule = function () {
         teachersAssigned = true;
       } else {
         failCount++;
+        console.log(" Failure " + failCount + " encountered");
         // console.log("failure encountered");
         // console.log(failures);
       }
@@ -484,6 +499,7 @@ const generateSchedule = function () {
         teacherFailed = true;
         // Teachers haven't been assigned and we need to break out of the loop
         teachersAssigned = true;
+        console.log("Failures Reached Failcap, restarting\n");
       }
     }
   }
@@ -507,6 +523,7 @@ const generateSchedule = function () {
   // console.log(errString + "  Starving Teacher? " + lunchError);
   console.log("Total trial schedules made: " + classroomSchedulingAttempts);
   console.log("Total times teachers attempted: " + teacherSchedulingAttempts);
+  // console.log("Schedule generated");
   return formattedSchedule(sectionArr);
 };
 
@@ -515,7 +532,7 @@ const generateSchedules = function (numSchedules) {
   for (let k = 0; k < numSchedules; k++) {
     // console.log("Generating schedule " + k);
     schedules.push(generateSchedule());
-    // console.log("Schedule " + k + " generated");
+    console.log("Schedule " + k + " generated");
   }
   return schedules;
 };

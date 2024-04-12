@@ -12,7 +12,7 @@
       },
       {
         "course": "Comp Programming 1",
-        "sections": 2
+        "sections": 1
       }
     ],
     "sectionsTaught": 5,
@@ -331,14 +331,14 @@
       },
       {
         "course": "Auto 2",
-        "sections": 2
+        "sections": 1
       },
       {
         "course": "Auto 3",
-        "sections": 2
+        "sections": 1
       }
     ],
-    "sectionsTaught": 6,
+    "sectionsTaught": 4,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
