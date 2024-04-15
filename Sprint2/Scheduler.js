@@ -542,7 +542,7 @@ const writeSchedules = function (num, print) {
 
   for (let a = 0; a < num; a++) {
     fs.writeFileSync(
-      "./Sprint2/GeneratedSchedules/Schedule" + (a + 1) + ".json",
+      "./Sprint2/GeneratedSchedules/Schedule" + (a + 201) + ".json",
       JSON.stringify(schedulesArr[a])
     );
   }
@@ -559,7 +559,7 @@ const writeSchedules = function (num, print) {
 };
 
 if (checkForValidSections()) {
-  writeSchedules(100, true);
+  writeSchedules(200, true);
 } else {
   console.log("Invalid number of sections to teachers");
 }
