@@ -1,6 +1,3 @@
-const express = require("express");
-const app = express();
-
 const coll = document.getElementsByClassName("collapsible");
 const classFilter = document.getElementById("classFilter");
 const courseFilter = document.getElementById("courseFilter");
@@ -27,8 +24,10 @@ classFilter.addEventListener("keyup", () => {
     const element = document.getElementById("viewClassrooms" + i);
     if (!element.textContent.includes(classFilter.value)) {
       element.setAttribute("class", "hidden");
+      element.nextElementSibling.setAttribute("maxHeight", "0px");
     } else {
       element.setAttribute("class", "collapsible");
+      element.nextElementSibling.setAttribute("class", "contentCollapsible");
     }
   }
 });
