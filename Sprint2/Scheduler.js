@@ -120,6 +120,21 @@ let printInCoolWay = function (arr) {
           ) + `║`
         : " Empty                         ║";
       row += item;
+      item = "";
+    }
+    console.log(row);
+
+    // Add teachers
+    row = `║ Room ${classroomList[i].toString().padEnd(25)}` + `║`;
+    for (let j = 0; j < transposedArr[i].length; j++) {
+      // Add padding to align columns
+      let item = transposedArr[i][j]
+        ? ` ${transposedArr[i][j].teacher.name} - ${transposedArr[i][j].sectionNumber}`.padEnd(
+            31
+          ) + `║`
+        : " Empty                         ║";
+      row += item;
+      item = "";
     }
     console.log(row);
 
@@ -210,6 +225,29 @@ let createPeriodClassrooms = function () {
       });
     }
   }
+};
+
+let sectionSigmoid = function (section) {
+  const periodSkew = [0, 0, 0, 0, 0, 0, 0, 0];
+  for (let i = 0; i < sectionArr.length; i++) {
+    if (
+      (sectionArr[i].perClass !== undefined ||
+        sectionArr[i].perClass !== null) &&
+      sectionArr[i].course.name === section.course.name
+    ) {
+      periodSkew[sectionArr.periodClass.period - 1]++;
+    }
+  }
+  // Find Minimum of period skew
+  let min = periodSkew[0];
+  let minIndex = 0;
+  for (let i = 0; i < periodSkew.length; i++) {
+    if (periodSkew[i] < min) {
+      min = periodSkew[i];
+      minIndex = i;
+    }
+  }
+  return minIndex + 1;
 };
 
 //assign period-classrooms to sections
@@ -386,6 +424,19 @@ const assignTeachersToSections = function () {
 
   for (const curTeacher of teachers) {
     let teacherCourseID = 1;
+    // if (
+    //   !(
+    //     !curTeacher.openPeriods.includes(4) ||
+    //     !curTeacher.openPeriods.includes(5) ||
+    //     !curTeacher.openPeriods.includes(6)
+    //   )
+    // ) {
+    //   curTeacher.openPeriods.splice(
+    //     curTeacher.openPeriods.indexOf(Math.floor(Math.random() * 3 + 4)),
+    //     1
+    //   );
+    // }
+
     for (const curCourse of curTeacher.coursesAssigned) {
       for (let i = 0; i < curCourse.sections; i++) {
         const assignableSections = sectionArr.filter(
@@ -446,7 +497,7 @@ const assignTeachersToSections = function () {
       if (teacher.openPeriods.includes(5)) {
         periodMissing = 6;
       }
-      console.log(teacher.name + " is missing a lunch period");
+      console.log(teacher.name + " is missing a lunch period ❌🧁");
       console.log(teacher.openPeriods);
       totalErrors++;
     }
@@ -524,9 +575,60 @@ const generateSchedule = function () {
   console.log("Total trial schedules made: " + classroomSchedulingAttempts);
   console.log("Total times teachers attempted: " + teacherSchedulingAttempts);
   // console.log("Schedule generated");
-  return formattedSchedule(sectionArr);
+  const schedule = formattedSchedule(sectionArr);
 };
 
+// swappy mcswap methods
+const eradicateDupeTeachers = function (schedule) {
+  for (let i = 0; i < schedule.length; i++) {
+    for (let j = 0; j < schedule[i].length; j++) {
+      if (
+        checkForDupeTeacherInPeriod(schedule[i][j].teacher, i + 1, schedule)
+      ) {
+        const dupeTeacherSections = grabDupeTeachers(
+          schedule[i][j].teacher,
+          i + 1,
+          schedule
+        );
+        if (!swapTeachers(dupeTeacherSections, i + 1, schedule)) {
+          return false;
+        }
+      }
+    }
+  }
+  return true;
+};
+
+const checkForDupeTeacherInPeriod = function (teacher, period, schedule) {
+  let teacherCount = 0;
+  for (let i = 0; i < schedule[period - 1].length; i++) {
+    if (schedule[period - 1][i].teacher === teacher) {
+      teacherCount++;
+    }
+  }
+  return !(teacherCount === 1);
+};
+
+const grabDupeTeachers = function (teacher, period, schedule) {
+  const dupeTeacherSections = [];
+  for (let i = 0; i < schedule[period - 1].length; i++) {
+    if (schedule[period - 1][i].teacher === teacher) {
+      dupeTeacherSections.push(schedule[period - 1][i]);
+    }
+  }
+  return dupeTeacherSections.splice(2);
+};
+
+const swapTeachers = function (dupeTeacherSections, period, schedule) {
+  /** Hint: use Copilot to do this
+   * Priority: [# of section's periods avaliable] + [# of teacher's periods avaliable] */
+  // determine the priority of first occasion of the dupe (duplicate) teachers:
+  // determine the priority of second occasion of the dupe (duplicate) teachers:
+  // using the highest prioritized occasion, find a new suiting period:
+  // return new schedule:
+};
+
+// lag generator methods
 const generateSchedules = function (numSchedules) {
   const schedules = [];
   for (let k = 0; k < numSchedules; k++) {
@@ -558,11 +660,13 @@ const writeSchedules = function (num, print) {
   }
 };
 
-if (checkForValidSections()) {
-  writeSchedules(200, true);
-} else {
-  console.log("Invalid number of sections to teachers");
-}
+// if (checkForValidSections()) {
+//   writeSchedules(200, true);
+// } else {
+//   console.log("Invalid number of sections to teachers");
+// }
+
+printInCoolWay(generateSchedule());
 // "Cupcakes are good
 // I like cupcakes
 // From the store
