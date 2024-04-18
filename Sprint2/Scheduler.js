@@ -576,14 +576,21 @@ const generateSchedule = function () {
   console.log("Total times teachers attempted: " + teacherSchedulingAttempts);
   // console.log("Schedule generated");
   const schedule = formattedSchedule(sectionArr);
+  if (!eradicateDupeTeachers(schedule)) {
+    return false;
+  }
+  return schedule;
 };
 
 // swappy mcswap methods
 const eradicateDupeTeachers = function (schedule) {
   for (let i = 0; i < schedule.length; i++) {
     for (let j = 0; j < schedule[i].length; j++) {
+      if (schedule[i][j] === null) {
+        continue;
+      }
       if (
-        checkForDupeTeacherInPeriod(schedule[i][j].teacher, i + 1, schedule)
+        checkForTeacherInPeriod(schedule[i][j].teacher, i + 1, schedule) !== 1
       ) {
         const dupeTeacherSections = grabDupeTeachers(
           schedule[i][j].teacher,
@@ -599,33 +606,120 @@ const eradicateDupeTeachers = function (schedule) {
   return true;
 };
 
-const checkForDupeTeacherInPeriod = function (teacher, period, schedule) {
+const checkForTeacherInPeriod = function (teacher, period, schedule) {
   let teacherCount = 0;
   for (let i = 0; i < schedule[period - 1].length; i++) {
-    if (schedule[period - 1][i].teacher === teacher) {
+    if (schedule[period - 1][i] === null) {
+      continue;
+    }
+    if (schedule[period - 1][i].teacher.name === teacher.name) {
       teacherCount++;
     }
   }
-  return !(teacherCount === 1);
+  return teacherCount;
 };
 
 const grabDupeTeachers = function (teacher, period, schedule) {
   const dupeTeacherSections = [];
   for (let i = 0; i < schedule[period - 1].length; i++) {
-    if (schedule[period - 1][i].teacher === teacher) {
+    if (schedule[period - 1][i] === null) {
+      continue;
+    }
+    if (schedule[period - 1][i].teacher.name === teacher.name) {
       dupeTeacherSections.push(schedule[period - 1][i]);
     }
   }
-  return dupeTeacherSections.splice(2);
+  return dupeTeacherSections;
 };
 
 const swapTeachers = function (dupeTeacherSections, period, schedule) {
   /** Hint: use Copilot to do this
    * Priority: [# of section's periods avaliable] + [# of teacher's periods avaliable] */
-  // determine the priority of first occasion of the dupe (duplicate) teachers:
-  // determine the priority of second occasion of the dupe (duplicate) teachers:
-  // using the highest prioritized occasion, find a new suiting period:
-  // return new schedule:
+  const swappable0 = [];
+  const swappable1 = [];
+  for (let i = 0; i < schedule.length; i++) {
+    for (let j = 0; j < schedule[i].length; j++) {
+      // Add to swappable 1
+      if (
+        !findLunches(dupeTeacherSections[0].teacher, schedule).includes(
+          i + 1
+        ) &&
+        schedule[i][j] === null &&
+        dupeTeacherSections[0].course.compatiblePeriods.includes(i + 1) &&
+        dupeTeacherSections[0].course.compatibleClassrooms.includes(
+          classroomList[j]
+        ) &&
+        checkForTeacherInPeriod(
+          dupeTeacherSections[0].teacher,
+          i + 1,
+          schedule
+        ) === 0
+      ) {
+        swappable0.push([i, j]);
+      }
+
+      // Add to swappable 1
+      if (
+        ![4, 5, 6].includes(i + 1) &&
+        schedule[i][j] === null &&
+        dupeTeacherSections[1].course.compatiblePeriods.includes(i + 1) &&
+        dupeTeacherSections[1].course.compatibleClassrooms.includes(
+          classroomList[j]
+        ) &&
+        checkForTeacherInPeriod(
+          dupeTeacherSections[1].teacher,
+          i + 1,
+          schedule
+        ) === 0
+      ) {
+        swappable1.push([i, j]);
+      }
+    }
+  }
+
+  if (swappable0.length === 0 && swappable1.length === 0) {
+    console.log(
+      dupeTeacherSections[0].teacher.name +
+        " Period " +
+        period +
+        " is unswappable"
+    );
+    return false;
+  }
+
+  if (swappable0.length > swappable1.length) {
+    const swappingCoord =
+      swappable0[Math.floor(Math.random() * swappable0.length)];
+    const temp = schedule[swappingCoord[0]][swappingCoord[1]];
+    schedule[swappingCoord[0]][swappingCoord[1]] = dupeTeacherSections[0];
+    schedule[dupeTeacherSections[0].periodClass.period - 1][
+      classroomList.indexOf(dupeTeacherSections[0].periodClass.classroom)
+    ] = temp;
+  } else {
+    const swappingCoord =
+      swappable1[Math.floor(Math.random() * swappable1.length)];
+    const temp = schedule[swappingCoord[0]][swappingCoord[1]];
+    schedule[swappingCoord[0]][swappingCoord[1]] = dupeTeacherSections[1];
+    schedule[dupeTeacherSections[1].periodClass.period - 1][
+      classroomList.indexOf(dupeTeacherSections[1].periodClass.classroom)
+    ] = temp;
+  }
+  return true;
+};
+
+const findLunches = function (teacher, schedule) {
+  const lunches = [];
+  for (let i = 4; i < 7; i++) {
+    for (let j = 0; j < schedule[i].length; j++) {
+      if (schedule[i][j] === null) {
+        continue;
+      }
+      if (schedule[i][j].teacher.name === teacher.name) {
+        lunches.push(i + 1);
+      }
+    }
+  }
+  return lunches;
 };
 
 // lag generator methods
@@ -633,7 +727,12 @@ const generateSchedules = function (numSchedules) {
   const schedules = [];
   for (let k = 0; k < numSchedules; k++) {
     // console.log("Generating schedule " + k);
-    schedules.push(generateSchedule());
+    const schedule = generateSchedule();
+    if (schedule === false) {
+      k--;
+      continue;
+    }
+    schedules.push(schedule);
     console.log("Schedule " + k + " generated");
   }
   return schedules;
@@ -644,7 +743,7 @@ const writeSchedules = function (num, print) {
 
   for (let a = 0; a < num; a++) {
     fs.writeFileSync(
-      "./Sprint2/GeneratedSchedules/Schedule" + (a + 201) + ".json",
+      "./Sprint2/GeneratedSchedules/Schedule" + (a + 6) + ".json",
       JSON.stringify(schedulesArr[a])
     );
   }
@@ -654,7 +753,7 @@ const writeSchedules = function (num, print) {
       console.log("");
       console.log("");
       console.log("");
-      console.log("Schedule " + i + ":");
+      console.log("Schedule " + (i + 1) + ":");
       printInCoolWay(schedulesArr[i]);
     }
   }
@@ -666,7 +765,8 @@ const writeSchedules = function (num, print) {
 //   console.log("Invalid number of sections to teachers");
 // }
 
-printInCoolWay(generateSchedule());
+writeSchedules(10, true);
+
 // "Cupcakes are good
 // I like cupcakes
 // From the store
