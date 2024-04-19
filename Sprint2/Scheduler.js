@@ -743,7 +743,7 @@ const writeSchedules = function (num, print) {
 
   for (let a = 0; a < num; a++) {
     fs.writeFileSync(
-      "./Sprint2/GeneratedSchedules/Schedule" + (a + 16) + ".json",
+      "./Sprint2/GeneratedSchedules/Schedule" + (a + 301) + ".json",
       JSON.stringify(schedulesArr[a])
     );
   }
@@ -765,7 +765,7 @@ const writeSchedules = function (num, print) {
 //   console.log("Invalid number of sections to teachers");
 // }
 
-writeSchedules(15, true);
+writeSchedules(200, true);
 
 // "Cupcakes are good
 // I like cupcakes
