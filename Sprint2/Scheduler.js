@@ -743,7 +743,7 @@ const writeSchedules = function (num, print) {
 
   for (let a = 0; a < num; a++) {
     fs.writeFileSync(
-      "./Sprint2/GeneratedSchedules/Schedule" + (a + 6) + ".json",
+      "./Sprint2/GeneratedSchedules/Schedule" + (a + 16) + ".json",
       JSON.stringify(schedulesArr[a])
     );
   }
@@ -765,7 +765,7 @@ const writeSchedules = function (num, print) {
 //   console.log("Invalid number of sections to teachers");
 // }
 
-writeSchedules(10, true);
+writeSchedules(15, true);
 
 // "Cupcakes are good
 // I like cupcakes
@@ -782,7 +782,8 @@ writeSchedules(10, true);
 // One, two, three
 // Red velvet, chocolate, vanilla
 // So many flavors
-// I like cupcakes"
+// I like cupcakes
+// They are good"
 // - Written by Copilot
 
 // The German Junkers Ju 87 Stuka dive bomber was a key element of the German Blitzkrieg tactics and was very successful in the early stages of the war. The Stuka was a
