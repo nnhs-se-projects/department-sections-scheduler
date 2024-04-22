@@ -4,7 +4,7 @@
     "coursesAssigned": [
       {
         "course": "Marketing",
-        "sections": 1
+        "sections": 2
       },
       {
         "course": "Business Law",
@@ -12,10 +12,10 @@
       },
       {
         "course": "Comp Programming 1",
-        "sections": 2
+        "sections": 1
       }
     ],
-    "sectionsTaught": 4,
+    "sectionsTaught": 5,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
@@ -45,6 +45,10 @@
         "sections": 1
       },
       {
+        "course": "Consumer Econ TT",
+        "sections": 1
+      },
+      {
         "course": "Accounting 1",
         "sections": 2
       },
@@ -57,7 +61,7 @@
         "sections": 1
       }
     ],
-    "sectionsTaught": 5,
+    "sectionsTaught": 6,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
@@ -65,10 +69,10 @@
     "coursesAssigned": [
       {
         "course": "Incubator",
-        "sections": 3
+        "sections": 4
       }
     ],
-    "sectionsTaught": 3,
+    "sectionsTaught": 4,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
@@ -251,10 +255,6 @@
       {
         "course": "Graphics 3",
         "sections": 1
-      },
-      {
-        "course": "R&D",
-        "sections": 3
       }
     ],
     "sectionsTaught": 6,
@@ -264,115 +264,92 @@
     "name": "Gleamza, Henry",
     "coursesAssigned": [
       {
-        "course": "R&D",
-        "sections": 1
-      },
-      {
-        "course": "Game Design",
-        "sections": 1
-      },
-      {
-        "course": "ACCElerator",
-        "sections": 1
-      },
-      {
-        "course": "Advertising",
+        "course": "Geo in Construction",
         "sections": 2
+      },
+      {
+        "course": "Workshop Studio",
+        "sections": 1
+      },
+      {
+        "course": "Workshop Elements",
+        "sections": 1
       }
     ],
-    "sectionsTaught": 6,
+    "sectionsTaught": 5,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
     "name": "Ingram, Dawn",
     "coursesAssigned": [
       {
-        "course": "Incubator",
-        "sections": 2
-      },
-      {
-        "course": "Game Design",
+        "course": "Floral & Landscape Design",
         "sections": 1
       },
       {
-        "course": "ACCElerator",
+        "course": "Aqua & Urban Food Prod.",
         "sections": 1
       },
       {
-        "course": "Advertising",
-        "sections": 2
+        "course": "Comp Animal 1",
+        "sections": 1
+      },
+      {
+        "course": "Comp Animal 2",
+        "sections": 1
+      },
+      {
+        "course": "Vet Science",
+        "sections": 1
       }
     ],
-    "sectionsTaught": 6,
+    "sectionsTaught": 5,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
+
   {
     "name": "Kischuk, Dan",
     "coursesAssigned": [
       {
-        "course": "Incubator",
-        "sections": 2
-      },
-      {
-        "course": "Game Design",
+        "course": "Cybersecurity",
         "sections": 1
       },
       {
-        "course": "ACCElerator",
+        "course": "Electronics",
         "sections": 1
-      },
-      {
-        "course": "Advertising",
-        "sections": 2
       }
     ],
-    "sectionsTaught": 6,
+    "sectionsTaught": 2,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
     "name": "Lentino, Dan",
     "coursesAssigned": [
       {
-        "course": "Incubator",
+        "course": "Auto 1",
         "sections": 2
       },
       {
-        "course": "Game Design",
+        "course": "Auto 2",
         "sections": 1
       },
       {
-        "course": "ACCElerator",
+        "course": "Auto 3",
         "sections": 1
-      },
-      {
-        "course": "Advertising",
-        "sections": 2
       }
     ],
-    "sectionsTaught": 6,
+    "sectionsTaught": 4,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
     "name": "Ryan, Jason",
     "coursesAssigned": [
       {
-        "course": "Incubator",
-        "sections": 2
-      },
-      {
-        "course": "Game Design",
+        "course": "EDS",
         "sections": 1
-      },
-      {
-        "course": "ACCElerator",
-        "sections": 1
-      },
-      {
-        "course": "Advertising",
-        "sections": 2
       }
     ],
-    "sectionsTaught": 6,
+    "sectionsTaught": 1,
     "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   }
 ]

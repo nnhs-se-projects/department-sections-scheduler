@@ -117,6 +117,11 @@
   margin-bottom: 0px;
 }
 
+count {
+  color: white;
+  font-size: 20px;
+}
+
 .scrollSelector {
   background-color: var(--nestedbc);
   color: white;
@@ -134,6 +139,7 @@ textarea {
 
 .hidden {
   visibility: hidden;
+  max-height: 0px;
   height: 0px;
   width: 0px;
   margin: 0px;
@@ -184,6 +190,7 @@ textarea {
   width: 150px;
   height: 150px;
   margin-left: 30px;
+  margin-right: 30px;
 }
 
 .indexTopBar h1 {
