@@ -1,10 +1,10 @@
 const sectionArr = [];
 let periodsClassArr = [];
-const courses = require("./Courses.json");
+const courses = require("../server/model/Courses.json");
 const config = require("./Config.json");
-const classroomArr = require("./Classrooms.json");
+const classroomArr = require("../server/model/Classrooms.json");
 const classroomList = classroomArr.map((classroom) => classroom.roomNum);
-const teacherArr = require("./Teachers.json");
+const teacherArr = require("../server/model/Teachers.json");
 const teacherString = JSON.stringify(teacherArr);
 const fs = require("fs");
 
@@ -765,8 +765,7 @@ const writeSchedules = function (num, print) {
 //   console.log("Invalid number of sections to teachers");
 // }
 
-writeSchedules(200, true);
-
+printInCoolWay(generateSchedule());
 // "Cupcakes are good
 // I like cupcakes
 // From the store
