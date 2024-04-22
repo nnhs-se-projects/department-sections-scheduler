@@ -254,7 +254,7 @@
     "name": "ECE 2",
     "sections": 2,
     "compatibleClassrooms": ["117"],
-    "compatiblePeriods": [3, 4, 6, 7]
+    "compatiblePeriods": [6, 7]
   },
   {
     "name": "Intro to Teaching 2",
