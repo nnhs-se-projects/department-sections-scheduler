@@ -22,7 +22,32 @@
       </select>
     </label>
   </div>
+  
   <div class="box">
+    <div class="box2">
+      <h1>Teacher Name</h1>
+      <textarea id="namer" rows="1" placeholder="Teacher Name"></textarea>
+    </div>
+
+    <div class="box2">
+      <h1>Courses</h1>
+      <div class="scrollSelector">
+        <% for(let i=0; i < courses.length; i++) { %>
+          <div class="box2">
+            <input type="checkbox" class="courseHolder"/>
+            <label style="color: #FFFFFF"><%=courses[i].name%></label>
+
+            <div id="<%='course' + i%>" class="hidden">
+              <label>
+              Number of Sections: <input id="<%='course' + i%>" type="number" min="0"/>
+              </label>    
+            </div>
+
+          </div>
+        <% } %>
+      </div>
+    </div>
+
     <div class="box2">
       <a role="button" id="saveButton">Save Teacher</a>
       <a role="button" id="deleteButton">Delete Teacher</a>
