@@ -765,7 +765,8 @@ const writeSchedules = function (num, print) {
 //   console.log("Invalid number of sections to teachers");
 // }
 
-printInCoolWay(generateSchedule());
+writeSchedules(1, true);
+
 // "Cupcakes are good
 // I like cupcakes
 // From the store
