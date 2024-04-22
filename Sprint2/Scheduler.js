@@ -797,3 +797,18 @@ writeSchedules(1, true);
 // - Mostly written by Copilot
 
 //FIXME: Ensure the valid sections check works backwards and forwards. Currently iterates through sections, should also iterate through teachers.
+
+// we want to export writeSchedules, generateSchedules, printInCoolWay
+
+export default function writeSchedules(num, print) {
+  writeSchedules(num, print);
+}
+export default function generateSchedules(num) {
+  return generateSchedules(num);
+}
+export default function printInCoolWay(arr) {
+  printInCoolWay(arr);
+}
+
+
+/// fix this, doesn't seem to be optimal solution
