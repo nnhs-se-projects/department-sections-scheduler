@@ -798,7 +798,7 @@ writeSchedules(1, true);
 
 //FIXME: Ensure the valid sections check works backwards and forwards. Currently iterates through sections, should also iterate through teachers.
 
-// we want to export writeSchedules, generateSchedules, printInCoolWay
+// we want to export writeSchedules, generateSchedules, printInCoolWay so that Scheduler becomes a tool to shoot out schedules
 
 export default function writeSchedules(num, print) {
   writeSchedules(num, print);
