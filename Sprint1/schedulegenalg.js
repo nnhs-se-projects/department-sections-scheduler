@@ -169,11 +169,7 @@ const crossover1 = (parent1, parent2) => {
   console.log("cross1");
   console.log(parent1);
   console.log(parent2);
-  let IDSet = new Set();
-  for (let i = 0; i < parent1.length; i++) {
-    IDSet.add(parent1[i].id);
-  }
-  w;
+
   //clone all the sections and strip them of their classrooms
   let parent1withoutclassrooms = [];
   let parent2withoutclassrooms = [];
@@ -310,64 +306,185 @@ const crossover1worker = (parent1, parent2, d1, d2) => {
 
 //duplicates in child1 are the missing sections in child2
 //duplicates in child2 are the missing sections in child1
-const randomcleanup = (child1, child2) => {
-  console.log("cleanup");
+const randomcleanup = (child21, child22) => {
+  let child1 = [
+    [
+      {
+        id: 1,
+      },
+    ],
+    [
+      {
+        id: 2,
+      },
+    ],
+    [
+      {
+        id: 3,
+      },
+    ],
+    [
+      {
+        id: 4,
+      },
+    ],
+    [
+      {
+        id: 5,
+      },
+    ],
+    [
+      {
+        id: 4,
+      },
+    ],
+    [
+      {
+        id: 7,
+      },
+    ],
+    [
+      {
+        id: 8,
+      },
+    ],
+    [
+      {
+        id: 8,
+      },
+    ],
+  ];
+  let child2 = [
+    [
+      {
+        id: 1,
+      },
+    ],
+    [
+      {
+        id: 2,
+      },
+    ],
+    [
+      {
+        id: 3,
+      },
+    ],
+    [
+      {
+        id: 6,
+      },
+    ],
+    [
+      {
+        id: 5,
+      },
+    ],
+    [
+      {
+        id: 6,
+      },
+    ],
+    [
+      {
+        id: 7,
+      },
+    ],
+    [
+      {
+        id: 9,
+      },
+    ],
+    [
+      {
+        id: 9,
+      },
+    ],
+  ];
   console.log(child1);
   console.log(child2);
+
+  console.log("cleanup");
   //find duplicates throw into other array
   c1set = new Set();
   c2set = new Set();
   let c1duplicates = [];
   let c2duplicates = [];
   for (let i = 0; i < child1.length; i++) {
-    if (c1set.has(child1[i])) {
-      c1duplicates.push(child1[i]);
-      child1[i] = null;
-    } else {
-      c1set.add(child1[i]);
+    for (let j = 0; j < child1[i].length; j++) {
+      if (c1set.has(child1[i][j].id)) {
+        c1duplicates.push(child1[i][j]);
+        child1[i][j] = null;
+      } else {
+        c1set.add(child1[i][j].id);
+      }
     }
   }
   for (let i = 0; i < child2.length; i++) {
-    if (c2set.has(child2[i])) {
-      c2duplicates.push(child2[i]);
-      child2[i] = null;
-    } else {
-      c2set.add(child2[i]);
+    for (let j = 0; j < child2[i].length; j++) {
+      if (c2set.has(child2[i][j].id)) {
+        c2duplicates.push(child2[i][j]);
+        child2[i][j] = null;
+      } else {
+        c2set.add(child2[i][j].id);
+      }
     }
   }
+  console.log("duplicates");
+  console.log(child1);
+  console.log(c2duplicates);
+
   //add duplicates to other array
+
   for (i = 0; i < c2duplicates.length; i++) {
     //iterate through period classrooms till you find a null
-    for (j = 0; j < child1.length; j++) {
+    outerloop: for (j = 0; j < child1.length; j++) {
       for (k = 0; k < child1[j].length; k++) {
         if (child1[j][k] == null) {
           //check if section is compatable with classroom and the teacher who is assigned to a section is not already assigned to a section in that period
-          if (
-            child1[j][k].course.compatableClassrooms.includes(
-              c2duplicates[i]
-            ) &&
-            !child1[j].includes(c2duplicates[i])
-          ) {
-            //teachers
-            //iteate through periods and check if teacher is already assigned to a section in that period
-            let teacher = c2duplicates[i].teacher;
-            let teacherassigned = false;
-            for (l = 0; l < child1.length; l++) {
-              if (child1[l].includes(teacher)) {
-                teacherassigned = true;
-              }
-            }
-            if (!teacherassigned) {
-              child1[j][k] = c2duplicates[i];
-            }
-            break;
-          }
+          // if (
+          //   child1[j][k].course.compatableClassrooms.includes(
+          //     c2duplicates[i]
+          //   ) &&
+          //   !child1[j].includes(c2duplicates[i])
+          // ) {
+          //   //teachers
+          //   //iteate through periods and check if teacher is already assigned to a section in that period
+          //   let teacher = c2duplicates[i].teacher;
+          //   let teacherassigned = false;
+          //   for (l = 0; l < child1.length; l++) {
+          //     if (child1[l].includes(teacher)) {
+          //       teacherassigned = true;
+          //     }
+          //   }
+          //   if (!teacherassigned) {
+          //     child1[j][k] = c2duplicates[i];
+          //   }
+          //   break;
+          // }
+          child1[j][k] = c2duplicates[i];
+          console.log("added");
+          console.log(c2duplicates[i]);
+          console.log(child1);
+          break outerloop;
+        }
+      }
+    }
+  }
+
+  for (i = 0; i < c1duplicates.length; i++) {
+    outerloop: for (j = 0; j < child2.length; j++) {
+      for (k = 0; k < child2[j].length; k++) {
+        if (child2[j][k] == null) {
+          child2[j][k] = c1duplicates[i];
+          break outerloop;
         }
       }
     }
   }
 
   //}
+  console.log(child2);
 };
 
 const isValidschedule = (schedule) => {
@@ -471,7 +588,8 @@ const testcross1 = () => {
   console.log(child2);
 };
 
-testcross1();
+//testcross1();
+randomcleanup([], []);
 
 module.exports = {
   crossover1,
