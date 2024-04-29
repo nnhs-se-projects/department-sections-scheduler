@@ -34,12 +34,12 @@
       <div class="scrollSelector">
         <% for(let i=0; i < courses.length; i++) { %>
           <div class="box2">
-            <input type="checkbox" class="courseHolder" id="<%='holder ' + courses[i]%>"/>
+            <input type="checkbox" class="courseHolder" id="<%='holder ' + courses[i].name%>"/>
             <label style="color: #FFFFFF"><%=courses[i].name%></label>
 
             <div id="<%='course' + i%>" class="hidden">
               <label>
-              Number of Sections: <input class="<%='input '+ courses[i]%>" id="<%='course' + i%>" type="number" min="0"/>
+              Number of Sections: <input id="<%='input' + i%>" type="number" min="0"/>
               </label>    
             </div>
 

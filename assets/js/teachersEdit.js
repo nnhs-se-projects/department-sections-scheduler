@@ -12,6 +12,7 @@ let teacherArr;
 
 const sectionInputs = [];
 let courseHolders = document.getElementsByClassName("courseHolder");
+courseHolders = [].slice.call(courseHolders);
 
 const onStart = async function () {
   // Get courses.json & teachers.json from server
@@ -26,7 +27,14 @@ const onStart = async function () {
       teacherArr = data[0];
       courseArr = data[1];
       for (let i = 0; i < courseArr.length; i++) {
-        sectionInputs.push(document.getElementById("course" + i));
+        sectionInputs.push(document.getElementById("input" + i));
+      }
+      for (let i = 0; i < sectionInputs.length; i++) {
+        sectionInputs[i].value = 0;
+      }
+      for (let i = 0; i < courseHolders.length; i++) {
+        courseHolders[i].checked = false;
+        document.getElementById("course" + i).setAttribute("class", "hidden");
       }
       currentTeacherName = teacherSelector.value;
       if (currentTeacherName === "addTeacher") {
@@ -62,14 +70,13 @@ const updateCourseHolders = function () {
 
 const updateSectionInputs = function () {
   for (let i = 0; i < sectionInputs.length; i++) {
-    sectionInputs[i].value = currentTeacher.coursesAssigned;
     if (
       currentTeacher.coursesAssigned
         .map((data) => data.course)
-        .includes(courseArr[i])
+        .includes(courseArr[i].name)
     ) {
       sectionInputs[i].value = currentTeacher.coursesAssigned.filter(
-        (data) => data.course === courseArr[i]
+        (data) => data.course === courseArr[i].name
       )[0].sections;
     }
   }
@@ -169,9 +176,6 @@ const createJSON = function (saveCase) {
     case SaveCase.Save:
       if (currentTeacher == null) {
         let sectionsTaught = 0;
-        for (let i = 0; i < sectionInputs.length; i++) {
-          sectionsTaught += Number(sectionInputs[i].value);
-        }
         const coursesAssigned = [];
         for (let i = 0; i < courseHolders.length; i++) {
           if (courseHolders[i].checked) {
@@ -179,6 +183,7 @@ const createJSON = function (saveCase) {
               course: courseHolders[i].id.slice(7),
               sections: Number(sectionInputs[i].value),
             });
+            sectionsTaught += Number(sectionInputs[i].value);
           }
         }
         modifiedTeacherArr.push({
@@ -189,9 +194,6 @@ const createJSON = function (saveCase) {
         });
       } else {
         let sectionsTaught = 0;
-        for (let i = 0; i < sectionInputs.length; i++) {
-          sectionsTaught += Number(sectionInputs[i].value);
-        }
         const coursesAssigned = [];
         for (let i = 0; i < courseHolders.length; i++) {
           if (courseHolders[i].checked) {
@@ -199,6 +201,7 @@ const createJSON = function (saveCase) {
               course: courseHolders[i].id.slice(7),
               sections: Number(sectionInputs[i].value),
             });
+            sectionsTaught += Number(sectionInputs[i].value);
           }
         }
         modifiedTeacherArr[modifiedTeacherArr.indexOf(currentTeacher)] = {
