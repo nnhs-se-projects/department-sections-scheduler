@@ -1,26 +1,21 @@
-const courseHolder = document.getElementsByClassName("courseHolder");
-
-//Fixed up to here
-const courseSelector = document.getElementById("coursePicker");
-const courseNameSelector = document.getElementById("namer");
-const courseSectionSelector = document.getElementById("sectionSelector");
-const coursePrioritySelector = document.getElementById("prioritySelector");
-const coursePriorityToggle = document.getElementById("priorityOverrideEnabler");
+const teacherSelector = document.getElementById("teacherPicker");
+const teacherNameSelector = document.getElementById("namer");
 
 const saveButton = document.getElementById("saveButton");
 const deleteButton = document.getElementById("deleteButton");
 let unsaved = true;
 
-let currentCourseName;
-let currentCourse;
+let currentTeacherName;
+let currentTeacher;
 let courseArr;
-let classroomsArr;
+let teacherArr;
 
-let classroomSelectors = [];
+let sectionInputs = [];
+let courseHolders = document.getElementsByClassName("courseHolder");
 
 const onStart = async function () {
-  // Get courses.json & classrooms.json from server
-  await fetch("/fetchEditCourses", {
+  // Get courses.json & teachers.json from server
+  await fetch("/fetchEditTeachers", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -28,77 +23,61 @@ const onStart = async function () {
   }).then((response) =>
     response.json().then((data) => {
       console.log(data);
-      courseArr = data[0];
-      classroomsArr = data[1];
-      for (const classroom of classroomsArr) {
-        classroomSelectors.push(
-          document.getElementById("C " + classroom.roomNum)
-        );
+      teacherArr = data[0];
+      courseArr = data[1];
+      for (let i = 0; i < courseArr.length; i++) {
+        sectionInputs.push(document.getElementById("course" + i));
       }
-      currentCourseName = courseSelector.value;
-      if (currentCourseName === "addCourse") {
-        currentCourse = null;
+      currentTeacherName = teacherSelector.value;
+      if (currentTeacherName === "addTeacher") {
+        currentTeacher = null;
       } else {
-        currentCourse = courseArr.filter(
-          (course) => course.name === currentCourseName
+        currentTeacher = teacherArr.filter(
+          (teacher) => teacher.name === currentTeacherName
         )[0];
       }
 
-      courseNameSelector.value = currentCourseName;
+      teacherNameSelector.value = currentTeacherName;
+
       updateFields();
     })
   );
 };
 
-const updateCoursePeriodsSelector = function () {
-  coursePeriodsSelectors = coursePeriodsSelectors.map((data) => {
-    data.checked = currentCourse.compatiblePeriods.includes(
-      Number(data.id.slice(7))
-    );
+const updateCourseHolders = function () {
+  courseHolders = courseHolders.map((data) => {
+    data.checked = currentTeacher.coursesAssigned
+      .map((data) => data.course)
+      .includes(data.id.slice(7));
     return data;
   });
-};
-
-const updateClassroomsSelectors = function () {
-  classroomSelectors = classroomSelectors.map((data) => {
-    data.checked = currentCourse.compatibleClassrooms.includes(
-      String(data.id.slice(2))
-    );
-    return data;
-  });
-};
-
-const updateCourseSectionSelector = function () {
-  courseSectionSelector.value = currentCourse.sections;
-};
-
-const updateCoursePrioritySelector = function () {
-  if (currentCourse.userPriority === undefined) {
-    coursePriorityToggle.checked = false;
-    document
-      .getElementById("prioritySelectorDiv")
-      .setAttribute("class", "hidden");
-    coursePrioritySelector.value = 0.5;
-  } else {
-    coursePriorityToggle.checked = true;
-    document.getElementById("prioritySelectorDiv").setAttribute("class", "");
-    coursePrioritySelector.value = currentCourse.userPriority;
+  for (let i = 0; i < courseHolders.length; i++) {
+    if (courseHolders[i].checked) {
+      document.getElementById("course" + i).setAttribute("class", "");
+    } else {
+      document.getElementById("course" + i).setAttribute("class", "hidden");
+    }
   }
 };
 
-coursePriorityToggle.addEventListener("change", () => {
-  if (coursePriorityToggle.checked) {
-    document.getElementById("prioritySelectorDiv").setAttribute("class", "");
-  } else {
-    document
-      .getElementById("prioritySelectorDiv")
-      .setAttribute("class", "hidden");
+const updateSectionInputs = function () {
+  for (let i = 0; i < sectionInputs.length; i++) {
+    sectionInputs[i].value = currentTeacher.coursesAssigned;
+    if (
+      currentTeacher.coursesAssigned
+        .map((data) => data.course)
+        .includes(courseArr[i])
+    ) {
+      sectionInputs[i].value = currentTeacher.coursesAssigned.filter(
+        (data) => data.course === courseArr[i]
+      )[0].sections;
+    }
   }
-});
+};
 
-for (let i = 0; i < courseHolder.length; i++) {
-  courseHolder[i].addEventListener("change", () => {
-    if (courseHolder[i].checked) {
+for (let i = 0; i < courseHolders.length; i++) {
+  courseHolders[i].addEventListener("change", () => {
+    if (courseHolders[i].checked) {
       document.getElementById("course" + i).setAttribute("class", "");
     } else {
       document.getElementById("course" + i).setAttribute("class", "hidden");
@@ -107,44 +86,38 @@ for (let i = 0; i < courseHolder.length; i++) {
 }
 
 const updateFields = function () {
-  currentCourseName = courseSelector.value;
-  if (currentCourseName === "addCourse") {
+  currentTeacherName = teacherSelector.value;
+  if (currentTeacherName === "addTeacher") {
     deleteButton.setAttribute("class", "hiddenButton"); // Hide delete button
-    currentCourse = null;
-    courseNameSelector.value = "New Course";
+    currentTeacher = null;
+    teacherNameSelector.value = "New Teacher";
 
     // Resets values for Add Course
-    for (let i = 0; i < 8; i++) {
-      coursePeriodsSelectors[i].checked = true;
+    for (let i = 0; i < sectionInputs.length; i++) {
+      sectionInputs[i].value = 0;
     }
-    for (let i = 0; i < classroomSelectors.length; i++) {
-      classroomSelectors[i].checked = false;
+    for (let i = 0; i < courseHolders.length; i++) {
+      courseHolders[i].checked = false;
+      document.getElementById("course" + i).setAttribute("class", "hidden");
     }
-    courseSectionSelector.value = 0;
-    coursePrioritySelector.value = 0.5;
-    coursePriorityToggle.checked = false;
-    document
-      .getElementById("prioritySelectorDiv")
-      .setAttribute("class", "hidden");
   } else {
     deleteButton.setAttribute("class", ""); // Show Delete Button
-
     // Update for everything other than Add Course
-    currentCourse = courseArr.filter(
-      (course) => course.name === currentCourseName
+    currentTeacher = teacherArr.filter(
+      (teacher) => teacher.name === currentTeacherName
     )[0];
-    courseNameSelector.value = currentCourseName;
-    updateCoursePeriodsSelector();
-    updateCourseSectionSelector();
-    updateCoursePrioritySelector();
-    updateClassroomsSelectors();
+    teacherNameSelector.value = currentTeacherName;
+    updateCourseHolders();
+    updateSectionInputs();
   }
 };
 
-courseSelector.addEventListener("change", () => updateFields());
+teacherSelector.addEventListener("change", () => updateFields());
+
+//FIXED UP TO HERE
 
 const verifyFields = function () {
-  // Verify Course Name
+  // Verify Teacher Name
   if (["", undefined, null].includes(courseNameSelector.value)) {
     alert("The course must be given a name!");
     return false;
