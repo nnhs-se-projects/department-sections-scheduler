@@ -10,7 +10,7 @@ let currentTeacher;
 let courseArr;
 let teacherArr;
 
-let sectionInputs = [];
+const sectionInputs = [];
 let courseHolders = document.getElementsByClassName("courseHolder");
 
 const onStart = async function () {
@@ -114,111 +114,113 @@ const updateFields = function () {
 
 teacherSelector.addEventListener("change", () => updateFields());
 
-//FIXED UP TO HERE
-
 const verifyFields = function () {
   // Verify Teacher Name
-  if (["", undefined, null].includes(courseNameSelector.value)) {
-    alert("The course must be given a name!");
+  if (["", undefined, null].includes(teacherNameSelector.value)) {
+    alert("The teacher must be given a name!");
     return false;
   } else if (
-    currentCourse == null &&
-    courseArr.map((data) => data.name).includes(courseNameSelector.value)
+    currentTeacher == null &&
+    teacherArr.map((data) => data.name).includes(teacherNameSelector.value)
   ) {
-    alert("A course already exists with this name!");
+    alert("A teacher already exists with this name!");
     return false;
   } else if (
-    currentCourse != null &&
-    courseNameSelector.value !== currentCourseName &&
-    courseArr.map((data) => data.name).includes(courseNameSelector.value)
+    currentTeacher != null &&
+    teacherNameSelector.value !== currentTeacherName &&
+    teacherArr.map((data) => data.name).includes(teacherNameSelector.value)
   ) {
-    alert("A course already exists with this name!");
+    alert("A teacher already exists with this name!");
     return false;
   } else if (
-    courseNameSelector.value === "addCourse" ||
-    courseNameSelector.value === "Add Course" ||
-    courseNameSelector.value === "add course" ||
-    courseNameSelector.value === "add Course" ||
-    courseNameSelector.value === "Add course"
+    teacherNameSelector.value === "addTeacher" ||
+    teacherNameSelector.value === "Add Teacher" ||
+    teacherNameSelector.value === "add teacher" ||
+    teacherNameSelector.value === "add Teacher" ||
+    teacherNameSelector.value === "Add teacher"
   ) {
     alert(
-      "Why would you name a course '" +
-        courseNameSelector.value +
+      "Why would you name a teacher '" +
+        teacherNameSelector.value +
         "' that's stupid and I know you're just trying to break our code have some respect for your developers please"
     );
     return false;
   }
 
   // Verify Sections
-  if (courseSectionSelector.value < 0.0) {
-    alert("Number of sections cannot be negative!");
-    return false;
-  } else if (courseSectionSelector.value % 1.0 !== 0.0) {
-    alert("Number of sections must be an integer!");
-    return false;
-  }
-
-  // Verify Priority Override
-  if (
-    coursePriorityToggle.checked &&
-    (coursePrioritySelector.value < 0.0 || coursePrioritySelector.value > 1.0)
-  ) {
-    alert("Course priority must be within 0.0 - 1.0");
-    return false;
+  for (let i = 0; i < sectionInputs.length; i++) {
+    if (sectionInputs[i].value < 0.0) {
+      alert("Number of sections cannot be negative!");
+      return false;
+    } else if (sectionInputs[i].value % 1.0 !== 0.0) {
+      alert("Number of sections must be an integer!");
+      return false;
+    }
   }
 
   return true;
 };
 
 const createJSON = function (saveCase) {
-  const modifiedCourseArr = courseArr.map((data) => data);
+  const modifiedTeacherArr = teacherArr.map((data) => data);
 
   switch (saveCase) {
-    // Add the current course to the array
+    // Add the current teacher to the array
     case SaveCase.Save:
-      if (currentCourse == null) {
-        modifiedCourseArr.push({
-          name: courseNameSelector.value,
-          sections: Number(courseSectionSelector.value),
-          compatibleClassrooms: classroomSelectors
-            .filter((data) => data.checked)
-            .map((data) => data.id.slice(2)),
-          compatiblePeriods: coursePeriodsSelectors
-            .filter((data) => data.checked)
-            .map((data) => Number(data.id.slice(7))),
-          userPriority: coursePriorityToggle.checked
-            ? Number(coursePrioritySelector.value)
-            : undefined,
+      if (currentTeacher == null) {
+        let sectionsTaught = 0;
+        for (let i = 0; i < sectionInputs.length; i++) {
+          sectionsTaught += Number(sectionInputs[i].value);
+        }
+        const coursesAssigned = [];
+        for (let i = 0; i < courseHolders.length; i++) {
+          if (courseHolders[i].checked) {
+            coursesAssigned.push({
+              course: courseHolders[i].id.slice(7),
+              sections: Number(sectionInputs[i].value),
+            });
+          }
+        }
+        modifiedTeacherArr.push({
+          name: teacherNameSelector.value,
+          coursesAssigned,
+          sectionsTaught,
+          openPeriods: [1, 2, 3, 4, 5, 6, 7, 8],
         });
       } else {
-        modifiedCourseArr[modifiedCourseArr.indexOf(currentCourse)] = {
-          name: courseNameSelector.value,
-          sections: Number(courseSectionSelector.value),
-          compatibleClassrooms: classroomSelectors
-            .filter((data) => data.checked)
-            .map((data) => data.id.slice(2)),
-          compatiblePeriods: coursePeriodsSelectors
-            .filter((data) => data.checked)
-            .map((data) => Number(data.id.slice(7))),
-          userPriority: coursePriorityToggle.checked
-            ? Number(coursePrioritySelector.value)
-            : undefined,
+        let sectionsTaught = 0;
+        for (let i = 0; i < sectionInputs.length; i++) {
+          sectionsTaught += Number(sectionInputs[i].value);
+        }
+        const coursesAssigned = [];
+        for (let i = 0; i < courseHolders.length; i++) {
+          if (courseHolders[i].checked) {
+            coursesAssigned.push({
+              course: courseHolders[i].id.slice(7),
+              sections: Number(sectionInputs[i].value),
+            });
+          }
+        }
+        modifiedTeacherArr[modifiedTeacherArr.indexOf(currentTeacher)] = {
+          name: teacherNameSelector.value,
+          coursesAssigned,
+          sectionsTaught,
+          openPeriods: [1, 2, 3, 4, 5, 6, 7, 8],
         };
       }
+      console.log(modifiedTeacherArr);
+      return modifiedTeacherArr;
 
-      console.log(modifiedCourseArr);
-      return modifiedCourseArr;
-
-    // Remove the current course from the array
+    // Remove the current teacher from the array
     case SaveCase.Delete:
-      modifiedCourseArr.splice(modifiedCourseArr.indexOf(currentCourse), 1);
-      console.log(modifiedCourseArr);
-      return modifiedCourseArr;
+      modifiedTeacherArr.splice(modifiedTeacherArr.indexOf(currentTeacher), 1);
+      console.log(modifiedTeacherArr);
+      return modifiedTeacherArr;
   }
 };
 
 const saveToServer = async function (arr) {
-  const response = await fetch("/updateCourses", {
+  const response = await fetch("/updateTeachers", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -227,7 +229,7 @@ const saveToServer = async function (arr) {
   });
 
   if (response.ok) {
-    window.location = "/coursesEdit";
+    window.location = "/teachersEdit";
   } else {
     console.log("error creating entry");
   }
@@ -246,11 +248,11 @@ saveButton.addEventListener("click", () => {
 });
 
 deleteButton.addEventListener("click", () => {
-  if (currentCourse == null) {
+  if (currentTeacher == null) {
     alert("how");
   } else if (
     confirm(
-      "Are you sure you would like to delete this course? This cannot be undone."
+      "Are you sure you would like to delete this teacher? This cannot be undone."
     )
   ) {
     saveToServer(createJSON(SaveCase.Delete));
@@ -269,7 +271,3 @@ window.addEventListener("beforeunload", (event) => {
 });
 
 onStart();
-
-//FIXME: Need to ensure that courses with dependencies of rooms that no longer exist have those rooms removed
-//FIXME: Sort the rooms by room number/name
-//ADDME: Some type of indication that there are saved/unsaved changes?
