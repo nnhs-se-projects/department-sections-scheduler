@@ -1,19 +1,66 @@
 [
-  { "roomNum": "121", "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8] },
-  { "roomNum": "GYM", "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8] },
-  { "roomNum": "123", "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8] },
-  { "roomNum": "134", "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8] },
-  { "roomNum": "115", "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8] },
-  { "roomNum": "116", "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8] },
-  { "roomNum": "138", "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8] },
-  { "roomNum": "114", "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8] },
-  { "roomNum": "119", "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8] },
-  { "roomNum": "120", "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8] },
-  { "roomNum": "126", "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8] },
-  { "roomNum": "128", "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8] },
-  { "roomNum": "132", "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8] },
-  { "roomNum": "139", "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8] },
-  { "roomNum": "129", "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8] },
-  { "roomNum": "130", "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8] },
-  { "roomNum": "117", "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8] }
+  {
+    "roomNum": "121",
+    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "roomNum": "123",
+    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "roomNum": "134",
+    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "roomNum": "115",
+    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "roomNum": "116",
+    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "roomNum": "138",
+    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "roomNum": "114",
+    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "roomNum": "119",
+    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "roomNum": "120",
+    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "roomNum": "126",
+    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "roomNum": "128",
+    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "roomNum": "132",
+    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "roomNum": "139",
+    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "roomNum": "129",
+    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "roomNum": "130",
+    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "roomNum": "117",
+    "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8]
+  }
 ]

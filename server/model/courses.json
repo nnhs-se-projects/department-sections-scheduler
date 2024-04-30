@@ -2,9 +2,9 @@
   {
     "name": "Introduction to Business",
     "sections": 4,
-    "compatibleClassrooms": ["120", "126", "128"],
+    "compatibleClassrooms": ["128", "126", "120"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "userPriority": 0.5
+    "schedulingPriority": 0.75
   },
   {
     "name": "Accounting 1",
@@ -14,7 +14,7 @@
   },
   {
     "name": "Honors Accounting",
-    "sections": "1",
+    "sections": 1,
     "compatibleClassrooms": ["121", "123"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
@@ -25,18 +25,24 @@
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
+    "name": "Advertising",
+    "sections": 2,
+    "compatibleClassrooms": ["126", "128", "120"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
     "name": "Incubator",
     "sections": 6,
     "compatibleClassrooms": ["120"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "userPriority": 1
+    "schedulingPriority": 1
   },
   {
     "name": "ACCElerator",
     "sections": 1,
     "compatibleClassrooms": ["120"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "userPriority": 0.9
+    "schedulingPriority": 0.9
   },
   {
     "name": "Business Law",
@@ -49,21 +55,21 @@
     "sections": 1,
     "compatibleClassrooms": ["128", "126", "120"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "userPriority": 0.8
+    "schedulingPriority": 0.8
   },
   {
     "name": "Comp Programming 1",
-    "sections": 2,
+    "sections": 1,
     "compatibleClassrooms": ["121", "123"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "userPriority": 0.6
+    "schedulingPriority": 0.6
   },
   {
     "name": "Comp Programming 2",
     "sections": 3,
     "compatibleClassrooms": ["121", "123"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "userPriority": 0.6
+    "schedulingPriority": 0.6
   },
   {
     "name": "Game Design",
@@ -72,7 +78,13 @@
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
-    "name": "AP Computer Science ",
+    "name": "Fashion Design",
+    "sections": 1,
+    "compatibleClassrooms": ["119"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
+    "name": "AP Computer Science",
     "sections": 3,
     "compatibleClassrooms": ["121", "123"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
@@ -120,11 +132,17 @@
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
   {
+    "name": "Comp Animal 2",
+    "sections": 1,
+    "compatibleClassrooms": ["132"],
+    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  {
     "name": "Vet Science",
     "sections": 1,
     "compatibleClassrooms": ["132"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "userPriority": 0.5
+    "schedulingPriority": 0.5
   },
   {
     "name": "Graphics 1",
@@ -149,21 +167,21 @@
     "sections": 1,
     "compatibleClassrooms": ["138"],
     "compatiblePeriods": [2],
-    "userPriority": 0.7
+    "schedulingPriority": 0.7
   },
   {
     "name": "Cybersecurity",
     "sections": 1,
     "compatibleClassrooms": ["138"],
     "compatiblePeriods": [1],
-    "userPriority": 0.7
+    "schedulingPriority": 0.7
   },
   {
     "name": "Workshop Elements",
     "sections": 1,
     "compatibleClassrooms": ["134"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
-    "userPriority": 0.8
+    "schedulingPriority": 0.8
   },
   {
     "name": "Workshop Studio",
@@ -176,17 +194,11 @@
     "sections": 2,
     "compatibleClassrooms": ["134"],
     "compatiblePeriods": [4, 5],
-    "userPriority": 0.9134
+    "schedulingPriority": 0.9134
   },
   {
     "name": "EDS",
     "sections": 1,
-    "compatibleClassrooms": ["115"],
-    "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
-  },
-  {
-    "name": "R&D",
-    "sections": 4,
     "compatibleClassrooms": ["115"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
@@ -198,7 +210,7 @@
   },
   {
     "name": "Auto 2",
-    "sections": 2,
+    "sections": 1,
     "compatibleClassrooms": ["139"],
     "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8]
   },
@@ -212,7 +224,7 @@
     "name": "Blended Career Internship",
     "sections": 1,
     "compatibleClassrooms": ["120", "119", "126", "128", "138"],
-    "compatiblePeriods": [7]
+    "compatiblePeriods": [5]
   },
   {
     "name": "Cul 1",
@@ -254,7 +266,7 @@
     "name": "ECE 2",
     "sections": 2,
     "compatibleClassrooms": ["117"],
-    "compatiblePeriods": [6, 7]
+    "compatiblePeriods": [3, 4, 6, 7]
   },
   {
     "name": "Intro to Teaching 2",
