@@ -155,11 +155,20 @@ const verifyFields = function () {
   }
 
   // Verify Sections
-  for (let i = 0; i < sectionInputs.length; i++) {
-    if (sectionInputs[i].value < 0.0) {
+  for (let i = 0; i < courseHolders.length; i++) {
+    if (courseHolders[i].checked && sectionInputs[i].value === "") {
+      alert("Number of sections must be filled out for each course!");
+      return false;
+    }
+    if (courseHolders[i].checked && sectionInputs[i].value === 0) {
+      alert("Number of sections must be greater than 0!");
+      return false;
+    }
+    if (courseHolders[i].checked && sectionInputs[i].value < 0.0) {
       alert("Number of sections cannot be negative!");
       return false;
-    } else if (sectionInputs[i].value % 1.0 !== 0.0) {
+    }
+    if (courseHolders[i].checked && sectionInputs[i].value % 1.0 !== 0.0) {
       alert("Number of sections must be an integer!");
       return false;
     }

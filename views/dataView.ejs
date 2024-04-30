@@ -57,7 +57,11 @@
       <% for(let i=0; i < teachers.length; i++) { %>
         <button class="collapsible"><%= teachers[i].name %></button>
         <div class="contentCollapsible">
-          Hey Guys, teacher here
+          <b>Sections Taught:</b> <%= teachers[i].sectionsTaught %>
+          <br/> <b>Courses Assigned:</b>
+          <% for ( let j=0; j < teachers[i].coursesAssigned.length; j++) { %>
+          <br/><b>Name:</b> <%= teachers[i].coursesAssigned[j].course %> <b>Sections:</b> <%= teachers[i].coursesAssigned[j].sections %>
+          <% } %>
         </div>
       <% } %>
       </div>
