@@ -1,10 +1,10 @@
 const sectionArr = [];
 let periodsClassArr = [];
-const courses = require("./Courses.json");
+const courses = require("../server/model/Courses.json");
 const config = require("./Config.json");
-const classroomArr = require("./Classrooms.json");
+const classroomArr = require("../server/model/Classrooms.json");
 const classroomList = classroomArr.map((classroom) => classroom.roomNum);
-const teacherArr = require("./Teachers.json");
+const teacherArr = require("../server/model/Teachers.json");
 const teacherString = JSON.stringify(teacherArr);
 const fs = require("fs");
 
@@ -797,3 +797,18 @@ writeSchedules(1, true);
 // - Mostly written by Copilot
 
 //FIXME: Ensure the valid sections check works backwards and forwards. Currently iterates through sections, should also iterate through teachers.
+
+// we want to export writeSchedules, generateSchedules, printInCoolWay so that Scheduler becomes a tool to shoot out schedules
+
+export default function writeSchedules(num, print) {
+  writeSchedules(num, print);
+}
+export default function generateSchedules(num) {
+  return generateSchedules(num);
+}
+export default function printInCoolWay(arr) {
+  printInCoolWay(arr);
+}
+
+
+/// fix this, doesn't seem to be optimal solution
