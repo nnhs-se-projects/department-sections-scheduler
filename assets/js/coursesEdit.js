@@ -12,6 +12,7 @@ let currentCourseName;
 let currentCourse;
 let courseArr;
 let classroomsArr;
+let teacherArr;
 
 let coursePeriodsSelectors = [];
 
@@ -33,6 +34,7 @@ const onStart = async function () {
       console.log(data);
       courseArr = data[0];
       classroomsArr = data[1];
+      teacherArr = data[2];
       for (const classroom of classroomsArr) {
         classroomSelectors.push(
           document.getElementById("C " + classroom.roomNum)
@@ -237,7 +239,7 @@ const createJSON = function (saveCase) {
   }
 };
 
-const saveToServer = async function (arr) {
+const saveToServer = async function (arr, saveData) {
   const response = await fetch("/updateCourses", {
     method: "POST",
     headers: {
@@ -282,11 +284,58 @@ const SaveCase = {
   Delete: Symbol("delete"),
 };
 
+const SaveData = {
+  Courses: Symbol("courses"),
+  Teachers: Symbol("teachers"),
+};
+
 window.addEventListener("beforeunload", (event) => {
   if (unsaved) {
     event.returnValue = `Are you sure you want to leave?`;
   }
 });
+
+const ensureSaveDependencies = function () {
+  if (currentCourse != null && currentCourseName !== courseNameSelector.value) {
+    const dependentTeachers = teacherArr.filter((teacher) =>
+      teacher.coursesAssigned
+        .map((data) => data.course)
+        .includes(currentCourseName)
+    );
+    let dependentTeachersNameString = "";
+    for (let i = 0; i < dependentTeachers.length; i++) {
+      dependentTeachersNameString += dependentTeachers[i].name + ", ";
+    }
+    dependentTeachersNameString = dependentTeachersNameString.slice(0, -2);
+    if (dependentTeachers.length > 0) {
+      const confirmation = confirm(
+        "This course is currently in use by " +
+          dependentTeachersNameString +
+          ". Are you sure you would like to rename this course?."
+      );
+      if (confirmation) {
+        dependentTeachers.forEach((teacher) => {
+          teacher.coursesAssigned.splice(
+            teacher.coursesAssigned
+              .map((data) => data.course)
+              .indexOf(currentCourseName),
+            1,
+            {
+              course: courseNameSelector.value,
+              sections: teacher.coursesAssigned
+                .map((data) => data.course)
+                .indexOf(currentCourseName).sections,
+            }
+          );
+        });
+        saveToServer(courseArr, SaveData.Courses);
+        return true;
+      }
+      return false;
+    }
+  }
+  return true;
+};
 
 onStart();
 
