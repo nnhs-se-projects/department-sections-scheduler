@@ -5,8 +5,7 @@ const teacherFilter = document.getElementById("teacherFilter");
 
 const numOfClassrooms = document.getElementById("classroomsCount").textContent;
 
-let i;
-for (i = 0; i < coll.length; i++) {
+for (let i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function () {
     this.classList.toggle("active");
     const content = this.nextElementSibling;
