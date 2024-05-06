@@ -724,6 +724,10 @@ const findLunches = function (teacher, schedule) {
 
 // lag generator methods
 const generateSchedules = function (numSchedules) {
+  if (!checkForValidSections()) {
+    console.log("nuh uh");
+    return false;
+  }
   const schedules = [];
   for (let k = 0; k < numSchedules; k++) {
     // console.log("Generating schedule " + k);
@@ -798,17 +802,10 @@ writeSchedules(1, true);
 
 //FIXME: Ensure the valid sections check works backwards and forwards. Currently iterates through sections, should also iterate through teachers.
 
-// we want to export writeSchedules, generateSchedules, printInCoolWay so that Scheduler becomes a tool to shoot out schedules
+const getSchedule = function () {
+  const schedule = generateSchedules(1)[0];
+  printInCoolWay(schedule);
+  return schedule;
+};
 
-export default function writeSchedules(num, print) {
-  writeSchedules(num, print);
-}
-export default function generateSchedules(num) {
-  return generateSchedules(num);
-}
-export default function printInCoolWay(arr) {
-  printInCoolWay(arr);
-}
-
-
-/// fix this, doesn't seem to be optimal solution
+module.exports = getSchedule;

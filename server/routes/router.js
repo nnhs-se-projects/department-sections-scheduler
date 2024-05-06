@@ -6,12 +6,14 @@ let courses = require("../model/courses.json");
 let classrooms = require("../model/classrooms.json");
 let teachers = require("../model/teachers.json");
 
+const getSchedule = require("../../Sprint2/Scheduler.js");
+
 // pass a path (e.g., "/") and callback function to the get method
 //  when the client makes an HTTP GET request to the specified path,
 //  the callback function is executed
 route.get("/", async (req, res) => {
   // the res parameter references the HTTP response object
-  res.render("index");
+  res.render("dataView", { courses, classrooms, teachers });
 });
 
 route.get("/dataView", (req, res) => {
@@ -46,6 +48,11 @@ route.get("/fetchEditClassrooms", (req, res) => {
 route.get("/fetchEditTeachers", (req, res) => {
   updateValues();
   res.json([teachers, courses]);
+});
+
+route.get("/getSchedule", (req, res) => {
+  updateValues();
+  res.json(getSchedule());
 });
 
 route.post("/updateCourses", async (req, res) => {
