@@ -724,6 +724,10 @@ const findLunches = function (teacher, schedule) {
 
 // lag generator methods
 const generateSchedules = function (numSchedules) {
+  if (!checkForValidSections()) {
+    console.log("nuh uh");
+    return false;
+  }
   const schedules = [];
   for (let k = 0; k < numSchedules; k++) {
     // console.log("Generating schedule " + k);
@@ -765,7 +769,7 @@ const writeSchedules = function (num, print) {
 //   console.log("Invalid number of sections to teachers");
 // }
 
-writeSchedules(200, true);
+writeSchedules(1, true);
 
 // "Cupcakes are good
 // I like cupcakes
@@ -797,3 +801,7 @@ writeSchedules(200, true);
 // - Mostly written by Copilot
 
 //FIXME: Ensure the valid sections check works backwards and forwards. Currently iterates through sections, should also iterate through teachers.
+
+export function makeSchedule() {
+  return generateSchedules(1);
+}
