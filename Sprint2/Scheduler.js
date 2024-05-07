@@ -176,9 +176,9 @@ const csvEncode = function (arr) {
     for (let j = 0; j < transposedArr[i].length; j++) {
       item.push(
         transposedArr[i][j]
-          ? ` \"${transposedArr[i][j].course.name} - ${transposedArr[i][j].sectionNumber}` +
-              " \\n" +
-              ` ${transposedArr[i][j].teacher.name} - ${transposedArr[i][j].sectionNumber}\"`
+          ? ` "${transposedArr[i][j].course.name} - ${transposedArr[i][j].sectionNumber}` +
+              ", " +
+              ` ${transposedArr[i][j].teacher.name}"`
           : "Empty"
       );
     }
