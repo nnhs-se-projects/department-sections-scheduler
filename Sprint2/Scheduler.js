@@ -150,6 +150,77 @@ let printInCoolWay = function (arr) {
   console.log(bottomBorder);
 };
 
+// stuff
+const stringInCoolWay = function (arr) {
+  let temp = "";
+  // Transpose the array to switch rows and columns
+  const transposedArr = arr[0].map((_, colIndex) =>
+    arr.map((row) => row[colIndex])
+  );
+
+  // Print the top border
+  let topBorder = "╔";
+  for (let j = 0; j < transposedArr[0].length + 1; j++) {
+    topBorder += "═══════════════════════════════╗";
+  }
+  temp += topBorder + "\n";
+
+  // Print the header
+  let header = "║ CTE Schedule by George".padEnd(32) + "║";
+  for (let j = 0; j < transposedArr[0].length; j++) {
+    header += ` Period ${j + 1}`.padEnd(31) + `║`;
+  }
+  temp += header + "\n";
+
+  // Print the separator
+  let separator = "╠";
+  for (let j = 0; j < transposedArr[0].length + 1; j++) {
+    separator += "═══════════════════════════════╣";
+  }
+  temp += separator + "\n";
+
+  for (let i = 0; i < transposedArr.length; i++) {
+    let row = `║ Room ${classroomList[i].toString().padEnd(25)}` + `║`;
+    for (let j = 0; j < transposedArr[i].length; j++) {
+      // Add padding to align columns
+      let item = transposedArr[i][j]
+        ? ` ${transposedArr[i][j].course.name} - ${transposedArr[i][j].sectionNumber}`.padEnd(
+            31
+          ) + `║`
+        : " Empty                         ║";
+      row += item;
+      item = "";
+    }
+    temp += row + "\n";
+
+    // Add teachers
+    row = `║ Room ${classroomList[i].toString().padEnd(25)}` + `║`;
+    for (let j = 0; j < transposedArr[i].length; j++) {
+      // Add padding to align columns
+      let item = transposedArr[i][j]
+        ? ` ${transposedArr[i][j].teacher.name} - ${transposedArr[i][j].sectionNumber}`.padEnd(
+            31
+          ) + `║`
+        : " Empty                         ║";
+      row += item;
+      item = "";
+    }
+    temp += row + "\n";
+
+    // Print the separator after each row
+    if (i < transposedArr.length - 1) temp += separator + "\n";
+  }
+
+  // Print the bottom border
+  let bottomBorder = "╚";
+  for (let j = 0; j < transposedArr[0].length + 1; j++) {
+    bottomBorder += "═══════════════════════════════╝";
+  }
+  temp += bottomBorder;
+
+  return temp;
+};
+
 //update sections by priority
 let sortSections = function () {
   // sectionArr.sort(
@@ -769,8 +840,6 @@ const writeSchedules = function (num, print) {
 //   console.log("Invalid number of sections to teachers");
 // }
 
-writeSchedules(1, true);
-
 // "Cupcakes are good
 // I like cupcakes
 // From the store
@@ -804,8 +873,10 @@ writeSchedules(1, true);
 
 const getSchedule = function () {
   const schedule = generateSchedules(1)[0];
-  printInCoolWay(schedule);
+  console.log(stringInCoolWay(schedule));
   return schedule;
 };
+
+getSchedule();
 
 module.exports = getSchedule;
