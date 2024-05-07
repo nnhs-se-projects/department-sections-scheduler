@@ -5,9 +5,15 @@
 
 let schedule = [];
 const generateButton = document.getElementById("genButton");
-const textField = document.getElementById("textStuff");
+const textSpace = document.getElementById("textStuff");
+
+textSpace.style.fontSize = "24px";
+textSpace.innerHTML = "Click the button to generate a schedule";
 
 generateButton.addEventListener("click", async () => {
+  console.log("Generating Schedule...");
+  textSpace.style.fontSize = "24px";
+  textSpace.innerHTML = "Generating Schedule...";
   await fetch("/getSchedule", {
     method: "GET",
     headers: {
@@ -20,6 +26,9 @@ generateButton.addEventListener("click", async () => {
         alert(
           "No valid schedule found / able to be generated, recheck your data"
         );
+        textSpace.style.fontSize = "24px";
+        textSpace.innerHTML =
+          "No valid schedule found / able to be generated, recheck your data";
         return;
       }
       schedule = data;
@@ -29,8 +38,6 @@ generateButton.addEventListener("click", async () => {
 });
 
 const updateText = function () {
-  textField.innerHTML = "";
-  for (let i = 0; i < schedule.length; i++) {
-    textField.innerHTML += schedule[i] + "<br>";
-  }
+  textSpace.style.fontSize = "10px";
+  textSpace.innerHTML = schedule;
 };

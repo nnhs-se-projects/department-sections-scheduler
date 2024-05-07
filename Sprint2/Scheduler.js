@@ -152,6 +152,10 @@ let printInCoolWay = function (arr) {
 
 // stuff
 const stringInCoolWay = function (arr) {
+  console.log(arr);
+  if (arr === false || arr === undefined || arr === null) {
+    return false;
+  }
   let temp = "";
   // Transpose the array to switch rows and columns
   const transposedArr = arr[0].map((_, colIndex) =>
@@ -840,11 +844,6 @@ const writeSchedules = function (num, print) {
 //   console.log("Invalid number of sections to teachers");
 // }
 
-<<<<<<< HEAD
-=======
-// writeSchedules(1, true);
-
->>>>>>> 9a89c76712a32cdc59dffc8636f27de0bab619d4
 // "Cupcakes are good
 // I like cupcakes
 // From the store
@@ -879,9 +878,7 @@ const writeSchedules = function (num, print) {
 const getSchedule = function () {
   const schedule = generateSchedules(1)[0];
   console.log(stringInCoolWay(schedule));
-  return schedule;
+  return stringInCoolWay(schedule);
 };
-
-getSchedule();
 
 module.exports = getSchedule;
