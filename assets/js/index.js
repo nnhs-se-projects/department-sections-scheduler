@@ -17,7 +17,9 @@ generateButton.addEventListener("click", async () => {
     response.json().then((data) => {
       console.log(data);
       if (data === false) {
-        alert("No valid schedule found");
+        alert(
+          "No valid schedule found / able to be generated, recheck your data"
+        );
         return;
       }
       schedule = data;

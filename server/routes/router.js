@@ -13,7 +13,7 @@ const getSchedule = require("../../Sprint2/Scheduler.js");
 //  the callback function is executed
 route.get("/", async (req, res) => {
   // the res parameter references the HTTP response object
-  res.render("dataView", { courses, classrooms, teachers });
+  res.render("index", { courses, classrooms, teachers });
 });
 
 route.get("/dataView", (req, res) => {

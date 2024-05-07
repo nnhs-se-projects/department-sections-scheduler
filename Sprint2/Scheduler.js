@@ -840,6 +840,11 @@ const writeSchedules = function (num, print) {
 //   console.log("Invalid number of sections to teachers");
 // }
 
+<<<<<<< HEAD
+=======
+// writeSchedules(1, true);
+
+>>>>>>> 9a89c76712a32cdc59dffc8636f27de0bab619d4
 // "Cupcakes are good
 // I like cupcakes
 // From the store
