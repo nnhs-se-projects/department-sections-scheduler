@@ -152,7 +152,6 @@ let printInCoolWay = function (arr) {
 
 // stuff
 const stringInCoolWay = function (arr) {
-  console.log(arr);
   if (arr === false || arr === undefined || arr === null) {
     return false;
   }
