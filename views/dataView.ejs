@@ -11,8 +11,8 @@
   <div class="box flexBox">
 
     <div class="box2 flexItem">
-      <h1>Classrooms <%=myVar%></h1>
-      Count: <p style="display:inline" id="classroomsCount"><%=classrooms.length%></p>
+      <h1>Classrooms</h1>
+      Count: <count id="classroomsCount"><%=classrooms.length%></count>
       <% classrooms.sort((a, b) => (a.roomNum > b.roomNum) ? 1 : -1) %>
       <div class="scrollSelector" style="max-height: 500px; min-height: 500px; border-radius: 10px 10px 0px 0px;">
       <% for(let i=0; i < classrooms.length; i++) { %>
@@ -30,6 +30,7 @@
 
     <div class="box2 flexItem">
       <h1>Courses</h1>
+      Count: <count id="courseCount"><%=courses.length%></count>
       <div class="scrollSelector" style="max-height: 500px; min-height: 500px; border-radius: 10px 10px 0px 0px;">
       <% for(let i=0; i < courses.length; i++) { %>
         <button class="collapsible"><%= courses[i].name %></button>
@@ -51,11 +52,16 @@
 
     <div class="box2 flexItem">
       <h1>Teachers</h1>
+      Count: <count id="teacherCount"><%=teachers.length%></count>
       <div class="scrollSelector" style="max-height: 500px; min-height: 500px; border-radius: 10px 10px 0px 0px;">
       <% for(let i=0; i < teachers.length; i++) { %>
         <button class="collapsible"><%= teachers[i].name %></button>
         <div class="contentCollapsible">
-          Hey Guys, teacher here
+          <b>Sections Taught:</b> <%= teachers[i].sectionsTaught %>
+          <br/> <b>Courses Assigned:</b>
+          <% for ( let j=0; j < teachers[i].coursesAssigned.length; j++) { %>
+          <br/><b>Name:</b> <%= teachers[i].coursesAssigned[j].course %> <b>Sections:</b> <%= teachers[i].coursesAssigned[j].sections %>
+          <% } %>
         </div>
       <% } %>
       </div>
