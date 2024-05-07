@@ -150,6 +150,42 @@ let printInCoolWay = function (arr) {
   console.log(bottomBorder);
 };
 
+const csvEncode = function (arr) {
+  //transpose the array
+  const transposedArr = arr[0].map((_, colIndex) =>
+    arr.map((row) => row[colIndex])
+  );
+  // construct a new 2D array
+  const csvArr = [];
+
+  // Add the header, which is same as printInCoolWay header
+  csvArr.push([
+    "Rooms",
+    "Period 1",
+    "Period 2",
+    "Period 3",
+    "Period 4",
+    "Period 5",
+    "Period 6",
+    "Period 7",
+    "Period 8",
+  ]);
+  // for each item in the transposed array, add the course name and teacher name to the csvArr
+  for (let i = 0; i < transposedArr.length; i++) {
+    let item = ["Room " + classroomList[i].toString()];
+    for (let j = 0; j < transposedArr[i].length; j++) {
+      item.push(
+        transposedArr[i][j]
+          ? ` ${transposedArr[i][j].course.name} - ${transposedArr[i][j].sectionNumber}` +
+              "\n" +
+              ` ${transposedArr[i][j].teacher.name} - ${transposedArr[i][j].sectionNumber}`
+          : "Empty"
+      );
+    }
+    csvArr.push(item);
+  }
+};
+
 // stuff
 const stringInCoolWay = function (arr) {
   if (arr === false || arr === undefined || arr === null) {
