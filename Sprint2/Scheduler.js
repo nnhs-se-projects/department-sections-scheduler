@@ -177,7 +177,7 @@ const csvEncode = function (arr) {
       item.push(
         transposedArr[i][j]
           ? ` ${transposedArr[i][j].course.name} - ${transposedArr[i][j].sectionNumber}` +
-              "\\n" +
+              " _ " +
               ` ${transposedArr[i][j].teacher.name} - ${transposedArr[i][j].sectionNumber}`
           : "Empty"
       );
