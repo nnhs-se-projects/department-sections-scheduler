@@ -177,13 +177,18 @@ const csvEncode = function (arr) {
       item.push(
         transposedArr[i][j]
           ? ` ${transposedArr[i][j].course.name} - ${transposedArr[i][j].sectionNumber}` +
-              "\n" +
+              "\\n" +
               ` ${transposedArr[i][j].teacher.name} - ${transposedArr[i][j].sectionNumber}`
           : "Empty"
       );
     }
     csvArr.push(item);
   }
+  let csvString = "";
+  for (let i = 0; i < csvArr.length; i++) {
+    csvString += csvArr[i].join(",") + "\n";
+  }
+  return csvString;
 };
 
 // stuff
@@ -913,7 +918,19 @@ const writeSchedules = function (num, print) {
 const getSchedule = function () {
   const schedule = generateSchedules(1)[0];
   console.log(stringInCoolWay(schedule));
+  console.log(csvEncode(schedule));
+  wrtieCsv(schedule);
   return stringInCoolWay(schedule);
+};
+
+const wrtieCsv = function (schedule) {
+  //file locationm should be in sprint 2, file name should e schedule.csv
+  fs.writeFile("schedule.csv", csvEncode(schedule), function (err) {
+    if (err) {
+      return console.log(err);
+    }
+    console.log("The file was saved!");
+  });
 };
 
 module.exports = getSchedule;
