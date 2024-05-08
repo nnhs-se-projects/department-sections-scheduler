@@ -921,10 +921,10 @@ const getSchedule = function () {
     return false;
   }
   console.log(csvEncode(schedule));
-  writeCsv(schedule);
+  //writeCsv(schedule);
   const csvContent = "data:text/csv;charset=utf-8," + csvEncode(schedule);
   const encodedUri = encodeURI(csvContent);
-  return [stringInCoolWay(schedule), csvContent, encodedUri];
+  return [stringInCoolWay(schedule), encodedUri];
 };
 
 const writeCsv = function (schedule) {

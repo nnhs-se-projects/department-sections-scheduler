@@ -4,7 +4,6 @@
  */
 
 let schedule = [];
-let csv = null;
 let encodedURI = null;
 const downloadButton = document.getElementById("downloadButton");
 const generateButton = document.getElementById("genButton");
@@ -41,8 +40,7 @@ generateButton.addEventListener("click", async () => {
         return;
       }
       schedule = data[0];
-      csv = data[1];
-      encodedURI = data[2];
+      encodedURI = data[1];
       updateText();
       updateDownload();
     })
