@@ -19,7 +19,7 @@ generateButton.addEventListener("click", async () => {
   console.log("Generating Schedule...");
   textSpace.style.fontSize = "24px";
   textSpace.innerHTML =
-    "Generating Schedule... <br/> This may take a few seconds.";
+    "Generating Schedule... <br/> <i>This may take a few seconds.</i>";
   await fetch("/getSchedule", {
     method: "GET",
     headers: {
