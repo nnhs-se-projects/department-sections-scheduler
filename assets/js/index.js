@@ -29,12 +29,12 @@ generateButton.addEventListener("click", async () => {
     response.json().then((data) => {
       console.log(data);
       if (data === false) {
+        textSpace.innerHTML =
+          "No valid schedule found / able to be generated, recheck your data";
         alert(
           "No valid schedule found / able to be generated, recheck your data"
         );
         textSpace.style.fontSize = "24px";
-        textSpace.innerHTML =
-          "No valid schedule found / able to be generated, recheck your data";
         downloadButton.setAttribute("class", "hidden");
 
         return;
