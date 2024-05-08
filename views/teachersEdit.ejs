@@ -1,0 +1,63 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+
+<!-- Main Site -->
+<main style="background-color: #ffffff">
+  <div class="courseEditTopBar">
+    <div class="topBarText">
+      Edit Teachers
+      <a href="/dataView" class="backButton" role="button">Back</a>
+    </div>
+    <img src="img/ctelogo.png" alt="CTElogo" />
+  </div>
+  <div class="box">
+    <label class="box2">
+      Select Teacher:
+      <select id="teacherPicker">
+        <% for(let teacher of teachers) { %>
+        <option value="<%= teacher.name %>"><%= teacher.name %></option>
+        <% } %>
+        <option value="addTeacher">Add Teacher</option>
+      </select>
+    </label>
+  </div>
+  
+  <div class="box">
+    <label class="box2">
+      Teacher Name:
+      <textarea id="namer" rows="1" placeholder="Teacher Name"></textarea>
+    </label>
+
+    <div class="box2">
+      Courses:
+      <div class="scrollSelector">
+        <% for(let i=0; i < courses.length; i++) { %>
+          <div class="box2">
+            <input type="checkbox" class="courseHolder" id="<%='holder ' + courses[i].name%>"/>
+            <label style="color: #FFFFFF"><%=courses[i].name%></label>
+
+            <div id="<%='course' + i%>" class="hidden">
+              <label style="color: #FFFFFF">
+              <b>Number of Sections:</b> <input id="<%='input' + i%>" type="number" min="0"/>
+              </label>    
+            </div>
+
+          </div>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="box2">
+      <a role="button" id="saveButton">Save Teacher</a>
+      <a role="button" id="deleteButton">Delete Teacher</a>
+    </div>
+  </div>
+</main>
+<!-- /Main Site -->
+
+<script src="/js/teachersEdit.js"></script>
+
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->

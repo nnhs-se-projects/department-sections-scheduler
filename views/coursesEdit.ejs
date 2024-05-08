@@ -1,0 +1,75 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+
+<!-- Main Site -->
+<main  style="background-color: #ffffff">
+  <div class="courseEditTopBar">
+    <div class = "topBarText">Edit Courses <a href="/dataView" class="backButton" role="button">Back</a> </div>
+    <img src="img/ctelogo.png" alt="CTElogo" />
+  </div>
+  <div class="box">
+    <label class="box2">
+      Select Course:
+      <select id="coursePicker">
+        <% for(let course of courses) { %>
+        <option value="<%= course.name %>"><%= course.name %></option>
+        <% } %>
+        <option value="addCourse">Add Course</option>
+      </select>
+    </label>
+  </div>
+  <div class="box">
+    <label class="box2">
+      Course Name: <textarea id="namer" rows="1" placeholder="Course Name"></textarea>
+    </label>
+
+    <label class="box2">
+      Number of Sections: <input id="sectionSelector" type="number" min="1" />
+    </label>
+
+    <div class="box2" id="coursePeriods">
+      <label  style="color: #FFFFFF">Available Periods:</label>
+      <div class = "periodSelector">
+      <% for(let i=1; i <= 8; i++) { %>
+        <div style="display: inline-block; margin-inline: 13px">
+        <input type="checkbox" id="<%= 'Period ' + i %>" />
+        <label  style="color: #FFFFFF" for="<%= 'Period ' + i %>">Period <%= i %></label>
+        </div>
+      <% } %>
+      </div>
+    </div>
+
+    <div class="box2">
+      <label style="color: #FFFFFF">Compatible Classrooms:</label>
+      <div class="scrollSelector">
+        <% for(let classroom of classrooms) { %>
+          <input type="checkbox" id="<%= 'C ' + classroom.roomNum %>" />
+          <label style="color: #FFFFFF" for="<%= 'C ' + classroom.roomNum %>">Room <%= classroom.roomNum %></label>
+          <br/>
+        <% } %>
+      </div>
+    </div>
+
+    <div class = "box2">
+      <input type="checkbox" id="priorityOverrideEnabler" /><label style="color: #FFFFFF">Hard Coded Priority (Now Deprecated)</label>
+
+      <div id="prioritySelectorDiv" class="">
+        <label class="box2">
+        Overridden Priority: <input id="prioritySelector" type="number" min="0" max="1"/>
+        </label>    
+      </div>
+    </div>
+    <div class="box2">
+      <a role="button" id="saveButton">Save Course</a>
+      <a role="button" id="deleteButton">Delete Course</a>
+    </div>
+  </div>
+</main>
+<!-- /Main Site -->
+
+<script src="/js/coursesEdit.js"></script>
+
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->

@@ -6,23 +6,29 @@
 <main>
   <div class="indexTopBar">
     <img src="img/SE-GitHub-image.png" alt="Huskie code logo" />
-    <h1>Habits of Mind Journal</h1>
-    <a href="/createEntry" role="button">Create Entry</a>
+    <h1>Scheduling</h1>
+    <a href="/dataView" role="button" style="margin: 30px">View Data</a>
   </div>
-
-  <div class="entries">
-    <% for(let entry of entries) { %>
-    <div class="entry">
-      <div><%= entry.date %></div>
-      <div class="entryHabit"><%= entry.habit %></div>
-      <div class="entryContent"><%= entry.content %></div>
-      <div>
-        <a href="/editEntry/<%= entry.id %>" role="button" class="secondary">
-          Edit
-        </a>
-      </div>
-    </div>
-    <% } %>
+  <div class="box">
+    <h2 style="color: white">Current Schedule</h2>
+    <a id="genButton" role="button" style="color: white">Generate Schedule</a>
+    <br />
+    <br />
+    <center>
+      <h1
+        id="textStuff"
+        style="
+          align-self: center;
+          color: white;
+          font-size: 50px;
+          white-space: break-spaces;
+          font-family: monospace;
+        "
+      ></h1>
+      <a id="downloadButton" role="button" style="color: white"
+        >Download Schedule</a
+      >
+    </center>
   </div>
 </main>
 <!-- /Main Site -->
