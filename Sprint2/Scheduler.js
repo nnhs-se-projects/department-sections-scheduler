@@ -917,14 +917,17 @@ const writeSchedules = function (num, print) {
 
 const getSchedule = function () {
   const schedule = generateSchedules(1)[0];
-  console.log(stringInCoolWay(schedule));
+  if (schedule === false || schedule === undefined || schedule === null) {
+    return false;
+  }
   console.log(csvEncode(schedule));
-  wrtieCsv(schedule);
-  return stringInCoolWay(schedule);
+  writeCsv(schedule);
+  const csvContent = "data:text/csv;charset=utf-8," + csvEncode(schedule);
+  const encodedUri = encodeURI(csvContent);
+  return [stringInCoolWay(schedule), csvContent, encodedUri];
 };
 
-const wrtieCsv = function (schedule) {
-  //file locationm should be in sprint 2, file name should e schedule.csv
+const writeCsv = function (schedule) {
   fs.writeFile("schedule.csv", csvEncode(schedule), function (err) {
     if (err) {
       return console.log(err);
