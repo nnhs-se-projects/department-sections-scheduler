@@ -1,6 +1,7 @@
 # Department Sections Scheduler App
+## Designed for Mrs. Oskroba and the great venture of schedule-making
 
+*There are many a schedule that can be generated from a data set*
+*There are not so many working schedules that can be made, along with the special CTE restrictions*
+*There are just a few preferable "good" schedules*
 
-Future peoples, the project operates with a JSON of teachers and courses, and then logs a horribly designed (by ChatGPT) schedule grid, with a randomly made schedule.
-
-Good luck.
