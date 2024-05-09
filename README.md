@@ -2,7 +2,9 @@
 
 ## Designed for Mrs. Oskroba and the great venture of schedule-making
 *There are many a schedule that can be generated from a data set*
+
 *There are not so many working schedules that can be made, along with the special CTE restrictions*
+
 *There are just a few preferable "good" schedules*
 
 ## Project Overview:
@@ -16,25 +18,27 @@ Hi! This is the CTE Department Sections Scheduling App. Basically, this is a web
 
 
 ## Schema Setup:
-
+### JSON:
 **JSON skeleton for a course:**
-{
-  "name": [String]
-  "sections": [Number]
-  "compatibleClassrooms": Array of String
-  "compatiblePeriods": Arr
-  "schedulingPriority": 
-}
+
+{  
+  "name": [String]  
+  "sections": [Number]  
+  "compatibleClassrooms": Array of String  
+  "compatiblePeriods": Arr  
+  "schedulingPriority":   
+}  
 
 **JSON skeleton for a teacher:**
-{
-  "name": [String]
-  "coursesAssigned": [
-    { "course": [String], "sections": [Number] },
-    ...
+
+{  
+  "name": [String]  
+  "coursesAssigned": [  
+    { "course": [String], "sections": [Number] },  
+    ...  
   ]
-  "sectionsTaught": [Number]
-  "openPeriods": Number Array
+  "sectionsTaught": [Number]  
+  "openPeriods": Number Array  
 }
 
 
