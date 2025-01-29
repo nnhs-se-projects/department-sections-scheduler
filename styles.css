@@ -1,0 +1,1410 @@
+
+* {
+    box-sizing: border-box;
+    --drop-shadow-filter: drop-shadow(-2px -2px 5px rgba(255,255,255,0.20) ) drop-shadow(2px 2px 5px rgba(0,0,0,10) );
+    --box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6), 
+                  -2px -2px 10px rgba(255, 255, 255, 0.15);
+    --box-shadow2: 2px 2px 10px rgba(0, 0, 0, 0.5), 
+                  -2px -2px 10px rgba(255, 255, 255, 0.2);
+    --box-shadow3: 2px 2px 10px rgba(0, 0, 0, 0.7), 
+                  -2px -2px 10px rgba(255, 255, 255, 0.25);
+
+
+
+    --dark-hue-1: 222;  --dark-hue-2: 232;  --light-hue-1: 7;   --light-hue-2: 18;
+    --dark-sat-1: 100%; --dark-sat-2: 100%; --light-sat-1: 80%; --light-sat-2: 80%;
+    --dark-lum-1: 15%;  --dark-lum-2: 23%;  --light-lum-1: 40%;  --light-lum-2: 50%;
+
+    --dark-hue-1: 303;  --dark-hue-2: 340;  --light-hue-1: 23;   --light-hue-2: 37;
+    --dark-sat-1: 77%;  --dark-sat-2: 82%;  --light-sat-1: 100%; --light-sat-2: 80%;
+    --dark-lum-1: 22%;  --dark-lum-2: 47%;  --light-lum-1: 46%;  --light-lum-2: 60%;
+
+
+
+    --dark-hue-1: 247;  --dark-hue-2: 286;  --light-hue-1: 352;  --light-hue-2: 8;
+    --dark-sat-1: 36%;  --dark-sat-2: 56%;  --light-sat-1: 59%;  --light-sat-2: 68%;
+    --dark-lum-1: 15%;  --dark-lum-2: 21%;  --light-lum-1: 47%;  --light-lum-2: 64%;
+
+    --dark-hue-1: 319;  --dark-hue-2: 304;  --light-hue-1: 329;  --light-hue-2: 32;
+    --dark-sat-1: 28%;  --dark-sat-2: 16%;  --light-sat-1: 17%;  --light-sat-2: 18%;
+    --dark-lum-1: 16%;  --dark-lum-2: 21%;  --light-lum-1: 48%;  --light-lum-2: 68%;
+
+    --dark-hue-1: 247;  --dark-hue-2: 286;  --light-hue-1: 348;  --light-hue-2: 28;
+    --dark-sat-1: 36%;  --dark-sat-2: 56%;  --light-sat-1: 43%;  --light-sat-2: 56%;
+    --dark-lum-1: 15%;  --dark-lum-2: 21%;  --light-lum-1: 47%;  --light-lum-2: 54%;
+
+    --dark-hue-1: 225;  --dark-hue-2: 342;  --light-hue-1: 352;  --light-hue-2: 8;
+    --dark-sat-1: 66%;  --dark-sat-2: 59%;  --light-sat-1: 59%;  --light-sat-2: 68%;
+    --dark-lum-1: 10%;  --dark-lum-2: 33%;  --light-lum-1: 47%;  --light-lum-2: 64%;
+
+    --dark-hue-1: 272;  --dark-hue-2: 282;  --light-hue-1: 11;   --light-hue-2: 18;
+    --dark-sat-1: 100%; --dark-sat-2: 100%; --light-sat-1: 100%; --light-sat-2: 100%;
+    --dark-lum-1: 15%;  --dark-lum-2: 23%;  --light-lum-1: 39%;  --light-lum-2: 47%;
+
+
+
+
+    --bright-1: hsl(var(--dark-hue-1), calc(0.62*var(--dark-sat-1)), 80%);
+    --darker-light-1: hsl(var(--light-hue-2), var(--light-sat-2), var(--light-lum-2));
+    --darker-light-2: hsla(var(--light-hue-2), var(--light-sat-2), var(--light-lum-2), 0.5);
+    --darker-light-3: hsla(var(--light-hue-1), var(--light-sat-1), var(--light-lum-1), 0.5);
+    --trans-dark-1: hsla(var(--dark-hue-1), var(--dark-sat-1), var(--dark-lum-1), 0.5);
+    --trans-dark-2: hsla(var(--dark-hue-2), var(--dark-sat-2), var(--dark-lum-2), 0.5);
+    --og-dark-1: hsl(var(--dark-hue-1), var(--dark-sat-1), var(--dark-lum-1));
+    --og-dark-2: hsl(var(--dark-hue-2), var(--dark-sat-2), var(--dark-lum-2));
+    --og-light-1: hsl(var(--light-hue-1), var(--light-sat-1), var(--light-lum-1));
+    --og-light-2: hsl(var(--light-hue-2), var(--light-sat-2), var(--light-lum-2));
+    
+
+    --dark-box: linear-gradient(90deg, hsl(var(--dark-hue-1), var(--dark-sat-1), calc(1.1*var(--dark-lum-1))) -100%, hsl(var(--dark-hue-2), var(--dark-sat-2), calc(0.7*var(--dark-lum-2))) 100%);
+    --graph-gradient: linear-gradient(30deg, var(--og-dark-1) -50%, hsl(var(--dark-hue-2), var(--dark-sat-2), calc(var(--dark-lum-2)*0.8)) 50%, var(--og-dark-1) 150%);
+    --main-text-gradient: linear-gradient(90deg, hsl(var(--dark-hue-2), var(--dark-sat-2), var(--dark-lum-2)) 0%, hsl(var(--dark-hue-2), var(--dark-sat-2), calc(0.7*var(--dark-lum-2))) 100%);
+    --bottom-meter-gradient: linear-gradient(90deg, hsl(var(--light-hue-2), var(--light-sat-2), calc(0.9*var(--light-lum-2))) 0%,var(--og-light-2) 50%,var(--darker-light-2) 51% ,var(--darker-light-2) 100%);
+    --top-meter-gradient: linear-gradient(90deg, hsl(var(--light-hue-1), var(--light-sat-1), calc(0.9*var(--light-lum-1))) 0%,var(--og-light-1) 50%,var(--darker-light-3) 51% ,var(--darker-light-3) 100%);
+    --download-gradient: linear-gradient(-30deg, var(--og-dark-1) -50%, hsl(var(--dark-hue-2), var(--dark-sat-2), calc(0.8*var(--dark-lum-2))) 50%, var(--og-dark-1) 150%);
+    --nav-gradient: linear-gradient(90deg, hsl(var(--dark-hue-1), var(--dark-sat-1), 14%) 0%, hsl(var(--dark-hue-1), calc(86%*var(--dark-sat-1)), 11%) 34%, hsl(var(--dark-hue-1), var(--dark-sat-1), 14%) 100%);
+    --top-gradient: linear-gradient(hsl(var(--dark-hue-1), var(--dark-sat-1), calc(0.66*var(--dark-lum-1))), hsl(var(--dark-hue-1), var(--dark-sat-1), calc(1.75*var(--dark-lum-1))));
+    --popupGradient: linear-gradient(0deg,hsla(var(--light-hue-2), var(--light-sat-2), var(--light-lum-2), 0.5) 0%,var(--darker-light-2) 100%);
+    --popupGradient2: linear-gradient(0deg,hsla(var(--dark-hue-2), var(--dark-sat-2), var(--dark-lum-2), 0.7) 0%,hsla(var(--dark-hue-2), var(--dark-sat-2), var(--dark-lum-2), 0.9) 100%);
+    --dark-gradient-1: linear-gradient(90deg, hsl(var(--dark-hue-1), var(--dark-sat-1), calc(1.1*var(--dark-lum-1))) -100%, hsl(var(--dark-hue-2), var(--dark-sat-2), calc(0.7*var(--dark-lum-2))) 100%);
+    --dark-gradient-2: linear-gradient(125deg,var(--og-dark-2) -50%, var(--og-dark-1) 200%);
+    --bright-gradient-1: linear-gradient(hsl(var(--dark-hue-1), calc(0.75*var(--dark-sat-1)), 80%), var(--bright-1));
+    --highlight-gradient-1: linear-gradient(90deg, var(--og-light-2) 0%, var(--og-light-1) 100%);
+    
+    /*--bright-gradient-1: linear-gradient(hsl(var(--dark-hue-1), 75%, 83%), hsl(var(--dark-hue-2), 93%, 74%));
+    hsl(272, 100%, 15%)
+    hsl(282, 100%, 23%)
+    hsl(11, 100%, 39%)
+    hsl(18, 100%, 47%)*/
+
+    
+  }
+
+  @keyframes color1{
+  0%{
+      --dark-hue-1: 272;  --dark-hue-2: 282;  --light-hue-1: 11;   --light-hue-2: 18;
+      --dark-sat-1: 100%; --dark-sat-2: 100%; --light-sat-1: 100%; --light-sat-2: 100%;
+      --dark-lum-1: 15%;  --dark-lum-2: 23%;  --light-lum-1: 39%;  --light-lum-2: 47%;
+    }
+  100% {
+      --dark-hue-1: 227;  --dark-hue-2: 241;  --light-hue-1: 231;  --light-hue-2: 242;
+      --dark-sat-1: 72%;  --dark-sat-2: 53%;  --light-sat-1: 27%;  --light-sat-2: 30%;
+      --dark-lum-1: 10%;  --dark-lum-2: 22%;  --light-lum-1: 45%;  --light-lum-2: 66%;
+    }
+  }
+
+
+  body {
+    font-size: 14px;
+    margin: 0px;
+  }
+
+  /*
+  box-shadow: var(--box-shadow);
+  */
+
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url(font/Inter.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  .schedulePopUp{
+    flex-direction: column;
+    display: none;
+    width: fit-content;
+    height: auto;
+    background-image: var(--popupGradient2);
+    position: fixed;
+    top: 100px;
+    left: 100px;
+    gap: 10px;
+    z-index: 10;
+    padding: 10px;
+    justify-content: center;
+    overflow: visible;
+    border-radius: 10px;
+    
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow:  var(--box-shadow);
+  }
+  .schedulePopUp::before{
+    border-radius: inherit;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+  }
+  .popupFrame{
+    display: flex;
+    width: fit-content;
+    height: auto;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 20;
+    justify-content: center;
+    overflow: visible;
+    border-radius: 10px;
+  }
+  .teacherFlex{
+    overflow: visible;
+    display: flex;
+    height: fit-content;
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+  .teacherIconFlex{
+    overflow: visible;
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 7px;
+  }
+  .courseIconFlex{
+    align-items: center;
+    display: flex;
+    height: fit-content;
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: 7px;
+  }
+  .dropdownDiv{
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    padding: 7px 7px;
+    height: fit-content;
+    background: linear-gradient(30deg, var(--og-dark-2) 0%, var(--og-dark-1) 200%);
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+  }
+  .dropdownText{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    word-wrap: nowrap;
+    text-wrap: nowrap;
+    color: rgb(255, 255, 255);
+    position: relative;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0px;
+    opacity: 1;
+    text-align: center;
+
+  }
+  .teacherDropdown{
+    background: var(--trans-dark-1);
+    padding: 5px 10px;
+    padding-top: 32px;
+    display: absolute;
+    flex-direction: column;
+    top:10px;
+    left: 10px;
+    z-index: 20;
+    opacity: 0;
+    position: absolute;
+    width: fit-content;
+    height: 0px;
+    overflow: scroll;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    transition: height 0.5s ease, opacity 0.5s ease;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7),
+    -2px 0px 10px rgba(255, 255, 255, 0.3);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .dropdown::-webkit-scrollbar {
+    display: none;
+  }
+  .courseDropdown{
+    background: var(--trans-dark-1);
+    padding: 5px 10px;
+    padding-top: 32px;
+    display: absolute;
+    flex-direction: column;
+    top: 55px;
+    left: 10px;
+    z-index: 20;
+    opacity: 0;
+    position: absolute;
+    width: fit-content;
+    height: 0px;
+    overflow: scroll;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    transition: height 0.5s ease, opacity 0.5s ease;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5),
+    -2px 0px 10px rgba(255, 255, 255, 0.3);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .courseCutoff{
+    width: 100%;
+    height: 35px;
+    position: absolute;
+    backdrop-filter: blur(5px);
+    border-radius: inherit;
+    top: 55px;
+    left: 10px;
+    opacity: 0;
+    margin: 0px;
+    z-index: -1;
+  }
+  @keyframes cutoffIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes cutoffOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  .teacherCutoff{
+    width: 100%;
+    height: 35px;
+    position: absolute;
+    backdrop-filter: blur(10px);
+    border-radius: inherit;
+    top: 10px;
+    left: 10px;
+    opacity: 0;
+    margin: 0px;
+    z-index: -1;
+  }
+  .editTeacher{
+    flex-shrink: 0;
+    aspect-ratio: 1;
+    background-color: var(--og-dark-2);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 90%;
+    cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1),
+    -2px -2px 4px rgba(255, 255, 255, 0.1);
+  }
+  .editCourse{
+    flex-shrink: 0;
+    aspect-ratio: 1;
+    margin-top: 1px;
+    margin-left: 1px;
+    background-color: var(--og-dark-2);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 90%;
+    cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1),
+    -2px -2px 4px rgba(255, 255, 255, 0.1);
+  }
+  .periodFlex{
+    display: flex;
+    height: fit-content;
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+  .popupTrash{
+    margin-left: auto;
+    width: 35px;
+    height: 35px;
+    justify-content: end;
+    display: flex;
+    align-items:end;
+  }
+  .popupTrashImage{
+    opacity: 0.7;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    background: url("images/trash.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    transition: opacity 0.2s ease;
+    margin-right: -1px;
+  }
+  .popupTrashImage:hover{
+    opacity: 0.9;
+  }
+  .popupX{
+    margin-left: auto;
+    width: 35px;
+    height: 35px;
+    justify-content: end;
+    display: flex;
+  }
+  .popupXImage{
+    opacity: 0.7;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    background: url("images/X.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    transition: opacity 0.2s ease;
+  }
+  .popupXImage:hover{
+    opacity: 0.9;
+  }
+  .popupBox{
+    background-color: var(--trans-dark-1);
+    display: flex;
+    width: fit-content;
+    height: 35px;
+    padding: 5px 10px;
+    padding-right: 7px;
+    border-radius: 10px;
+    gap: 10px;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+    transition: opacity 0.5s ease;
+  }
+  .popupText{
+    display: flex;
+    width: fit-content;
+    color: rgb(255, 255, 255);
+    position: relative;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0px;
+    opacity: 1;
+    text-align: center;
+  }
+  .editIcon{
+    flex-shrink: 0;
+    aspect-ratio: 1;
+    width: auto;
+    height: 60%;
+    display: flex;
+  }
+  .editTeacherImage{
+    background: url("images/dropdown.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    transform: rotate(180deg);
+    transition: transform 0.5s ease;
+  }
+  .editCourseImage{
+    background: url("images/dropdown.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    transform: rotate(180deg);
+    transition: transform 0.5s ease;
+  }
+  .popupLogo{
+    aspect-ratio: 1;
+    width: auto;
+    height: 80%;
+    display: flex;
+  }
+  .teacherLogo{
+    background: url("images/teacher.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+  .courseLogo{
+    background: url("images/course.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+  .roomLogo{
+    background: url("images/room.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+  .periodLogo{
+    background: url("images/period.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+  .createEntry{
+    border: none;
+    z-index: 20;
+    display:none;
+  }
+  .createEntryButton{
+    cursor: pointer;
+    border-radius: 10px;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    display: flex;
+    background-color: var(--trans-dark-1);
+    border: none;
+    z-index: 20;
+    box-shadow: var(--box-shadow);
+  }
+  .createEntryText{
+    display: flex;
+    width: fit-content;
+    color: rgb(255, 255, 255);
+    position: relative;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 1px;
+    opacity: 1;
+    text-align: center;
+  }
+  .topFrame {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background: var(--top-gradient);
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  .mainFrame {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: visible;
+  }
+  .navbar {
+    width: 100%;
+    height: 20%;
+    align-items: center;
+    display: flex;
+    background: var(--nav-gradient);
+    padding: 10px 10px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 1);
+    overflow: visible;
+  }
+  .navbar-flex {
+    display: flex;
+    width: 100%;
+    gap: 30px;
+    height: auto;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    margin: 0px;
+    opacity: 1;
+    position: relative;
+    left: 20px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    overflow: visible;
+  }
+  .huskieCircle {
+    display: flex;
+    width: 99px;
+    height: 99px;
+    flex-shrink: 0;
+    background: var(--og-dark-1);
+    padding: 15px 15px;
+    margin: 0px;
+    opacity: 1;
+    position: relative;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+  }
+  .huskieLogo {
+    width: 85px;
+    height: 85px;
+    background: url("images/huskieLogo.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.5)) hue-rotate(calc((70deg + 1deg * (var(--dark-hue-1)))));
+    overflow: hidden;
+  }
+  .mainTextContainer {
+    border-radius: 8px;
+    justify-items: center;
+    display: flex;
+    width: 739px;
+    height: 73px;
+    background: linear-gradient(90deg, hsl(var(--dark-hue-1), calc(0.5*var(--dark-sat-1)), calc(2*var(--dark-lum-1))) 0%, hsl(var(--dark-hue-1), calc(0.62*var(--dark-sat-1)), calc(4*var(--dark-lum-1))) 50%, hsl(var(--dark-hue-1), calc(0.5*var(--dark-sat-1)), calc(2*var(--dark-lum-1))) 100%);
+    margin: 0px;
+    opacity: 1;
+    position: relative;
+    padding: 1px;
+    box-shadow: var(--box-shadow);
+    overflow: visible;
+  }
+
+  .mainTextContainer::before{
+    display: flex;
+    background: linear-gradient(90deg, var(--og-dark-1) 0%, hsl(var(--dark-hue-1), calc(0.85*var(--dark-sat-1)), calc(0.7*var(--dark-lum-1))) 34%, var(--og-dark-1) 100%);
+    width: inherit;
+    border-radius: inherit;
+    height: 100%;
+    position: relative;
+    content: "";
+    overflow: visible;
+  }
+
+  .mainText {
+    text-align:left;
+    vertical-align:text-top;
+    width: fit-content;
+    height: 100%;
+    background: var(--bright-gradient-1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: absolute;
+    left: 15px;
+    letter-spacing:0px;
+    text-wrap: nowrap;
+    font-family: Inter;
+    font-weight: 700;
+    letter-spacing: 6px;
+    font-size: 60px;
+    opacity: 1;
+  }
+  .navButtons {
+    gap: 10px;
+    flex: 1;
+    justify-content: flex-end;
+    display: flex;
+    height: auto;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    padding: 6px 20px;
+    opacity: 1;
+    position: relative;
+    right: 20px;
+    overflow: visible;
+  }
+  .viewButton {
+    background: var(--dark-gradient-2);
+    border-bottom: 4px solid var(--bright-1);
+    box-shadow: -2px -2px 10px rgba(0, 0, 0, 0.25),
+                2px 2px 10px rgba(0, 0, 0, 0.15);
+    width: 110px;
+    height: 60px;
+    display: flex;
+    padding: 15px 25px;
+    margin: 10px;
+    opacity: 0.5;
+    position: relative;
+    background: var(--dark-gradient-2);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    overflow: hidden;
+  }
+  .viewButtonText {
+    display: flex;
+    width: 60px;
+    height: 100%;
+    background: var(--bright-gradient-1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    letter-spacing: 2px;
+    font-family: Inter;
+    font-weight: Bold;
+    font-size: 20px;
+    opacity: 1;
+    text-align: left;
+  }
+  .viewButtonText::before {
+    content: " ";
+    width: 100%;
+    height: 3px;
+    bottom: 0px;
+    background: var(--bright-gradient-1);
+    position: absolute;
+  }
+  .editButton {
+    border-bottom: 4px solid var(--bright-1);
+    box-shadow: -2px -2px 10px rgba(255, 255, 255, 0.25),
+                2px 2px 10px rgba(255, 255, 255, 0.15);
+    width: 102px;
+    height: 60px;
+    background: var(--dark-gradient-2);
+    padding: 15px 25px;
+    margin: 10px;
+    opacity: 1;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  .editButtonText {
+    display: flex;
+    width: 52px;
+    height: 100%;
+    background: var(--bright-gradient-1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    letter-spacing: 2px;
+    font-family: Inter;
+    font-weight: Bold;
+    font-size: 20px;
+    opacity: 1;
+    text-align: left;
+  }
+  .editButtonText::before {
+    content: " ";
+    width: 100%;
+    height: 3px;
+    bottom: 0px;
+    background: var(--bright-gradient-1);
+    position: absolute;
+  }
+  .prefButton {
+    border-bottom: 4px solid var(--bright-1);
+    width: 213px;
+    height: 60px;
+    padding: 15px 25px;
+    margin: 10px;
+    opacity: 1;
+    background: var(--dark-gradient-2);
+    position: relative;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: -2px -2px 10px rgba(255, 255, 255, 0.25),
+                2px 2px 10px rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+  }
+  .prefButtonText {
+    display: flex;
+    width: 163px;
+    text-decoration: underline;
+    height: 100%;
+    background: var(--bright-gradient-1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--bright-gradient-1);
+    position: relative;
+    font-family: Inter;
+    font-weight: Bold;
+    letter-spacing: 2px;
+    font-size: 20px;
+    opacity: 1;
+    text-align: left;
+  }
+  .prefButtonText::before {
+    content: " ";
+    width: 100%;
+    height: 3px;
+    bottom: 0px;
+    background: var(--bright-gradient-1);
+    position: absolute;
+  }
+  
+  .mainSection {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    gap: 15px;
+    flex-direction: row;
+    padding: 20px 20px;
+    opacity: 1;
+    position: relative;
+    left: 0px;
+    overflow: hidden;
+  }
+  .leftContent {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    opacity: 1;
+    position: relative;
+    overflow: visible;
+  }
+  .scheduleFrame {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: var(--og-dark-2);
+    padding: 10px 10px;
+    opacity: 1;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: var(--box-shadow2);
+    overflow: hidden;
+  }
+  .leftBar {
+    display:flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    width: fit-content;
+    height: 100%;
+    padding: 10px 10px;
+    gap: 10px;
+    opacity: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .corner {
+    width: 80px;
+    height: 40px;
+    opacity: 0.5;
+    position: relative;
+    overflow: hidden;
+    background: var(--og-dark-2);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow2);
+  }
+  .classBar {
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+    height: 100%;
+    border-radius: 10px;
+    opacity: 1;
+    position: relative;
+    box-shadow: var(--box-shadow2);
+    overflow: hidden;
+  }
+  .classDisplay {
+    display: flex;
+    flex: 1 1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, hsla(var(--dark-hue-2),var(--dark-sat-2),var(--dark-lum-2),0) 0%, hsl(var(--dark-hue-2), var(--dark-sat-2), calc(0.7*var(--dark-lum-2))) 100%);
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px;
+    padding: 1px 1px;
+    overflow: hidden;
+  }
+
+  .classText {
+    display: flex;
+    width: fit-content;
+    color: var(--bright-1);
+    position: relative;
+    font-family: Inter;
+    font-weight: 1000;
+    font-size: 15px;
+    letter-spacing: 3px;
+    opacity: 1;
+    text-align: center;
+  }
+  .rightBar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+    gap: 10px;
+    margin-left: -10px;
+    opacity: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .periodBar {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    opacity: 1;
+    position: relative;
+    box-shadow: var(--box-shadow2);
+    overflow: hidden;
+  }
+  .periodDisplay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1;
+    width: 100%;
+    height: 100%;
+    background: var(--og-dark-2);
+    opacity: 1;
+    position: relative;
+    border-radius: 0px;
+    overflow: hidden;
+  }
+  .periodText {
+    width: fit-content;
+    color: var(--bright-1);
+    position: relative;
+    font-family: Inter;
+    font-weight: Bold;
+    font-size: 20px;
+    opacity: 1;
+    text-align: center;
+  }
+  .scheduleBox {
+    border-radius: 5px;
+    flex-wrap: wrap;
+    display: flex;
+    width: 100%;
+    gap: 4px;
+    height: 100%;
+    background: linear-gradient(135deg, hsl(var(--light-hue-1), var(--light-sat-1), var(--light-lum-1)) 0%, hsl(var(--light-hue-1), var(--light-sat-1), calc(0.8*var(--light-lum-1))) 100%);
+    opacity: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .scheduleBox::before{
+    --size: 0;
+    --op: 0;
+    opacity: var(--op);
+    content: '';
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--size);
+    height: var(--size);
+    background: radial-gradient(circle closest-side, hsl(var(--light-hue-1), calc(var(--light-sat-1)*0.7), calc(var(--light-lum-1)*1)), transparent);
+    transform: translate(-50%, -50%);
+    transition: width 1s ease, height 1s ease, opacity 1s ease, left 0.5s ease, top 0.5s ease;
+  }
+
+  .scheduleBox:hover::before {
+    --size: 2000px;
+    --op: 1;
+  }
+
+  .scheduleItem {
+    stroke-width: 0.9;
+    background: linear-gradient(90deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.03) 100%),
+                linear-gradient(0deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.03) 100%),
+                linear-gradient(-10deg, var(--og-light-1) 0%, var(--og-light-2) 100%);
+    cursor: pointer;
+    opacity: 0.8;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: calc(12.5% - (4px)*7/8);
+    display: flex;
+    filter: none;
+    height: auto;
+    border-radius: 4px;
+    transition: opacity 0.2s ease;
+  }
+
+  .scheduleItem:hover{
+    opacity: 1;
+  }
+
+  .scheduleItem:active{
+    opacity: 0.1;
+  }
+
+  .scheduleText {
+    filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.5));
+    text-shadow: var(--og-dark-1) 1px 1px 3px;
+    width: fit-content;
+    overflow: visible;
+    text-wrap: nowrap;
+    color: rgb(255, 255, 255);
+    position: relative;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 12px;
+    opacity: 1;
+    text-align: center;
+  }
+
+  .rightContent {
+    display: flex;
+    width: 400px;
+    height: 100%;
+    margin: 0px;
+    opacity: 1;
+    position: relative;
+    overflow: visible;
+  }
+  .rightFrame {
+    box-shadow: var(--box-shadow2);
+
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background: var(--og-dark-2);
+    padding: 20px 20px;
+
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .graphFrame {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 50%;
+    align-items: center;
+    background: var(--graph-gradient);
+    opacity: 1;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: var(--box-shadow3);
+    overflow: hidden;
+    padding: auto;
+  }
+  .graphFit {
+    padding-top: 5%;
+    height: 100%;
+    width: fit-content;
+    justify-content: center;
+    flex-direction: column;
+    aspect-ratio: 3/5;
+
+  }
+  .topGraphFrame {
+    margin-bottom: -20%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-direction: column;
+    aspect-ratio: 1;
+    width: 100%;
+    height: auto;
+    padding: 10px 10px;
+    opacity: 1;
+    position: relative;
+    overflow: visible;
+  }
+  .topLine {
+    height: 5px;
+    width: 100%;
+    background-color: var(--og-light-1);
+    position: relative;
+  }
+  .name {
+    color: #fff;
+  }
+  .topText {
+    width: fit-content;
+    text-wrap: nowrap;
+    color: rgba(255,255,255,1);
+    position: relative;
+    font-family: Inter;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 1px;
+    opacity: 1;
+    text-align: center;
+  }
+  .topMask {
+    display: flex;
+    width: 100%;
+    height: 50%;
+    opacity: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .v2021_5 {
+    width: 100%;
+    height: 200%;
+    border-radius: 200px;
+    background: var(--top-meter-gradient);
+    opacity: 1;
+    position: absolute;
+    transform: rotate(45deg);
+  }
+  .v2021_17 {
+    border-radius: 100px;
+    width: 70%;
+    height: 140%;
+    background: var(--og-dark-2);
+    opacity: 1;
+    position: absolute;
+    top: 30%;
+    left: 15%;
+  }
+  .topPercent {
+    top: 55%;
+    width: 100%;
+    color: rgba(255,255,255,1);
+    position: relative;
+    font-family: Inter;
+    font-weight: Bold;
+    font-size: 20px;
+    opacity: 1;
+    text-align: center;
+  }
+  .bottomGraphFrame {
+    flex-basis: content;
+    margin-bottom: -20%;
+    width: 100%;
+    aspect-ratio: 1;
+    height: auto;
+    align-items: center;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    padding: 10px 10px;
+    opacity: 1;
+    position: relative;
+    overflow: visible;
+  }
+  .bottomLine {
+    height: 5px;
+    width: 100%;
+    background-color: var(--og-light-2);
+    position: relative;
+  }
+  .bottomText {
+    width: fit-content;
+    text-wrap: nowrap;
+    color: rgba(255,255,255,1);
+    position: relative;
+    font-family: Inter;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 1px;
+    opacity: 1;
+    text-align: center;
+  }
+  .bottomMask {
+    display: flex;
+    width: 100%;
+    height: 50%;
+    opacity: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .v2022_10 {
+    width: 100%;
+    height: 200%;
+    border-radius: 200px;
+    background: var(--bottom-meter-gradient);
+    opacity: 1;
+    position: absolute;
+    transform: rotate(20deg);
+  }
+  .v2022_11 {
+    border-radius: 100px;
+    width: 70%;
+    height: 140%;
+    background: var(--og-dark-2);
+    opacity: 1;
+    position: absolute;
+    top: 30%;
+    left: 15%;
+  }
+  .bottomPercent {
+    top: 55%;
+    width: 100%;
+    color: rgba(255,255,255,1);
+    position: relative;
+    font-family: Inter;
+    font-weight: Bold;
+    font-size: 20px;
+    opacity: 1;
+    text-align: center;
+  }
+
+  .downloadFrame {
+    display: flex;
+    padding: 20px;
+    gap: 5px;
+    flex-direction: column;
+    width: 100%;
+    height: 40%;
+    background: var(--download-gradient);
+    opacity: 1;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    box-shadow: var(--box-shadow3);
+  }
+  .downloadTextFrame {
+    align-items: center;
+    
+    display: flex;
+    width: 100%;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+  }
+  .downloadText {
+    text-align: center;
+    justify-content: center;
+    text-wrap: nowrap;
+
+    height: fit-content;
+
+    background: var(--bright-gradient-1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: 100%;
+    color: rgba(217,217,217,1);
+    position: relative;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 20px;
+    opacity: 1;
+    text-align: center;
+  }
+  .name {
+    color: #fff;
+  }
+  .buttonFrame {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+    opacity: 1;
+    position: relative;
+    overflow: visible;
+  }
+  .jsonButton {
+    cursor: pointer;
+    border: none;
+    margin: 0px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    height: 50%;
+    gap: 5px;
+    background: var(--highlight-gradient-1);
+    opacity: 1;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow2);
+    overflow: hidden;
+  }
+  .jsonButton::before {
+    border: none;
+    display: flex;
+    border-radius: inherit;
+    width: inherit;
+    height: 100%;
+    position: absolute;
+    margin-top: -6px;
+    background: var(--dark-gradient-1);
+    content: " ";
+  }
+  .jsonText {
+    display: flex;
+    background: var(--bright-gradient-1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: fit-content;
+    color: var(--bright-gradient-1);
+    position: relative;
+    font-family: Inter;
+    font-weight: Bold;
+    font-size: 15px;
+    letter-spacing: 1px;
+    opacity: 1;
+    text-align: center;
+  }
+  .name {
+    color: #fff;
+  }
+  .csvButton {
+    cursor: pointer;
+    border: none;
+    padding: 0px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    height: 50%;
+    gap: 5px;
+    background: var(--highlight-gradient-1);
+    opacity: 1;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow2);
+    overflow: hidden;
+  }
+  .csvButton::before {
+    border: none;
+    display: flex;
+    border-radius: inherit;
+    width: inherit;
+    height: 100%;
+    position: absolute;
+    margin-top: -6px;
+    background: var(--dark-gradient-1);
+    content: " ";
+  }
+  .csvText {
+    display: flex;;
+    background: var(--bright-gradient-1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: fit-content;
+    position: relative;
+    font-family: Inter;
+    font-weight: Bold;
+    font-size: 15px;
+    letter-spacing: 1px;
+    opacity: 1;
+    text-align: center;
+  }
+  .downloadImage {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    background: url("images/download.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .generateButton {
+    opacity: 0.9;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    height: 10%;
+    background: var(--highlight-gradient-1);
+    padding: 0px;
+    padding-bottom: 6px;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 5px 20px var(--darker-light-3);
+    transition: opacity 0.2s ease;
+  }
+
+  .generateButton:hover {
+    opacity: 1;
+  }
+
+  .generateButton::before {
+    border: none;
+    display: flex;
+    border-radius: inherit;
+    width: inherit;
+    height: 100%;
+    position: absolute;
+    margin-top: -6px;
+    background: var(--dark-gradient-1);
+    content: " ";
+  }
+
+  .generateText {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    text-wrap: nowrap;
+    
+    background: var(--bright-gradient-1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--bright-gradient-1);
+
+    height: fit-content;
+    margin: auto;
+    
+    
+    position: relative;
+    font-family: Inter;
+    font-weight: Bold;
+    letter-spacing: 1px;
+    font-size: 15px;
+    opacity: 1;
+  }
+/*
+  
+  
+  
+  height: 100%;
+  background: linear-gradient(90deg, #754D86 0%, #500073 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: absolute;
+  left: 15px;
+  letter-spacing:0px;
+  text-wrap: nowrap;
+  font-family: Inter;
+  font-weight: 700;
+  letter-spacing: 6px;
+  font-size: 60px;
+  opacity: 1;
+  */
