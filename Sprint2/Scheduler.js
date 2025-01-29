@@ -1,10 +1,10 @@
 const sectionArr = [];
 let periodsClassArr = [];
-const courses = require("../server/model/Courses.json");
+const courses = require("../server/model/courses.json");
 const config = require("./Config.json");
-const classroomArr = require("../server/model/Classrooms.json");
+const classroomArr = require("../server/model/classrooms.json");
 const classroomList = classroomArr.map((classroom) => classroom.roomNum);
-const teacherArr = require("../server/model/Teachers.json");
+const teacherArr = require("../server/model/teachers.json");
 const teacherString = JSON.stringify(teacherArr);
 const fs = require("fs");
 
@@ -18,12 +18,12 @@ let formattedSchedule = function (arr) {
     let tempArr = [];
     for (let j = 0; j < classroomArr.length; j++) {
       tempArr.push(null);
-      //tempArr.push("Empty " + classroomList[j] + " period");
+      // tempArr.push("Empty " + classroomList[j] + " period");
     }
     formattedArr.push(tempArr);
   }
 
-  //iterate through arr and add each section to the formattedArr
+  // iterate through arr and add each section to the formattedArr
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].periodClass != null) {
       roomIndex = classroomList.indexOf(arr[i].periodClass.classroom);
