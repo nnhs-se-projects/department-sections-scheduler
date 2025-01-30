@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--<link href="font/Inter.txt" rel="stylesheet"/>-->
+    <link href="styles.css" rel="stylesheet" />
+    
+    <title>Course Scheduler</title>
+  </head>
+  <body>
+    <script src="script.js"></script>
+    <div class="topFrame">
+      <div class="mainFrame">
+        <div class="navbar">
+          <div class="navbar-flex">
+            <div class="huskieCircle dropShadow"><div class="huskieLogo"></div></div>
+            <div class="mainTextContainer">
+              <span class="mainText">COURSE SCHEDULER</span>
+            </div>
+            <div class="navButtons">
+              <div class="viewButton"><span class="viewButtonText">VIEW</span></div>
+              <div class="editButton"><span class="editButtonText">EDIT</span></div>
+              <div class="prefButton"><span class="prefButtonText">PREFERENCES</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="editColumns">
+          <div class="teacherColumn column">
+            <div class="teacherLabel label">
+              <span class="teacherLabelText labelText">TEACHERS</span>
+            </div>
+            <div class="teacherWrapper wrapper">
+              <div class="teacherSearch search">
+                <div class="searchImage"></div>
+                <input class="teacherInput input" type="text" placeholder="SEARCH..."/>
+              </div>
+              <div class="teacherList list">
+                <div class="teacherEntry">
+                  <div class="teacherMain">
+                    <span class="teacherMainText teacherText">Teacher Name</span>
+                    <div class="dropdown">
+                      <div class="dropdownIcon">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="teacherSubList">
+                    <div class="teacherName">
+                      <input class="teacherNameText teacherText" type="text" value="Teacher Name"/>
+                    </div>
+                    <div class="teacherCourses">
+                      <span class="teacherCourseText teacherText">Courses Taught:</span>
+                      <div class="teacherCourseEntry">
+                        <div class="teacherCourseDropdown">
+                          <div class="teacherCourseDropdown2">
+                            <span class="teacherCourseDropdownText">Course</span>
+                          </div>
+                          <div class="teacherCourseDropdownIcon">
+                            <div class="teacherCourseDropdownIconImage">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="teacherCourseCounter">
+                          <div class="plusButton">
+                            <div class="plusButtonImage">
+                            </div>
+                          </div>
+                          <div class="teacherSectionCount">
+                            <span class="teacherSectionCountText teacherText">0</span>
+                          </div>
+                          <div class="minusButton">
+                            <div class="minusButtonImage">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="openPeriods">
+                      <div class="teacherCheckbox">
+                        <span class="teacherSectionCountText teacherText">1</span>
+                        <input type="checkbox"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="courseColumn column">
+            <div class="courseLabel label">
+              <span class="courseLabelText labelText">COURSES</span>
+            </div>
+            <div class="courseWrapper wrapper">
+              <div class="courseSearch search">
+                <div class="searchImage"></div>
+                <input class="courseInput input" type="text" placeholder="SEARCH..."/>
+              </div>
+              <div class="courseList list">
+              </div>
+            </div>
+          </div>
+          <div class="classroomColumn column">
+            <div class="classroomLabel label">
+              <span class="classroomLabelText labelText">CLASSROOMS</span>
+            </div>
+            <div class="classroomWrapper wrapper">
+              <div class="classroomSearch search">
+                <div class="searchImage"></div>
+                <input class="classroomInput input" type="text" placeholder="SEARCH..."/>
+              </div>
+              <div class="classroomList list">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

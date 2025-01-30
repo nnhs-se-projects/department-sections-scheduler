@@ -30,7 +30,8 @@ app.use(
 
 // add middleware to handle JSON in HTTP request bodies (used with POST commands)
 app.use(express.json());
-app.use(express.static(__dirname));
+//app.use(express.static(__dirname));
+app.use(express.static(__dirname + '/pages'));
 
 // app.use takes a function that is added to the chain of a request.
 //  When we call next(), it goes to the next function in the chain.
@@ -47,7 +48,14 @@ app.use(async (req, res, next) => {
 
 // to keep this file manageable, we will move the routes to a separate file
 //  the exported router object is an example of middleware
-app.use("/", require("./router.js"));
+//app.use("/", require("./router.js"));
+app.get("/", (req, res) => {
+  res.redirect('/view');
+});
+
+app.use("/view", require("./pages/view/router.js"));
+app.use("/edit", require("./pages/edit/router.js"));
+app.use("/preferences", require("./pages/preferences/router.js"));
 
 // start the server on port 8080
 app.listen(8080, () => {
