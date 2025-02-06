@@ -43,7 +43,7 @@ function darkText(){
 }
 
 //document.documentElement.style.setProperty('--dark-hue-1', '100');
-setColors(9)
+setColors(0)
 
 
 
