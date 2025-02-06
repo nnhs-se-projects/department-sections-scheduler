@@ -15,6 +15,7 @@ html {
     --dark-sat-1: 100%; --dark-sat-2: 100%; --light-sat-1: 100%; --light-sat-2: 100%;
     --dark-lum-1: 15%;  --dark-lum-2: 23%;  --light-lum-1: 39%;  --light-lum-2: 47%;
 
+    --text-color: white;
     --bright-1: hsl(var(--dark-hue-1), calc(0.62*var(--dark-sat-1)), 80%);
     --darker-light-1: hsl(var(--light-hue-2), var(--light-sat-2), var(--light-lum-2));
     --darker-light-2: hsla(var(--light-hue-2), var(--light-sat-2), var(--light-lum-2), 0.5);
@@ -22,6 +23,7 @@ html {
     --trans-dark-1: hsla(var(--dark-hue-1), var(--dark-sat-1), var(--dark-lum-1), 0.5);
     --trans-dark-2: hsla(var(--dark-hue-2), var(--dark-sat-2), var(--dark-lum-2), 0.5);
     --og-dark-1: hsl(var(--dark-hue-1), var(--dark-sat-1), var(--dark-lum-1));
+    --dark-dark-1: hsl(var(--dark-hue-1), var(--dark-sat-1), calc(0.5*var(--dark-lum-1)));
     --og-dark-2: hsl(var(--dark-hue-2), var(--dark-sat-2), var(--dark-lum-2));
     --og-light-1: hsl(var(--light-hue-1), var(--light-sat-1), var(--light-lum-1));
     --og-light-2: hsl(var(--light-hue-2), var(--light-sat-2), var(--light-lum-2));
@@ -54,6 +56,31 @@ html {
     font-display: swap;
     src: url(font/Inter.woff2) format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  .dropdownFrame{
+    border-radius: 15px;
+    padding: 8px;
+    gap: 7px;
+    overflow: scroll;
+    scrollbar-width: none;
+    flex-direction: column;
+    top: 100px;
+    display: flex;
+    z-index: 100;
+    opacity: 0;
+    position: fixed;
+    width: fit-content;
+    min-width: fit-content;
+    height: 0px;
+    background: var(--dark-gradient-2);
+    backdrop-filter: blur(10px);
+    transition: opacity 0.5s ease, height 0.5s ease;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), 
+              -2px -2px 4px rgba(255, 255, 255, 0.1),
+              inset -2px -2px 4px rgba(0, 0, 0, 0.2), 
+              inset 2px 2px 4px rgba(255, 255, 255, 0.1);
+              
   }
 
   .topFrame {
@@ -379,13 +406,20 @@ html {
   .wrapper{
     border-radius: 10px;
     flex-direction: column;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     display: flex;
     width: 100%;
     height: 100%;
     background: var(--trans-dark-1);
+    background-image: radial-gradient(rgba(0,0,0,0.1) 2px, transparent 0);
+    background-size: 40px 40px;
+    background-position: -5px -5px;
   }
   .search{
     border-radius: 10px;
+    flex-shrink: 0;
     display: flex;
     padding: 10px;
     width: 100%;
@@ -393,6 +427,29 @@ html {
     gap: 5px;
     background: var(--og-dark-1);
     align-items: center;
+  }
+  .dropdownFrameDiv{
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    padding: 5px;
+    border-radius: 7px;
+    padding-left: 7px;
+    padding-right: 10px;
+    cursor: pointer;
+    background: hsla(var(--light-hue-2), var(--light-sat-2), var(--light-lum-2), 0.8);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), 
+    inset -2px -2px 4px rgba(0, 0, 0, 0.2),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1);
+    min-width: fit-content;
+  }
+  .dropdownFrameText{
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0px;
+    color: var(--text-color);
   }
   .input{
     border-radius: 0px;
@@ -410,9 +467,40 @@ html {
     letter-spacing: 0px;
     opacity: 1;
     outline: none;
+    transition: border-bottom 0.2s ease;
+  }
+  .input2{
+    border-radius: 0px;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+    display: flex;
+    position: relative;
+    letter-spacing: 0px;
+    opacity: 1;
+    outline: none;
+    margin-left: -2px;
+    margin-right: -2px;
+    text-wrap: nowrap;
+    width: calc(100% + 10px);
+    height: fit-content;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--text-color);
+
+    transition: border-bottom 0.2s ease;
   }
   .input:focus{
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--text-color);
+  }
+  .input2:focus{
+    border-bottom: 1px solid var(--text-color);
+  }
+  .input2::placeholder{
+    font-weight: 700;
   }
   .searchImage{
     flex-shrink: 0;
@@ -426,6 +514,44 @@ html {
     background-size: cover;
     transform: rotate(1deg);
   }
+
+
+  .addTeacher{
+    display: flex;
+    width: 30px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    cursor: pointer;
+    height: 30px;
+    background-color: var(--og-dark-2);
+    box-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.2), 
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+        2px 2px 4px rgba(0, 0, 0, 0.2), 
+        -2px -2px 4px rgba(255, 255, 255, 0.1);
+
+  }
+
+  .addTeacherText{
+    display: flex;
+    text-wrap: nowrap;
+    text-align: center;
+    margin-top: -5px;
+    margin-left: -1px;
+
+    width: fit-content;
+    height: fit-content;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: 0px;
+    color: var(--text-color);
+    opacity: 1;
+  }
+
+
+
   .list{
     border-radius: 10px;
     padding: 10px;
@@ -433,36 +559,140 @@ html {
     flex-direction: column;
     width: 100%;
     height: 100%;
+    gap: 8px;
   }
 
   .teacherEntry{
+    border-radius: 10px;
     flex-grow: 0;
     width: 100%;
-    flex-grow: 0;
+    flex-shrink: 0;
     display: flex;
+    overflow: hidden;
     flex-direction: column;
-    height: 200px;
-    background: var(--og-dark-1);
+    height: 42px;
+    font-size: 50px;
+    background: hsla(var(--light-hue-2), var(--light-sat-2), var(--light-lum-2), 0.25);;
+    transition: height 0.5s ease;
+    box-shadow: inset -2px -2px 10px rgba(0, 0, 0, 0.4), 
+    inset 2px 2px 10px rgba(255, 255, 255, 0.2),
+    2px 2px 8px rgba(0, 0, 0, 0.4), 
+    -2px -2px 8px rgba(255, 255, 255, 0.2);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   .teacherText{
     font-family: Inter;
     font-weight: 700;
     font-size: 25px;
     letter-spacing: 1px;
-    color: var(--bright-1);
+    color: var(--text-color);
     opacity: 1;
   }
   .teacherMain{
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 10px;
+    padding: 7px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 42px;
+    background: var(--og-light-2);
+    box-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.2), 
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1);
+  }
+  .teacherMainText{
+    margin-top: -2px;
+    text-wrap: nowrap;
+  }
+
+  .removeTeacher{
+    display: flex;
+    margin-left: auto;
+    background: url("images/trash.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    transform: scale(1);
+    aspect-ratio: 1;
+    width: auto;
+    height: 70%;
+    margin-top: -1px;
+    opacity: 0.7;
+    cursor: pointer;
+    transition: all 0.2s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+
+  @keyframes remove-entry-shadow {
+    0% {
+      filter: drop-shadow(300px 0px 10px rgba(255,255,255,1)) blur(0px);
+    }
+    100% {
+      height: 0px;
+      margin-top: -8px;
+      filter: drop-shadow(0px 0px 10px rgba(255,255,255,0.7)) blur(3px);
+    }
+  }
+
+  @keyframes remove-entry-clip {
+    25% {
+    }
+    100% {
+      width: 0%;
+    }
+  }
+
+  @keyframes add-entry-clip {
+    0% {
+      clip-path: polygon(-10% -100%, -10% -100%, -10% 200%, -10% 200%);
+    }
+    75% {
+      clip-path: polygon(-10% -100%, 110% -100%, 110% 200%, -10% 200%);
+    }
+    76% {
+      clip-path: none;
+    }
+  }
+
+  @keyframes add-entry-shadow {
+    0% {
+      margin-top: -8px;
+      height: 0px;
+      filter: drop-shadow(-0.5em 0px 10px rgba(255,255,255,0.7)) blur(3px)
+    }
+    25%{
+      filter: drop-shadow(0em 0px 10px rgba(255,255,255,0.7)) blur(3px);
+    }
+    99% {
+      height: 42px;
+      margin-top: 0px;
+      filter: drop-shadow(1em 0px 10px rgba(255,255,255,1)) blur(0px);
+    }
+    100%{
+      filter: none;
+    }
+  }
+
+
+  .removeTeacher:hover{
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  .teacherName{
+    border-radius: 10px;
+    padding: 7px;
+    padding-top: 6px;
+    padding-bottom: 8px;
     flex-shrink: 0;
     display: flex;
     width: 100%;
+    gap: 5px;
     height: fit-content;
-    background: red;
-  }
-  .teacherMainText{
-    text-wrap: nowrap;
+    background: var(--darker-light-2);
+    box-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.1), 
+    inset 2px 2px 4px rgba(255, 255, 255, 0.2);
   }
   .teacherNameText{
     border-radius: 0px;
@@ -470,98 +700,201 @@ html {
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 1px solid var(--bright-1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     display: flex;
-    color: var(--bright-1);
+    color: var(--text-color);
     position: relative;
     font-family: Inter;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 20px;
     letter-spacing: 0px;
     opacity: 1;
     outline: none;
+    transition: border-bottom 0.2s ease;
+    
+  }
+  .teacherNameText:focus{
+    border-bottom: 1px solid var(--text-color);
+  }
+  ::placeholder{
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
   }
 
   .dropdown{
+    aspect-ratio: 1;
     display: flex;
+    padding: 2px;
+    opacity: 0.8;
+    height: 100%;
+    border-radius: 5px;
+    width: auto;
     justify-content: center;
     align-items: center;
-    aspect-ratio: 1;
-    margin-left: auto;
-    background: blue;
+    margin-left: 7px;
+    background: var(--og-light-1);
+    transition: transform 0.5s ease opacity 0.5 ease;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), 
+    -2px -2px 4px rgba(255, 255, 255, 0.2);
   }
 
   .dropdownIcon{
     flex-shrink: 0;
     aspect-ratio: 1;
     height: 80%;
-    opacity: 0.7;
-    background: url("images/search.png");
+    min-width: 10px;
+    background: url("images/dropdown.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+    transform: rotate(180deg);
+    transition: transform 0.5s ease;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  }
+  .dropdown:hover{
+    opacity: 1;
+  }
+
+  .teacherCourses{
+    border-radius: 10px;
+    padding: 7px;
+    padding-top: 5px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+    height: fit-content;
+    background: var(--darker-light-2);
+    box-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.2), 
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1);
+  }
+
+  .teacherCourseBar{
+    display: flex;
+    height: fit-content;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0px;
+    border-radius: 10px;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .addTeacherCourse{
+    aspect-ratio: 1;
+    border-radius: 7px;
+    display: flex;
+    width: 25px;
+    max-height: 25px;
+    align-items: center;
+    background: var(--darker-light-1);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), 
+    -2px -2px 4px rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+  }
+
+  .addTeacherCourseText{
+    font-size: 25px;
+    margin-left: 4px;
+    margin-top: -5px
   }
 
   .teacherCourseEntry{
     display: flex;
     height: fit-content;
     width: 100%;
-    background: var(--og-dark-2);
-    padding: 5px;
+    background: var(--dark-gradient-2);
+    padding: 7px;
+    border-radius: 10px;
+    gap: 5px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), 
+    -2px -2px 4px rgba(255, 255, 255, 0.1);
   }
 
   .teacherCourseDropdown{
+    border-radius: 10px;
     display: flex;
-    width: fit-content;
+    height: 35px;
     padding: 5px;
+    width: fit-content;
+    gap: 8px;
     align-items: center;
-    background: blue;
+    background: var(--darker-light-2);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), 
+    -2px -2px 4px rgba(255, 255, 255, 0.1);
+    transition: width 0.5s ease;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
   }
+
   .teacherCourseCounter{
+    border-radius: 10px;
     gap: 5px;
     padding: 5px;
+    padding-top: 4px;
+    height: 100%;
     display: flex;
     margin-left: auto;
     justify-content: center;
     align-items: center;
-    background: orange;
+    background: var(--darker-light-1);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), 
+    -2px -2px 4px rgba(255, 255, 255, 0.2);
   }
 
-  .teacherCourseDropdownIcon{
+  .teacherCourseDropdownIcon2{
+    left: 0px;
+    position: relative;
+    padding: 5px;
     aspect-ratio: 1;
-    height: 90%;
-    width: 100%;
-    display: flex;
-    background: pink;
+    margin-left: auto;
+    background-color: var(--og-light-2);
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1),
+    -2px -2px 4px rgba(255, 255, 255, 0.1);
   }
 
-  .teacherCourseDropdownIconImage{
-    display: flex;
+  .teacherCourseDropdownIconImage2{
     flex-shrink: 0;
+    aspect-ratio: 1;
     height: 80%;
-    width: 80%;
-    opacity: 0.7;
+    opacity: 1;
+    margin-left: -0px;
+    margin-top: 1px;
+    width: 15px;
     background: url("images/dropdown.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+    transform: rotate(180deg);
+    transition: transform 0.5s ease;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
   }
   .teacherCourseDropdown2{
     display: flex;
+    padding-left: 3px;
     width: fit-content;
     align-items: center;
-    background: green;
   }
   .teacherCourseDropdownText{
+    margin-top: -1px;
     display: flex;
     text-wrap: nowrap;
-    width: fit-content;
+    width: 100%;
     height: fit-content;
     font-family: Inter;
     font-weight: 700;
-    font-size: 25px;
+    font-size: 18px;
     letter-spacing: 0px;
-    color: var(--bright-1);
+    color: var(--text-color);
     opacity: 1;
   }
 
@@ -572,51 +905,161 @@ html {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    gap: 5px;
+    gap: 7px;
   }
 
   .teacherSectionCount{
-    background: cyan;
     display: flex;
+    width: 25px;
+    height: 25px;
+    justify-content: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    background: var(--og-light-1);
+    display: flex;
+    border-radius: 5px;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1), 
+      inset -2px -2px 4px rgba(255, 255, 255, 0.2);
+    margin-left: 4px;
+    margin-top: 1px;
   }
 
   .teacherSectionCountText{
     display: flex;
     width: fit-content;
     text-wrap: nowrap;
+    text-align: center;
+    margin-left: 0px;
+    margin-top: 0px;
+    font-size: 20px;
   }
 
   .minusButton{
+    aspect-ratio: 1;
+    height: 25px;
+    width: auto;
+    border-radius: 5px;
     display: flex;
-    background: green;
+    background: var(--darker-light-3);
+    padding: 0px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), 
+                -2px -2px 4px rgba(255, 255, 255, 0.2);
   }
   .plusButton{
+    aspect-ratio: 1;
+    height: 25px;
+    width: auto;
+    border-radius: 5px;
     display: flex;
-    background: green;
+    background: var(--darker-light-3);
+    padding: 0px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), 
+    -2px -2px 4px rgba(255, 255, 255, 0.2);
   }
 
-  .plusButtonImage{
-    flex-shrink: 0;
-    aspect-ratio: 1;
-    height: 20px;
-    opacity: 0.7;
-    display: flex;
-    width: auto;
-    background: url("images/search.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+  .minusButtonText{
+    font-size: 30px;
+    margin-left: 18px;
+    margin-top: -10px
   }
 
-  .minusButtonImage{
+  .plusButtonText{
+    font-size: 25px;
+    margin-left: 14px;
+    margin-top: -5px
+  }
+
+  .buttonText{
+    user-select: none;
     flex-shrink: 0;
-    aspect-ratio: 1;
-    height: 20px;
-    opacity: 0.7;
+    height: 30px;
+    width: 30px;
+    color: var(--text-color);
     display: flex;
-    width: auto;
-    background: url("images/search.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+    font-family: Inter;
+    font-weight: Bold;
+
+    opacity: 1;
+    text-align: center;
+  }
+
+  .teacherPeriods{
+    border-radius: 10px;
+    padding: 7px;
+    padding-top: 5px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+    height: fit-content;
+    background: var(--darker-light-2);
+    box-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.1), 
+    inset 2px 2px 4px rgba(255, 255, 255, 0.2);
+  }
+
+  .openPeriods{
+    background: var(--dark-gradient-2);
+    border-radius: 7px;
+    display: flex;
+    justify-content: space-around;
+    padding: 7px;
+    gap: 7px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), 
+    -2px -2px 4px rgba(255, 255, 255, 0.1);
+  }
+  .teacherCheckbox{
+    flex-wrap: wrap;
+    width: 12.5%;
+    display: flex;
+    border-radius: 5px;
+    flex-direction: column;
+    background-color: var(--darker-light-2);
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+    gap: 5px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1), 
+    -2px -2px 6px rgba(255, 255, 255, 0.1);
+  }
+
+  .teacherPeriodText{
+    width: 100%;
+    font-size: 25px;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    text-align: center;
+  }
+
+  .teacherPeriodCheckboxContainer{
+    aspect-ratio: 1;
+    margin: 0px;
+    width: 100%;
+    max-width: 25px;
+    height: auto;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.6), 
+    inset -2px -2px 4px rgba(255, 255, 255, 0.4),
+    2px 2px 4px rgba(0, 0, 0, 0.2), 
+    -2px -2px 4px rgba(255, 255, 255, 0.2);
+  }
+  .teacherPeriodCheckbox{
+    opacity: 1;
+    aspect-ratio: 1;
+    flex-shrink: 0;
+    margin-right: 4px;
+    margin-bottom: 2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    filter: hue-rotate(calc(-220deg + 1deg * (var(--light-hue-1)))) grayscale(calc(100% - var(--light-sat-1)));
   }

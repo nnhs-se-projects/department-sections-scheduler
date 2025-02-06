@@ -25,7 +25,6 @@ async function createSchedules(callback) {
 
     //four period overlap possible
     //lunch check possible
-    //
 }
 
 function getCourseData(){
@@ -34,11 +33,6 @@ function getCourseData(){
 
 function getTeacherData(){
     return teachers
-}
-
-async function writeToJSON(){
-    console.log("test")
-
 }
 
 async function writeToCSV(data){

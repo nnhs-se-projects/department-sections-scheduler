@@ -8,6 +8,8 @@
   </head>
   <body>
     <script src="script.js"></script>
+    <div class="dropdownFrame">
+    </div>
     <div class="topFrame">
       <div class="mainFrame">
         <div class="navbar">
@@ -32,11 +34,15 @@
               <div class="teacherSearch search">
                 <div class="searchImage"></div>
                 <input class="teacherInput input" type="text" placeholder="SEARCH..."/>
+                <div class="addTeacher">
+                  <span class="addTeacherText">+</span>
+                </div>
               </div>
               <div class="teacherList list">
                 <div class="teacherEntry">
                   <div class="teacherMain">
                     <span class="teacherMainText teacherText">Teacher Name</span>
+                    <div class="removeTeacher"></div>
                     <div class="dropdown">
                       <div class="dropdownIcon">
                       </div>
@@ -44,40 +50,59 @@
                   </div>
                   <div class="teacherSubList">
                     <div class="teacherName">
-                      <input class="teacherNameText teacherText" type="text" value="Teacher Name"/>
+                      <input class="teacherNameText teacherText" type="text" value="Teacher Name" placeholder="Teacher Name (Last, First)"/>
                     </div>
                     <div class="teacherCourses">
-                      <span class="teacherCourseText teacherText">Courses Taught:</span>
+                      <div class="teacherCourseBar">
+                        <span class="teacherCourseText teacherText">Courses Taught:</span>
+                        <div class="addTeacherCourse">
+                          <span class="addTeacherCourseText buttonText">+</span>
+                        </div>
+                      </div>
                       <div class="teacherCourseEntry">
                         <div class="teacherCourseDropdown">
                           <div class="teacherCourseDropdown2">
-                            <span class="teacherCourseDropdownText">Course</span>
+                            <span class="teacherCourseDropdownText" textContent="Co">Course</span>
                           </div>
-                          <div class="teacherCourseDropdownIcon">
-                            <div class="teacherCourseDropdownIconImage">
-                            </div>
+                          <div class="teacherCourseDropdownIcon2">
+                            <div class="teacherCourseDropdownIconImage2"></div>
                           </div>
                         </div>
                         <div class="teacherCourseCounter">
-                          <div class="plusButton">
-                            <div class="plusButtonImage">
-                            </div>
+                          <div class="minusButton">
+                            <span class="minusButtonText buttonText">-</span>
                           </div>
                           <div class="teacherSectionCount">
                             <span class="teacherSectionCountText teacherText">0</span>
                           </div>
-                          <div class="minusButton">
-                            <div class="minusButtonImage">
-                            </div>
+                          <div class="plusButton">
+                            <span class="plusButtonText buttonText">+</span>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <div class="teacherPeriods">
+                      <span class="teacherPeriodText2 teacherText">Periods Available:</span>
                     <div class="openPeriods">
                       <div class="teacherCheckbox">
-                        <span class="teacherSectionCountText teacherText">1</span>
-                        <input type="checkbox"/>
+                        <span class="teacherPeriodText teacherText">1</span>
+                        <div class="teacherPeriodCheckboxContainer">
+                          <input class="teacherPeriodCheckbox" type="checkbox"/>
+                        </div>
                       </div>
+                      <div class="teacherCheckbox">
+                        <span class="teacherPeriodText teacherText">1</span>
+                        <div class="teacherPeriodCheckboxContainer">
+                          <input class="teacherPeriodCheckbox" type="checkbox"/>
+                        </div>
+                      </div>
+                      <div class="teacherCheckbox">
+                        <span class="teacherPeriodText teacherText">1</span>
+                        <div class="teacherPeriodCheckboxContainer">
+                          <input class="teacherPeriodCheckbox" type="checkbox"/>
+                        </div>
+                      </div>
+                    </div>
                     </div>
                   </div>
                 </div>

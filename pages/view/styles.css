@@ -1355,22 +1355,3 @@ html {
     font-size: 15px;
     opacity: 1;
   }
-/*
-  
-  
-  
-  height: 100%;
-  background: linear-gradient(90deg, #754D86 0%, #500073 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: absolute;
-  left: 15px;
-  letter-spacing:0px;
-  text-wrap: nowrap;
-  font-family: Inter;
-  font-weight: 700;
-  letter-spacing: 6px;
-  font-size: 60px;
-  opacity: 1;
-  */
