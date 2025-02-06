@@ -34,9 +34,9 @@ var r = document.querySelector(':root');
 function setColors(index){
     var varNames = [["--dark","1"],["--dark","2"],["--light","1"],["--light","2"]]
     for(let i=0;i<4;i++){
-        r.style.setProperty(varNames[i][0]+"-hue-"+varNames[i][1], pallettes[index][i][0]+"");
-        r.style.setProperty(varNames[i][0]+"-sat-"+varNames[i][1], pallettes[index][i][1]+"%");
-        r.style.setProperty(varNames[i][0]+"-lum-"+varNames[i][1], pallettes[index][i][2]+"%");
+        r.style.setProperty(varNames[i][0]+"-hue-"+varNames[i][1], palettes[index][i][0]+"");
+        r.style.setProperty(varNames[i][0]+"-sat-"+varNames[i][1], palettes[index][i][1]+"%");
+        r.style.setProperty(varNames[i][0]+"-lum-"+varNames[i][1], palettes[index][i][2]+"%");
     }
 }
 
