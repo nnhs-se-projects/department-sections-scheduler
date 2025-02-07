@@ -90,15 +90,12 @@ fetch('./getJsonFiles', {
 
 function populateTeacherList(teacherData,insert){
     modifyElements(".teacherList",element => {
-        if((!insert)&&element.children.length==1){
-            element.children[0].remove()
-        }
-
+        if((!insert)&&element.children.length==1){element.children[0].remove()}
         for(let i=0;i<teacherData.length;i++){
             const a = teacherData[i]
-            const t1 = document.createElement("div");t1.className="teacherEntry";t1.index = i;
-            const t2 = document.createElement("div");t2.className="teacherMain";
-            const t3 = document.createElement("span");t3.className="teacherMainText teacherText";t3.textContent = a.name;
+            const t1 = document.createElement("div");t1.className="teacherEntry entry";t1.index = i;
+            const t2 = document.createElement("div");t2.className="teacherMain entryMain";
+            const t3 = document.createElement("span");t3.className="teacherMainText teacherText entryMainText";t3.textContent = a.name;
             const t41 = document.createElement("div");t41.className="removeTeacher";
             const t4 = document.createElement("div");t4.className="dropdown";
             const t5 = document.createElement("div");t5.className="dropdownIcon";
@@ -162,7 +159,6 @@ function populateTeacherList(teacherData,insert){
                 if(checked){t28.checked=true;}else{
                     t25.style.opacity = "0.5"
                 }
-
                 t25.index = i;
                 t24.appendChild(t25);
                 t25.appendChild(t26);
@@ -300,6 +296,41 @@ function addEntryListeners(){
             updateTeacherData(element)
             updateTeacherEntry(element)
         });
+        element.children[0].children[2].addEventListener('click', e => {
+            if(open){
+                count++
+                element.children[0].children[2].children[0].style.transform = "rotate(180deg)"
+                element.style.height = element.getBoundingClientRect().height+"px"
+                setTimeout(()=>{
+                    element.style.height = element.children[0].getBoundingClientRect().height+"px"
+                },10)
+                open = false;
+            }else{
+                count++
+                element.children[0].children[2].children[0].style.transform = "rotate(0deg)"
+                var temp = element.getBoundingClientRect().height
+                element.style.height = "fit-content"
+                var h = element.getBoundingClientRect().height
+                element.style.height = temp+"px"
+                setTimeout(()=>{element.style.height = h+"px"},10)
+                setTimeout(()=>{
+                    var tempCount = count
+                        setTimeout(()=>{
+                        if(tempCount == count){
+                            element.style.height = "fit-content"
+                        }
+                    },500)
+                },0)
+                open = true;
+            }
+        });
+    });
+    modifyElements(".courseEntry",element => {
+        if(element.listener===true){return null}
+        element.listener=true
+        var open = false
+        var count = 0
+        var t = element
         element.children[0].children[2].addEventListener('click', e => {
             if(open){
                 count++

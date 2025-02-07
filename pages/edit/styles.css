@@ -562,7 +562,7 @@ html {
     gap: 8px;
   }
 
-  .teacherEntry{
+  .entry{
     border-radius: 10px;
     flex-grow: 0;
     width: 100%;
@@ -588,7 +588,15 @@ html {
     color: var(--text-color);
     opacity: 1;
   }
-  .teacherMain{
+  .courseText{
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 25px;
+    letter-spacing: 1px;
+    color: var(--text-color);
+    opacity: 1;
+  }
+  .entryMain{
     border-radius: 10px;
     padding: 7px;
     flex-shrink: 0;

@@ -9,19 +9,33 @@ const scheduler = require("./Scheduler.js");
 //  when the client makes an HTTP GET request to the specified path,
 //  the callback function is executed
 route.get("/", async (req, res) => {
-  // the res parameter references the HTTP response object
   const options = {
     root: path.join(__dirname)
-};
+  };
 
-const fileName = 'index.html';
-res.sendFile(fileName, options, function (err) {
-    if (err) {
-        console.error('Error sending file:', err);
-    } else {
-        console.log('Sent:', fileName);
-    }
+  const fileName = 'pages/view/index.html';
+  res.sendFile(fileName, options, function (err) {
+      if (err) {
+          console.error('Error sending file:', err);
+      } else {
+          console.log('Sent:', fileName);
+      }
+  });
 });
+
+route.get("/edit", async (req, res) => {
+  const options = {
+    root: path.join(__dirname)
+  };
+
+  const fileName = 'pages/edit/index.html';
+  res.sendFile(fileName, options, function (err) {
+      if (err) {
+          console.error('Error sending file:', err);
+      } else {
+          console.log('Sent:', fileName);
+      }
+  });
 });
 
 route.get("/createSchedule", (req, res) => {
