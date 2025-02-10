@@ -285,81 +285,142 @@ setTimeout(()=>{
     addEntryListeners()
 },500)
 
+function addCourseEntryListeners() {
+    modifyElements(".courseEntry", element => {
+        if (element.listener === true) return;
+
+        element.listener = true;
+        let isOpen = false;
+        let clickCount = 0;
+
+        const handleCourseNameChange = () => {
+            updateCourseData(element);
+            updateCourseEntry(element);
+        };
+
+        const handleExpandCollapseClick = () => {
+            clickCount++;
+            const arrowIcon = element.children[0].children[2].children[0];
+            const currentHeight = element.getBoundingClientRect().height;
+
+            if (isOpen) {
+                arrowIcon.style.transform = "rotate(180deg)";
+                element.style.height = `${currentHeight}px`;
+                setTimeout(() => {
+                    element.style.height = `${element.children[0].getBoundingClientRect().height}px`;
+                }, 10);
+                isOpen = false;
+            } else {
+                arrowIcon.style.transform = "rotate(0deg)";
+                element.style.height = "fit-content";
+                const expandedHeight = element.getBoundingClientRect().height;
+                element.style.height = `${currentHeight}px`;
+                setTimeout(() => {
+                    element.style.height = `${expandedHeight}px`;
+                }, 10);
+                isOpen = true;
+            }
+        };
+
+        const handleCheckboxChange = (e) => {
+            updateCourseData(element);
+        };
+
+        const courseNameInput = element.querySelector('.courseNameInput');
+        const expandCollapseButton = element.querySelector('.dropdown');
+        const checkboxes = element.querySelectorAll('input[type="checkbox"]');
+
+        courseNameInput.addEventListener('change', handleCourseNameChange);
+        expandCollapseButton.addEventListener('click', handleExpandCollapseClick);
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', handleCheckboxChange);
+        });
+    });
+
+    modifyElements(".addCourse", element => {
+        if (element.listener === true) return;
+        element.listener = true;
+        element.addEventListener('click', e => {
+            const object = {
+                name: 'New Course',
+                compatibleClassrooms: [],
+                openPeriods: [],
+                openSemesters: []
+            };
+            globalData.courses.unshift(object);
+            populateCourseList([object], true);
+        });
+    });
+
+    modifyElements(".courseInput", element => {
+        if (element.listener === true) return;
+        element.listener = true;
+        let prevValue = "";
+        setInterval(() => {
+            if (element.value != prevValue) {
+                prevValue = element.value;
+                modifyElements(".courseEntry", element2 => {
+                    const content = element2.children[0].children[0].textContent.substring(0, prevValue.length);
+                    if (content.toLowerCase() == prevValue.toLowerCase()) {
+                        element2.style.display = "flex";
+                    } else {
+                        element2.style.display = "none";
+                    }
+                });
+            }
+        }, 500);
+    });
+}
+
+// Initialize course entry listeners after a delay
+setTimeout(() => {
+    addCourseEntryListeners();
+}, 500);
+
 function addEntryListeners(){
-    modifyElements(".teacherEntry",element => {
-        if(element.listener===true){return null}
-        element.listener=true
-        var open = false
-        var count = 0
-        var t = element
-        element.children[1].children[0].children[0].addEventListener('change', e => {
-            updateTeacherData(element)
-            updateTeacherEntry(element)
-        });
-        element.children[0].children[2].addEventListener('click', e => {
-            if(open){
-                count++
-                element.children[0].children[2].children[0].style.transform = "rotate(180deg)"
-                element.style.height = element.getBoundingClientRect().height+"px"
-                setTimeout(()=>{
-                    element.style.height = element.children[0].getBoundingClientRect().height+"px"
-                },10)
-                open = false;
-            }else{
-                count++
-                element.children[0].children[2].children[0].style.transform = "rotate(0deg)"
-                var temp = element.getBoundingClientRect().height
-                element.style.height = "fit-content"
-                var h = element.getBoundingClientRect().height
-                element.style.height = temp+"px"
-                setTimeout(()=>{element.style.height = h+"px"},10)
-                setTimeout(()=>{
-                    var tempCount = count
-                        setTimeout(()=>{
-                        if(tempCount == count){
-                            element.style.height = "fit-content"
-                        }
-                    },500)
-                },0)
-                open = true;
+    modifyElements(".teacherEntry", element => {
+        if (element.listener === true) return;
+
+        element.listener = true;
+        let isOpen = false;
+        let clickCount = 0;
+
+        const handleInputChange = () => {
+            updateTeacherData(element);
+            updateTeacherEntry(element);
+        };
+
+        const handleExpandCollapseClick = () => {
+            clickCount++;
+            const arrowIcon = element.children[0].children[2].children[0];
+            const currentHeight = element.getBoundingClientRect().height;
+
+            if (isOpen) {
+                arrowIcon.style.transform = "rotate(180deg)";
+                element.style.height = `${currentHeight}px`;
+                setTimeout(() => {
+                    element.style.height = `${element.children[0].getBoundingClientRect().height}px`;
+                }, 10);
+                isOpen = false;
+            } else {
+                arrowIcon.style.transform = "rotate(0deg)";
+                element.style.height = "fit-content";
+                const expandedHeight = element.getBoundingClientRect().height;
+                element.style.height = `${currentHeight}px`;
+                setTimeout(() => {
+                    element.style.height = `${expandedHeight}px`;
+                }, 10);
+                isOpen = true;
             }
-        });
+        };
+
+        const inputElement = element.children[1].children[0].children[0];
+        const expandCollapseButton = element.children[0].children[2];
+
+        inputElement.addEventListener('change', handleInputChange);
+        expandCollapseButton.addEventListener('click', handleExpandCollapseClick);
     });
-    modifyElements(".courseEntry",element => {
-        if(element.listener===true){return null}
-        element.listener=true
-        var open = false
-        var count = 0
-        var t = element
-        element.children[0].children[2].addEventListener('click', e => {
-            if(open){
-                count++
-                element.children[0].children[2].children[0].style.transform = "rotate(180deg)"
-                element.style.height = element.getBoundingClientRect().height+"px"
-                setTimeout(()=>{
-                    element.style.height = element.children[0].getBoundingClientRect().height+"px"
-                },10)
-                open = false;
-            }else{
-                count++
-                element.children[0].children[2].children[0].style.transform = "rotate(0deg)"
-                var temp = element.getBoundingClientRect().height
-                element.style.height = "fit-content"
-                var h = element.getBoundingClientRect().height
-                element.style.height = temp+"px"
-                setTimeout(()=>{element.style.height = h+"px"},10)
-                setTimeout(()=>{
-                    var tempCount = count
-                        setTimeout(()=>{
-                        if(tempCount == count){
-                            element.style.height = "fit-content"
-                        }
-                    },500)
-                },0)
-                open = true;
-            }
-        });
-    });
+
     modifyElements(".teacherCheckbox",element => {
         if(element.listener===true){return null}
         element.listener=true

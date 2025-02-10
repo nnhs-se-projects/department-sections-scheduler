@@ -3,25 +3,32 @@
   <head>
     <!--<link href="font/Inter.txt" rel="stylesheet"/>-->
     <link href="styles.css" rel="stylesheet" />
-    
+
     <title>Course Scheduler</title>
   </head>
   <body>
     <script src="script.js"></script>
-    <div class="dropdownFrame">
-    </div>
+    <div class="dropdownFrame"></div>
     <div class="topFrame">
       <div class="mainFrame">
         <div class="navbar">
           <div class="navbar-flex">
-            <div class="huskieCircle dropShadow"><div class="huskieLogo"></div></div>
+            <div class="huskieCircle dropShadow">
+              <div class="huskieLogo"></div>
+            </div>
             <div class="mainTextContainer">
               <span class="mainText">COURSE SCHEDULER</span>
             </div>
             <div class="navButtons">
-              <div class="viewButton"><span class="viewButtonText">VIEW</span></div>
-              <div class="editButton"><span class="editButtonText">EDIT</span></div>
-              <div class="prefButton"><span class="prefButtonText">PREFERENCES</span></div>
+              <div class="viewButton">
+                <span class="viewButtonText">VIEW</span>
+              </div>
+              <div class="editButton">
+                <span class="editButtonText">EDIT</span>
+              </div>
+              <div class="prefButton">
+                <span class="prefButtonText">PREFERENCES</span>
+              </div>
             </div>
           </div>
         </div>
@@ -33,7 +40,11 @@
             <div class="teacherWrapper wrapper">
               <div class="teacherSearch search">
                 <div class="searchImage"></div>
-                <input class="teacherInput input" type="text" placeholder="SEARCH..."/>
+                <input
+                  class="teacherInput input"
+                  type="text"
+                  placeholder="SEARCH..."
+                />
                 <div class="addTeacher">
                   <span class="addTeacherText">+</span>
                 </div>
@@ -41,16 +52,22 @@
               <div class="teacherList list">
                 <div class="teacherEntry entry">
                   <div class="teacherMain entryMain">
-                    <span class="teacherMainText teacherText entryMainText">Teacher Name</span>
+                    <span class="teacherMainText teacherText entryMainText"
+                      >Teacher Name</span
+                    >
                     <div class="removeTeacher removeButton"></div>
                     <div class="dropdown">
-                      <div class="dropdownIcon">
-                      </div>
+                      <div class="dropdownIcon"></div>
                     </div>
                   </div>
                   <div class="teacherSubList">
                     <div class="teacherName">
-                      <input class="teacherNameText teacherText" type="text" value="Teacher Name" placeholder="Teacher Name (Last, First)"/>
+                      <input
+                        class="teacherNameText teacherText"
+                        type="text"
+                        value="Teacher Name"
+                        placeholder="Teacher Name (Last, First)"
+                      />
                     </div>
                     <div class="teacherCourses">
                       <div class="teacherCourseBar">
@@ -62,7 +79,11 @@
                       <div class="teacherCourseEntry">
                         <div class="teacherCourseDropdown">
                           <div class="teacherCourseDropdown2">
-                            <span class="teacherCourseDropdownText" textContent="Co">Course</span>
+                            <span
+                              class="teacherCourseDropdownText"
+                              textContent="Co"
+                              >Course</span
+                            >
                           </div>
                           <div class="teacherCourseDropdownIcon2">
                             <div class="teacherCourseDropdownIconImage2"></div>
@@ -73,7 +94,9 @@
                             <span class="minusButtonText buttonText">-</span>
                           </div>
                           <div class="teacherSectionCount">
-                            <span class="teacherSectionCountText teacherText">0</span>
+                            <span class="teacherSectionCountText teacherText"
+                              >0</span
+                            >
                           </div>
                           <div class="plusButton">
                             <span class="plusButtonText buttonText">+</span>
@@ -82,27 +105,38 @@
                       </div>
                     </div>
                     <div class="teacherPeriods">
-                      <span class="teacherPeriodText2 teacherText">Periods Available:</span>
-                    <div class="openPeriods">
-                      <div class="teacherCheckbox">
-                        <span class="teacherPeriodText teacherText">1</span>
-                        <div class="teacherPeriodCheckboxContainer">
-                          <input class="teacherPeriodCheckbox" type="checkbox"/>
+                      <span class="teacherPeriodText2 teacherText"
+                        >Periods Available:</span
+                      >
+                      <div class="openPeriods">
+                        <div class="teacherCheckbox">
+                          <span class="teacherPeriodText teacherText">1</span>
+                          <div class="teacherPeriodCheckboxContainer">
+                            <input
+                              class="teacherPeriodCheckbox"
+                              type="checkbox"
+                            />
+                          </div>
+                        </div>
+                        <div class="teacherCheckbox">
+                          <span class="teacherPeriodText teacherText">1</span>
+                          <div class="teacherPeriodCheckboxContainer">
+                            <input
+                              class="teacherPeriodCheckbox"
+                              type="checkbox"
+                            />
+                          </div>
+                        </div>
+                        <div class="teacherCheckbox">
+                          <span class="teacherPeriodText teacherText">1</span>
+                          <div class="teacherPeriodCheckboxContainer">
+                            <input
+                              class="teacherPeriodCheckbox"
+                              type="checkbox"
+                            />
+                          </div>
                         </div>
                       </div>
-                      <div class="teacherCheckbox">
-                        <span class="teacherPeriodText teacherText">1</span>
-                        <div class="teacherPeriodCheckboxContainer">
-                          <input class="teacherPeriodCheckbox" type="checkbox"/>
-                        </div>
-                      </div>
-                      <div class="teacherCheckbox">
-                        <span class="teacherPeriodText teacherText">1</span>
-                        <div class="teacherPeriodCheckboxContainer">
-                          <input class="teacherPeriodCheckbox" type="checkbox"/>
-                        </div>
-                      </div>
-                    </div>
                     </div>
                   </div>
                 </div>
@@ -116,21 +150,95 @@
             <div class="courseWrapper wrapper">
               <div class="courseSearch search">
                 <div class="searchImage"></div>
-                <input class="courseInput input" type="text" placeholder="SEARCH..."/>
+                <input
+                  class="courseInput input"
+                  type="text"
+                  placeholder="SEARCH..."
+                />
               </div>
               <div class="courseList list">
-
                 <div class="courseEntry entry">
                   <div class="courseMain entryMain">
-                    <span class="courseMainText courseText entryMainText">Course Name</span>
-                    <div class="removeTeacher removeButton"></div>
+                    <span class="courseMainText courseText entryMainText"
+                      >Course Name</span
+                    >
+                    <div class="removeCourse removeButton"></div>
                     <div class="dropdown">
-                      <div class="dropdownIcon">
+                      <div class="dropdownIcon"></div>
+                    </div>
+                  </div>
+                  <div class="courseDetails entryDetails">
+                    <div class="courseName">
+                      <input
+                        type="text"
+                        class="courseNameInput"
+                        placeholder="Course Name"
+                      />
+                    </div>
+                    <div class="compatibleClassrooms">
+                      <span class="courseText">Compatible Classrooms:</span>
+                      <div class="classroomList">
+                        <div class="classroomItem">
+                            <span class="classroomItemText">121</span>
+                            <div class="removeClassroom removeButton"></div>
+                        </div>
+                        <div class="classroomItem">
+                          <span class="classroomItemText">123</span>
+                          <div class="removeClassroom removeButton"></div>
+                        </div>
+                        <div class="classroomItem">
+                          <span class="classroomItemText">999</span>
+                          <div class="removeClassroom removeButton"></div>
+                        </div>
+                        <div class="addClassroomDiv">
+                          <div class="addClassroom addButton"></div>
+                        </div>
                       </div>
+                    </div>
+                    <div class="coursePeriods">
+                      <span class="courseText">Periods Open:</span>
+                      <ul class="courseOpenPeriods">
+                        <li class="courseCheckbox">
+                          <span class="coursePeriodText courseText">1</span>
+                          <div class="coursePeriodCheckboxContainer">
+                            <input
+                              class="coursePeriodCheckbox"
+                              type="checkbox"
+                            />
+                          </div>
+                        </li>
+                        <li class="courseCheckbox">
+                          <span class="coursePeriodText courseText">1</span>
+                          <div class="coursePeriodCheckboxContainer">
+                            <input
+                              class="coursePeriodCheckbox"
+                              type="checkbox"
+                            />
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="courseSemesters">
+                      <span class="courseText">Semesters Open:</span>
+                      <ul>
+                        <li>
+                          <input
+                            type="checkbox"
+                            id="semester1"
+                            name="semester1"
+                          /><label for="semester1">Semester 1</label>
+                        </li>
+                        <li>
+                          <input
+                            type="checkbox"
+                            id="semester2"
+                            name="semester2"
+                          /><label for="semester2">Semester 2</label>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -141,10 +249,13 @@
             <div class="classroomWrapper wrapper">
               <div class="classroomSearch search">
                 <div class="searchImage"></div>
-                <input class="classroomInput input" type="text" placeholder="SEARCH..."/>
+                <input
+                  class="classroomInput input"
+                  type="text"
+                  placeholder="SEARCH..."
+                />
               </div>
-              <div class="classroomList list">
-              </div>
+              <div class="classroomList list"></div>
             </div>
           </div>
         </div>
