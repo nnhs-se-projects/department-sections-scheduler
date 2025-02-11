@@ -179,10 +179,96 @@ function populateTeacherList(teacherData,insert){
                 },500)
             }
         }
-        addEntryListeners()
-
+        addTeacherEntryListeners()
     })
+}
+function populateCourseList(teacherData,insert){
+    modifyElements(".teacherList",element => {
+        if((!insert)&&element.children.length==1){element.children[0].remove()}
+        for(let i=0;i<teacherData.length;i++){
+            const a = teacherData[i]
+            const t1 = document.createElement("div");t1.className="teacherEntry entry";t1.index = i;
+            const t2 = document.createElement("div");t2.className="teacherMain entryMain";
+            const t3 = document.createElement("span");t3.className="teacherMainText teacherText entryMainText";t3.textContent = a.name;
+            const t41 = document.createElement("div");t41.className="removeTeacher";
+            const t4 = document.createElement("div");t4.className="dropdown";
+            const t5 = document.createElement("div");t5.className="dropdownIcon";
+            if(insert){
+                modifyElements(".teacherEntry",element2 => {
+                    element2.index++
+                })
+                t1.index = 0;
+                element.insertBefore(t1,element.children[0]);
+            }else{
+                element.appendChild(t1);
+                t1.index = i;
+            }
+            t1.appendChild(t2);
+            t2.appendChild(t3);
+            t2.appendChild(t41);
+            t2.appendChild(t4);
+            t4.appendChild(t5);
 
+            const t6 = document.createElement("div");t6.className="teacherSubList";
+            const t7 = document.createElement("div");t7.className="teacherName";
+            const t8 = document.createElement("input");t8.className="teacherNameText teacherText";t8.type="text";t8.value=a.name;t8.placeholder="Teacher Name (Last, First)";
+            const t9 = document.createElement("div");t9.className="teacherCourses";
+            const t31 = document.createElement("div");t31.className="teacherCourseBar";
+            const t10 = document.createElement("span");t10.className="teacherCourseText teacherText";t10.textContent = "Courses Taught:";
+            const t32 = document.createElement("div");t32.className="addTeacherCourse";
+            const t33 = document.createElement("span");t33.className="addTeacherCourseText buttonText";t33.textContent = "+";
+            t1.appendChild(t6);
+            t6.appendChild(t7);
+            t7.appendChild(t8);
+            t6.appendChild(t9);
+            t9.appendChild(t31);
+            t31.appendChild(t10);
+            t31.appendChild(t32);
+            t32.appendChild(t33);
+            addTeacherCourse(t32);
+
+            let j=0
+            for(const b of a.coursesAssigned){
+                addCourseEntry(b.course,b.sections,t9,j)
+                j++
+            }
+
+            const t29 = document.createElement("div");t29.className="teacherPeriods";
+            const t30 = document.createElement("span");t30.className="teacherPeriodText2 teacherText";t30.textContent = "Open Periods:";
+            const t24 = document.createElement("div");t24.className="openPeriods";
+            t6.appendChild(t29);
+            t29.appendChild(t30);
+            t29.appendChild(t24);
+            
+            for(let i=0;i<8;i++){
+                var checked = true
+                if(a.openPeriods.indexOf(i+1) == -1){
+                    checked = false
+                }
+
+                const t25 = document.createElement("div");t25.className="teacherCheckbox";
+                const t26 = document.createElement("span");t26.className="teacherPeriodText teacherText";t26.textContent = ""+(i+1);
+                const t27 = document.createElement("div");t27.className="teacherPeriodCheckboxContainer";
+                const t28 = document.createElement("input");t28.className="teacherPeriodCheckbox";t28.type="checkbox";
+                if(checked){t28.checked=true;}else{
+                    t25.style.opacity = "0.5"
+                }
+                t25.index = i;
+                t24.appendChild(t25);
+                t25.appendChild(t26);
+                t25.appendChild(t27);
+                t27.appendChild(t28);
+            }
+            if(insert){
+                t1.style.fontSize = element.parentElement.getBoundingClientRect().width+"px"
+                t1.style.animation = "add-entry-shadow 0.5s cubic-bezier(0.2, 0, 0, 1) forwards, add-entry-clip 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) forwards";
+                setTimeout(()=>{
+                    t1.style.animation = "none";
+                },500)
+            }
+        }
+        addTeacherEntryListeners()
+    })
 }
 
 function addCourseEntry(courseName,sections,appendTo,index){
@@ -288,7 +374,7 @@ function updateTeacherEntry(element){
 
 
 setTimeout(()=>{
-    addEntryListeners()
+    addTeacherEntryListeners()
 },500)
 
 function addCourseEntryListeners() {
@@ -428,7 +514,7 @@ setTimeout(() => {
     addClassroomEntryListeners();
 }, 500);
 
-function addEntryListeners(){
+function addTeacherEntryListeners(){
     modifyElements(".teacherEntry", element => {
         if (element.listener === true) return;
 
