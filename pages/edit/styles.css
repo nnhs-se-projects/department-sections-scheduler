@@ -530,7 +530,6 @@ html {
     inset 2px 2px 4px rgba(255, 255, 255, 0.1),
         2px 2px 4px rgba(0, 0, 0, 0.2), 
         -2px -2px 4px rgba(255, 255, 255, 0.1);
-
   }
 
   .addTeacherText{
@@ -539,7 +538,6 @@ html {
     text-align: center;
     margin-top: -5px;
     margin-left: -1px;
-
     width: fit-content;
     height: fit-content;
     font-family: Inter;
@@ -550,7 +548,37 @@ html {
     opacity: 1;
   }
 
+  .addCourse{
+    display: flex;
+    width: 30px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    cursor: pointer;
+    height: 30px;
+    background-color: var(--og-dark-2);
+    box-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.2), 
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+        2px 2px 4px rgba(0, 0, 0, 0.2), 
+        -2px -2px 4px rgba(255, 255, 255, 0.1);
+  }
 
+  .addCourseText{
+    display: flex;
+    text-wrap: nowrap;
+    text-align: center;
+    margin-top: -5px;
+    margin-left: -1px;
+    width: fit-content;
+    height: fit-content;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: 0px;
+    color: var(--text-color);
+    opacity: 1;
+  }
 
   .list{
     border-radius: 10px;
@@ -828,6 +856,10 @@ html {
     cursor: pointer;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), 
                 -2px -2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.classroomDropdown{
+  margin-left: auto;
 }
 
 .dropdownIcon {
@@ -1305,6 +1337,7 @@ html {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), 
     -2px -2px 4px rgba(255, 255, 255, 0.1);
   }
+  
   .teacherCheckbox{
     flex-wrap: wrap;
     width: 12.5%;
@@ -1398,6 +1431,64 @@ html {
   .coursePeriodText{
     width: 100%;
     font-size: 25px;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    text-align: center;
+  }
+  .semesterList{
+    background: var(--dark-gradient-2);
+    border-radius: 7px;
+    display: flex;
+    justify-content: stretch;
+    padding: 7px;
+    gap: 7px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), 
+    -2px -2px 4px rgba(255, 255, 255, 0.1);
+  }
+
+  .semesterCheckbox{
+    flex-wrap: wrap;
+    width: 100%;
+    display: flex;
+    border-radius: 5px;
+    flex-direction: column;
+    background-color: var(--darker-light-2);
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+    gap: 10px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1), 
+    -2px -2px 6px rgba(255, 255, 255, 0.1);
+  }
+  .semesterCheckboxContainer{
+    aspect-ratio: 1;
+    margin: 0px;
+    width: 100%;
+    max-width: 25px;
+    height: auto;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.6), 
+    inset -2px -2px 4px rgba(255, 255, 255, 0.4),
+    2px 2px 4px rgba(0, 0, 0, 0.2), 
+    -2px -2px 4px rgba(255, 255, 255, 0.2);
+  }
+  .semesterInputCheckbox{
+    opacity: 1;
+    aspect-ratio: 1;
+    flex-shrink: 0;
+    margin-right: 4px;
+    margin-bottom: 2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    filter: hue-rotate(calc(-220deg + 1deg * (var(--light-hue-1)))) grayscale(calc(100% - var(--light-sat-1)));
+  }
+  .semesterText{
+    width: 100%;
+    font-size: 20px;
     margin-top: -5px;
     margin-bottom: -5px;
     text-align: center;

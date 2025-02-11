@@ -155,6 +155,9 @@
                   type="text"
                   placeholder="SEARCH..."
                 />
+                <div class="addCourse">
+                  <span class="addCourseText">+</span>
+                </div>
               </div>
               <div class="courseList list">
                 <div class="courseEntry entry">
@@ -220,20 +223,24 @@
                     </div>
                     <div class="courseSemesters">
                       <span class="courseText">Semesters Open:</span>
-                      <ul>
-                        <li>
-                          <input
-                            type="checkbox"
-                            id="semester1"
-                            name="semester1"
-                          /><label for="semester1">Semester 1</label>
+                      <ul class="semesterList">
+                        <li class="semesterCheckbox">
+                          <span class="semesterText courseText">Semester 1</span>
+                          <div class="semesterCheckboxContainer">
+                            <input
+                              class="semesterInputCheckbox"
+                              type="checkbox"
+                            />
+                          </div>
                         </li>
-                        <li>
-                          <input
-                            type="checkbox"
-                            id="semester2"
-                            name="semester2"
-                          /><label for="semester2">Semester 2</label>
+                        <li class="semesterCheckbox">
+                          <span class="semesterText courseText">Semester 2</span>
+                          <div class="semesterCheckboxContainer">
+                            <input
+                              class="semesterInputCheckbox"
+                              type="checkbox"
+                            />
+                          </div>
                         </li>
                       </ul>
                     </div>
@@ -255,7 +262,45 @@
                   placeholder="SEARCH..."
                 />
               </div>
-              <div class="classroomList list"></div>
+              <div class="classroomList list">
+                <div class="classroomEntry entry">
+                  <div class="classroomMain entryMain">
+                    <span class="classroomMainText classroomText entryMainText"
+                      >Teacher Name</span
+                    >
+                    <div class="dropdown classroomDropdown">
+                      <div class="dropdownIcon"></div>
+                    </div>
+                  </div>
+                  <div class="classroomSubList">
+                    <div class="classroomPeriods">
+                      <span class="classroomPeriodText2 classroomText"
+                        >Periods Available:</span
+                      >
+                      <div class="openPeriods">
+                        <div class="classroomCheckbox">
+                          <span class="classroomPeriodText classroomText">1</span>
+                          <div class="classroomPeriodCheckboxContainer">
+                            <input
+                              class="classroomPeriodCheckbox"
+                              type="checkbox"
+                            />
+                          </div>
+                        </div>
+                        <div class="classroomCheckbox">
+                          <span class="classroomPeriodText classroomText">1</span>
+                          <div class="classroomPeriodCheckboxContainer">
+                            <input
+                              class="classroomPeriodCheckbox"
+                              type="checkbox"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

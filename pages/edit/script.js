@@ -88,6 +88,12 @@ fetch('./getJsonFiles', {
         
 })
 
+
+
+//TEMP HIDE FUNCTIONS
+modifyElements(".teacherColumn",element => {element.style.display = "none"});
+
+
 function populateTeacherList(teacherData,insert){
     modifyElements(".teacherList",element => {
         if((!insert)&&element.children.length==1){element.children[0].remove()}
@@ -371,10 +377,55 @@ function addCourseEntryListeners() {
         }, 500);
     });
 }
+function addClassroomEntryListeners() {
+    modifyElements(".classroomEntry", element => {
+        if (element.listener === true) return;
+
+        element.listener = true;
+        let isOpen = false;
+        let clickCount = 0;
+
+        const handleExpandCollapseClick = () => {
+            clickCount++;
+            const arrowIcon = element.children[0].children[1].children[0];
+            const currentHeight = element.getBoundingClientRect().height;
+
+            if (isOpen) {
+                arrowIcon.style.transform = "rotate(180deg)";
+                element.style.height = `${currentHeight}px`;
+                setTimeout(() => {
+                    element.style.height = `${element.children[0].getBoundingClientRect().height}px`;
+                }, 10);
+                isOpen = false;
+            } else {
+                arrowIcon.style.transform = "rotate(0deg)";
+                element.style.height = "fit-content";
+                const expandedHeight = element.getBoundingClientRect().height;
+                element.style.height = `${currentHeight}px`;
+                setTimeout(() => {
+                    element.style.height = `${expandedHeight}px`;
+                }, 10);
+                isOpen = true;
+            }
+        };
+
+        const handleCheckboxChange = (e) => {
+            updateClassroomData(element);
+        };
+
+        const expandCollapseButton = element.querySelector('.dropdown');
+        const checkboxes = element.querySelectorAll('input[type="checkbox"]');
+        expandCollapseButton.addEventListener('click', handleExpandCollapseClick);
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', handleCheckboxChange);
+        });
+    });
+}
 
 // Initialize course entry listeners after a delay
 setTimeout(() => {
     addCourseEntryListeners();
+    addClassroomEntryListeners();
 }, 500);
 
 function addEntryListeners(){
