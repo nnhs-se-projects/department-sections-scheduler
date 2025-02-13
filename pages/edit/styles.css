@@ -707,10 +707,11 @@ html {
   gap: 10px;
 }
 
-.classroomList {
+.courseClassroomList {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
   gap: 10px;
   background: var(--dark-gradient-2);
   border-radius: 10px;
@@ -738,11 +739,30 @@ html {
 }
 
 .classroomItemText{
-  font-family: Inter;
+  flex-grow: 0;
+  overflow: hidden;
+  border-radius: 0px;
+  min-width: 10px;
+  max-width: 100px;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: fit-content;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  display: flex;
+  color: var(--text-color);
+  position: relative;
+  font-family: Inter, sans-serif;
   font-weight: 700;
   font-size: 20px;
   letter-spacing: 0px;
-  color: var(--text-color);
+  opacity: 1;
+  outline: none;
+  transition: border-bottom 0.2s ease;
+}
+.classroomItemText:focus {
+  border-bottom: 1px solid white;
 }
 
 .compatibleClassrooms {
@@ -771,7 +791,8 @@ html {
 .addClassroomDiv {
   flex-shrink: 0;
   aspect-ratio: 1;
-  height: 80%;
+  height: 30px;
+  width: 30px;
   opacity: 0.8;
   background: var(--darker-light-2);
   border-radius: 5px;
@@ -836,7 +857,7 @@ html {
                 inset 2px 2px 4px rgba(255, 255, 255, 0.1);
 }
 
-.compatibleClassrooms ul, .coursePeriods ul, .courseSemesters ul {
+.compatibleClassrooms ul, .coursePeriods ul, .courseSemesters ul, .classroomPeriods ul {
     list-style-type: none;
     margin: 0;
 }
@@ -1521,4 +1542,11 @@ html {
     width: calc(100% + 4px);
     height: calc(100% + 4px);
     filter: hue-rotate(calc(-220deg + 1deg * (var(--light-hue-1)))) grayscale(calc(100% - var(--light-sat-1)));
+  }
+  .classroomPeriodText{
+    width: 100%;
+    font-size: 25px;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    text-align: center;
   }
