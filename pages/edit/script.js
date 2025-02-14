@@ -444,7 +444,7 @@ function addCourseClassroom(classNum,appendTo,index){
     t1.appendChild(t2);
     t1.appendChild(t3);
     t2.textContent = classNum;
-    if(appendTo.children.length<2){
+    if(appendTo.children.length==0){
         appendTo.appendChild(t1);
     }else{
         appendTo.insertBefore(t1,appendTo.children[appendTo.children.length-1]);
@@ -727,8 +727,8 @@ function addCourseEntryListeners() {
         element.listener=true
         element.addEventListener('click', e => {
             const parent = element.parentElement.parentElement
-            addCourseClassroom("000",parent.children[1],parent.children[1].children[1].children.length)
-            updateCourseData(parent.parentElement)
+            addCourseClassroom("000",parent.children[1],element.parentElement.children.length-1)
+            updateCourseData(parent.parentElement.parentElement)
         });
     });
 }
