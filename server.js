@@ -1,3 +1,4 @@
+const path = require("path");
 /**
  * main Javascript file for the application
  *  this file is executed by the Node server
@@ -29,14 +30,8 @@ app.use(
 
 // add middleware to handle JSON in HTTP request bodies (used with POST commands)
 app.use(express.json());
-
-// set the template engine to EJS, which generates HTML with embedded JavaScript
-app.set("view engine", "ejs");
-
-// load assets
-app.use("/css", express.static("assets/css"));
-app.use("/img", express.static("assets/img"));
-app.use("/js", express.static("assets/js"));
+//app.use(express.static(__dirname));
+app.use(express.static(__dirname + '/pages'));
 
 // app.use takes a function that is added to the chain of a request.
 //  When we call next(), it goes to the next function in the chain.
@@ -46,14 +41,21 @@ app.use(async (req, res, next) => {
   //   res.redirect("/auth");
   //   return;
   // }
-  req.session.email = "jdjamrosz@stu.naperville203.org";
+  req.session.email = "hello@stu.naperville203.org";
 
   next();
 });
 
 // to keep this file manageable, we will move the routes to a separate file
 //  the exported router object is an example of middleware
-app.use("/", require("./server/routes/router"));
+//app.use("/", require("./router.js"));
+app.get("/", (req, res) => {
+  res.redirect('/view');
+});
+
+app.use("/view", require("./pages/view/router.js"));
+app.use("/edit", require("./pages/edit/router.js"));
+app.use("/preferences", require("./pages/preferences/router.js"));
 
 // start the server on port 8080
 app.listen(8080, () => {

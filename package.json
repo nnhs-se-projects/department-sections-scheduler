@@ -1,5 +1,5 @@
 {
-  "name": "department sections scheduler",
+  "name": "scheduler",
   "version": "1.0.0",
   "description": "application to assist department chairs in scheduling courses given a variety of constraints and criteria",
   "main": "server.js",
@@ -11,16 +11,8 @@
     "crud",
     "mongodb"
   ],
-  "author": "gcschmit",
+  "author": "August",
   "license": "ISC",
-  "devDependencies": {
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-n": "^16.6.0",
-    "eslint-plugin-promise": "^6.1.1"
-  },
   "dependencies": {
     "@picocss/pico": "^2.0.6",
     "csv-parser": "^3.0.0",
