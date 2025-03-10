@@ -761,7 +761,7 @@ html {
     background: var(--og-dark-2);
     padding: 10px 10px;
     opacity: 1;
-    position: ;
+    position: relative;
     border-radius: 20px;
     box-shadow: var(--box-shadow2);
     overflow: hidden;

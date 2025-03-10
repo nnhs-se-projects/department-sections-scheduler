@@ -150,8 +150,9 @@ function populateScheduleBox(data){
     
         const periods = document.getElementsByClassName("periodDisplay").length
         const classes = document.getElementsByClassName("classDisplay").length
+        console.log(classes)
         var index = 0;
-        for(let i=0;i<(periods*classes);i++){
+        for(let i=0;i<(periods/2*classes/2);i++){
             const baseEntry = document.createElement("div");
             baseEntry.classList.add("scheduleItem");
             const spanNode = document.createElement("span");
