@@ -45,7 +45,21 @@ function darkText(){
 //document.documentElement.style.setProperty('--dark-hue-1', '100');
 setColors(0)
 
+function recursiveStyling(element){
+    element.style.pointerEvents = "none"
+    if(element.children==null){return null}
+    try{
+    for(const a of element.childen){
+        recursiveStyling(a)
+    }
+}catch(e){
 
+}
+}
+
+setTimeout(
+    recursiveStyling(document.body)
+,500)
 
 var globalData = null
 var globalCourses = null
@@ -81,9 +95,9 @@ fetch('./getJsonFiles', {
 })
    .then(response => response.json())
    .then(response => {
-        console.log(response)
+        //console.log(response)
         globalData = response
-        populateTeacherList(globalData.teachers,false)
+        //populateTeacherList(globalData.teachers,false)
         //populateCourseList(globalData.courses,false)
         //addEntryListeners()
         
@@ -91,13 +105,14 @@ fetch('./getJsonFiles', {
 
 
 globalData = JSON.parse('{"classrooms":[{"roomNum":"121","periodsAvailable":[1,2,3,4,5,6,7,8]},{"roomNum":"123","periodsAvailable":[1,2,3,4,5,6,7,8]},{"roomNum":"134","periodsAvailable":[1,2,3,4,5,6,7,8]},{"roomNum":"115","periodsAvailable":[1,2,3,4,5,6,7,8]},{"roomNum":"116","periodsAvailable":[1,2,3,4,5,6,7,8]},{"roomNum":"138","periodsAvailable":[1,2,3,4,5,6,7,8]},{"roomNum":"114","periodsAvailable":[1,2,3,4,5,6,7,8]},{"roomNum":"119","periodsAvailable":[1,2,3,4,5,6,7,8]},{"roomNum":"120","periodsAvailable":[1,2,3,4,5,6,7,8]},{"roomNum":"126","periodsAvailable":[1,2,3,4,5,6,7,8]},{"roomNum":"128","periodsAvailable":[1,2,3,4,5,6,7,8]},{"roomNum":"132","periodsAvailable":[1,2,3,4,5,6,7,8]},{"roomNum":"139","periodsAvailable":[1,2,3,4,5,6,7,8]},{"roomNum":"129","periodsAvailable":[1,2,3,4,5,6,7,8]},{"roomNum":"130","periodsAvailable":[1,2,3,4,5,6,7,8]},{"roomNum":"117","periodsAvailable":[1,2,3,4,5,6,7,8]}],"courses":[{"name":"New Course","sections":1,"compatibleClassrooms":["23"],"compatiblePeriods":[],"openSemesters":[]},{"name":"New Course","sections":1,"compatibleClassrooms":[],"compatiblePeriods":[],"openSemesters":[]},{"name":"Introduction to Business","sections":4,"compatibleClassrooms":["128","126","120"],"compatiblePeriods":[1,2,3,4,5,6,7,8],"schedulingPriority":0.75},{"name":"Accounting 1","sections":2,"compatibleClassrooms":["121","123"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Honors Accounting","sections":1,"compatibleClassrooms":["121","123"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Marketing","sections":2,"compatibleClassrooms":["126","128","120"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Advertising","sections":2,"compatibleClassrooms":["126","128","120"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Incubator","sections":6,"compatibleClassrooms":["120"],"compatiblePeriods":[1,2,3,4,5,6,7,8],"schedulingPriority":1},{"name":"ACCElerator","sections":1,"compatibleClassrooms":["120"],"compatiblePeriods":[1,2,3,4,5,6,7,8],"schedulingPriority":0.9},{"name":"Business Law","sections":1,"compatibleClassrooms":["128","126","120"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"International Business","sections":1,"compatibleClassrooms":["128","126","120"],"compatiblePeriods":[1,2,3,4,5,6,7,8],"schedulingPriority":0.8},{"name":"Comp Programming 1","sections":1,"compatibleClassrooms":["121","123"],"compatiblePeriods":[1,2,3,4,5,6,7,8],"schedulingPriority":0.6},{"name":"Comp Programming 2","sections":3,"compatibleClassrooms":["121","123"],"compatiblePeriods":[1,2,3,4,5,6,7,8],"schedulingPriority":0.6},{"name":"Game Design","sections":1,"compatibleClassrooms":["114"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Fashion Design","sections":1,"compatibleClassrooms":["119"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"AP Computer Science","sections":3,"compatibleClassrooms":["121","123"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Software Engineering 2","sections":2,"compatibleClassrooms":["121","123"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Consumer Econ","sections":3,"compatibleClassrooms":["120","126","128","119"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Consumer Econ TT","sections":1,"compatibleClassrooms":["120","126","128","119"],"compatiblePeriods":[5,7]},{"name":"Blended Consumer","sections":2,"compatibleClassrooms":["120","126","128","119"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Floral & Landscape Design","sections":1,"compatibleClassrooms":["132"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Aqua & Urban Food Prod.","sections":1,"compatibleClassrooms":["132"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Comp Animal 1","sections":1,"compatibleClassrooms":["132"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Comp Animal 2","sections":1,"compatibleClassrooms":["132"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Vet Science","sections":1,"compatibleClassrooms":["132"],"compatiblePeriods":[1,2,3,4,5,6,7,8],"schedulingPriority":0.5},{"name":"Graphics 1","sections":1,"compatibleClassrooms":["114"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Graphics 2","sections":1,"compatibleClassrooms":["114"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Graphics 3","sections":1,"compatibleClassrooms":["114"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Electronics","sections":1,"compatibleClassrooms":["138"],"compatiblePeriods":[2],"schedulingPriority":0.7},{"name":"Cybersecurity","sections":1,"compatibleClassrooms":["138"],"compatiblePeriods":[1],"schedulingPriority":0.7},{"name":"Workshop Elements","sections":1,"compatibleClassrooms":["134"],"compatiblePeriods":[1,2,3,4,5,6,7,8],"schedulingPriority":0.8},{"name":"Workshop Studio","sections":1,"compatibleClassrooms":["134"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Geo in Construction","sections":2,"compatibleClassrooms":["134"],"compatiblePeriods":[4,5],"schedulingPriority":0.9134},{"name":"EDS","sections":1,"compatibleClassrooms":["115"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Auto 1","sections":2,"compatibleClassrooms":["139"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Auto 2","sections":1,"compatibleClassrooms":["139"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Auto 3","sections":1,"compatibleClassrooms":["139"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Blended Career Internship","sections":1,"compatibleClassrooms":["120","119","126","128","138"],"compatiblePeriods":[5]},{"name":"Cul 1","sections":4,"compatibleClassrooms":["129","130"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Cul 2","sections":1,"compatibleClassrooms":["129","130"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Cul 3","sections":1,"compatibleClassrooms":["129","130"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Senior Foods","sections":6,"compatibleClassrooms":["129","130"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"Human Growth and Dev","sections":1,"compatibleClassrooms":["119"],"compatiblePeriods":[1,2,3,4,5,6,7,8]},{"name":"ECE 1","sections":2,"compatibleClassrooms":["117"],"compatiblePeriods":[3,4,6,7]},{"name":"ECE 2","sections":2,"compatibleClassrooms":["117"],"compatiblePeriods":[3,4,6,7]},{"name":"Intro to Teaching 2","sections":2,"compatibleClassrooms":["126"],"compatiblePeriods":[2,3]},{"name":"Health Occ","sections":2,"compatibleClassrooms":["119"],"compatiblePeriods":[2,3]}],"teachers":[{"name":"New Course","coursesAssigned":[],"sectionsTaught":4,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Callaghan, Matt","coursesAssigned":[{"course":"AP Computer Science","sections":3},{"course":"Software Engineering 2","sections":1},{"course":"Comp Programming 2","sections":1}],"sectionsTaught":5,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Morenus, Terry","coursesAssigned":[{"course":"Consumer Econ","sections":1},{"course":"Consumer Econ TT","sections":1},{"course":"Accounting 1","sections":2},{"course":"Honors Accounting","sections":1},{"course":"International Business","sections":1}],"sectionsTaught":6,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Nolan, Gene","coursesAssigned":[{"course":"Incubator","sections":4}],"sectionsTaught":4,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Reid, Jason","coursesAssigned":[{"course":"Introduction to Business","sections":4},{"course":"Comp Programming 2","sections":2}],"sectionsTaught":6,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Schmit, Geoff","coursesAssigned":[{"course":"Software Engineering 2","sections":1}],"sectionsTaught":1,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Thompson, Brett","coursesAssigned":[{"course":"Blended Career Internship","sections":1}],"sectionsTaught":1,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Ryan, Jon","coursesAssigned":[{"course":"Incubator","sections":2},{"course":"Game Design","sections":1},{"course":"ACCElerator","sections":1},{"course":"Advertising","sections":2}],"sectionsTaught":6,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Donovan, Meghan","coursesAssigned":[{"course":"Blended Consumer","sections":2},{"course":"ECE 1","sections":2},{"course":"Human Growth and Dev","sections":1}],"sectionsTaught":5,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Hillyer, Allison","coursesAssigned":[{"course":"Senior Foods","sections":3},{"course":"Cul 1","sections":2}],"sectionsTaught":5,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Klen, Dana","coursesAssigned":[{"course":"Consumer Econ","sections":1},{"course":"Health Occ","sections":2},{"course":"ECE 2","sections":2}],"sectionsTaught":5,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Lewandowski, Angela","coursesAssigned":[{"course":"Consumer Econ","sections":1},{"course":"Senior Foods","sections":2},{"course":"Fashion Design","sections":1}],"sectionsTaught":4,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Oskroba, Melissa","coursesAssigned":[{"course":"Intro to Teaching 2","sections":2}],"sectionsTaught":2,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Tuazon, Jasmin","coursesAssigned":[{"course":"Cul 1","sections":2},{"course":"Cul 2","sections":1},{"course":"Cul 3","sections":1},{"course":"Senior Foods","sections":1}],"sectionsTaught":5,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"DiOrio, Becky","coursesAssigned":[{"course":"Graphics 1","sections":1},{"course":"Graphics 2","sections":1},{"course":"Graphics 3","sections":1}],"sectionsTaught":6,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Gleamza, Henry","coursesAssigned":[{"course":"Geo in Construction","sections":2},{"course":"Workshop Studio","sections":1},{"course":"Workshop Elements","sections":1}],"sectionsTaught":5,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Ingram, Dawn","coursesAssigned":[{"course":"Floral & Landscape Design","sections":1},{"course":"Aqua & Urban Food Prod.","sections":1},{"course":"Comp Animal 1","sections":1},{"course":"Comp Animal 2","sections":1},{"course":"Vet Science","sections":1}],"sectionsTaught":5,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Kischuk, Dan","coursesAssigned":[{"course":"Cybersecurity","sections":1},{"course":"Electronics","sections":1}],"sectionsTaught":2,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Lentino, Dan","coursesAssigned":[{"course":"Auto 1","sections":2},{"course":"Auto 2","sections":1},{"course":"Auto 3","sections":1}],"sectionsTaught":4,"openPeriods":[1,2,3,4,5,6,7,8]},{"name":"Ryan, Jason","coursesAssigned":[{"course":"EDS","sections":1}],"sectionsTaught":1,"openPeriods":[1,2,3,4,5,6,7,8]}]}')
-populateCourseList(globalData.courses,true);
 
-//populateClassroomList(globalData.classrooms,true);
-
+populateTeacherList(globalData.teachers,false);
+populateCourseList(globalData.courses,false);
+populateClassroomList(globalData.classrooms,false);
 
 //TEMP HIDE FUNCTIONS
-modifyElements(".teacherColumn",element => {element.style.display = "none"});
+//modifyElements(".teacherColumn",element => {element.style.display = "none"});
+//modifyElements(".courseColumn",element => {element.style.display = "none"});
 
 
 function populateTeacherList(teacherData,insert){
@@ -355,7 +370,7 @@ function populateClassroomList(classroomData, insert) {
             t2.className = "classroomMain entryMain";
             const t3 = document.createElement("span");
             t3.className = "classroomMainText classroomText entryMainText";
-            t3.textContent = a.roomNum;
+            t3.textContent = "Room "+a.roomNum;
             const t4 = document.createElement("div");
             t4.className = "dropdown classroomDropdown";
             const t5 = document.createElement("div");
@@ -423,7 +438,7 @@ function populateClassroomList(classroomData, insert) {
     });
 }
 
-function addCourseClassroom(classNum,appendTo,index){
+function addCourseClassroom(classNum,appendTo,index,insert){
     const t1 = document.createElement("div");
     t1.className="classroomItem";
     const t2 = document.createElement("span");
@@ -444,10 +459,10 @@ function addCourseClassroom(classNum,appendTo,index){
     t1.appendChild(t2);
     t1.appendChild(t3);
     t2.textContent = classNum;
-    if(appendTo.children.length==0){
-        appendTo.appendChild(t1);
-    }else{
+    if(insert==true){
         appendTo.insertBefore(t1,appendTo.children[appendTo.children.length-1]);
+    }else{
+        appendTo.appendChild(t1);
     }
 
 }
@@ -485,7 +500,7 @@ function addCourseEntry(courseName,sections,appendTo,index){
 }
 
 function updateTeacherData(element){
-    console.log(element)
+    console.log(globalData.teachers)
     const teacher = globalData.teachers[element.index]
     
     if(element.children[1].children[0].children[0]!=null){
@@ -543,7 +558,25 @@ function updateCourseData(element) {
     });
 }
 
+function updateClassroomData(element) {
+    const classroom = globalData.classrooms[element.index];
+    
+    classroom.name = element.querySelector('.classroomNameInput').value;
+    classroom.capacity = parseInt(element.querySelector('.classroomCapacityInput').value);
+
+    classroom.openPeriods = [];
+    const periodCheckboxes = element.querySelectorAll('.classroomInputCheckbox');
+    periodCheckboxes.forEach((checkbox, index) => {
+        if (checkbox.checked) {
+            classroom.openPeriods.push(index + 1);
+        }
+    });
+}
+
+
 function updateTeacherEntry(element){
+    const height1 = element.getBoundingClientRect().height;
+
     const teacher = globalData.teachers[element.index]
     element.children[0].children[0].textContent = teacher.name
     element.children[1].children[0].children[0].value = teacher.name
@@ -558,7 +591,6 @@ function updateTeacherEntry(element){
     t31.appendChild(t32);
     t32.appendChild(t33);
     addTeacherCourse(t32);
-    console.log("a")
     let j=0;
     for(const a of teacher.coursesAssigned){
         addCourseEntry(a.course,a.sections,element.children[1].children[1],j)
@@ -577,16 +609,60 @@ function updateTeacherEntry(element){
         }
         j++
     }
-    console.log("b")
+    element.style.height = `fit-content`;
+    const height2 = element.getBoundingClientRect().height;
+    //element.style.height = `${height1}px`;
+    setTimeout(() => {
+        element.style.height = `${height2}px`;
+    }, 10);
+}
+
+function updateCourseEntry(element) {
+    const height1 = element.getBoundingClientRect().height;
+
+    const course = globalData.courses[element.index];
+    element.children[0].children[0].textContent = course.name;
+    element.children[1].children[0].children[0].value = course.name;
+
+    // Clear and rebuild classroom list
+    const classroomList = element.children[1].children[1].children[1];
+    classroomList.textContent = "";
+
+    let i =0;
+    for (const classroom of course.compatibleClassrooms) {
+        addCourseClassroom(classroom,classroomList,i)
+        i++
+    }
+
+    const t12 = document.createElement("div");
+    t12.className = "addClassroomDiv";
+    const t13 = document.createElement("div");
+    t13.className = "addClassroom addButton";
+    t12.appendChild(t13);
+    classroomList.appendChild(t12);
+
+    
+    t12.listener=true
+    t12.addEventListener('click', e => {
+        const parent = t12.parentElement.parentElement
+        addCourseClassroom("000",classroomList,t12.parentElement.parentElement.children.length-1,true)
+        updateCourseData(t12.parentElement.parentElement)
+    });
+    
+
+    element.style.height = "fit-content";
+    const height2 = element.getBoundingClientRect().height;
+    setTimeout(() => {
+        element.style.height = `${height2}px`;
+    }, 10);
 }
 
 
-setTimeout(()=>{
-    addTeacherEntryListeners()
-},500)
+
 
 function addCourseEntryListeners() {
     modifyElements(".courseEntry", element => {
+
         if (element.listener === true) return;
 
         element.listener = true;
@@ -651,13 +727,15 @@ function addCourseEntryListeners() {
             globalData.courses.unshift(object);
             populateCourseList([object], true);
         });
+
+        
     });
 
     modifyElements(".courseInput", element => {
         if (element.listener === true) return;
         element.listener = true;
         let prevValue = "";
-        setInterval(() => {
+        element.onkeyup = () => {
             if (element.value != prevValue) {
                 prevValue = element.value;
                 modifyElements(".courseEntry", element2 => {
@@ -669,7 +747,7 @@ function addCourseEntryListeners() {
                     }
                 });
             }
-        }, 500);
+        };
     });
     modifyElements(".courseCheckbox",element => {
         if(element.listener===true){return null}
@@ -727,7 +805,7 @@ function addCourseEntryListeners() {
         element.listener=true
         element.addEventListener('click', e => {
             const parent = element.parentElement.parentElement
-            addCourseClassroom("000",parent.children[1],element.parentElement.children.length-1)
+            addCourseClassroom("000",parent.children[1],element.parentElement.children.length-1,true)
             updateCourseData(parent.parentElement.parentElement)
         });
     });
@@ -776,9 +854,28 @@ function addClassroomEntryListeners() {
                 } else {
                   element.style.opacity = "0.5"
                 }
-                updateTeacherData(element.parentElement.parentElement.parentElement.parentElement)
+                updateClassroomData(element.parentElement.parentElement.parentElement.parentElement)
             });
         });
+    });
+    modifyElements(".classroomInput", element => {
+        if (element.listener === true) return;
+        element.listener = true;
+        let prevValue = "";
+        element.onkeyup = () => {
+            if (element.value != prevValue) {
+                prevValue = element.value;
+                modifyElements(".classroomEntry", element2 => {
+                    const content = element2.children[0].children[0].textContent.substring(0, prevValue.length);
+                    const content2 = element2.children[0].children[0].textContent.substring(5, prevValue.length);
+                    if (content.toLowerCase() == prevValue.toLowerCase() || content2.toLowerCase() == prevValue.toLowerCase()) {
+                        element2.style.display = "flex";
+                    } else {
+                        element2.style.display = "none";
+                    }
+                });
+            }
+        };
     });
 }
 
@@ -786,10 +883,14 @@ function addClassroomEntryListeners() {
 setTimeout(() => {
     addCourseEntryListeners();
     addClassroomEntryListeners();
+    addTeacherEntryListeners();
 }, 500);
 
 function addTeacherEntryListeners(){
     modifyElements(".teacherEntry", element => {
+
+        
+
         if (element.listener === true) return;
 
         element.listener = true;
@@ -857,7 +958,7 @@ function addTeacherEntryListeners(){
         if(element.listener===true){return null}
         element.listener=true
         var prevValue = ""
-        setInterval(()=>{
+        element.onkeyup = ()=>{
             if(element.value!=prevValue){
                 prevValue=element.value
                 modifyElements(".teacherEntry",element2 => {
@@ -871,7 +972,7 @@ function addTeacherEntryListeners(){
                 })
             }
 
-        },100)
+        }
     });
     modifyElements(".removeTeacher",element=>{
         if(element.listener===true){return null}
@@ -1035,6 +1136,85 @@ const teacherCourseDropdownListener = function(element){
     });
 }
 
+
+modifyElements('.teacherDownload',(element)=>{
+    element.addEventListener('click', () => {
+        if (!globalData) return;
+        console.log(globalData.teachers);
+        const teacherData = globalData.teachers.map(teacher => ({
+            name: teacher.name,
+            coursesAssigned: teacher.coursesAssigned.map(course => ({
+                course: course.course,
+                sections: course.sections
+            })),
+            sectionsTaught: teacher.coursesAssigned.reduce((total, course) => total + course.sections, 0),
+            openPeriods: teacher.openPeriods
+        }));
+
+        const dataStr = JSON.stringify(teacherData, null, 2);
+        const dataBlob = new Blob([dataStr], {type: 'application/json'});
+        const url = URL.createObjectURL(dataBlob);
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'teachers.json';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    });
+});
+
+modifyElements('.courseDownload',(element)=>{
+    element.addEventListener('click', () => {
+        if (!globalData) return;
+        console.log(globalData.courses);
+        const courseData = globalData.courses.map(course => ({
+            name: course.name,
+            sections: course.sections,
+            compatibleClassrooms: course.compatibleClassrooms,
+            compatiblePeriods: course.compatiblePeriods,
+            openSemesters: course.openSemesters
+        }));
+
+        const dataStr = JSON.stringify(courseData, null, 2);
+        const dataBlob = new Blob([dataStr], {type: 'application/json'});
+        const url = URL.createObjectURL(dataBlob);
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'courses.json';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    });
+});
+
+modifyElements('.classroomDownload',(element)=>{
+    element.addEventListener('click', () => {
+        if (!globalData) return;
+        console.log(globalData.classrooms);
+        const classroomData = globalData.classrooms.map(classroom => ({
+            name: classroom.roomNum,
+            openPeriods: classroom.periodsAvailable
+        }));
+
+        const dataStr = JSON.stringify(classroomData, null, 2);
+        const dataBlob = new Blob([dataStr], {type: 'application/json'});
+        const url = URL.createObjectURL(dataBlob);
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'classrooms.json';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    });
+});
+
+
 var tempColors = []
 function hexToHSL(H) {let r=0,g=0,b=0;if(H.length == 4){r="0x"+H[1]+H[1];g="0x" + H[2] + H[2]; b = "0x" + H[3] + H[3]; } else if(H.length==7){ r = "0x" + H[1] + H[2]; g = "0x" + H[3] + H[4];b="0x" + H[5]+H[6];} r /= 255; g /= 255; b /= 255; let cmin = Math.min(r,g,b), cmax=Math.max(r,g,b), delta = cmax - cmin, h = 0, s = 0,l=0;if(delta == 0)h=0; else if (cmax == r) h = ((g - b) / delta) % 6;else if(cmax == g) h=(b - r) / delta + 2; else h = (r - g)/delta+4;h=Math.round(h * 60); if (h < 0) h += 360; l = (cmax + cmin)/2;s=delta==0?0:delta/(1-Math.abs(2*l-1));s=+(s*100).toFixed(1);l=+(l*100).toFixed(1); tempColors.push([h,s,Math.round(l)]);}
 
@@ -1060,6 +1240,6 @@ document.body.onkeyup = function(e) {
             tempColors2.push([Math.floor(Math.random()*360),Math.floor(Math.random()*100),Math.floor(Math.random()*100)])
         }
         palettes.push(tempColors2);
-        setColors(palettes.length-1)
+        //setColors(palettes.length-1)
     }
 }

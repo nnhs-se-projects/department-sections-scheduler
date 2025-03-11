@@ -84,6 +84,7 @@
     {
       "name": "Hillyer, Allison",
       "coursesAssigned": [
+        { "course": "Senior Foods", "sections": 3 },
         { "course": "Cul 1", "sections": 2 }
       ],
       "sectionsTaught": 5,
@@ -103,6 +104,7 @@
       "name": "Lewandowski, Angela",
       "coursesAssigned": [
         { "course": "Consumer Econ", "sections": 1 },
+        { "course": "Senior Foods", "sections": 2 },
         { "course": "Fashion Design", "sections": 1 }
       ],
       "sectionsTaught": 4,
@@ -128,7 +130,9 @@
     {
       "name": "DiOrio, Becky",
       "coursesAssigned": [
-
+        { "course": "Graphics 1", "sections": 1 },
+        { "course": "Graphics 2", "sections": 1 },
+        { "course": "Graphics 3", "sections": 1 }
       ],
       "sectionsTaught": 6,
       "openPeriods": [1, 2, 3, 4, 5, 6, 7, 8]
@@ -146,7 +150,8 @@
     {
       "name": "Ingram, Dawn",
       "coursesAssigned": [
-        { "course": "Floral & Plant Industries", "sections": 1 },
+        { "course": "Floral & Landscape Design", "sections": 1 },
+        { "course": "Aqua & Urban Food Prod.", "sections": 1 },
         { "course": "Comp Animal 1", "sections": 1 },
         { "course": "Comp Animal 2", "sections": 1 },
         { "course": "Vet Science", "sections": 1 }

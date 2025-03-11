@@ -107,7 +107,10 @@ html {
     position: relative;
     top: 0px;
     left: 0px;
-    overflow: visible;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
   .navbar {
     width: 100%;
@@ -235,6 +238,7 @@ html {
     position: relative;
     right: 20px;
     overflow: visible;
+    transform: scale(0.7);
   }
   .viewButton {
     background: var(--dark-gradient-2);
@@ -366,9 +370,11 @@ html {
     padding: 20px;
     gap: 15px;
     display: flex;
+    flex-shrink: 0;
     width: 100%;
-    height: 80%;
+    height: 200%;
     z-index: 1;
+    overflow: visible;
     flex-wrap: nowrap;
   }
   .column{
@@ -376,20 +382,25 @@ html {
     gap: 10px;
     flex-direction: column;
     display:flex;
+
     background: var(--og-dark-2);
     border-radius: 20px;
     width: 100%;
+
     height: 100%;
     box-shadow: var(--box-shadow2);
   }
+  .classroomColumn{
+    max-width: fit-content;
+  }
   .label{
-    display: flex;
+    display: block;
     flex-shrink: 0;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     border-radius: 10px;
+    padding: 15px;
     display: flex;
-    width: 100%;
     height: 60px;
     background: var(--og-dark-1);
   }
@@ -419,6 +430,7 @@ html {
   }
   .search{
     border-radius: 10px;
+    position: relative;
     flex-shrink: 0;
     display: flex;
     padding: 10px;
@@ -711,6 +723,7 @@ html {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  max-width: 100%;
   align-items: center;
   gap: 10px;
   background: var(--dark-gradient-2);
@@ -900,6 +913,48 @@ html {
     transform: rotate(180deg);
     transition: transform 0.5s ease;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.downloadDiv{
+  width: auto;
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 60px;
+  right: 0px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 35px;
+  padding: 5;
+  background-color: rgba(255, 255, 255, 0);
+  transition: box-shadow 0.1s ease;
+  box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.2), 
+  inset 1px 1px 2px rgba(255, 255, 255, 0.1),
+      2px 2px 2px rgba(0, 0, 0, 0.2), 
+      -2px -2px 2px rgba(255, 255, 255, 0.1);
+}
+
+.downloadDiv:active{
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2), 
+  inset -1px -1px 2px rgba(255, 255, 255, 0.1),
+      -2px -2px 1px rgba(0, 0, 0, 0.2), 
+      2px 2px 1px rgba(255, 255, 255, 0.1);
+}
+
+.downloadIcon{
+  flex-shrink: 0;
+  aspect-ratio: 1;
+  height: 70%;
+  min-width: 10px;
+  background: url("images/download.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  transition: transform 0.5s ease;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dropdown:hover {
@@ -1325,10 +1380,13 @@ html {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), 
     -2px -2px 4px rgba(255, 255, 255, 0.1);
   }
+
+  /**/
   .courseOpenPeriods{
     background: var(--dark-gradient-2);
     border-radius: 7px;
     display: flex;
+    width: 100%;
     justify-content: space-around;
     padding: 7px;
     gap: 7px;
@@ -1496,7 +1554,12 @@ html {
     background: var(--dark-gradient-2);
     border-radius: 7px;
     display: flex;
-    justify-content: space-around;
+    max-width: 250px;
+    flex-wrap: wrap;
+    flex-grow: 0;
+    width: 100%;
+    height: 160px;
+    justify-content: left;
     padding: 7px;
     gap: 7px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), 
@@ -1505,8 +1568,9 @@ html {
 
   .classroomCheckbox{
     flex-wrap: wrap;
-    width: 12.5%;
+    width: calc(25% - 5.5px);
     display: flex;
+    height: calc(50% - 4px);
     border-radius: 5px;
     flex-direction: column;
     background-color: var(--darker-light-2);
