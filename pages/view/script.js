@@ -219,21 +219,36 @@ function resizeText(){
     })
 }
 
-modifyElements(".csvButton",(element)=>{
-    element.onclick = function(){
-        if(globalData!=null){
-            location.href = "/downloadCSV?data="+encodeURIComponent(JSON.stringify(globalData))
-        }
+function downloadFile(endpoint) {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = endpoint;
+    
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'data';
+    input.value = JSON.stringify(globalData);
+    
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+  }
+  
+  modifyElements(".csvButton", (element) => {
+    element.onclick = function() {
+      if (globalData != null) {
+        downloadFile('/downloadCSV');
+      }
     }
-})
-
-modifyElements(".jsonButton",(element)=>{
-    element.onclick = function(){
-        if(globalData!=null){
-            location.href = "/downloadJSON?data="+encodeURIComponent(JSON.stringify(globalData))
-        }
+  });
+  
+  modifyElements(".jsonButton", (element) => {
+    element.onclick = function() {
+      if (globalData != null) {
+        downloadFile('/downloadJSON');
+      }
     }
-})
+  });
 
 modifyElements(".editTeacher",element => {
     element.addEventListener('click', e => {
