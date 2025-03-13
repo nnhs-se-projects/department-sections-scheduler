@@ -5,7 +5,7 @@ const fs = require("fs");
 
 const scheduler = require("../../Scheduler.js");
 
-module.exports = route;
+
 
 // pass a path (e.g., "/") and callback function to the get method
 //  when the client makes an HTTP GET request to the specified path,
@@ -50,15 +50,21 @@ route.post('/downloadCSV', function(req, res){
 });
 
 route.post('/downloadJSON', function(req, res){
-  if(req.body.data){
+  console.log(typeof(req.body.globalData));
+  if(req.body){
     try {
-      scheduler.writeToJSON(JSON.parse(req.body.data));
+      scheduler.writeToJSON(req.body);
       const file = `${__dirname}/downloads/schedule.json`;
+      console.log("yippee!");
       res.download(file);
     } catch(err) {
+      console.log(err);
       res.send("Error: "+err);
     }
   } else {
     res.status(400).send("No data provided");
   }
 });
+
+
+module.exports = route;

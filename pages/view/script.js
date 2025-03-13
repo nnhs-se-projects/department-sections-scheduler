@@ -39,7 +39,7 @@ function setColors(index){
         r.style.setProperty(varNames[i][0]+"-lum-"+varNames[i][1], palettes[index][i][2]+"%");
     }
 }
-
+-
 setColors(0)
 
 var globalData = null
@@ -219,19 +219,14 @@ function resizeText(){
     })
 }
 
-function downloadFile(endpoint) {
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = endpoint;
-    
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'data';
-    input.value = JSON.stringify(globalData);
-    
-    form.appendChild(input);
-    document.body.appendChild(form);
-    form.submit();
+async function downloadFile(endpoint) {
+    const response = await fetch('/view/downloadJSON', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({globalData}),
+    });
   }
   
   modifyElements(".csvButton", (element) => {
