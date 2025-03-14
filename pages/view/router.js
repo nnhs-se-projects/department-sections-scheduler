@@ -1,62 +1,104 @@
 const express = require("express");
-const route = express.Router();
+const { OAuth2Client } = require("google-auth-library");
 const path = require("path");
-const fs = require("fs");
-
 const scheduler = require("../../Scheduler.js");
 
-module.exports = route;
 
-// pass a path (e.g., "/") and callback function to the get method
-//  when the client makes an HTTP GET request to the specified path,
-//  the callback function is executed
-//app.use(express.static(__dirname + '/pages'));
-route.get("/", async (req, res) => {
+const router = express.Router();
+const client = new OAuth2Client(process.env.CLIENT_ID);
+
+
+// POST route for Google OAuth token verification
+router.post("/", async (req, res) => {
+  const { token } = req.body; // Get token from request body
+
+
+  try {
+    // Verify the Google token
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: process.env.CLIENT_ID, // Ensure this matches your Google client ID
+    });
+
+
+    const payload = ticket.getPayload();
+    const email = payload.email; // Extract email from the payload
+
+
+    // Store email in session
+    req.session.email = email;
+
+
+    // Send response with success and email
+    res.json({ success: true, email });
+  } catch (error) {
+    res.status(401).json({ success: false, message: "Invalid token" });
+  }
+});
+
+
+// GET route for the homepage (index.html)
+router.get("/", (req, res) => {
   const options = {
-    root: path.join(__dirname)
+    root: path.join(__dirname, "../../public"), // Serve from public folder
   };
 
-  const fileName = './index.html';
+
+  const fileName = "index.html"; // File to send
   res.sendFile(fileName, options, function (err) {
-      if (err) {
-          console.error('Error sending file:', err);
-      } else {
-          console.log('Sent:', fileName);
-      }
+    if (err) {
+      console.error("Error sending file:", err);
+      res.status(500).send("Error loading page.");
+    } else {
+      console.log("Sent:", fileName);
+    }
   });
 });
 
-route.get("/createSchedule", (req, res) => {
-    scheduler.createSchedule((data) => {
-        res.end(JSON.stringify({data:data, courses: scheduler.getCourseData(), teachers: scheduler.getTeacherData()}));
-    }); 
+
+// Logout route to destroy session
+router.get("/logout", (req, res) => {
+  req.session.destroy(() => {
+    res.redirect("/"); // Redirect to home or login page
+  });
 });
 
 
-route.get('/downloadCSV', function(req, res){
-  if(req.query.data!=null){
-    try{
-      scheduler.writeToCSV(JSON.parse(req.query.data))
-      const file = `${__dirname}/downloads/schedule.csv`;
-      res.download(file);
-    }catch(err){
-      res.send("Error: "+err)
+// Routes for scheduler functionality
+router.get("/createSchedule", (req, res) => {
+  scheduler.createSchedule((data) => {
+    res.json({
+      data: data,
+      courses: scheduler.getCourseData(),
+      teachers: scheduler.getTeacherData()
+    });
+  });
+});
+
+
+// File download routes
+router.get("/downloadCSV", (req, res) => {
+  if (req.query.data) {
+    try {
+      scheduler.writeToCSV(JSON.parse(req.query.data));
+      const file = path.join(__dirname, "../../output.csv");
+      res.download(file, "schedule.csv", (err) => {
+        if (err) {
+          console.error("Error downloading CSV:", err);
+          res.status(500).send("Error downloading file.");
+        }
+      });
+    } catch (error) {
+      console.error("Error processing CSV data:", error);
+      res.status(400).send("Invalid data format.");
     }
-  }else{
-    res.end()
+  } else {
+    res.status(400).send("No data provided.");
   }
 });
 
-route.get('/downloadJSON', function(req, res){
-  if(req.query.data!=null){
-    try{
-      scheduler.writeToJSON(JSON.parse(req.query.data))
-      const file = `${__dirname}/downloads/schedule.json`;
-      res.download(file);
-    }catch(err){
-      res.send("Error: "+err)
-    }
-  }else{
-    res.end()
-  }
-});
+
+// Ensure the router is exported
+module.exports = router;
+
+

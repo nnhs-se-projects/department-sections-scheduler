@@ -1,63 +1,74 @@
 const path = require("path");
-/**
- * main Javascript file for the application
- *  this file is executed by the Node server
- */
-
-// import the express module, which exports the express function
 const express = require("express");
-
-// invoke the express function to create an Express application
-const app = express();
-
-// load environment variables from the .env file into process.env
 const dotenv = require("dotenv");
+const session = require("express-session");
+
+
+// Load environment variables
 dotenv.config({ path: ".env" });
 
-// // connect to the database
-// const connectDB = require("./server/database/connection");
-// connectDB();
 
-// import the express-session module, which is used to manage sessions
-const session = require("express-session");
+const app = express();
+
+
+// Session management
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET || "default_secret",
     resave: false,
     saveUninitialized: false,
   })
 );
 
-// add middleware to handle JSON in HTTP request bodies (used with POST commands)
+
+// Middleware to handle JSON requests
 app.use(express.json());
-//app.use(express.static(__dirname));
-app.use(express.static(__dirname + '/pages'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
 
-// app.use takes a function that is added to the chain of a request.
-//  When we call next(), it goes to the next function in the chain.
-app.use(async (req, res, next) => {
-  // if the student is already logged in, fetch the student object from the database
-  // if (req.session.email === undefined && !req.path.startsWith("/auth")) {
-  //   res.redirect("/auth");
-  //   return;
-  // }
-  req.session.email = "hello@stu.naperville203.org";
 
+// Authentication routes (should be before the redirect middleware)
+app.use("/auth", require("./auth.js"));
+
+
+
+
+
+// Routes should come AFTER authentication middleware
+app.use("/view", require("./pages/view/router.js"));
+
+// Middleware for authentication (redirect if not logged in)
+app.use((req, res, next) => {
+  if (!req.session.email && !req.path.startsWith("/auth")) {
+    return res.redirect("/auth/login");
+  }
   next();
 });
 
-// to keep this file manageable, we will move the routes to a separate file
-//  the exported router object is an example of middleware
-//app.use("/", require("./router.js"));
-app.get("/", (req, res) => {
-  res.redirect('/view');
+app.use((req, res, next) => {
+  console.log(`Received request: ${req.method} ${req.path}`);
+  if (!req.session.email && !req.path.startsWith("/auth")) {
+    console.log("User not authenticated. Redirecting to /auth/login");
+    return res.redirect("/auth/login");
+  }
+  next();
 });
 
-app.use("/view", require("./pages/view/router.js"));
+
+
 app.use("/edit", require("./pages/edit/router.js"));
 app.use("/preferences", require("./pages/preferences/router.js"));
 
-// start the server on port 8080
-app.listen(8080, () => {
-  console.log("server is listening on http://localhost:8080");
+
+// Redirect root to /view
+app.get("/", (req, res) => {
+  res.redirect("/view");
 });
+
+
+// Start server
+app.listen(8080, () => {
+  console.log("Server is listening on http://localhost:8080");
+});
+
+
