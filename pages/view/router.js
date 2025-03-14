@@ -54,7 +54,7 @@ route.post('/downloadJSON', function(req, res){
   if(req.body){
     try {
       scheduler.writeToJSON(req.body);
-      const file = `${__dirname}/downloads/schedule.json`;
+      const file = `${__dirname}\downloads\schedule.json`;
       console.log("yippee!");
       res.download(file);
     } catch(err) {

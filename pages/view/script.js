@@ -220,10 +220,10 @@ function resizeText(){
 }
 
 async function downloadFile(endpoint) {
-    const response = await fetch('/view/downloadJSON', {
+    const response = await fetch('\view\downloadJSON', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application\json',
         },
         body: JSON.stringify({globalData}),
     });
@@ -232,7 +232,7 @@ async function downloadFile(endpoint) {
   modifyElements(".csvButton", (element) => {
     element.onclick = function() {
       if (globalData != null) {
-        downloadFile('/downloadCSV');
+        downloadFile('\downloadCSV');
       }
     }
   });
@@ -240,7 +240,7 @@ async function downloadFile(endpoint) {
   modifyElements(".jsonButton", (element) => {
     element.onclick = function() {
       if (globalData != null) {
-        downloadFile('/downloadJSON');
+        downloadFile('/downloads/schedule.JSON');
       }
     }
   });
