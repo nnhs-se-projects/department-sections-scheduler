@@ -36,9 +36,9 @@ const bodyParser = require('body-parser');
 route.use(bodyParser.urlencoded({ extended: true }));
 
 route.post('/downloadCSV', function(req, res){
-  if(req.body.data){
+  if(req.body){
     try {
-      scheduler.writeToCSV(JSON.parse(req.body.data));
+      scheduler.writeToCSV(req.body);
       const file = `${__dirname}/downloads/schedule.csv`;
       res.download(file);
     } catch(err) {
@@ -49,12 +49,28 @@ route.post('/downloadCSV', function(req, res){
   }
 });
 
+
+
 route.post('/downloadJSON', function(req, res){
-  console.log(typeof(req.body.globalData));
   if(req.body){
     try {
-      scheduler.writeToJSON(req.body);
-      const file = `${__dirname}\downloads\schedule.json`;
+      scheduler.writeToJSON((req.body));
+      const file = `${__dirname}/downloads/schedule.json`;
+      res.download(file);
+    } catch(err) {
+      res.send("Error: "+err);
+    }
+  } else {
+    res.status(400).send("No data provided");
+  }
+});
+
+/*
+route.post('/downloadJSON', function(req, res){
+  if(req.body){
+    try {
+      //scheduler.writeToJSON(req.body);
+      const file = `/downloads/schedule.json`;
       console.log("yippee!");
       res.download(file);
     } catch(err) {
@@ -64,7 +80,7 @@ route.post('/downloadJSON', function(req, res){
   } else {
     res.status(400).send("No data provided");
   }
-});
+});*/
 
 
 module.exports = route;
