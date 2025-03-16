@@ -1355,8 +1355,25 @@ html {
     font-size: 15px;
     opacity: 1;
   }
-  
-/* Add these styles */
+
+.requirementsTrigger {
+  width: fit-content;
+  color: rgba(255,255,255,1);
+  position: relative;
+  font-family: Inter;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 1px;
+  opacity: 1;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.requirementsTrigger:hover {
+  opacity: 0.8;
+}
+
 .requirementsPopUp {
   display: none;
   position: absolute;
@@ -1365,27 +1382,6 @@ html {
   border-radius: 12px;
   box-shadow: var(--box-shadow);
   padding: 10px;
-}
-
-.requirementsPopUp .requirementsList {
-  padding: 10px;
-  background: var(--trans-dark-1);
-  border-radius: 10px;
-  backdrop-filter: blur(5px);
-}
-
-.requirementsPopUp .requirementItem {
-  color: white;
-  font-family: Inter;
-  font-weight: 500;
-  font-size: 14px;
-  padding: 8px 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.requirementItem {
-  display: flex;
-  align-items: center;
-  padding: 4px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  width: 280px;
+  transform: translateX(-50%);
 }
