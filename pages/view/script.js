@@ -406,12 +406,46 @@ function handleScheduleClick(elm, data2){
 }
 
 function closePopup(){
+
+    //close schedule popUp (like the other one with classrooms, etc)
     if(activeElement!=null){
         activeElement.style.filter = "brightness("+activeElement.style.strokeWidth+")";
     }
-    modifyElements(".schedulePopUp",element => {
+    modifyElements(".schedulePopUp", element => {
         element.style.display = "none"
         popupIndex = -1;
         openPopup = false
-    })
+    });
+
+    //close requirements popup
+    document.querySelector(".requirementsPopUp").style.display = "none";
 }
+modifyElements(".requirementsTrigger", element => {
+    element.addEventListener('click', e => {
+        e.stopPropagation(); // Add this line
+        const popup = document.querySelector(".requirementsPopUp");
+        if (popup.style.display === "flex") {
+            popup.style.display = "none";
+            return;
+        }
+        
+        const rect = element.getBoundingClientRect();
+        popup.style.display = "flex";
+        popup.style.top = `${rect.bottom + 8}px`;
+        popup.style.left = `${rect.left - 40}px`;
+        
+        popup.querySelector(".popupXImage").addEventListener('click', () => {
+            popup.style.display = "none";
+        });
+    });
+});
+
+// Add click outside handler (update existing document click listener)
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.schedulePopUp') && 
+        !e.target.closest('.requirementsPopUp') &&
+        !e.target.closest('.requirementsPopUp')) {
+        //closePopup();
+    }
+});
+
