@@ -1355,3 +1355,33 @@ html {
     font-size: 15px;
     opacity: 1;
   }
+
+.requirementsTrigger {
+  width: fit-content;
+  color: rgba(255,255,255,1);
+  position: relative;
+  font-family: Inter;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 1px;
+  opacity: 1;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.requirementsTrigger:hover {
+  opacity: 0.8;
+}
+
+.requirementsPopUp {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  background: var(--popupGradient2);
+  border-radius: 12px;
+  box-shadow: var(--box-shadow);
+  padding: 10px;
+  width: 280px;
+  transform: translateX(-50%);
+}

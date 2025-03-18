@@ -396,12 +396,13 @@ function handleScheduleClick(elm, data2){
     if(activeElement){activeElement.style.filter = "brightness("+activeElement.style.strokeWidth+")";}
     const index = Array.from(elm.parentElement.children).indexOf(elm)
     console.log(index)
-    if(index==popupIndex){
-        closePopup()
-        return
+    if (index === popupIndex) {
+        closeSchedulePopup();
+        return;
     }
     
     if(data2!=null){
+        closeRequirementsPopup();
         popupIndex = index
         activeElement = elm
         elm.style.filter = "brightness(0.9)";
@@ -439,17 +440,74 @@ function handleScheduleClick(elm, data2){
             }
         }); 
     }else{
-        closePopup()
+        closeSchedulePopup()
     }
 }
 
-function closePopup(){
-    if(activeElement!=null){
-        activeElement.style.filter = "brightness("+activeElement.style.strokeWidth+")";
+function closeSchedulePopup() {
+    if (activeElement) {
+        activeElement.style.filter = "brightness(" + activeElement.style.strokeWidth + ")";
+        activeElement = null;
     }
-    modifyElements(".schedulePopUp",element => {
-        element.style.display = "none"
-        popupIndex = -1;
-        openPopup = false
-    })
+    document.querySelector(".schedulePopUp").style.display = "none";
+    popupIndex = -1;
 }
+
+function closeRequirementsPopup() {
+    document.querySelector(".requirementsPopUp").style.display = "none";
+}
+
+
+modifyElements(".requirementsTrigger", element => {
+    element.addEventListener('click', e => {
+        e.stopPropagation();
+        const popup = document.querySelector(".requirementsPopUp");
+        const schedulePopup = document.querySelector(".schedulePopUp");
+        
+        if (popup.style.display === "flex") {
+            popup.style.display = "none";
+            return;
+        }
+        
+        closeSchedulePopup();
+        
+        const rect = element.getBoundingClientRect();
+        popup.style.display = "flex";
+        popup.style.top = `${rect.bottom + 8}px`;
+        popup.style.left = `${rect.left + (rect.width / 2)}px`;
+    });
+});
+document.addEventListener('click', (e) => {
+    const isSchedulePopup = e.target.closest('.schedulePopUp');
+    const isRequirementsPopup = e.target.closest('.requirementsPopUp');
+    const isScheduleItem = e.target.closest('.scheduleItem');
+    const isRequirementsTrigger = e.target.closest('.requirementsTrigger');
+
+    if (!isSchedulePopup && !isRequirementsPopup && !isScheduleItem && !isRequirementsTrigger) {
+        closePopup();
+    }
+});
+
+modifyElements(".popupXImage", element => {
+    element.addEventListener('click', e => {
+        const popup = e.target.closest('.schedulePopUp, .requirementsPopUp');
+        if (popup.classList.contains('schedulePopUp')) {
+            closeSchedulePopup();
+        } else {
+            closeRequirementsPopup();
+        }
+        e.stopPropagation();
+    });
+});
+
+document.addEventListener('click', (e) => {
+    const isSchedulePopup = e.target.closest('.schedulePopUp');
+    const isRequirementsPopup = e.target.closest('.requirementsPopUp');
+    const isScheduleItem = e.target.closest('.scheduleItem');
+    const isRequirementsTrigger = e.target.closest('.requirementsTrigger');
+
+    if (!isSchedulePopup && !isRequirementsPopup && !isScheduleItem && !isRequirementsTrigger) {
+        closeSchedulePopup();
+        closeRequirementsPopup();
+    }
+});
