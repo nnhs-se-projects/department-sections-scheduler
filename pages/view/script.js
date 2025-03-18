@@ -39,7 +39,7 @@ function setColors(index){
         r.style.setProperty(varNames[i][0]+"-lum-"+varNames[i][1], palettes[index][i][2]+"%");
     }
 }
-
+-
 setColors(0)
 
 var globalData = null
@@ -219,21 +219,58 @@ function resizeText(){
     })
 }
 
-modifyElements(".csvButton",(element)=>{
-    element.onclick = function(){
-        if(globalData!=null){
-            location.href = "/downloadCSV?data="+encodeURIComponent(JSON.stringify(globalData))
-        }
-    }
-})
 
-modifyElements(".jsonButton",(element)=>{
-    element.onclick = function(){
-        if(globalData!=null){
-            location.href = "/downloadJSON?data="+encodeURIComponent(JSON.stringify(globalData))
-        }
+async function downloadTextFile(content,name,format) {
+    let csvContent = "data:text/"+format+";charset=utf-8,"+await streamToString(content)
+    var encodedUri = encodeURI(csvContent);
+    var link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", name);
+    document.body.appendChild(link);
+
+    link.click()
+}
+
+async function streamToString(stream) {
+    let result = '';
+    const reader = stream.pipeThrough(new TextDecoderStream()).getReader();
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) {
+        break;
+      }
+      result += value;
     }
-})
+    return result;
+  }
+
+async function downloadFile(endpoint,name,format) {
+    const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(globalData),
+    });
+    downloadTextFile(response.body,name,format)
+    return response
+}
+  
+  modifyElements(".csvButton", (element) => {
+    element.onclick = async function() {
+      if (globalData != null) {
+        downloadFile('/view/downloadCSV','Schedule.csv','csv');
+      }
+    }
+  });
+  
+  modifyElements(".jsonButton", (element) => {
+    element.onclick = function() {
+      if (globalData != null) {
+        downloadFile('/view/downloadJSON','Schedule.json','json');
+      }
+    }
+  });
 
 modifyElements(".editTeacher",element => {
     element.addEventListener('click', e => {
