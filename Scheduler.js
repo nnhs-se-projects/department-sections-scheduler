@@ -9,23 +9,21 @@ var courses = null;
 var teachers = null;
 
 async function createSchedules(callback) {
-    classrooms = JSON.parse(fs.readFileSync('classrooms.json',{encoding:'utf8',flag:'r'}));
-    courses = JSON.parse(fs.readFileSync('courses.json',{encoding:'utf8',flag:'r'}));
-    teachers = JSON.parse(fs.readFileSync('teachers.json',{encoding:'utf8',flag:'r'}));
-
+    classrooms = JSON.parse(fs.readFileSync('classrooms.json',{encoding:'utf8',flag:'r'})).sem1;
+    courses = JSON.parse(fs.readFileSync('courses.json',{encoding:'utf8',flag:'r'})).sem1;
+    teachers = JSON.parse(fs.readFileSync('teachers.json',{encoding:'utf8',flag:'r'})).sem1;
+    console.log(courses)
     const CTpairs = createCTpairs(teachers);
     const RPpairs = createRPpairs(classrooms);
     const newCTpairs = evaluatePairs(CTpairs,RPpairs,courses);
     newCTpairs.sort((a,b)=>{return a.RPpairs.length - b.RPpairs.length})
     var teacherPairs = createTeacherPairs(newCTpairs)
-    //console.dir(teacherPairs,{depth:4})
+
     const solution = convertFormat(testRandomSolutions(teacherPairs),classrooms)
 
     callback(solution, classrooms)
 
-    //four period overlap possible
-    //lunch check possible
-    //
+    //add double semester compatability check
 }
 
 function getCourseData(){
@@ -258,7 +256,11 @@ function evaluatePairs(CTpairs,RPpairs,courses){
     var newPairs = []
     for(const a of CTpairs){
         var newPair = {teacher: a.teacher, course: a.course, RPpairs: []}
-        const courseData = courses.find((i)=>{return i.name==a.course})
+
+        const courseData = courses.find((i)=>{
+            console.log(i.name + " " + a.course)
+            return i.name==a.course
+        })
         for(const b of RPpairs){
             const classroom = b.classroom
             const period = b.period

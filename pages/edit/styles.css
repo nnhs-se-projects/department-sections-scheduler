@@ -1398,7 +1398,7 @@ html {
   .minusButton{
     aspect-ratio: 1;
     height: 25px;
-    width: auto;
+    width: 25px;
     border-radius: 5px;
     display: flex;
     background: var(--darker-light-3);
@@ -1412,7 +1412,7 @@ html {
   .plusButton{
     aspect-ratio: 1;
     height: 25px;
-    width: auto;
+    width: 25px;
     border-radius: 5px;
     display: flex;
     background: var(--darker-light-3);

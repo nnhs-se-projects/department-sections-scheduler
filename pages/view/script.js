@@ -58,6 +58,43 @@ function modifyElements(selector, callback) {
 
 //CODE START
 
+
+modifyElements(".uploadDiv",(element)=>{
+    element.addEventListener("click",(e)=>{
+        console.log("click1")
+        modifyElements(".fileUpload",(element2)=>{
+            console.log("click")
+            element2.onclick = (e) => {e.stopPropagation();};
+            element2.click();
+            element2.addEventListener('change', (e) => {
+                const file = element2.files[0];
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    try {
+                        const data = JSON.parse(event.target.result);
+                        console.log(data)
+
+                        if(data.sem1 && data.sem1[0] && data.sem1[0].name && data.sem1[0].coursesAssigned){
+                            handleTeacherUpload(data)
+                        }
+
+                    } catch (error) {
+                        console.error("Error parsing JSON file:", error);
+                    }
+                };
+                reader.readAsText(file);
+            });
+    
+
+        });
+    });
+});
+
+function handleTeacherUpload(data){
+    
+}
+
+
 var alternate = 0;
 var style = window.getComputedStyle(document.body)
 modifyElements(".classDisplay",element => {
