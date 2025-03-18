@@ -4,15 +4,29 @@ const fs = require('fs');
 // lunch period, free period, classroom preference
 // convert to ints?
 
+module.exports.loadFromFile = loadFromFile;
+module.exports.createSchedule = createSchedules;
+module.exports.writeToCSV = writeToCSV;
+module.exports.writeToJSON = writeToJSON;
+module.exports.getCourseData = getCourseData;
+module.exports.getTeacherData = getTeacherData;
+module.exports.getClassroomData = getClassroomData;
+module.exports.setCourseData = setCourseData;
+module.exports.setTeacherData = setTeacherData;
+module.exports.setClassroomData = setClassroomData;
+
+
 var classrooms = null;
 var courses = null;
 var teachers = null;
 
+async function loadFromFile(){
+    classrooms = await JSON.parse(await fs.readFileSync('classrooms.json',{encoding:'utf8',flag:'r'})).sem1;
+    courses = await JSON.parse(await fs.readFileSync('courses.json',{encoding:'utf8',flag:'r'})).sem1;
+    teachers = await JSON.parse(await fs.readFileSync('teachers.json',{encoding:'utf8',flag:'r'})).sem1;
+}
+
 async function createSchedules(callback) {
-    classrooms = JSON.parse(fs.readFileSync('classrooms.json',{encoding:'utf8',flag:'r'})).sem1;
-    courses = JSON.parse(fs.readFileSync('courses.json',{encoding:'utf8',flag:'r'})).sem1;
-    teachers = JSON.parse(fs.readFileSync('teachers.json',{encoding:'utf8',flag:'r'})).sem1;
-    console.log(courses)
     const CTpairs = createCTpairs(teachers);
     const RPpairs = createRPpairs(classrooms);
     const newCTpairs = evaluatePairs(CTpairs,RPpairs,courses);
@@ -32,6 +46,20 @@ function getCourseData(){
 
 function getTeacherData(){
     return teachers
+}
+
+function getClassroomData(){
+    return classrooms
+}
+
+function setCourseData(data){
+    courses = data
+}
+function setTeacherData(data){
+    teachers = data
+}
+function setClassroomData(data){
+    classrooms = data
 }
 
 async function writeToJSON(){
@@ -63,11 +91,7 @@ async function writeToJSON(data){
     fs.writeFileSync(PATH,JSON.stringify(data))
 }
 
-module.exports.createSchedule = createSchedules;
-module.exports.writeToCSV = writeToCSV;
-module.exports.writeToJSON = writeToJSON;
-module.exports.getCourseData = getCourseData;
-module.exports.getTeacherData = getTeacherData;
+
 
 var t0 = Date.now()
 //createSchedules(()=>{})
@@ -258,14 +282,17 @@ function evaluatePairs(CTpairs,RPpairs,courses){
         var newPair = {teacher: a.teacher, course: a.course, RPpairs: []}
 
         const courseData = courses.find((i)=>{
-            console.log(i.name + " " + a.course)
             return i.name==a.course
         })
         for(const b of RPpairs){
             const classroom = b.classroom
             const period = b.period
-            if(courseData.compatiblePeriods.includes(period) && courseData.compatibleClassrooms.includes(classroom)){
-                newPair.RPpairs.push({classroom: classroom, period: period})
+            try{
+                if(courseData.compatiblePeriods.includes(period) && courseData.compatibleClassrooms.includes(classroom)){
+                    newPair.RPpairs.push({classroom: classroom, period: period})
+                }
+            }catch(err){
+                console.error("Could not find course data for "+a.course)
             }
         }
         newPairs.push(newPair)

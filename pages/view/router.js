@@ -7,6 +7,10 @@ const scheduler = require("../../Scheduler.js");
 
 module.exports = route;
 
+let customTeachers = null
+let customCourses = null
+let customClassrooms = null
+
 // pass a path (e.g., "/") and callback function to the get method
 //  when the client makes an HTTP GET request to the specified path,
 //  the callback function is executed
@@ -26,7 +30,17 @@ route.get("/", async (req, res) => {
   });
 });
 
-route.get("/createSchedule", (req, res) => {
+route.get("/createSchedule", async (req, res) => {
+    await scheduler.loadFromFile()
+    if(customTeachers!=null){
+        scheduler.setTeacherData(customTeachers)
+    }
+    if(customCourses!=null){
+        scheduler.setCourseData(customCourses)
+    }
+    if(customClassrooms!=null){
+        scheduler.setClassroomData(customClassrooms)
+    }
     scheduler.createSchedule((data) => {
         res.end(JSON.stringify({data:data, courses: scheduler.getCourseData(), teachers: scheduler.getTeacherData()}));
     }); 
@@ -53,6 +67,51 @@ route.get('/downloadJSON', function(req, res){
       scheduler.writeToJSON(JSON.parse(req.query.data))
       const file = `${__dirname}/downloads/schedule.json`;
       res.download(file);
+    }catch(err){
+      res.send("Error: "+err)
+    }
+  }else{
+    res.end()
+  }
+});
+
+
+route.post('/resetCustomData', function(req, res){
+  customTeachers = null
+  customCourses = null
+  customClassrooms = null
+  res.end()
+});
+
+route.post('/uploadCustomData', function(req, res){
+  if(req.body!=null){
+    try{
+      const data = req.body
+      if(data.sem1 && data.sem1[0] && data.sem1[0].name && data.sem1[0].coursesAssigned){
+        customTeachers = data.sem1
+      }else if(data.sem1 && data.sem1[0] && data.sem1[0].name && data.sem1[0].name && data.sem1[0].sections){
+        customCourses = data.sem1
+      }else if(data.sem1 && data.sem1[0] && data.sem1[0].roomNum && data.sem1[0].periodsAvailable){
+        customClassrooms = data.sem1
+      }
+      
+/*
+
+      "name": "Business Law",
+      "sections": 1,
+      "compatibleClassrooms": ["128", "126", "120"],
+      "compatiblePeriods": [1, 2, 3, 4, 5, 6, 7, 8],
+      "block": false,
+      "lockTo": null
+
+    {
+      "roomNum": "117",
+      "periodsAvailable": [1, 2, 3, 4, 5, 6, 7, 8]
+    }
+
+*/
+
+
     }catch(err){
       res.send("Error: "+err)
     }

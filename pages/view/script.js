@@ -61,37 +61,53 @@ function modifyElements(selector, callback) {
 
 modifyElements(".uploadDiv",(element)=>{
     element.addEventListener("click",(e)=>{
+        e.stopPropagation();
         console.log("click1")
         modifyElements(".fileUpload",(element2)=>{
             console.log("click")
             element2.onclick = (e) => {e.stopPropagation();};
             element2.click();
-            element2.addEventListener('change', (e) => {
+            element2.onchange = (e) => {
                 const file = element2.files[0];
+                element2.value = null;
                 const reader = new FileReader();
                 reader.onload = (event) => {
                     try {
                         const data = JSON.parse(event.target.result);
                         console.log(data)
-
-                        if(data.sem1 && data.sem1[0] && data.sem1[0].name && data.sem1[0].coursesAssigned){
-                            handleTeacherUpload(data)
-                        }
+                        uploadData(data)
 
                     } catch (error) {
                         console.error("Error parsing JSON file:", error);
                     }
                 };
                 reader.readAsText(file);
-            });
-    
-
+            }
         });
     });
 });
 
-function handleTeacherUpload(data){
-    
+modifyElements(".resetDiv",(element)=>{
+    element.addEventListener("click",(e)=>{
+        fetch('./resetCustomData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+
+    });
+
+});
+
+async function uploadData(data){
+    fetch('./uploadCustomData', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
 }
 
 
