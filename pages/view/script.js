@@ -219,21 +219,59 @@ function resizeText(){
     })
 }
 
-modifyElements(".csvButton",(element)=>{
-    element.onclick = function(){
-        if(globalData!=null){
-            location.href = "/downloadCSV?data="+encodeURIComponent(JSON.stringify(globalData))
-        }
-    }
-})
-
-modifyElements(".jsonButton",(element)=>{
-    element.onclick = function(){
-        if(globalData!=null){
-            location.href = "/downloadJSON?data="+encodeURIComponent(JSON.stringify(globalData))
-        }
-    }
-})
+// Function to handle file downloads via POST
+function downloadFile(endpoint, data) {
+    fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ data: data }), // Send data in the request body
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.statusText}`);
+      }
+      return response.blob(); // Handle the file as a Blob
+    })
+    .then(blob => {
+      // Create a temporary link to trigger the download
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `data.${endpoint.includes('CSV') ? 'csv' : 'json'}`; // Set filename
+      document.body.appendChild(a);
+      a.click(); // Trigger download
+      window.URL.revokeObjectURL(url); // Clean up
+      document.body.removeChild(a);
+    })
+    .catch(error => {
+      console.error('Download failed:', error);
+      alert('Download failed: ' + error.message); // Notify user of errors
+    });
+  }
+  
+  // Updated CSV Button Handler
+  modifyElements(".csvButton", (element) => {
+    element.onclick = function() {
+      if (globalData != null) {
+        downloadFile("/downloadCSV", globalData); // Use POST for CSV
+      } else {
+        alert("No data available to download.");
+      }
+    };
+  });
+  
+  // Updated JSON Button Handler
+  modifyElements(".jsonButton", (element) => {
+    element.onclick = function() {
+      if (globalData != null) {
+        downloadFile("/downloadJSON", globalData); // Use POST for JSON
+      } else {
+        alert("No data available to download.");
+      }
+    };
+  });
 
 modifyElements(".editTeacher",element => {
     element.addEventListener('click', e => {

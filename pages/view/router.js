@@ -33,30 +33,24 @@ route.get("/createSchedule", (req, res) => {
 });
 
 
-route.get('/downloadCSV', function(req, res){
-  if(req.query.data!=null){
-    try{
-      scheduler.writeToCSV(JSON.parse(req.query.data))
-      const file = `${__dirname}/downloads/schedule.csv`;
-      res.download(file);
-    }catch(err){
-      res.send("Error: "+err)
-    }
-  }else{
-    res.end()
+route.post('/downloadCSV', function(req, res) {
+  try {
+    if (!req.body.data) throw new Error("No data provided"); // Access data from POST body
+    scheduler.writeToCSV(req.body.data);
+    const file = `${__dirname}/downloads/schedule.csv`;
+    res.download(file);
+  } catch(err) {
+    res.status(400).send("Error: " + err.message);
   }
 });
 
-route.get('/downloadJSON', function(req, res){
-  if(req.query.data!=null){
-    try{
-      scheduler.writeToJSON(JSON.parse(req.query.data))
-      const file = `${__dirname}/downloads/schedule.json`;
-      res.download(file);
-    }catch(err){
-      res.send("Error: "+err)
-    }
-  }else{
-    res.end()
+route.post('/downloadJSON', function(req, res) {
+  try {
+    if (!req.body.data) throw new Error("No data provided"); // Access data from POST body
+    scheduler.writeToJSON(req.body.data); // No need to parse; body is already parsed by middleware
+    const file = `${__dirname}/downloads/schedule.json`;
+    res.download(file);
+  } catch(err) {
+    res.status(400).send("Error: " + err.message);
   }
 });
