@@ -68,20 +68,20 @@ async function writeToJSON(){
 }
 
 async function writeToCSV(data){
-    let writer = "Rooms,Period 1,Period 2,Period 3,Period 4,Period 5,Period 6,Period 7,Period 8"
+    let writer = "Teacher,Period 1,Period 2,Period 3,Period 4,Period 5,Period 6,Period 7,Period 8"
 
     const PATH = "downloads/schedule.csv"
 
-    for(let i=0;i<classrooms.length;i++){
+    for(let i=0;i<teachers.length;i++){
         tempData = ["Empty","Empty","Empty","Empty","Empty","Empty","Empty","Empty"]
         for(const a of data){
             if(a!=null){
-                if(a.classroom==classrooms[i].roomNum){
-                    tempData[a.period-1]='"'+a.course+" - "+a.teacher+'"'
+                if(a.teacher==teachers[i].name){
+                    tempData[a.period-1]='"'+a.course+" - "+a.classroom+'"'
                 }
             }
         }
-        writer += "\n"+classrooms[i].roomNum+","+tempData.join(",")
+        writer += '\n"'+classrooms[i].teacher+'",'+tempData.join(",")
     }
     fs.writeFileSync(PATH,writer)
 }
