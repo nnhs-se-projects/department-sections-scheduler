@@ -316,6 +316,14 @@ html {
     justify-content: end;
     display: flex;
   }
+  .popupX2{
+    margin-right: auto;
+    width: 35px;
+    height: 35px;
+    justify-content: end;
+    display: flex;
+  }
+
   .popupXImage{
     opacity: 0.7;
     cursor: pointer;

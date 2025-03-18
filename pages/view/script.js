@@ -397,12 +397,12 @@ function handleScheduleClick(elm, data2){
     const index = Array.from(elm.parentElement.children).indexOf(elm)
     console.log(index)
     if (index === popupIndex) {
-        closeSchedulePopup();
+        closeSchedulePopup()
         return;
     }
     
     if(data2!=null){
-        closeRequirementsPopup();
+        closeSchedulePopup();
         popupIndex = index
         activeElement = elm
         elm.style.filter = "brightness(0.9)";
@@ -500,6 +500,7 @@ modifyElements(".popupXImage", element => {
     });
 });
 
+/*
 document.addEventListener('click', (e) => {
     const isSchedulePopup = e.target.closest('.schedulePopUp');
     const isRequirementsPopup = e.target.closest('.requirementsPopUp');
@@ -510,4 +511,4 @@ document.addEventListener('click', (e) => {
         closeSchedulePopup();
         closeRequirementsPopup();
     }
-});
+});*/
