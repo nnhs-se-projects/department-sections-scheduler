@@ -4,28 +4,40 @@ const fs = require('fs');
 // lunch period, free period, classroom preference
 // convert to ints?
 
+module.exports.loadFromFile = loadFromFile;
+module.exports.createSchedule = createSchedules;
+module.exports.writeToCSV = writeToCSV;
+module.exports.writeToJSON = writeToJSON;
+module.exports.getCourseData = getCourseData;
+module.exports.getTeacherData = getTeacherData;
+module.exports.getClassroomData = getClassroomData;
+module.exports.setCourseData = setCourseData;
+module.exports.setTeacherData = setTeacherData;
+module.exports.setClassroomData = setClassroomData;
+
+
 var classrooms = null;
 var courses = null;
 var teachers = null;
 
-async function createSchedules(callback) {
-    classrooms = JSON.parse(fs.readFileSync('classrooms.json',{encoding:'utf8',flag:'r'}));
-    courses = JSON.parse(fs.readFileSync('courses.json',{encoding:'utf8',flag:'r'}));
-    teachers = JSON.parse(fs.readFileSync('teachers.json',{encoding:'utf8',flag:'r'}));
+async function loadFromFile(){
+    classrooms = await JSON.parse(await fs.readFileSync('classrooms.json',{encoding:'utf8',flag:'r'})).sem1;
+    courses = await JSON.parse(await fs.readFileSync('courses.json',{encoding:'utf8',flag:'r'})).sem1;
+    teachers = await JSON.parse(await fs.readFileSync('teachers.json',{encoding:'utf8',flag:'r'})).sem1;
+}
 
+async function createSchedules(callback) {
     const CTpairs = createCTpairs(teachers);
     const RPpairs = createRPpairs(classrooms);
     const newCTpairs = evaluatePairs(CTpairs,RPpairs,courses);
     newCTpairs.sort((a,b)=>{return a.RPpairs.length - b.RPpairs.length})
     var teacherPairs = createTeacherPairs(newCTpairs)
-    //console.dir(teacherPairs,{depth:4})
+
     const solution = convertFormat(testRandomSolutions(teacherPairs),classrooms)
 
     callback(solution, classrooms)
 
-    //four period overlap possible
-    //lunch check possible
-    //
+    //add double semester compatability check
 }
 
 function getCourseData(){
@@ -36,21 +48,43 @@ function getTeacherData(){
     return teachers
 }
 
+
+function getClassroomData(){
+    return classrooms
+}
+
+function setCourseData(data){
+    courses = data
+}
+function setTeacherData(data){
+    teachers = data
+}
+function setClassroomData(data){
+    classrooms = data
+}
+
+async function writeToJSON(){
+    console.log("test")
+
+}
+
+
+
 async function writeToCSV(data){
-    let writer = "Rooms,Period 1,Period 2,Period 3,Period 4,Period 5,Period 6,Period 7,Period 8"
+    let writer = "Teacher,Period 1,Period 2,Period 3,Period 4,Period 5,Period 6,Period 7,Period 8"
 
     const PATH = "pages/view/downloads/schedule.csv"
 
-    for(let i=0;i<classrooms.length;i++){
+    for(let i=0;i<teachers.length;i++){
         tempData = ["Empty","Empty","Empty","Empty","Empty","Empty","Empty","Empty"]
         for(const a of data){
             if(a!=null){
-                if(a.classroom==classrooms[i].roomNum){
-                    tempData[a.period-1]='"'+a.course+" - "+a.teacher+'"'
+                if(a.teacher==teachers[i].name){
+                    tempData[a.period-1]='"'+a.course+" - "+a.classroom+'"'
                 }
             }
         }
-        writer += "\n"+classrooms[i].roomNum+","+tempData.join(",")
+        writer += '\n"'+classrooms[i].teacher+'",'+tempData.join(",")
     }
     await fs.writeFileSync(PATH,writer)
     return true
@@ -61,11 +95,7 @@ async function writeToJSON(data){
     fs.writeFileSync(PATH,JSON.stringify(data))
 }
 
-module.exports.createSchedule = createSchedules;
-module.exports.writeToCSV = writeToCSV;
-module.exports.writeToJSON = writeToJSON;
-module.exports.getCourseData = getCourseData;
-module.exports.getTeacherData = getTeacherData;
+
 
 var t0 = Date.now()
 //createSchedules(()=>{})
@@ -254,12 +284,19 @@ function evaluatePairs(CTpairs,RPpairs,courses){
     var newPairs = []
     for(const a of CTpairs){
         var newPair = {teacher: a.teacher, course: a.course, RPpairs: []}
-        const courseData = courses.find((i)=>{return i.name==a.course})
+
+        const courseData = courses.find((i)=>{
+            return i.name==a.course
+        })
         for(const b of RPpairs){
             const classroom = b.classroom
             const period = b.period
-            if(courseData.compatiblePeriods.includes(period) && courseData.compatibleClassrooms.includes(classroom)){
-                newPair.RPpairs.push({classroom: classroom, period: period})
+            try{
+                if(courseData.compatiblePeriods.includes(period) && courseData.compatibleClassrooms.includes(classroom)){
+                    newPair.RPpairs.push({classroom: classroom, period: period})
+                }
+            }catch(err){
+                console.error("Could not find course data for "+a.course)
             }
         }
         newPairs.push(newPair)

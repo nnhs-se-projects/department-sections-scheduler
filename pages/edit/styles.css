@@ -11,6 +11,10 @@ html {
     --box-shadow3: 2px 2px 10px rgba(0, 0, 0, 0.7), 
                   -2px -2px 10px rgba(255, 255, 255, 0.25);
 
+    --box-shadow: none
+    --box-shadow2: none
+    --box-shadow3: none
+
     --dark-hue-1: 272;  --dark-hue-2: 282;  --light-hue-1: 11;   --light-hue-2: 18;
     --dark-sat-1: 100%; --dark-sat-2: 100%; --light-sat-1: 100%; --light-sat-2: 100%;
     --dark-lum-1: 15%;  --dark-lum-2: 23%;  --light-lum-1: 39%;  --light-lum-2: 47%;
@@ -57,6 +61,7 @@ html {
     src: url(font/Inter.woff2) format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
+
 
   .dropdownFrame{
     border-radius: 15px;
@@ -366,9 +371,11 @@ html {
     padding: 20px;
     gap: 15px;
     display: flex;
+    flex-shrink: 0;
     width: 100%;
     height: 80%;
     z-index: 1;
+    overflow: visible;
     flex-wrap: nowrap;
   }
   .column{
@@ -376,24 +383,33 @@ html {
     gap: 10px;
     flex-direction: column;
     display:flex;
+    flex-shrink:0;
+
     background: var(--og-dark-2);
     border-radius: 20px;
-    width: 100%;
+    width: calc(33.3% - 10px);
+
     height: 100%;
     box-shadow: var(--box-shadow2);
   }
+  .classroomColumn{
+    
+  }
   .label{
-    display: flex;
+    display: block;
     flex-shrink: 0;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
     border-radius: 10px;
+    padding: 15px;
+    gap: 7px;
+    flex-wrap: nowrap;
     display: flex;
-    width: 100%;
     height: 60px;
     background: var(--og-dark-1);
   }
   .labelText{
+    margin-right: auto;
     display: flex;
     width: fit-content;
     font-family: Inter;
@@ -419,6 +435,7 @@ html {
   }
   .search{
     border-radius: 10px;
+    position: relative;
     flex-shrink: 0;
     display: flex;
     padding: 10px;
@@ -680,7 +697,7 @@ html {
 .courseDetails {
   height: fit-content;
   width: 100%;
-  display: flex;
+  display: none;
   flex-direction: column;
   padding: 10px;
   gap: 7px;
@@ -711,6 +728,7 @@ html {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  max-width: 100%;
   align-items: center;
   gap: 10px;
   background: var(--dark-gradient-2);
@@ -833,6 +851,7 @@ html {
   font-weight: 700;
   font-size: 20px;
   letter-spacing: 0px;
+  width:100%;
   opacity: 1;
   outline: none;
   transition: border-bottom 0.2s ease;
@@ -902,6 +921,136 @@ html {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.downloadDiv{
+  width: auto;
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 40px;
+  right: 0px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 35px;
+  padding: 5;
+  background-color: rgba(255, 255, 255, 0);
+  transition: box-shadow 0.1s ease;
+  box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.2), 
+  inset 1px 1px 2px rgba(255, 255, 255, 0.1),
+      2px 2px 2px rgba(0, 0, 0, 0.2), 
+      -2px -2px 2px rgba(255, 255, 255, 0.1);
+}
+
+.downloadDiv:active{
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2), 
+  inset -1px -1px 2px rgba(255, 255, 255, 0.1),
+      -2px -2px 1px rgba(0, 0, 0, 0.2), 
+      2px 2px 1px rgba(255, 255, 255, 0.1);
+}
+
+.downloadIcon{
+  flex-shrink: 0;
+  aspect-ratio: 1;
+  height: 70%;
+  min-width: 10px;
+  background: url("images/download.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  transition: transform 0.5s ease;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.uploadDiv{
+  width: auto;
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 40px;
+  right: 0px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 35px;
+  padding: 5;
+  background-color: rgba(255, 255, 255, 0);
+  transition: box-shadow 0.1s ease;
+  box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.2), 
+  inset 1px 1px 2px rgba(255, 255, 255, 0.1),
+      2px 2px 2px rgba(0, 0, 0, 0.2), 
+      -2px -2px 2px rgba(255, 255, 255, 0.1);
+}
+
+.semesterDiv{
+  width:fit-content;
+  justify-content: left;
+  align-items: center;
+  display: flex;
+  height: 30px;
+  right: 0px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 5px;
+  background-color: var(--og-light-1);
+  transition: box-shadow 0.1s ease;
+  opacity: 0.8;
+  box-shadow: inset -1px -1px 4px rgba(0, 0, 0, 0.6), 
+  inset 1px 1px 4px rgba(255, 255, 255, 0.3),
+      2px 2px 4px rgba(0, 0, 0, 0.2), 
+      -2px -2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.semesterDivActive{
+  opacity: 1;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.6), 
+  inset -1px -1px 2px rgba(255, 255, 255, 0.3),
+      -2px -2px 1px rgba(0, 0, 0, 0.2), 
+      2px 2px 1px rgba(255, 255, 255, 0.1);
+}
+
+.semesterSwitchText{
+  font-family: Inter;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0px;
+  text-wrap: nowrap;
+  color: var(--text-color);
+  opacity: 1;
+  user-select: none;
+}
+
+.uploadDiv:active{
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2), 
+  inset -1px -1px 2px rgba(255, 255, 255, 0.1),
+      -2px -2px 1px rgba(0, 0, 0, 0.2), 
+      2px 2px 1px rgba(255, 255, 255, 0.1);
+}
+
+.uploadIcon{
+  flex-shrink: 0;
+  aspect-ratio: 1;
+  height: 70%;
+  min-width: 10px;
+  background: url("images/upload.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  transition: transform 0.5s ease;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.fileUpload{
+  display: none;
+}
+
 .dropdown:hover {
     opacity: 1;
 }
@@ -913,6 +1062,7 @@ html {
     display: flex;
     align-items: center;
     width: 100%;
+    flex-shrink: 0;
     height: 42px;
     background: var(--og-light-2);
     box-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.2), 
@@ -1204,7 +1354,7 @@ html {
   .teacherSubList{
     height: fit-content;
     width: 100%;
-    display: flex;
+    display: none;
     flex-direction: column;
     padding: 10px;
     gap: 7px;
@@ -1213,7 +1363,7 @@ html {
   .classroomSubList{
     height: fit-content;
     width: 100%;
-    display: flex;
+    display: none;
     flex-direction: column;
     padding: 10px;
     gap: 7px;
@@ -1248,7 +1398,7 @@ html {
   .minusButton{
     aspect-ratio: 1;
     height: 25px;
-    width: auto;
+    width: 25px;
     border-radius: 5px;
     display: flex;
     background: var(--darker-light-3);
@@ -1262,7 +1412,7 @@ html {
   .plusButton{
     aspect-ratio: 1;
     height: 25px;
-    width: auto;
+    width: 25px;
     border-radius: 5px;
     display: flex;
     background: var(--darker-light-3);
@@ -1325,10 +1475,13 @@ html {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), 
     -2px -2px 4px rgba(255, 255, 255, 0.1);
   }
+
+  /**/
   .courseOpenPeriods{
     background: var(--dark-gradient-2);
     border-radius: 7px;
     display: flex;
+    width: 100%;
     justify-content: space-around;
     padding: 7px;
     gap: 7px;
@@ -1496,7 +1649,12 @@ html {
     background: var(--dark-gradient-2);
     border-radius: 7px;
     display: flex;
-    justify-content: space-around;
+    max-width: 250px;
+    flex-wrap: wrap;
+    flex-grow: 0;
+    width: 100%;
+    height: 160px;
+    justify-content: left;
     padding: 7px;
     gap: 7px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), 
@@ -1505,8 +1663,9 @@ html {
 
   .classroomCheckbox{
     flex-wrap: wrap;
-    width: 12.5%;
+    width: calc(25% - 5.5px);
     display: flex;
+    height: calc(50% - 4px);
     border-radius: 5px;
     flex-direction: column;
     background-color: var(--darker-light-2);

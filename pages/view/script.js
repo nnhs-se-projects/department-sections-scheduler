@@ -58,6 +58,59 @@ function modifyElements(selector, callback) {
 
 //CODE START
 
+
+modifyElements(".uploadDiv",(element)=>{
+    element.addEventListener("click",(e)=>{
+        e.stopPropagation();
+        console.log("click1")
+        modifyElements(".fileUpload",(element2)=>{
+            console.log("click")
+            element2.onclick = (e) => {e.stopPropagation();};
+            element2.click();
+            element2.onchange = (e) => {
+                const file = element2.files[0];
+                element2.value = null;
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    try {
+                        const data = JSON.parse(event.target.result);
+                        console.log(data)
+                        uploadData(data)
+
+                    } catch (error) {
+                        console.error("Error parsing JSON file:", error);
+                    }
+                };
+                reader.readAsText(file);
+            }
+        });
+    });
+});
+
+modifyElements(".resetDiv",(element)=>{
+    element.addEventListener("click",(e)=>{
+        fetch('./resetCustomData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+
+    });
+
+});
+
+async function uploadData(data){
+    fetch('./uploadCustomData', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+}
+
+
 var alternate = 0;
 var style = window.getComputedStyle(document.body)
 modifyElements(".classDisplay",element => {

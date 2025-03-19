@@ -9,6 +9,7 @@
   <body>
     <script src="script.js"></script>
     <div class="dropdownFrame"></div>
+
     <div class="topFrame">
       <div class="mainFrame">
         <div class="navbar">
@@ -36,6 +37,16 @@
           <div class="teacherColumn column">
             <div class="teacherLabel label">
               <span class="teacherLabelText labelText">TEACHERS</span>
+              <div class="semesterDiv teacherSemester">
+                <span class="semesterSwitchText">SEM. 1</span>
+              </div>
+              <div class="teacherUpload uploadDiv">
+                <div class="uploadIcon"></div>
+                <input type="file" class="fileUpload teacherFile" accept=".json"></input>
+               </div>
+              <div class="teacherDownload downloadDiv">
+                <div class="downloadIcon"></div>
+              </div>
             </div>
             <div class="teacherWrapper wrapper">
               <div class="teacherSearch search">
@@ -71,7 +82,9 @@
                     </div>
                     <div class="teacherCourses">
                       <div class="teacherCourseBar">
-                        <span class="teacherCourseText teacherText">Courses Taught:</span>
+                        <span class="teacherCourseText teacherText"
+                          >Courses Taught:</span
+                        >
                         <div class="addTeacherCourse">
                           <span class="addTeacherCourseText buttonText">+</span>
                         </div>
@@ -146,6 +159,16 @@
           <div class="courseColumn column">
             <div class="courseLabel label">
               <span class="courseLabelText labelText">COURSES</span>
+              <div class="semesterDiv courseSemester">
+                <span class="semesterSwitchText">SEM. 1</span>
+              </div>
+              <div class="courseUpload uploadDiv">
+                <div class="uploadIcon"></div>
+                <input type="file" class="fileUpload courseFile" accept=".json"></input>
+              </div>
+              <div class="courseDownload downloadDiv">
+                <div class="downloadIcon"></div>
+              </div>
             </div>
             <div class="courseWrapper wrapper">
               <div class="courseSearch search">
@@ -182,16 +205,31 @@
                       <span class="courseText">Compatible Classrooms:</span>
                       <div class="courseClassroomList">
                         <div class="classroomItem">
-                          <span class="classroomItemText" role="textbox" contenteditable>121</span>
-                          
+                          <span
+                            class="classroomItemText"
+                            role="textbox"
+                            contenteditable
+                            >121</span
+                          >
+
                           <div class="removeClassroom removeButton"></div>
                         </div>
                         <div class="classroomItem">
-                          <span class="classroomItemText" role="textbox" contenteditable>121</span>
+                          <span
+                            class="classroomItemText"
+                            role="textbox"
+                            contenteditable
+                            >121</span
+                          >
                           <div class="removeClassroom removeButton"></div>
                         </div>
                         <div class="classroomItem">
-                          <span class="classroomItemText" role="textbox" contenteditable>121</span>
+                          <span
+                            class="classroomItemText"
+                            role="textbox"
+                            contenteditable
+                            >121</span
+                          >
                           <div class="removeClassroom removeButton"></div>
                         </div>
                         <div class="addClassroomDiv">
@@ -226,7 +264,9 @@
                       <span class="courseText">Semesters Open:</span>
                       <ul class="semesterList">
                         <li class="semesterCheckbox">
-                          <span class="semesterText courseText">Semester 1</span>
+                          <span class="semesterText courseText"
+                            >Semester 1</span
+                          >
                           <div class="semesterCheckboxContainer">
                             <input
                               class="semesterInputCheckbox"
@@ -235,7 +275,9 @@
                           </div>
                         </li>
                         <li class="semesterCheckbox">
-                          <span class="semesterText courseText">Semester 2</span>
+                          <span class="semesterText courseText"
+                            >Semester 2</span
+                          >
                           <div class="semesterCheckboxContainer">
                             <input
                               class="semesterInputCheckbox"
@@ -253,6 +295,16 @@
           <div class="classroomColumn column">
             <div class="classroomLabel label">
               <span class="classroomLabelText labelText">CLASSROOMS</span>
+              <div class="semesterDiv classroomSemester">
+                <span class="semesterSwitchText">SEM. 1</span>
+              </div>
+              <div class="classroomUpload uploadDiv">
+                <div class="uploadIcon"></div>
+                <input type="file" class="fileUpload classroomFile" accept=".json"></input>
+              </div>
+              <div class="classroomDownload downloadDiv">
+                <div class="downloadIcon"></div>
+              </div>
             </div>
             <div class="classroomWrapper wrapper">
               <div class="classroomSearch search">
@@ -280,7 +332,9 @@
                       >
                       <ul class="classroomOpenPeriods">
                         <li class="classroomCheckbox">
-                          <span class="classroomPeriodText classroomText">1</span>
+                          <span class="classroomPeriodText classroomText"
+                            >1</span
+                          >
                           <div class="classroomPeriodCheckboxContainer">
                             <input
                               class="classroomInputCheckbox"
@@ -289,7 +343,9 @@
                           </div>
                         </li>
                         <li class="classroomCheckbox">
-                          <span class="classroomPeriodText classroomText">1</span>
+                          <span class="classroomPeriodText classroomText"
+                            >1</span
+                          >
                           <div class="classroomPeriodCheckboxContainer">
                             <input
                               class="classroomInputCheckbox"
