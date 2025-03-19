@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
 
 
     // Send response with success and email
-    res.json({ success: true, email });
+    res.json({ success: true, email, redirectUrl: "view/index.html" });
   } catch (error) {
     res.status(401).json({ success: false, message: "Invalid token" });
   }
