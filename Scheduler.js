@@ -48,6 +48,7 @@ function getTeacherData(){
     return teachers
 }
 
+
 function getClassroomData(){
     return classrooms
 }
@@ -67,10 +68,12 @@ async function writeToJSON(){
 
 }
 
+
+
 async function writeToCSV(data){
     let writer = "Teacher,Period 1,Period 2,Period 3,Period 4,Period 5,Period 6,Period 7,Period 8"
 
-    const PATH = "downloads/schedule.csv"
+    const PATH = "pages/view/downloads/schedule.csv"
 
     for(let i=0;i<teachers.length;i++){
         tempData = ["Empty","Empty","Empty","Empty","Empty","Empty","Empty","Empty"]
@@ -83,11 +86,12 @@ async function writeToCSV(data){
         }
         writer += '\n"'+classrooms[i].teacher+'",'+tempData.join(",")
     }
-    fs.writeFileSync(PATH,writer)
+    await fs.writeFileSync(PATH,writer)
+    return true
 }
 
 async function writeToJSON(data){
-    const PATH = "downloads/schedule.json"
+    const PATH = "pages/view/downloads/schedule.json"
     fs.writeFileSync(PATH,JSON.stringify(data))
 }
 

@@ -5,7 +5,7 @@ const fs = require("fs");
 
 const scheduler = require("../../Scheduler.js");
 
-module.exports = route;
+
 
 let customTeachers = null
 let customCourses = null
@@ -46,34 +46,39 @@ route.get("/createSchedule", async (req, res) => {
     }); 
 });
 
+const bodyParser = require('body-parser');
+route.use(bodyParser.urlencoded({ extended: true }));
 
-route.get('/downloadCSV', function(req, res){
-  if(req.query.data!=null){
-    try{
-      scheduler.writeToCSV(JSON.parse(req.query.data))
+route.post('/downloadCSV', function(req, res){
+  if(req.body){
+    try {
+      scheduler.writeToCSV(req.body);
       const file = `${__dirname}/downloads/schedule.csv`;
       res.download(file);
-    }catch(err){
-      res.send("Error: "+err)
+    } catch(err) {
+      res.send("Error: "+err);
     }
-  }else{
-    res.end()
+  } else {
+    res.status(400).send("No data provided");
   }
 });
 
-route.get('/downloadJSON', function(req, res){
-  if(req.query.data!=null){
-    try{
-      scheduler.writeToJSON(JSON.parse(req.query.data))
+
+
+route.post('/downloadJSON', function(req, res){
+  if(req.body){
+    try {
+      scheduler.writeToJSON((req.body));
       const file = `${__dirname}/downloads/schedule.json`;
       res.download(file);
-    }catch(err){
-      res.send("Error: "+err)
+    } catch(err) {
+      res.send("Error: "+err);
     }
-  }else{
-    res.end()
+  } else {
+    res.status(400).send("No data provided");
   }
 });
+
 
 
 route.post('/resetCustomData', function(req, res){
@@ -119,3 +124,7 @@ route.post('/uploadCustomData', function(req, res){
     res.end()
   }
 });
+
+
+module.exports = route;
+
