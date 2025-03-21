@@ -75,7 +75,7 @@ async function writeToCSV(data){
 
     const PATH = "pages/view/downloads/schedule.csv"
 
-    for(let i=0;i<teachers.length;i++){
+    for(let i=0;i<classrooms.length;i++){
         tempData = ["Empty","Empty","Empty","Empty","Empty","Empty","Empty","Empty"]
         for(const a of data){
             if(a!=null){
@@ -84,7 +84,7 @@ async function writeToCSV(data){
                 }
             }
         }
-        writer += '\n"'+teachers[i].name+'",'+tempData.join(",")
+        writer += '\n"'+classrooms[i].teacher+'",'+tempData.join(",")
     }
     await fs.writeFileSync(PATH,writer)
     return true
