@@ -75,7 +75,7 @@ async function writeToCSV(data){
 
     const PATH = "pages/view/downloads/schedule.csv"
 
-    for(let i=0;i<classrooms.length;i++){
+    for(let i=0;i<teachers.length;i++){
         tempData = ["Empty","Empty","Empty","Empty","Empty","Empty","Empty","Empty"]
         for(const a of data){
             if(a!=null){
