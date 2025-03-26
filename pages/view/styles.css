@@ -1496,4 +1496,12 @@ html {
     position: absolute;
   }
 
-  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .navButtons a {
+    display: inline-block; /* Makes it behave like a block element */
+    flex-shrink: 0; /* Prevents shrinking in flex container */
+  }

@@ -382,3 +382,13 @@ html {
     background: var(--bright-gradient-1);
     position: absolute;
   }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .navButtons a {
+    display: inline-block; 
+    flex-shrink: 0; 
+  }
