@@ -103,6 +103,7 @@ modifyElements(".semesterDiv",(element)=>{
 })
 
 
+
 modifyElements(".teacherUpload",(element)=>{
     element.addEventListener("click",(e)=>{
         console.log("click1")
@@ -1366,4 +1367,9 @@ document.body.onkeyup = function(e) {
         palettes.push(tempColors2);
         //setColors(palettes.length-1)
     }
+
+    
+
+    
+    
 }
