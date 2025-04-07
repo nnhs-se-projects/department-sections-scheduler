@@ -63,3 +63,5 @@ modifyElements(".editButton",element => {
         location.href = "/edit"
     });
 });
+
+populateTeacthers()
