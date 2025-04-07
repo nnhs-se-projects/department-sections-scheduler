@@ -1505,3 +1505,5 @@ html {
     display: inline-block; /* Makes it behave like a block element */
     flex-shrink: 0; /* Prevents shrinking in flex container */
   }
+
+  /*should be done with branch*?
