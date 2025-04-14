@@ -64,4 +64,3 @@ modifyElements(".editButton",element => {
     });
 });
 
-populateTeacthers()
