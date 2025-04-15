@@ -72,17 +72,18 @@ modifyElements(".semesterDiv", (element) => {
             element.children[0].innerText = "SEM. 1";
             semester = 1;
         }
-        console.log(semester);
+        console.log(`Semester: ${semester}`);
 
-        // Change the color of the relevant section
+        // Change the color of the correct section based on which button was clicked
         if (element.classList.contains("teacherSemester")) {
-            changeSectionColor('.teacherLabelText', semester === 1 ? '#ffcccc' : '#ccffcc');
+            changeSectionColor('.teacherColumn', semester);
         } else if (element.classList.contains("courseSemester")) {
-            changeSectionColor('.courseLabelText', semester === 1 ? '#ccccff' : '#ffccff');
+            changeSectionColor('.courseColumn', semester);
         } else if (element.classList.contains("classroomSemester")) {
-            changeSectionColor('.classroomLabelText', semester === 1 ? '#ccffff' : '#ffffcc');
+            changeSectionColor('.classroomColumn', semester);
         }
 
+        // Handle teacher, course, and classroom data updates as before
         if (element.classList.contains("teacherSemester")) {
             if (semester == 1) {
                 globalData.teachers = globalDataSem1.teachers;
@@ -116,15 +117,18 @@ modifyElements(".semesterDiv", (element) => {
         }
 
         element.classList.toggle("semesterDivActive");
-
-        function changeSectionColor(selector, color) {
-            const section = document.querySelector(selector);
-            if (section) {
-                section.style.backgroundColor = color;
-            }
-        }
     });
-})
+
+    function changeSectionColor(selector, semester) {
+        const section = document.querySelector(selector);
+        if (section) {
+            const color1 = "#FFFACD"; // Color for Semester 1
+            const color2 = "#E0FFFF"; // Color for Semester 2
+            section.style.backgroundColor = semester === 1 ? color1 : color2;
+        }
+    }
+
+});
 
 
 
