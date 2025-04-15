@@ -771,22 +771,6 @@ html {
 }
 
 
-
-.removeClassroom {
-  margin-top: -2px;
-  width: 20px;
-  height: 20px;
-  background: url("images/trash.svg") no-repeat center center;
-  background-size: cover;
-  cursor: pointer;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
-}
-
-.removeClassroom:hover {
-  opacity: 1;
-}
-
 .addClassroomDiv {
   flex-shrink: 0;
   aspect-ratio: 1;
@@ -925,7 +909,7 @@ html {
   .removeTeacher{
     display: flex;
     margin-left: auto;
-    background: url("images/trash.svg");
+    background: url("images/dropdown.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -940,28 +924,6 @@ html {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .removeCourse{
-    display: flex;
-    margin-left: auto;
-    background: url("images/trash.svg");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    transform: scale(1);
-    aspect-ratio: 1;
-    width: auto;
-    height: 70%;
-    margin-top: -1px;
-    opacity: 0.7;
-    cursor: pointer;
-    transition: all 0.2s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .removeCourse:hover {
-    opacity: 1;
-    transform: scale(1.1);
-}
 
   @keyframes remove-entry-shadow {
     0% {

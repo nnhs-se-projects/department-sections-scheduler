@@ -52,6 +52,9 @@ function modifyElements(selector, callback) {
     });
 }
 
+var globalCourses = null
+var globalTeachers = null
+
 modifyElements(".viewButton",element => {
     element.addEventListener('click', e => {
         location.href = "/view"
@@ -63,4 +66,33 @@ modifyElements(".editButton",element => {
         location.href = "/edit"
     });
 });
+
+fetch('teachers.json')
+  .then(response => response.json())
+  .then(data => {
+    const teacherList = document.getElementById('teacher-list');
+    
+    data.forEach(teacher => {
+      const entry = document.createElement('div');
+      entry.className = 'teacherEntry entry';
+
+      entry.innerHTML = `
+        <div class="teacherMain entryMain">
+          <span class="teacherMainText teacherText entryMainText">
+            ${teacher.name}
+          </span>
+          <div class="removeTeacher removeButton"></div>
+        </div>
+        <div class="teacherName"></div>
+        <div class="teacherCourses"></div>
+        <div class="teacherPeriods"></div>
+      `;
+
+      teacherList.appendChild(entry);
+    });
+  })
+  .catch(error => {
+    console.error('Error loading teachers:', error);
+  });
+
 
