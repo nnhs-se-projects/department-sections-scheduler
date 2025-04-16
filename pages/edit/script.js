@@ -122,8 +122,8 @@ modifyElements(".semesterDiv", (element) => {
     function changeSectionColor(selector, semester) {
         const section = document.querySelector(selector);
         if (section) {
-            const color1 = "#FFFACD"; // Color for Semester 1
-            const color2 = "#E0FFFF"; // Color for Semester 2
+            const color1 = "#FFA347"; // Color for Semester 1
+            const color2 = "#80E5FF"; // Color for Semester 2
             section.style.backgroundColor = semester === 1 ? color1 : color2;
         }
     }

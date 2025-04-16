@@ -1711,7 +1711,7 @@ html {
   }
 
   .teacherColumn, .courseColumn, .classroomColumn {
-    transition: background-color 0.3s ease; /* Smooth transition for background color */
-    padding: 10px; /* Ensure padding for content */
-    border-radius: 5px; /* Optional: Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for sem button color */
+    padding: 10px; 
+    border-radius: 5px; 
 }
