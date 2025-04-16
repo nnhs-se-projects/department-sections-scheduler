@@ -57,50 +57,79 @@ function recursiveStyling(element){
 }
 }
 
-modifyElements(".semesterDiv",(element)=>{
-    element.addEventListener("click",(e)=>{
-        if(element.toggled==null){element.toggled = false}
-        let semester = 1
-        if(element.toggled==false){
-            element.toggled = true
-            element.children[0].innerText = "SEM. 2"
-            semester = 2
-        }else{
-            element.toggled = false
-            element.children[0].innerText = "SEM. 1"
-            semester = 1
+modifyElements(".semesterDiv", (element) => {
+    element.addEventListener("click", (e) => {
+        if (element.toggled == null) {
+            element.toggled = false;
         }
-        console.log(semester)
-        if(element.classList.contains("teacherSemester")){     
-            if(semester == 1){
-                globalData.teachers = globalDataSem1.teachers
-            }else{
-                globalData.teachers = globalDataSem2.teachers
+        let semester = 1;
+        if (element.toggled == false) {
+            element.toggled = true;
+            element.children[0].innerText = "SEM. 2";
+            semester = 2;
+        } else {
+            element.toggled = false;
+            element.children[0].innerText = "SEM. 1";
+            semester = 1;
+        }
+        console.log(`Semester: ${semester}`);
+
+        // Change the color of the correct section based on which button was clicked
+        if (element.classList.contains("teacherSemester")) {
+            changeSectionColor('.teacherColumn', semester);
+        } else if (element.classList.contains("courseSemester")) {
+            changeSectionColor('.courseColumn', semester);
+        } else if (element.classList.contains("classroomSemester")) {
+            changeSectionColor('.classroomColumn', semester);
+        }
+
+        // Handle teacher, course, and classroom data updates as before
+        if (element.classList.contains("teacherSemester")) {
+            if (semester == 1) {
+                globalData.teachers = globalDataSem1.teachers;
+            } else {
+                globalData.teachers = globalDataSem2.teachers;
             }
-            modifyElements(".teacherList",element => {element.innerHTML = "";});
+            modifyElements(".teacherList", (element) => {
+                element.innerHTML = "";
+            });
             populateTeacherList(globalData.teachers, false);
-        }else if(element.classList.contains("courseSemester")){
-            if(semester == 1){
-                globalData.courses = globalDataSem1.courses
-            }else{
-                globalData.courses = globalDataSem2.courses
+        } else if (element.classList.contains("courseSemester")) {
+            if (semester == 1) {
+                globalData.courses = globalDataSem1.courses;
+            } else {
+                globalData.courses = globalDataSem2.courses;
             }
-            modifyElements(".courseList",element => {element.innerHTML = "";});
+            modifyElements(".courseList", (element) => {
+                element.innerHTML = "";
+            });
             populateCourseList(globalData.courses, false);
-        }else if(element.classList.contains("classroomSemester")){
-            if(semester == 1){
-                globalData.classrooms = globalDataSem1.classrooms
-            }else{
-                globalData.classrooms = globalDataSem2.classrooms
+        } else if (element.classList.contains("classroomSemester")) {
+            if (semester == 1) {
+                globalData.classrooms = globalDataSem1.classrooms;
+            } else {
+                globalData.classrooms = globalDataSem2.classrooms;
             }
-            modifyElements(".classroomList",element => {element.innerHTML = "";});
+            modifyElements(".classroomList", (element) => {
+                element.innerHTML = "";
+            });
             populateClassroomList(globalData.classrooms, false);
         }
 
-
-        element.classList.toggle("semesterDivActive")
+        element.classList.toggle("semesterDivActive");
     });
-})
+
+    function changeSectionColor(selector, semester) {
+        const section = document.querySelector(selector);
+        if (section) {
+            const color1 = "#FFA347"; // Color for Semester 1
+            const color2 = "#80E5FF"; // Color for Semester 2
+            section.style.backgroundColor = semester === 1 ? color1 : color2;
+        }
+    }
+
+});
+
 
 
 modifyElements(".teacherUpload",(element)=>{
@@ -1366,4 +1395,9 @@ document.body.onkeyup = function(e) {
         palettes.push(tempColors2);
         //setColors(palettes.length-1)
     }
+
+    
+
+    
+    
 }
