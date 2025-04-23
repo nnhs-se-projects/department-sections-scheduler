@@ -181,6 +181,8 @@ modifyElements(".generateButton",element => {
                 globalCourses = response.courses
                 globalTeachers = response.teachers
                 globalData = response.data
+                sem1 = [response.data]
+                sem2 = [response.data2]
                 populateScheduleBox(globalData)
            })
     },false);
