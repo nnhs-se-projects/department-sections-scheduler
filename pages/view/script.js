@@ -205,7 +205,6 @@ function populateScheduleBox(data){
     
         const periods = document.getElementsByClassName("periodDisplay").length
         const classes = document.getElementsByClassName("classDisplay").length
-        var index = 0;
         for(let i=0;i<(periods*classes);i++){
             const baseEntry = document.createElement("div");
             baseEntry.classList.add("scheduleItem");
@@ -235,12 +234,15 @@ function populateScheduleBox(data){
             //    'linear-gradient(-20deg, rgba('+(r*0.9)+','+(g*0.9)+',0,1) 0%, rgba('+r+','+g+',0,1) 100%)'
                 
             element.appendChild(baseEntry);
-            index++;
         }
         resizeText()
     });
 }
 
+function populateScheduleBox2(data2)
+{
+    
+}
 var activeElement = null
 var openPopup = false
 var popupIndex = -1;
