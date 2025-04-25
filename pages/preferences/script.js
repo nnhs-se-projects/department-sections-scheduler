@@ -63,3 +63,9 @@ modifyElements(".editButton",element => {
         location.href = "/edit"
     });
 });
+
+modifyElements(".helpButton", element => {
+    element.addEventListener('click', e => {
+        location.href = "/help";
+    });
+});

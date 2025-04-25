@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="styles.css" rel="stylesheet" />
+    <title>Course Scheduler - Help</title>
+  </head>
+  <body>
+    <script src="script.js"></script>
+    <div class="dropdownFrame"></div>
+
+    <div class="topFrame">
+      <div class="mainFrame">
+        <div class="navbar">
+          <div class="navbar-flex">
+            <div class="huskieCircle dropShadow">
+              <div class="huskieLogo"></div>
+            </div>
+            <div class="mainTextContainer">
+              <span class="mainText">COURSE SCHEDULER</span>
+            </div>
+            <div class="navButtons">
+              <div class="viewButton">
+                <span class="viewButtonText">VIEW</span>
+              </div>
+              <div class="editButton">
+                <span class="editButtonText">EDIT</span>
+              </div>
+              <div class="prefButton">
+                <span class="prefButtonText">PREFERENCES</span>
+              </div>
+              <div class="helpButton">
+                <span class="helpButtonText">HELP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="helpContent scrollable">
+          <div class="helpSection">
+            <h2 class="helpTitle">User Guide</h2>
+            <p class="helpText">This guide will walk you through the features of the Course Scheduler.</p>
+          </div>
+
+          <div class="helpSection">
+            <h3 class="helpSubtitle">1. Dashboard</h3>
+            <p class="helpText">The dashboard includes:</p>
+            <ul class="helpList">
+              <li>A calendar or list view displaying current and upcoming events.</li>
+              <li>A navigation bar with the different pages: Edit, View, and Preferences.</li>
+              <li>
+                <strong>View:</strong> Shows the generated schedule and download options.
+              </li>
+              <li>
+                <strong>Edit:</strong> Change teachers, courses, and classrooms.
+              </li>
+            </ul>
+            <img class="helpImage" src="images/dashboard.png" alt="Dashboard Screenshot">
+          </div>
+
+          <div class="helpSection">
+            <h3 class="helpSubtitle">2. View Page</h3>
+            <p class="helpText">The view page allows you to:</p>
+            <ul class="helpList">
+              <li>Download data as JSON or CSV (lower right hand corner)</li>
+              <li>Generate a schedule based on the data from the edit page.</li>
+            </ul>
+            <img class="helpImage" src="images/viewPage.png" alt="View Page Screenshot">
+          </div>
+
+          <div class="helpSection">
+            <h3 class="helpSubtitle">3. Edit Page</h3>
+            <p class="helpText">The edit page includes three columns:</p>
+            <ul class="helpList">
+              <li><strong>Teachers:</strong> Edit teacher details and courses taught.</li>
+              <li><strong>Courses:</strong> Edit course details, compatible classrooms, and periods.</li>
+              <li><strong>Classrooms:</strong> Edit classroom availability.</li>
+            </ul>
+            <img class="helpImage" src="images/editPage.png" alt="Edit Page Screenshot">
+          </div>
+
+          <div class="helpSection">
+            <h3 class="helpSubtitle">4. Edit Page-View Page Interaction</h3>
+            <p class="helpText">
+              Changes made in the edit page do not immediately reflect on the view page. Follow these steps to update the view page:
+            </p>
+            <ol class="helpList">
+              <li>Make changes in the edit page. In this example, Mr. Callahan no longer has a CP1 class</li>
+              <img class="helpImageBullets1" src="images/editPageChange.png" alt="Edit-View Interaction Screenshot">
+            </ol>
+
+            <br>
+
+            <ol class="helpList">
+              <li>Download the updated teacher data by clicking the download button.</li>
+              <img class="helpImageBullets2" src="images/downloadbuttoneditpage.png" alt="Edit-View Interaction Screenshot">
+            </ol>
+
+            <br>
+
+            <ol class="helpList">
+              <li>Upload the data to the view page</li>
+              <li>To do so, click the button highlighted below</li>
+              <li>then click the file you just uploaded</li>
+              <img class="helpImageBullets1" src="images/uploadbuttonviewpage.png" alt="Edit-View Interaction Screenshot">
+            </ol>
+
+            <br><br>
+
+            <p class="helpText">
+             Keep in mind that doing this only updates <strong>teacher data</strong> and leaves other
+             data unchanged. 
+             <br><br>
+             If you want to update say the course data, you would want to download the 
+             <br>
+             course data in the edit page using the download button inside the courses tab. 
+             <br>
+             <br>
+             Use the same upload button to update the course data in the view page.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -198,11 +198,14 @@ modifyElements(".prefButton",element => {
     });
 });
 
-modifyElements(".helpButton", element => {
+modifyElements(".editButton",element => {
     element.addEventListener('click', e => {
-        location.href = "/help";
+        location.href = "/edit"
     });
 });
+
+
+
 /*
 fetch('./getJsonFiles', {
     method: 'GET',

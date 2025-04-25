@@ -150,6 +150,12 @@ modifyElements(".prefButton",element => {
     });
 });
 
+modifyElements(".helpButton", element => {
+    element.addEventListener('click', e => {
+        location.href = "/help";
+    });
+});
+
 modifyElements(".popupTrashImage",element => {
     element.addEventListener('click', e => {
         globalData[popupIndex] = null
