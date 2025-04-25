@@ -166,6 +166,7 @@ modifyElements(".classBar",element => {
 });
 
 populateScheduleBox(null)
+populateScheduleBox2(null)
 const schedulePopup = document.getElementsByClassName("schedulePopUp")[0]
 
 modifyElements(".generateButton",element => {
@@ -184,6 +185,7 @@ modifyElements(".generateButton",element => {
                 sem1 = [response.data]
                 sem2 = [response.data2]
                 populateScheduleBox(globalData)
+                populateScheduleBox2(globalData)
            })
     },false);
 });
@@ -238,11 +240,56 @@ function populateScheduleBox(data){
         resizeText()
     });
 }
-
+// Second semester schedule box population
 function populateScheduleBox2(data2)
 {
+    modifyElements(".scheduleBox2",element => {
+        element.innerHTML = ""
+        element.addEventListener('mousemove', e => {
+            const rect = element.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
     
+            element.style.setProperty('--x', x + 'px');
+            element.style.setProperty('--y', y + 'px');
+        });
+    
+        const periods = document.getElementsByClassName("periodDisplay2").length
+        const classes = document.getElementsByClassName("classDisplay2").length
+        for(let i=0;i<(periods*classes);i++){
+            const baseEntry = document.createElement("div");
+            baseEntry.classList.add("scheduleItem");
+            const spanNode = document.createElement("span");
+            spanNode.classList.add("scheduleText");
+
+            var textToAdd = "-"
+            const text = document.createTextNode(textToAdd);
+
+            spanNode.appendChild(text)
+            baseEntry.addEventListener("click",function(e){
+                handleScheduleClick(baseEntry,(data2))
+            })
+
+            baseEntry.appendChild(spanNode);
+            i2 = periods*classes-i-1
+            var lum = (i2-(Math.floor(i2/8)*8))+Math.floor(i2/8)
+    
+            var lum2 = 1.05+(lum/100)
+
+            baseEntry.style.filter = "brightness("+lum2+")"
+            baseEntry.style.strokeWidth = lum2
+    
+            //baseEntry.style.background = 
+            //    'linear-gradient(90deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.03) 100%),'+
+            //    'linear-gradient(0deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.03) 100%),'+
+            //    'linear-gradient(-20deg, rgba('+(r*0.9)+','+(g*0.9)+',0,1) 0%, rgba('+r+','+g+',0,1) 100%)'
+                
+            element.appendChild(baseEntry);
+        }
+        resizeText()
+    });
 }
+// End of second semester schedule box population
 var activeElement = null
 var openPopup = false
 var popupIndex = -1;
