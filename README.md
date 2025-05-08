@@ -8,7 +8,7 @@
 *There are just a few preferable "good" schedules*
 
 ## Project Overview:
-Hi! This is the CTE Department Sections Scheduling App. Basically, this is a web app / algorithm that *tries* to generate a schedule based on three categories of objects. Basically, on the surface, a schedule is made up of three things: Teachers, Courses, and Classrooms. Basically, what our program currently does is it takes these three object types, and uses their conditions to try and craft a schedule that meets all of these categories. There are a couple more criteria that are involved in the scheduling process that aren't listed within the scheduler but are performed passively, such as teachers needing an open period for lunch.
+Hi! This is the CTE Department Sections Scheduling App. Basically, this is a web app / algorithm that generates a schedule based on three categories of objects. Basically, on the surface, a schedule is made up of three things: Teachers, Courses, and Classrooms. Basically, what our program currently does is it takes these three object types, and uses their conditions to try and craft a schedule that meets all of these categories. There are a couple more criteria that are involved in the scheduling process that aren't listed within the scheduler but are performed passively, such as teachers needing an open period for lunch.
 
 
 ## Platform Requirements:
@@ -19,11 +19,18 @@ Our current build of the CTE Department Sections Scheduler runs primarily off of
 ## How to run our project:
 There are a couple of ways to run our project, based on what you want to do. 
 
-To generate schedules, you can add in the writeSchedules method in Scheduler.js, in which the first parameter is how many schedules you want to generate, and the second one is whether or not they get printed into console. 
+After running the node client, you will land on the view page of the website. 
+To generate a schedule, you simply click the "generate schedule" button, and in mere milliseconds, a schedule is generated. You have the option to either download as a CSV or JSON file
 
-To use the website, go to the vs code debugger and begin the node server. after this, start the node client. You should get sent to the schedule generator page, in which you can generate schedules. if you have bad data, the website will tell you so. Otherwise, you should get a monospaced string schedule, and the ability to download a csv file. 
+To change data, navigate your way to the edit page. The edit page is split into 3 sections: teachers, courses, and classrooms. To edit the data, find the correct column to edit data from, then make the changes you would like. 
 
-The other pages on the website should let you edit the data and save changes. These changes should appear when the page gets reloaded, and should also be reflected in the server side json.
+The view page and generate schedule button doesn't immeidately reflect these changes. Instead, go to the section you made changes to, then click the download button. Once done, go back to the view page and upload the file you just downloaded. Clicking generate schedule will now reflect your changes.  
+
+(delete?) To use the website, go to the vs code debugger and begin the node server. after this, start the node client. You should get sent to the schedule generator page, in which you can generate schedules. if you have bad data, the website will tell you so. 
+
+As of right now, the only way to save edit page data is to download it, as reloading will unfortunately not save your data. 
+
+There is a dedicated page called the help page to give you visual guidance on how to use the website :)
 
 ## Valid Schedule / Scheduler.js:
 
