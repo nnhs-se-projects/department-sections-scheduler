@@ -67,6 +67,93 @@ modifyElements(".editButton",element => {
     });
 });
 
+
+function populateTeachers() {
+    const teacherWrapper = document.querySelector(".teacherWrapper"); // Container for all teachers
+    teacherWrapper.innerHTML = ""; // Clear existing content
+
+    globalData.teachers.forEach(teacher => {
+        // Create teacher container
+        const teacherContainer = document.createElement("div");
+        teacherContainer.classList.add("teacherEntry");
+
+        // Add teacher name
+        const teacherName = document.createElement("div");
+        teacherName.classList.add("teacherName");
+        teacherName.innerText = teacher.name;
+
+        // Add drop-down toggle button
+        const dropdownButton = document.createElement("button");
+        dropdownButton.classList.add("dropdownButton");
+        dropdownButton.innerText = "▼";
+        dropdownButton.addEventListener("click", () => {
+            dropdownContent.classList.toggle("visible");
+        });
+
+        // Create drop-down content
+        const dropdownContent = document.createElement("div");
+        dropdownContent.classList.add("dropdownContent");
+
+        // Populate the drop-down with Planning and Lunch Period checkboxes
+        populateDropdownContent(dropdownContent, teacher.name);
+
+        // Append children
+        teacherContainer.appendChild(teacherName);
+        teacherContainer.appendChild(dropdownButton);
+        teacherContainer.appendChild(dropdownContent);
+        teacherWrapper.appendChild(teacherContainer);
+    });
+}
+
+function createPeriodCheckbox(labelText) {
+    const container = document.createElement("div");
+    container.classList.add("periodCheckbox");
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.classList.add("periodCheckboxInput");
+
+    const label = document.createElement("label");
+    label.innerText = labelText;
+
+    container.appendChild(checkbox);
+    container.appendChild(label);
+
+    return container;
+}
+
+function populateDropdownContent(dropdownContent, teacherName) {
+    // Add Planning Period Checkbox
+    const planningPeriod = createPeriodCheckbox("Planning Period");
+    dropdownContent.appendChild(planningPeriod);
+
+    // Add Lunch Period Checkbox
+    const lunchPeriod = createPeriodCheckbox("Lunch Period");
+    dropdownContent.appendChild(lunchPeriod);
+
+    // Add event listeners to save state
+    addCheckboxListener(planningPeriod.querySelector("input"), teacherName, "Planning Period");
+    addCheckboxListener(lunchPeriod.querySelector("input"), teacherName, "Lunch Period");
+}
+
+function saveCheckboxState(teacherName, label, isChecked) {
+    console.log(`Teacher: ${teacherName}, ${label}: ${isChecked}`);
+    // Update global data or send to backend
+    // Example: Update globalData.teachers with the checkbox state
+}
+
+function addCheckboxListener(checkbox, teacherName, label) {
+    checkbox.addEventListener("change", () => {
+        saveCheckboxState(teacherName, label, checkbox.checked);
+    });
+}
+
+// Call this function after loading teacher data
+populateTeachers();
+
+
+
+
 fetch('teachers.json')
   .then(response => response.json())
   .then(data => {

@@ -17,6 +17,57 @@ function elementReady(sel) {
     });
     });
 }
+
+// PREFERENCE REUSE FUNCTION
+
+/**
+ * Creates a reusable period checkbox component.
+ *
+ * @param {string} className - The class name for the checkbox container (e.g., "teacherCheckbox", "courseCheckbox").
+ * @param {string} labelText - The text label for the checkbox (e.g., "1", "2").
+ * @param {boolean} isChecked - Initial state of the checkbox (checked or unchecked).
+ * @param {function} onChangeCallback - Optional callback for handling checkbox state changes.
+ * @returns {HTMLElement} The checkbox container element.
+ */
+function createPeriodCheckbox(className, labelText, isChecked, onChangeCallback) {
+    // Create the container div
+    const container = document.createElement("div");
+    container.className = className;
+
+    // Create the label span
+    const label = document.createElement("span");
+    label.className = `${className}Text`;
+    label.textContent = labelText;
+
+    // Create the checkbox container
+    const checkboxContainer = document.createElement("div");
+    checkboxContainer.className = `${className}Container`;
+
+    // Create the checkbox input
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.className = `${className}Input`;
+    checkbox.checked = isChecked;
+
+    // Set initial opacity based on the checked state
+    container.style.opacity = isChecked ? "1" : "0.5";
+
+    // Add change event listener to the checkbox
+    checkbox.addEventListener("change", (e) => {
+        container.style.opacity = checkbox.checked ? "1" : "0.5";
+        if (onChangeCallback) {
+            onChangeCallback(e, checkbox.checked);
+        }
+    });
+
+    // Append elements to the container
+    checkboxContainer.appendChild(checkbox);
+    container.appendChild(label);
+    container.appendChild(checkboxContainer);
+
+    return container;
+}
+
 var palettes = [
     [[272,100,15],[282,100,23],[11,100,39],[18,100,47]], //original
     [[227,72,10],[241,53,22],[231,27,45],[242,30,66]], //dark blue
@@ -158,24 +209,16 @@ function populateTeacherList(teacherData,insert){
             t29.appendChild(t30);
             t29.appendChild(t24);
             
-            for(let i=0;i<8;i++){
-                var checked = true
-                if(a.openPeriods.indexOf(i+1) == -1){
-                    checked = false
-                }
-
-                const t25 = document.createElement("div");t25.className="teacherCheckbox";
-                const t26 = document.createElement("span");t26.className="teacherPeriodText teacherText";t26.textContent = ""+(i+1);
-                const t27 = document.createElement("div");t27.className="teacherPeriodCheckboxContainer";
-                const t28 = document.createElement("input");t28.className="teacherPeriodCheckbox";t28.type="checkbox";
-                if(checked){t28.checked=true;}else{
-                    t25.style.opacity = "0.5"
-                }
-                t25.index = i;
-                t24.appendChild(t25);
-                t25.appendChild(t26);
-                t25.appendChild(t27);
-                t27.appendChild(t28);
+            for (let i = 0; i < 8; i++) {
+    const isChecked = a.openPeriods.indexOf(i + 1) !== -1;
+    const periodCheckbox = createPeriodCheckbox(
+        "teacherCheckbox",
+        "" + (i + 1),
+        isChecked,
+        () => updateTeacherData(element.parentElement.parentElement.parentElement.parentElement)
+    );
+    t24.appendChild(periodCheckbox);
+}
             }
             if(insert){
                 t1.style.fontSize = element.parentElement.getBoundingClientRect().width+"px"
@@ -274,26 +317,16 @@ function populateCourseList(courseData, insert) {
             t14.appendChild(t15);
             t14.appendChild(t16);
 
-            for(let i=0;i<8;i++){
-                var checked = true
-                if(a.compatiblePeriods.indexOf(i+1) == -1){
-                    checked = false
-                }
-
-                const t17 = document.createElement("li");t17.className="courseCheckbox";
-                const t18 = document.createElement("span");t18.className="coursePeriodText courseText";t18.textContent = ""+(i+1);
-                const t19 = document.createElement("div");t19.className="coursePeriodCheckboxContainer";
-                const t20 = document.createElement("input");t20.className="coursePeriodCheckbox";t20.type="checkbox";
-                if(checked){t20.checked=true;}else{
-                    t17.style.opacity = "0.5"
-                }
-                t17.index = i;
-        
-                t17.appendChild(t18);
-                t17.appendChild(t19);
-                t19.appendChild(t20);
-                t16.appendChild(t17);
-            }
+            for (let i = 0; i < 8; i++) {
+    const isChecked = a.compatiblePeriods.indexOf(i + 1) !== -1;
+    const periodCheckbox = createPeriodCheckbox(
+        "courseCheckbox",
+        "" + (i + 1),
+        isChecked,
+        () => updateCourseData(element.parentElement.parentElement.parentElement.parentElement)
+    );
+    t16.appendChild(periodCheckbox);
+}
 
             const t21 = document.createElement("div");
             t21.className = "courseSemesters";

@@ -1346,3 +1346,43 @@ html {
     height: calc(100% + 4px);
     filter: hue-rotate(calc(-220deg + 1deg * (var(--light-hue-1)))) grayscale(calc(100% - var(--light-sat-1)));
   }
+
+  
+/* CSS for the teacher entry component and overall all features*/
+
+
+  .teacherEntry {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.teacherName {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.dropdownButton {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.dropdownContent {
+    display: none;
+    margin-top: 5px;
+    padding-left: 20px;
+}
+
+.dropdownContent.visible {
+    display: block;
+}
+
+.periodCheckbox {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.periodCheckboxInput {
+    margin-right: 5px;
+}
