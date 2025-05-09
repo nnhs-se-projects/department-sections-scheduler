@@ -56,16 +56,17 @@ Router gets a "get" request from the website, based on what page is being loaded
 
 
 ## All Known Issues:
-- Changes made in the edit page do not save when moving between pages
-    Either add client-side temporary saving or a prompt for the user to save when they navigate away
+- ### Changes made in the edit page do not save when moving between pages
+    - Either add client-side temporary saving or a prompt for the user to save when they navigate away
 
-- Preferences
-    The preferences page is currently blank. It’s not populated with teachers and doesn't have a first/second semester button.
+- ### Preferences
+    - The preferences page is currently blank. It’s not populated with teachers and doesn't have a first/second semester button.
     Also it isn’t taken into consideration when making the schedule; however this would assumably be a easy fix by biasing the greedy algorithm to choose preferences when it is making random decisions
 
-- 2 semester system
-    Currently, we were unable to get the view page to work with 2 semesters both showing at the same time
-    However, you can go to the edit page, select semester 2, and then download that file to put into the view page. This will allow you to make a schedule for the second semester.
+- ### 2 semester system
+    - Currently, we were unable to get the view page to work with 2 semesters both showing at the same time
 
-- No automatic checking for the schedule
-    Our product owner wanted a way to check to see if the schedule met all the requirements which we did not have time for. Although all generated schedules shouldn’t have conflicts, manual editing can produce errors that could be easily overlooked.
+    - However, you can go to the edit page, select semester 2, and then download that file to put into the view page. This will allow you to make a schedule for the second semester.
+
+- ### No automatic checking for the schedule
+    - Our product owner wanted a way to check to see if the schedule met all the requirements which we did not have time for. Although all generated schedules shouldn’t have conflicts, manual editing can produce errors that could be easily overlooked.
