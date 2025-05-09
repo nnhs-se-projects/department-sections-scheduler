@@ -1,11 +1,11 @@
 # Department Sections Scheduler App
 
 ## Designed for Mrs. Oskroba and the great venture of schedule-making
-*There are many a schedule that can be generated from a data set*
+*There are many schedules that can be generated from a data set*
 
-*There are not so many working schedules that can be made, even fewer under the special CTE restrictions*
+*There are few working schedules that can be made, even less under the special CTE restrictions*
 
-*There are just a few preferable "good" schedules*
+*There are a tiny amount of preferable "good" schedules*
 
 ## Project Overview: ✅
 Hi! This is the CTE Department Sections Scheduling App. Basically, this is a web app / algorithm that generates a schedule based on three categories of objects. On the surface, a schedule is made up of three things: Teachers, Courses, and Classrooms. What our program currently does is it takes these three object types, and uses their conditions to create a schedule that correctly organizes these categories. There are a couple more constraints that go into making the schedule (ex: some classes need to be during certain periods, some classes need to be in certain classrooms, specific teachers teaching classes and every teacher needing a lunch and planning period). Along with that there are preferences that could be accounted for however they are less important, Preferences include which period they want for lunch and which period they want for planning. Our goal is to take all of these things into consideration and make a valid schedule without conflicts.
@@ -36,7 +36,7 @@ The schedules are a 2D array of rooms and periods in the view page of the websit
 
 
 ## Valid Schedule generation: 
-The first part of the algorithm makes teacher/course and classroom/period groups. Once this is done, the algorithm will begin a type of tree search as it pairs these groups with each other. For example, the group callaghan/CP2 could be paired up with Room 123/Period 3. If the scheduler runs into some error where a match is invalid, it will try a few other possibilities. If these changes dont fix it either, it'll throw the whole schedule out and start from scratch
+The first part of the algorithm makes teacher/course and classroom/period groups. Once this is done, the algorithm will begin a type of tree search as it pairs these groups with each other. For example, the group callaghan/CP2 could be paired up with Room 123/Period 3. If the scheduler runs into some error where a match is invalid, it will try a few other possibilities. If these changes dont fix it either, it'll throw the whole schedule out and start from scratch.
 
 
 ## Scheduling algorithm 
@@ -55,16 +55,17 @@ The current flow of our program is mostly handled by the router.js file on the s
 Router gets a "get" request from the website, based on what page is being loaded. Router then sends the necessary JSON over to the client, where it is formatted using client side js. After the data is edited client side, Router gets a "post" request in which it receives formatted JSON from the client, which then overrides the current stored JSON.
 
 
-
-
-/f li
 ## All Known Issues:
-Changes made in the edit page do not save when moving between pages
-Either add client-side temporary saving or a prompt for the user to save when they navigate away
-Preferences
-The preferences page is currently blank. It’s not populated with teachers and doesn't have a first/second semester button.
-Also it isn’t taken into consideration when making the schedule; however this would assumably be a easy fix by biasing the greedy algorithm to choose preferences when it is making random decisions
-2 semester system
-Currently we were unable to get the view page to work with 2 semesters both showing at the same time
-Currently you can go to the edit page and select semester 2 then download that file to put into the view page. This will allow you to make a schedule for the second semester.
-No automatic checking for the schedule. Our product owner wanted a way to check to see if the schedule met all the requirements which we did not have time for. Although all generated schedules shouldn’t have conflicts, manual editing can produce errors that could be easily overlooked.
+- Changes made in the edit page do not save when moving between pages
+    Either add client-side temporary saving or a prompt for the user to save when they navigate away
+
+- Preferences
+    The preferences page is currently blank. It’s not populated with teachers and doesn't have a first/second semester button.
+    Also it isn’t taken into consideration when making the schedule; however this would assumably be a easy fix by biasing the greedy algorithm to choose preferences when it is making random decisions
+
+- 2 semester system
+    Currently, we were unable to get the view page to work with 2 semesters both showing at the same time
+    However, you can go to the edit page, select semester 2, and then download that file to put into the view page. This will allow you to make a schedule for the second semester.
+
+- No automatic checking for the schedule
+    Our product owner wanted a way to check to see if the schedule met all the requirements which we did not have time for. Although all generated schedules shouldn’t have conflicts, manual editing can produce errors that could be easily overlooked.
